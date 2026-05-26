@@ -1,0 +1,48 @@
+{
+  "workflow": {
+    "id": "EPF0ccfhaJrCLrXi",
+    "name": "Logging Workflow",
+    "active": false,
+    "webhookUrl": "https://aman01.app.n8n.cloud/webhook/log",
+    "webhookMethod": "POST",
+    "path": "log",
+    "nodeCount": 3,
+    "description": "Centralized structured logging for all n8n workflows. Receives log payloads via webhook and persists to workflow_runs table.",
+    "nodes": [
+      {
+        "name": "Log Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "config": {
+          "httpMethod": "POST",
+          "path": "log",
+          "responseMode": "onReceived"
+        }
+      },
+      {
+        "name": "Insert Log",
+        "type": "n8n-nodes-base.postgres",
+        "config": {
+          "operation": "insert",
+          "table": "workflow_runs",
+          "columns": {
+            "workflow_name": "from body",
+            "status": "from body",
+            "input_payload": "from body",
+            "output_payload": "from body",
+            "error_message": "from body",
+            "duration_ms": "from body",
+            "triggered_by": "from body"
+          }
+        }
+      },
+      {
+        "name": "Respond",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "config": {
+          "respondWith": "json",
+          "responseBody": { "success": true }
+        }
+      }
+    ]
+  }
+}

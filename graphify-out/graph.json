@@ -1,0 +1,1628 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "openschema_workflow_dependency_graph",
+        "label": "n8n Workflow Dependency Ordering (from Phase 4)",
+        "nodes": [
+          "openschema_logging_wf",
+          "openschema_token_refresh_wf",
+          "openschema_retry_handler_wf",
+          "openschema_oauth_connect_wf",
+          "openschema_oauth_callback_wf",
+          "openschema_media_upload_wf",
+          "openschema_post_crud_wf",
+          "openschema_scheduler_cron_wf",
+          "openschema_facebook_publish_wf",
+          "openschema_instagram_publish_wf",
+          "openschema_failure_handler_wf"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "Phase 4 Planning.md"
+      },
+      {
+        "id": "openschema_architecture_stack",
+        "label": "System Architecture Stack: Next.js \u2192 n8n \u2192 Supabase \u2192 Meta Graph API",
+        "nodes": [
+          "openschema_n8n_as_primary_backend",
+          "openschema_supabase_auth",
+          "openschema_meta_graph_api",
+          "openschema_row_level_security",
+          "openschema_service_role_architecture"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "Phase 1 Planning.md"
+      },
+      {
+        "id": "openschema_mvp_feature_set",
+        "label": "MVP Feature Set (from Phase 1 \u00a75)",
+        "nodes": [
+          "openschema_oauth_connect_wf",
+          "openschema_oauth_callback_wf",
+          "openschema_media_upload_wf",
+          "openschema_post_crud_wf",
+          "openschema_scheduler_cron_wf",
+          "openschema_facebook_publish_wf",
+          "openschema_instagram_publish_wf",
+          "openschema_retry_handler_wf",
+          "openschema_token_refresh_wf",
+          "openschema_logging_wf"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "Phase 1 Planning.md"
+      },
+      {
+        "id": "openschema_phase_planning_chain",
+        "label": "Sequential Phase Planning Documents",
+        "nodes": [
+          "phase_1_planning_artifact",
+          "phase_2_planning_artifact",
+          "phase_3_planning_artifact",
+          "phase_4_planning_artifact"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.95,
+        "source_file": "Phase 1 Planning.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "11-logging-workflow.json",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L1",
+      "id": "n8n_workflows_11_logging_workflow_json",
+      "community": 3,
+      "norm_label": "11-logging-workflow.json"
+    },
+    {
+      "label": "workflow",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L2",
+      "id": "workflows_11_logging_workflow_workflow",
+      "community": 3,
+      "norm_label": "workflow"
+    },
+    {
+      "label": "id",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L3",
+      "id": "workflows_11_logging_workflow_workflow_id",
+      "community": 3,
+      "norm_label": "id"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L4",
+      "id": "workflows_11_logging_workflow_workflow_name",
+      "community": 3,
+      "norm_label": "name"
+    },
+    {
+      "label": "active",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L5",
+      "id": "workflows_11_logging_workflow_workflow_active",
+      "community": 3,
+      "norm_label": "active"
+    },
+    {
+      "label": "webhookUrl",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L6",
+      "id": "workflows_11_logging_workflow_workflow_webhookurl",
+      "community": 3,
+      "norm_label": "webhookurl"
+    },
+    {
+      "label": "webhookMethod",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L7",
+      "id": "workflows_11_logging_workflow_workflow_webhookmethod",
+      "community": 3,
+      "norm_label": "webhookmethod"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L8",
+      "id": "workflows_11_logging_workflow_workflow_path",
+      "community": 3,
+      "norm_label": "path"
+    },
+    {
+      "label": "nodeCount",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L9",
+      "id": "workflows_11_logging_workflow_workflow_nodecount",
+      "community": 3,
+      "norm_label": "nodecount"
+    },
+    {
+      "label": "description",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L10",
+      "id": "workflows_11_logging_workflow_workflow_description",
+      "community": 3,
+      "norm_label": "description"
+    },
+    {
+      "label": "nodes",
+      "file_type": "code",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L11",
+      "id": "workflows_11_logging_workflow_workflow_nodes",
+      "community": 3,
+      "norm_label": "nodes"
+    },
+    {
+      "label": "09-retry-handler-workflow.json",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L1",
+      "id": "n8n_workflows_09_retry_handler_workflow_json",
+      "community": 2,
+      "norm_label": "09-retry-handler-workflow.json"
+    },
+    {
+      "label": "workflow",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L2",
+      "id": "workflows_09_retry_handler_workflow_workflow",
+      "community": 2,
+      "norm_label": "workflow"
+    },
+    {
+      "label": "id",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L3",
+      "id": "workflows_09_retry_handler_workflow_workflow_id",
+      "community": 2,
+      "norm_label": "id"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L4",
+      "id": "workflows_09_retry_handler_workflow_workflow_name",
+      "community": 2,
+      "norm_label": "name"
+    },
+    {
+      "label": "active",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L5",
+      "id": "workflows_09_retry_handler_workflow_workflow_active",
+      "community": 2,
+      "norm_label": "active"
+    },
+    {
+      "label": "webhookUrl",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L6",
+      "id": "workflows_09_retry_handler_workflow_workflow_webhookurl",
+      "community": 2,
+      "norm_label": "webhookurl"
+    },
+    {
+      "label": "webhookMethod",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L7",
+      "id": "workflows_09_retry_handler_workflow_workflow_webhookmethod",
+      "community": 2,
+      "norm_label": "webhookmethod"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L8",
+      "id": "workflows_09_retry_handler_workflow_workflow_path",
+      "community": 2,
+      "norm_label": "path"
+    },
+    {
+      "label": "nodeCount",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L9",
+      "id": "workflows_09_retry_handler_workflow_workflow_nodecount",
+      "community": 2,
+      "norm_label": "nodecount"
+    },
+    {
+      "label": "description",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L10",
+      "id": "workflows_09_retry_handler_workflow_workflow_description",
+      "community": 2,
+      "norm_label": "description"
+    },
+    {
+      "label": "nodes",
+      "file_type": "code",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L11",
+      "id": "workflows_09_retry_handler_workflow_workflow_nodes",
+      "community": 2,
+      "norm_label": "nodes"
+    },
+    {
+      "label": "opencode.json",
+      "file_type": "code",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L1",
+      "id": "opencode_opencode_json",
+      "community": 4,
+      "norm_label": "opencode.json"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L2",
+      "id": "opencode_opencode_schema",
+      "community": 4,
+      "norm_label": "$schema"
+    },
+    {
+      "label": "plugin",
+      "file_type": "code",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L3",
+      "id": "opencode_opencode_plugin",
+      "community": 4,
+      "norm_label": "plugin"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": ".opencode/package.json",
+      "source_location": "L1",
+      "id": "opencode_package_json",
+      "community": 5,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": ".opencode/package.json",
+      "source_location": "L2",
+      "id": "opencode_package_dependencies",
+      "community": 5,
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "@opencode-ai/plugin",
+      "file_type": "code",
+      "source_file": ".opencode/package.json",
+      "source_location": "L3",
+      "id": "opencode_package_dependencies_opencode_ai_plugin",
+      "community": 5,
+      "norm_label": "@opencode-ai/plugin"
+    },
+    {
+      "label": "graphify.js",
+      "file_type": "code",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L1",
+      "id": "opencode_plugins_graphify_js",
+      "community": 7,
+      "norm_label": "graphify.js"
+    },
+    {
+      "label": "GraphifyPlugin()",
+      "file_type": "code",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L6",
+      "id": "plugins_graphify_graphifyplugin",
+      "community": 7,
+      "norm_label": "graphifyplugin()"
+    },
+    {
+      "label": "Phase 1 \u2014 System Understanding Artifact",
+      "file_type": "document",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "phase_1_planning_artifact",
+      "community": 1,
+      "norm_label": "phase 1 \u2014 system understanding artifact"
+    },
+    {
+      "label": "Phase 2 \u2014 Database & Storage Implementation Plan",
+      "file_type": "document",
+      "source_file": "Phase 2 Planning.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "phase_2_planning_artifact",
+      "community": 1,
+      "norm_label": "phase 2 \u2014 database & storage implementation plan"
+    },
+    {
+      "label": "Phase 3 \u2014 Supabase Storage Implementation Plan",
+      "file_type": "document",
+      "source_file": "Phase 3 Planning.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "phase_3_planning_artifact",
+      "community": 1,
+      "norm_label": "phase 3 \u2014 supabase storage implementation plan"
+    },
+    {
+      "label": "Phase 4 \u2014 n8n Workflow Implementation Plan",
+      "file_type": "document",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "phase_4_planning_artifact",
+      "community": 0,
+      "norm_label": "phase 4 \u2014 n8n workflow implementation plan"
+    },
+    {
+      "label": "AGENTS.md \u2014 Graphify Project Instructions",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "agents_md_artifact",
+      "community": 6,
+      "norm_label": "agents.md \u2014 graphify project instructions"
+    },
+    {
+      "label": "n8n as Primary Backend \u2014 All business logic, orchestration, OAuth, scheduling, retries, logging lives in n8n",
+      "file_type": "rationale",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_n8n_as_primary_backend",
+      "community": 0,
+      "norm_label": "n8n as primary backend \u2014 all business logic, orchestration, oauth, scheduling, retries, logging lives in n8n"
+    },
+    {
+      "label": "Exponential Backoff Retry \u2014 3 attempts, 1m/5m/30m intervals",
+      "file_type": "rationale",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "248",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_exponential_backoff_retry",
+      "community": 1,
+      "norm_label": "exponential backoff retry \u2014 3 attempts, 1m/5m/30m intervals"
+    },
+    {
+      "label": "Token Encryption at Rest \u2014 pgp_sym_encrypt with server-side key from env vars",
+      "file_type": "rationale",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "246",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_token_encryption_at_rest",
+      "community": 1,
+      "norm_label": "token encryption at rest \u2014 pgp_sym_encrypt with server-side key from env vars"
+    },
+    {
+      "label": "n8n uses service_role key for DB \u2014 n8n is trusted backend, manages access control itself",
+      "file_type": "rationale",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "243",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_service_role_architecture",
+      "community": 0,
+      "norm_label": "n8n uses service_role key for db \u2014 n8n is trusted backend, manages access control itself"
+    },
+    {
+      "label": "Public Bucket for Meta API \u2014 signed URLs expire too soon for scheduled posts days away",
+      "file_type": "rationale",
+      "source_file": "Phase 3 Planning.md",
+      "source_location": "19",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_public_bucket_rationale",
+      "community": 1,
+      "norm_label": "public bucket for meta api \u2014 signed urls expire too soon for scheduled posts days away"
+    },
+    {
+      "label": "Centralized Structured Logging \u2014 utility consumed by all workflows, zero deps",
+      "file_type": "rationale",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "22",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_centralized_logging_utility",
+      "community": 0,
+      "norm_label": "centralized structured logging \u2014 utility consumed by all workflows, zero deps"
+    },
+    {
+      "label": "1-Minute Cron Interval \u2014 balance between timely publishing and DB load",
+      "file_type": "rationale",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "247",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_cron_one_minute_balance",
+      "community": 1,
+      "norm_label": "1-minute cron interval \u2014 balance between timely publishing and db load"
+    },
+    {
+      "label": "Supabase Auth \u2014 authentication provider, manages users and sessions",
+      "file_type": "concept",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "8",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_supabase_auth",
+      "community": 1,
+      "norm_label": "supabase auth \u2014 authentication provider, manages users and sessions"
+    },
+    {
+      "label": "Meta Graph API \u2014 Facebook + Instagram publishing endpoint",
+      "file_type": "concept",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "52",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_meta_graph_api",
+      "community": 1,
+      "norm_label": "meta graph api \u2014 facebook + instagram publishing endpoint"
+    },
+    {
+      "label": "Row Level Security (RLS) \u2014 per-user row filtering via auth.uid()",
+      "file_type": "concept",
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "173",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_row_level_security",
+      "community": 1,
+      "norm_label": "row level security (rls) \u2014 per-user row filtering via auth.uid()"
+    },
+    {
+      "label": "WF-1: OAuth Connect Workflow \u2014 generates Meta authorization URL with state",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "50",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_oauth_connect_wf",
+      "community": 0,
+      "norm_label": "wf-1: oauth connect workflow \u2014 generates meta authorization url with state"
+    },
+    {
+      "label": "WF-2: OAuth Callback Workflow \u2014 exchanges code, stores tokens, creates social_accounts",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "57",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_oauth_callback_wf",
+      "community": 0,
+      "norm_label": "wf-2: oauth callback workflow \u2014 exchanges code, stores tokens, creates social_accounts"
+    },
+    {
+      "label": "WF-3: Media Upload Workflow \u2014 validates metadata, inserts media_assets record",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "62",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_media_upload_wf",
+      "community": 1,
+      "norm_label": "wf-3: media upload workflow \u2014 validates metadata, inserts media_assets record"
+    },
+    {
+      "label": "WF-4: Post CRUD Workflow \u2014 create/edit/cancel scheduled_posts",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "67",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_post_crud_wf",
+      "community": 0,
+      "norm_label": "wf-4: post crud workflow \u2014 create/edit/cancel scheduled_posts"
+    },
+    {
+      "label": "WF-5: Cron Scheduler Workflow \u2014 polls pending posts every 1min, dispatches Publish",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "72",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_scheduler_cron_wf",
+      "community": 0,
+      "norm_label": "wf-5: cron scheduler workflow \u2014 polls pending posts every 1min, dispatches publish"
+    },
+    {
+      "label": "WF-6: Facebook Publish Workflow \u2014 creates FB post via Graph API",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "77",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_facebook_publish_wf",
+      "community": 0,
+      "norm_label": "wf-6: facebook publish workflow \u2014 creates fb post via graph api"
+    },
+    {
+      "label": "WF-7: Instagram Publish Workflow \u2014 2-step container \u2192 publish via Graph API",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "82",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_instagram_publish_wf",
+      "community": 0,
+      "norm_label": "wf-7: instagram publish workflow \u2014 2-step container \u2192 publish via graph api"
+    },
+    {
+      "label": "WF-8: Token Refresh Workflow \u2014 refreshes expiring Meta long-lived tokens",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "87",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_token_refresh_wf",
+      "community": 0,
+      "norm_label": "wf-8: token refresh workflow \u2014 refreshes expiring meta long-lived tokens"
+    },
+    {
+      "label": "WF-9: Retry Handler Workflow \u2014 exponential backoff, reschedule or mark failed",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "92",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_retry_handler_wf",
+      "community": 0,
+      "norm_label": "wf-9: retry handler workflow \u2014 exponential backoff, reschedule or mark failed"
+    },
+    {
+      "label": "WF-10: Failure Handler Workflow \u2014 centralized failure recording and retry dispatch",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "97",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_failure_handler_wf",
+      "community": 0,
+      "norm_label": "wf-10: failure handler workflow \u2014 centralized failure recording and retry dispatch"
+    },
+    {
+      "label": "WF-11: Logging Workflow \u2014 centralized structured logging, receives webhook, persists to workflow_runs",
+      "file_type": "concept",
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "102",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_logging_wf",
+      "community": 0,
+      "norm_label": "wf-11: logging workflow \u2014 centralized structured logging, receives webhook, persists to workflow_runs"
+    },
+    {
+      "label": "GraphifyPlugin \u2014 OpenCode plugin injecting knowledge graph reminder before bash calls",
+      "file_type": "concept",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "6",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_graphify_plugin",
+      "community": 6,
+      "norm_label": "graphifyplugin \u2014 opencode plugin injecting knowledge graph reminder before bash calls"
+    },
+    {
+      "label": "graphify-out Knowledge Graph \u2014 project graph with god nodes, community structure, cross-file relationships",
+      "file_type": "concept",
+      "source_file": "AGENTS.md",
+      "source_location": "3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "openschema_graphify_out_knowledge_graph",
+      "community": 6,
+      "norm_label": "graphify-out knowledge graph \u2014 project graph with god nodes, community structure, cross-file relationships"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "n8n_workflows_11_logging_workflow_json",
+      "target": "workflows_11_logging_workflow_workflow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_active",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_webhookurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_webhookmethod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_nodecount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/11-logging-workflow.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "workflows_11_logging_workflow_workflow",
+      "target": "workflows_11_logging_workflow_workflow_nodes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "n8n_workflows_09_retry_handler_workflow_json",
+      "target": "workflows_09_retry_handler_workflow_workflow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_active",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_webhookurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_webhookmethod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_nodecount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "n8n/workflows/09-retry-handler-workflow.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "workflows_09_retry_handler_workflow_workflow",
+      "target": "workflows_09_retry_handler_workflow_workflow_nodes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "opencode_opencode_json",
+      "target": "opencode_opencode_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "opencode_opencode_json",
+      "target": "opencode_opencode_plugin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "opencode_package_json",
+      "target": "opencode_package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "opencode_package_dependencies",
+      "target": "opencode_package_dependencies_opencode_ai_plugin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "opencode_plugins_graphify_js",
+      "target": "plugins_graphify_graphifyplugin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_n8n_as_primary_backend"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "19",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_exponential_backoff_retry"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "175",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_token_encryption_at_rest"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "181",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_service_role_architecture"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "8",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_supabase_auth"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "52",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_meta_graph_api"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "173",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_row_level_security"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "247",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_cron_one_minute_balance"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "108",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_retry_handler_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "110",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "openschema_logging_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "187",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "phase_2_planning_artifact"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "187",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "phase_3_planning_artifact"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "187",
+      "weight": 1.0,
+      "source": "phase_1_planning_artifact",
+      "target": "phase_4_planning_artifact"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 2 Planning.md",
+      "source_location": "141",
+      "weight": 1.0,
+      "source": "phase_2_planning_artifact",
+      "target": "openschema_row_level_security"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 3 Planning.md",
+      "source_location": "19",
+      "weight": 1.0,
+      "source": "phase_3_planning_artifact",
+      "target": "openschema_public_bucket_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 3 Planning.md",
+      "source_location": "59",
+      "weight": 1.0,
+      "source": "phase_3_planning_artifact",
+      "target": "openschema_meta_graph_api"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 3 Planning.md",
+      "source_location": "82",
+      "weight": 1.0,
+      "source": "phase_3_planning_artifact",
+      "target": "openschema_media_upload_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "22",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_centralized_logging_utility"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "50",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_oauth_connect_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "57",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_oauth_callback_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "62",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_media_upload_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "67",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_post_crud_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "72",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_scheduler_cron_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "77",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_facebook_publish_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "82",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_instagram_publish_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "87",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_token_refresh_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "92",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_retry_handler_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "97",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_failure_handler_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "102",
+      "weight": 1.0,
+      "source": "phase_4_planning_artifact",
+      "target": "openschema_logging_wf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "3",
+      "weight": 1.0,
+      "source": "agents_md_artifact",
+      "target": "openschema_graphify_out_knowledge_graph"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "AGENTS.md",
+      "source_location": "1",
+      "weight": 1.0,
+      "source": "agents_md_artifact",
+      "target": "openschema_graphify_plugin"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "243",
+      "weight": 1.0,
+      "source": "openschema_service_role_architecture",
+      "target": "openschema_n8n_as_primary_backend"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_oauth_connect_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_oauth_callback_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_scheduler_cron_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_facebook_publish_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_instagram_publish_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_token_refresh_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_retry_handler_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_failure_handler_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "6",
+      "weight": 1.0,
+      "source": "openschema_n8n_as_primary_backend",
+      "target": "openschema_logging_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "248",
+      "weight": 1.0,
+      "source": "openschema_exponential_backoff_retry",
+      "target": "openschema_retry_handler_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "246",
+      "weight": 1.0,
+      "source": "openschema_token_encryption_at_rest",
+      "target": "openschema_token_refresh_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "243",
+      "weight": 1.0,
+      "source": "openschema_service_role_architecture",
+      "target": "openschema_retry_handler_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 3 Planning.md",
+      "source_location": "19",
+      "weight": 1.0,
+      "source": "openschema_public_bucket_rationale",
+      "target": "openschema_meta_graph_api"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "22",
+      "weight": 1.0,
+      "source": "openschema_centralized_logging_utility",
+      "target": "openschema_logging_wf"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "Phase 1 Planning.md",
+      "source_location": "247",
+      "weight": 1.0,
+      "source": "openschema_cron_one_minute_balance",
+      "target": "openschema_scheduler_cron_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "26",
+      "weight": 1.0,
+      "source": "openschema_logging_wf",
+      "target": "openschema_oauth_callback_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "27",
+      "weight": 1.0,
+      "source": "openschema_logging_wf",
+      "target": "openschema_media_upload_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "28",
+      "weight": 1.0,
+      "source": "openschema_logging_wf",
+      "target": "openschema_post_crud_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "29",
+      "weight": 1.0,
+      "source": "openschema_logging_wf",
+      "target": "openschema_scheduler_cron_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "29",
+      "weight": 1.0,
+      "source": "openschema_retry_handler_wf",
+      "target": "openschema_scheduler_cron_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "30",
+      "weight": 1.0,
+      "source": "openschema_logging_wf",
+      "target": "openschema_facebook_publish_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "30",
+      "weight": 1.0,
+      "source": "openschema_token_refresh_wf",
+      "target": "openschema_facebook_publish_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "30",
+      "weight": 1.0,
+      "source": "openschema_retry_handler_wf",
+      "target": "openschema_facebook_publish_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "31",
+      "weight": 1.0,
+      "source": "openschema_logging_wf",
+      "target": "openschema_instagram_publish_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "31",
+      "weight": 1.0,
+      "source": "openschema_token_refresh_wf",
+      "target": "openschema_instagram_publish_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "31",
+      "weight": 1.0,
+      "source": "openschema_retry_handler_wf",
+      "target": "openschema_instagram_publish_wf"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md",
+      "source_location": "32",
+      "weight": 1.0,
+      "source": "openschema_logging_wf",
+      "target": "openschema_failure_handler_wf"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "openschema_workflow_dependency_graph",
+      "label": "n8n Workflow Dependency Ordering (from Phase 4)",
+      "nodes": [
+        "openschema_logging_wf",
+        "openschema_token_refresh_wf",
+        "openschema_retry_handler_wf",
+        "openschema_oauth_connect_wf",
+        "openschema_oauth_callback_wf",
+        "openschema_media_upload_wf",
+        "openschema_post_crud_wf",
+        "openschema_scheduler_cron_wf",
+        "openschema_facebook_publish_wf",
+        "openschema_instagram_publish_wf",
+        "openschema_failure_handler_wf"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 4 Planning.md"
+    },
+    {
+      "id": "openschema_architecture_stack",
+      "label": "System Architecture Stack: Next.js \u2192 n8n \u2192 Supabase \u2192 Meta Graph API",
+      "nodes": [
+        "openschema_n8n_as_primary_backend",
+        "openschema_supabase_auth",
+        "openschema_meta_graph_api",
+        "openschema_row_level_security",
+        "openschema_service_role_architecture"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md"
+    },
+    {
+      "id": "openschema_mvp_feature_set",
+      "label": "MVP Feature Set (from Phase 1 \u00a75)",
+      "nodes": [
+        "openschema_oauth_connect_wf",
+        "openschema_oauth_callback_wf",
+        "openschema_media_upload_wf",
+        "openschema_post_crud_wf",
+        "openschema_scheduler_cron_wf",
+        "openschema_facebook_publish_wf",
+        "openschema_instagram_publish_wf",
+        "openschema_retry_handler_wf",
+        "openschema_token_refresh_wf",
+        "openschema_logging_wf"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Phase 1 Planning.md"
+    },
+    {
+      "id": "openschema_phase_planning_chain",
+      "label": "Sequential Phase Planning Documents",
+      "nodes": [
+        "phase_1_planning_artifact",
+        "phase_2_planning_artifact",
+        "phase_3_planning_artifact",
+        "phase_4_planning_artifact"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "Phase 1 Planning.md"
+    }
+  ]
+}

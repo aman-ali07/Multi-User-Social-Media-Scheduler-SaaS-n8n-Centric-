@@ -1,0 +1,13 @@
+/home/aman/projects/saas/n8n/workflows/11-logging-workflow.json
+/home/aman/projects/saas/n8n/workflows/09-retry-handler-workflow.json
+/home/aman/projects/saas/.opencode/opencode.json
+/home/aman/projects/saas/.opencode/package.json
+/home/aman/projects/saas/.opencode/plugins/graphify.js
+/home/aman/projects/saas/supabase/migrations/002_storage_setup.sql
+/home/aman/projects/saas/supabase/migrations/001_initial_schema.sql
+/home/aman/projects/saas/Phase 2 Planning.md
+/home/aman/projects/saas/Phase 1 Planning.md
+/home/aman/projects/saas/Phase 3 Planning.md
+/home/aman/projects/saas/AGENTS.md
+/home/aman/projects/saas/Phase 4 Planning.md
+/home/aman/projects/saas/N8N_Social_Scheduler_PRD.pdf
