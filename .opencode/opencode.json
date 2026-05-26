@@ -2,5 +2,15 @@
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
     ".opencode/plugins/graphify.js"
-  ]
+  ],
+  "skills": {
+    "paths": [".agents/skills"]
+  },
+  "mcp": {
+    "supabase": {
+      "type": "remote",
+      "url": "https://mcp.supabase.com/mcp?project_ref=dzbkiqtzyofzcfqgundy",
+      "enabled": true
+    }
+  }
 }

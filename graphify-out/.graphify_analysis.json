@@ -1,0 +1,864 @@
+{
+  "communities": {
+    "0": [
+      "accounts_page_accountspage",
+      "accounts_page_container",
+      "accounts_page_item",
+      "auth_auth_form_authform",
+      "auth_auth_guard_authguard",
+      "auth_auth_layout_authlayout",
+      "auth_auth_layout_authlayoutprops",
+      "auth_motion_narrative_motionnarrative",
+      "callback_page_authcallbackpage",
+      "composer_page_composerpage",
+      "composer_page_container",
+      "composer_page_item",
+      "frontend_src_app_accounts_page_tsx",
+      "frontend_src_app_auth_callback_page_tsx",
+      "frontend_src_app_auth_login_page_tsx",
+      "frontend_src_app_auth_register_page_tsx",
+      "frontend_src_app_composer_page_tsx",
+      "frontend_src_app_posts_page_tsx",
+      "frontend_src_components_auth_auth_guard_tsx",
+      "frontend_src_components_auth_auth_layout_tsx",
+      "frontend_src_components_auth_motion_narrative_tsx",
+      "frontend_src_components_shell_console_shell_tsx",
+      "frontend_src_components_shell_status_bar_tsx",
+      "frontend_src_components_shell_top_bar_tsx",
+      "frontend_src_components_ui_button_tsx",
+      "frontend_src_hooks_use_auth_ts",
+      "frontend_src_lib_n8n_ts",
+      "frontend_src_lib_supabase_ts",
+      "hooks_use_auth_useauth",
+      "lib_n8n_callwebhook",
+      "lib_n8n_cancelpost",
+      "lib_n8n_connectoauth",
+      "lib_n8n_createpost",
+      "lib_n8n_registermedia",
+      "lib_n8n_updatepost",
+      "lib_n8n_webhookoptions",
+      "lib_supabase_supabase",
+      "login_page_loginpage",
+      "posts_page_container",
+      "posts_page_item",
+      "posts_page_postspage",
+      "posts_page_statustabs",
+      "register_page_registerpage",
+      "shell_console_shell_consoleshell",
+      "shell_console_shell_consoleshellprops",
+      "shell_status_bar_statusbar",
+      "shell_top_bar_topbar",
+      "types_database_socialaccount",
+      "ui_button_button",
+      "ui_button_buttonprops",
+      "ui_button_sizestyles",
+      "ui_button_variantstyles"
+    ],
+    "1": [
+      "frontend_package_dependencies",
+      "frontend_package_dependencies_class_variance_authority",
+      "frontend_package_dependencies_clsx",
+      "frontend_package_dependencies_framer_motion",
+      "frontend_package_dependencies_next",
+      "frontend_package_dependencies_react",
+      "frontend_package_dependencies_react_dom",
+      "frontend_package_dependencies_supabase_ssr",
+      "frontend_package_dependencies_supabase_supabase_js",
+      "frontend_package_dependencies_tailwind_merge",
+      "frontend_package_dependencies_tailwindcss_animate",
+      "frontend_package_devdependencies",
+      "frontend_package_devdependencies_eslint",
+      "frontend_package_devdependencies_eslint_config_next",
+      "frontend_package_devdependencies_tailwindcss",
+      "frontend_package_devdependencies_tailwindcss_postcss",
+      "frontend_package_devdependencies_types_node",
+      "frontend_package_devdependencies_types_react",
+      "frontend_package_devdependencies_types_react_dom",
+      "frontend_package_devdependencies_typescript",
+      "frontend_package_json",
+      "frontend_package_name",
+      "frontend_package_private",
+      "frontend_package_scripts",
+      "frontend_package_scripts_build",
+      "frontend_package_scripts_dev",
+      "frontend_package_scripts_lint",
+      "frontend_package_scripts_start",
+      "frontend_package_version"
+    ],
+    "2": [
+      "dashboard_page_activitydot",
+      "dashboard_page_activityitems",
+      "dashboard_page_container",
+      "dashboard_page_dashboardpage",
+      "dashboard_page_item",
+      "dashboard_page_statcard",
+      "dashboard_page_statcards",
+      "dashboard_page_timelinebar",
+      "dashboard_page_upcomingposts",
+      "frontend_src_app_dashboard_page_tsx",
+      "frontend_src_components_ui_badge_tsx",
+      "frontend_src_types_database_ts",
+      "types_database_accountstatus",
+      "types_database_dashboardstats",
+      "types_database_logstatus",
+      "types_database_mediaasset",
+      "types_database_oauthstate",
+      "types_database_platform",
+      "types_database_postlog",
+      "types_database_postmedia",
+      "types_database_poststatus",
+      "types_database_profile",
+      "types_database_scheduledpost",
+      "types_database_tokenrefreshlog",
+      "types_database_workflowrun",
+      "types_database_workflowstatus",
+      "ui_badge_badge",
+      "ui_badge_badgeprops",
+      "ui_badge_variantstyles"
+    ],
+    "3": [
+      "facebook_graph_api",
+      "facebook_publish_workflow",
+      "failure_handler_workflow",
+      "instagram_publish_workflow",
+      "logging_workflow",
+      "media_assets_table",
+      "meta_graph_api",
+      "oauth_state_table",
+      "post_logs_table",
+      "post_media_table",
+      "profiles_table",
+      "retry_handler_workflow",
+      "scheduled_posts_table",
+      "social_accounts_table",
+      "supabase_db_credential",
+      "token_refresh_log_table",
+      "wf_cron_scheduler",
+      "wf_facebook_publish",
+      "wf_failure_handler",
+      "wf_instagram_publish",
+      "wf_logging",
+      "wf_media_upload",
+      "wf_oauth_callback",
+      "wf_oauth_connect",
+      "wf_post_crud",
+      "wf_retry_handler",
+      "wf_token_refresh",
+      "workflow_runs_table"
+    ],
+    "4": [
+      "agents_config",
+      "n8n_backend",
+      "n8n_social_scheduler",
+      "n8n_social_scheduler_prd",
+      "nextjs_frontend",
+      "pg_advisory_locks",
+      "pg_batch_inserts",
+      "pg_fk_indexes",
+      "pg_full_text_search",
+      "pg_n_plus_one",
+      "pg_partial_indexes",
+      "pg_prepared_statements",
+      "pg_primary_keys",
+      "pg_skip_locked",
+      "phase_1_planning",
+      "phase_2_database",
+      "phase_3_storage",
+      "phase_4_n8n_workflows",
+      "phase_5_meta_api",
+      "phase_6_frontend",
+      "signal_design_system",
+      "supabase_auth",
+      "supabase_db",
+      "supabase_pg_skill",
+      "supabase_skill",
+      "supabase_storage"
+    ],
+    "5": [
+      "accounts_page",
+      "auth_callback_page",
+      "auth_form",
+      "auth_guard",
+      "auth_layout",
+      "badge",
+      "button",
+      "composer_page",
+      "console_shell",
+      "dashboard_page",
+      "database_types",
+      "input",
+      "left_nav",
+      "login_page",
+      "motion_narrative",
+      "n8n_api_proxy",
+      "n8n_client",
+      "posts_page",
+      "register_page",
+      "status_bar",
+      "supabase_client",
+      "top_bar",
+      "use_auth"
+    ],
+    "6": [
+      "app_layout_bilderberg",
+      "app_layout_jetbrainsmono",
+      "app_layout_metadata",
+      "app_layout_rootlayout",
+      "app_layout_satoshi",
+      "auth_auth_form_authformprops",
+      "frontend_src_app_layout_tsx",
+      "frontend_src_components_auth_auth_form_tsx",
+      "frontend_src_components_shell_left_nav_tsx",
+      "frontend_src_components_ui_input_tsx",
+      "frontend_src_lib_utils_ts",
+      "lib_utils_cn",
+      "lib_utils_daysuntilexpiry",
+      "lib_utils_formatdate",
+      "lib_utils_formatrelative",
+      "lib_utils_formattime",
+      "lib_utils_timeuntil",
+      "shell_left_nav_containervariants",
+      "shell_left_nav_itemvariants",
+      "shell_left_nav_leftnav",
+      "shell_left_nav_navitems",
+      "ui_input_input",
+      "ui_input_inputprops"
+    ],
+    "7": [
+      "frontend_tsconfig_compileroptions",
+      "frontend_tsconfig_compileroptions_allowjs",
+      "frontend_tsconfig_compileroptions_esmoduleinterop",
+      "frontend_tsconfig_compileroptions_incremental",
+      "frontend_tsconfig_compileroptions_isolatedmodules",
+      "frontend_tsconfig_compileroptions_jsx",
+      "frontend_tsconfig_compileroptions_lib",
+      "frontend_tsconfig_compileroptions_module",
+      "frontend_tsconfig_compileroptions_moduleresolution",
+      "frontend_tsconfig_compileroptions_noemit",
+      "frontend_tsconfig_compileroptions_paths",
+      "frontend_tsconfig_compileroptions_plugins",
+      "frontend_tsconfig_compileroptions_resolvejsonmodule",
+      "frontend_tsconfig_compileroptions_skiplibcheck",
+      "frontend_tsconfig_compileroptions_strict",
+      "frontend_tsconfig_compileroptions_target",
+      "frontend_tsconfig_exclude",
+      "frontend_tsconfig_include",
+      "frontend_tsconfig_json",
+      "frontend_tsconfig_paths"
+    ],
+    "8": [
+      "calendar_calendar_grid_calendargrid",
+      "calendar_calendar_grid_calendargridprops",
+      "calendar_calendar_grid_calendarpost",
+      "calendar_calendar_grid_daylabels",
+      "calendar_day_cell_calendarpost",
+      "calendar_day_cell_daycell",
+      "calendar_day_cell_daycellprops",
+      "calendar_page_calendarpage",
+      "calendar_page_container",
+      "calendar_page_item",
+      "calendar_page_monthnames",
+      "hooks_use_calendar_calendarpost",
+      "hooks_use_calendar_usecalendar",
+      "src_app_calendar_page_tsx",
+      "src_components_calendar_calendar_grid_tsx",
+      "src_components_calendar_day_cell_tsx",
+      "src_hooks_use_calendar_ts"
+    ],
+    "9": [
+      "n8n_workflows_07_instagram_publish_ts",
+      "workflows_07_instagram_publish_buildcontainerurl",
+      "workflows_07_instagram_publish_buildpublishurl",
+      "workflows_07_instagram_publish_callretry",
+      "workflows_07_instagram_publish_checkpublishresult",
+      "workflows_07_instagram_publish_createcontainer",
+      "workflows_07_instagram_publish_logfailure",
+      "workflows_07_instagram_publish_logsuccess",
+      "workflows_07_instagram_publish_markfailed",
+      "workflows_07_instagram_publish_markpublished",
+      "workflows_07_instagram_publish_publishcontainer",
+      "workflows_07_instagram_publish_respond",
+      "workflows_07_instagram_publish_responderror",
+      "workflows_07_instagram_publish_waitnode",
+      "workflows_07_instagram_publish_webhooktrigger"
+    ],
+    "10": [
+      "composer_caption_editor_captioneditor",
+      "composer_caption_editor_captioneditorprops",
+      "composer_platform_selector_options",
+      "composer_platform_selector_platformselector",
+      "composer_platform_selector_platformselectorprops",
+      "composer_schedule_picker_schedulepicker",
+      "composer_schedule_picker_schedulepickerprops",
+      "id_page_editpostpage",
+      "src_app_composer_id_page_tsx",
+      "src_app_composer_id_page_tsx_id_page_container",
+      "src_app_composer_id_page_tsx_id_page_item",
+      "src_components_composer_caption_editor_tsx",
+      "src_components_composer_platform_selector_tsx",
+      "src_components_composer_schedule_picker_tsx"
+    ],
+    "11": [
+      "concept_least_privilege",
+      "concept_lowercase_identifiers",
+      "concept_pg_stat_statements",
+      "concept_table_partitioning",
+      "concept_upsert",
+      "contributing_ref",
+      "data_upsert_ref",
+      "monitor_pg_stat_statements_ref",
+      "schema_constraints_ref",
+      "schema_lowercase_identifiers_ref",
+      "schema_partitioning_ref",
+      "security_privileges_ref",
+      "supabase_postgres_best_practices_skill",
+      "template_ref"
+    ],
+    "12": [
+      "saas_skills_lock_skills",
+      "saas_skills_lock_skills_supabase",
+      "saas_skills_lock_skills_supabase_postgres_best_practices",
+      "saas_skills_lock_supabase_computedhash",
+      "saas_skills_lock_supabase_postgres_best_practices_computedhash",
+      "saas_skills_lock_supabase_postgres_best_practices_skillpath",
+      "saas_skills_lock_supabase_postgres_best_practices_source",
+      "saas_skills_lock_supabase_postgres_best_practices_sourcetype",
+      "saas_skills_lock_supabase_skillpath",
+      "saas_skills_lock_supabase_source",
+      "saas_skills_lock_supabase_sourcetype",
+      "saas_skills_lock_version",
+      "skills_lock_json"
+    ],
+    "13": [
+      "n8n_workflows_06_facebook_publish_ts",
+      "workflows_06_facebook_publish_buildfbpayload",
+      "workflows_06_facebook_publish_callfbapi",
+      "workflows_06_facebook_publish_callretry",
+      "workflows_06_facebook_publish_checkresult",
+      "workflows_06_facebook_publish_logfailure",
+      "workflows_06_facebook_publish_logsuccess",
+      "workflows_06_facebook_publish_markfailed",
+      "workflows_06_facebook_publish_markpublished",
+      "workflows_06_facebook_publish_respond",
+      "workflows_06_facebook_publish_responderror",
+      "workflows_06_facebook_publish_webhooktrigger"
+    ],
+    "14": [
+      "n8n_workflows_09_retry_handler_workflow_json",
+      "workflows_09_retry_handler_workflow_workflow",
+      "workflows_09_retry_handler_workflow_workflow_active",
+      "workflows_09_retry_handler_workflow_workflow_description",
+      "workflows_09_retry_handler_workflow_workflow_id",
+      "workflows_09_retry_handler_workflow_workflow_name",
+      "workflows_09_retry_handler_workflow_workflow_nodecount",
+      "workflows_09_retry_handler_workflow_workflow_nodes",
+      "workflows_09_retry_handler_workflow_workflow_path",
+      "workflows_09_retry_handler_workflow_workflow_webhookmethod",
+      "workflows_09_retry_handler_workflow_workflow_webhookurl"
+    ],
+    "15": [
+      "n8n_workflows_11_logging_workflow_json",
+      "workflows_11_logging_workflow_workflow",
+      "workflows_11_logging_workflow_workflow_active",
+      "workflows_11_logging_workflow_workflow_description",
+      "workflows_11_logging_workflow_workflow_id",
+      "workflows_11_logging_workflow_workflow_name",
+      "workflows_11_logging_workflow_workflow_nodecount",
+      "workflows_11_logging_workflow_workflow_nodes",
+      "workflows_11_logging_workflow_workflow_path",
+      "workflows_11_logging_workflow_workflow_webhookmethod",
+      "workflows_11_logging_workflow_workflow_webhookurl"
+    ],
+    "16": [
+      "opencode_opencode_json",
+      "opencode_opencode_mcp",
+      "opencode_opencode_mcp_supabase",
+      "opencode_opencode_plugin",
+      "opencode_opencode_schema",
+      "opencode_opencode_skills",
+      "opencode_opencode_skills_paths",
+      "opencode_opencode_supabase_enabled",
+      "opencode_opencode_supabase_type",
+      "opencode_opencode_supabase_url"
+    ],
+    "17": [
+      "lib_queries_getalllogs",
+      "lib_queries_getcalendarposts",
+      "lib_queries_getdashboardstats",
+      "lib_queries_getlogsforpost",
+      "lib_queries_getmyaccounts",
+      "lib_queries_getmymedia",
+      "lib_queries_getmyposts",
+      "lib_queries_getpostbyid",
+      "lib_queries_getupcomingposts",
+      "src_lib_queries_ts"
+    ],
+    "18": [
+      "hooks_use_media_usemedia",
+      "media_media_grid_mediagrid",
+      "media_media_grid_mediagridprops",
+      "media_page_container",
+      "media_page_item",
+      "media_page_mediapage",
+      "src_app_media_page_tsx",
+      "src_components_media_media_grid_tsx",
+      "src_hooks_use_media_ts"
+    ],
+    "19": [
+      "advanced_jsonb_indexing_ref",
+      "concept_brin_index",
+      "concept_btree_index",
+      "concept_gin_index",
+      "concept_gist_index",
+      "concept_hash_index",
+      "concept_jsonb_indexing",
+      "query_index_types_ref"
+    ],
+    "20": [
+      "dashboard_stats_row_colormap",
+      "dashboard_stats_row_item",
+      "dashboard_stats_row_statcard",
+      "dashboard_stats_row_statcardprops",
+      "dashboard_stats_row_statsrow",
+      "dashboard_stats_row_statsrowprops",
+      "src_components_dashboard_stats_row_tsx"
+    ],
+    "21": [
+      "logs_activity_timeline_activitytimeline",
+      "logs_activity_timeline_activitytimelineprops",
+      "logs_page_container",
+      "logs_page_item",
+      "logs_page_logspage",
+      "src_app_logs_page_tsx",
+      "src_components_logs_activity_timeline_tsx"
+    ],
+    "22": [
+      "concept_connection_limits",
+      "concept_connection_pooling",
+      "concept_idle_connection_timeout",
+      "concept_pgbouncer",
+      "conn_idle_timeout_ref",
+      "conn_limits_ref",
+      "conn_pooling_ref"
+    ],
+    "23": [
+      "hooks_use_settings_usesettings",
+      "settings_page_container",
+      "settings_page_item",
+      "settings_page_settingspage",
+      "src_app_settings_page_tsx",
+      "src_hooks_use_settings_ts"
+    ],
+    "24": [
+      "concept_cursor_pagination",
+      "concept_explain_analyze",
+      "concept_missing_index",
+      "data_pagination_ref",
+      "monitor_explain_analyze_ref",
+      "query_missing_indexes_ref"
+    ],
+    "25": [
+      "dashboard_publishing_velocity_publishingvelocity",
+      "dashboard_publishing_velocity_publishingvelocityprops",
+      "dashboard_publishing_velocity_timelinebar",
+      "dashboard_publishing_velocity_velocityday",
+      "src_components_dashboard_publishing_velocity_tsx"
+    ],
+    "26": [
+      "n8n_workflows_10_failure_handler_ts",
+      "workflows_10_failure_handler_callretry",
+      "workflows_10_failure_handler_logtoworkflowruns",
+      "workflows_10_failure_handler_respond",
+      "workflows_10_failure_handler_webhooktrigger"
+    ],
+    "27": [
+      "appearance_page_appearancepage",
+      "appearance_page_container",
+      "appearance_page_item",
+      "appearance_page_themes",
+      "src_app_settings_appearance_page_tsx"
+    ],
+    "28": [
+      "dashboard_activity_feed_activitydot",
+      "dashboard_activity_feed_activityfeed",
+      "dashboard_activity_feed_activityfeedprops",
+      "dashboard_activity_feed_activityitem",
+      "src_components_dashboard_activity_feed_tsx"
+    ],
+    "29": [
+      "concept_rls_performance_optimization",
+      "concept_row_level_security",
+      "concept_security_definer_function",
+      "security_rls_basics_ref",
+      "security_rls_performance_ref"
+    ],
+    "30": [
+      "dashboard_upcoming_list_upcominglist",
+      "dashboard_upcoming_list_upcominglistprops",
+      "dashboard_upcoming_list_upcomingpost",
+      "src_components_dashboard_upcoming_list_tsx"
+    ],
+    "31": [
+      "posts_filter_bar_filterbar",
+      "posts_filter_bar_filterbarprops",
+      "posts_filter_bar_statustabs",
+      "src_components_posts_filter_bar_tsx"
+    ],
+    "32": [
+      "id_page_postdetailpage",
+      "src_app_posts_id_page_tsx",
+      "src_app_posts_id_page_tsx_id_page_container",
+      "src_app_posts_id_page_tsx_id_page_item"
+    ],
+    "33": [
+      "concept_deadlock_prevention",
+      "concept_short_transactions",
+      "lock_deadlock_prevention_ref",
+      "lock_short_transactions_ref"
+    ],
+    "34": [
+      "concept_composite_index",
+      "concept_covering_index",
+      "query_composite_indexes_ref",
+      "query_covering_indexes_ref"
+    ],
+    "35": [
+      "accounts_account_card_accountcard",
+      "accounts_account_card_accountcardprops",
+      "src_components_accounts_account_card_tsx"
+    ],
+    "36": [
+      "composer_account_selector_accountselector",
+      "composer_account_selector_accountselectorprops",
+      "src_components_composer_account_selector_tsx"
+    ],
+    "37": [
+      "composer_media_dropzone_mediadropzone",
+      "composer_media_dropzone_mediadropzoneprops",
+      "src_components_composer_media_dropzone_tsx"
+    ],
+    "38": [
+      "frontend_src_app_api_n8n_path_route_ts",
+      "path_route_n8n_base",
+      "path_route_post"
+    ],
+    "39": [
+      "opencode_package_dependencies",
+      "opencode_package_dependencies_opencode_ai_plugin",
+      "opencode_package_json"
+    ],
+    "40": [
+      "posts_post_card_postcard",
+      "posts_post_card_postcardprops",
+      "src_components_posts_post_card_tsx"
+    ],
+    "41": [
+      "posts_post_row_postrow",
+      "posts_post_row_postrowprops",
+      "src_components_posts_post_row_tsx"
+    ],
+    "42": [
+      "connect_route_get",
+      "connect_route_n8n_base",
+      "src_app_accounts_connect_route_ts"
+    ],
+    "43": [
+      "accounts_connect_button_connectbutton",
+      "accounts_connect_button_connectbuttonprops",
+      "src_components_accounts_connect_button_tsx"
+    ],
+    "44": [
+      "concept_analyze",
+      "concept_vacuum",
+      "monitor_vacuum_analyze_ref"
+    ],
+    "45": [
+      "app_page_home",
+      "frontend_src_app_page_tsx"
+    ],
+    "46": [
+      "frontend_eslint_config_eslintconfig",
+      "frontend_eslint_config_mjs"
+    ],
+    "47": [
+      "frontend_next_config_nextconfig",
+      "frontend_next_config_ts"
+    ],
+    "48": [
+      "frontend_postcss_config_config",
+      "frontend_postcss_config_mjs"
+    ],
+    "49": [
+      "graphify_plugin",
+      "opencode_config"
+    ],
+    "50": [
+      "hooks_use_posts_useposts",
+      "src_hooks_use_posts_ts"
+    ],
+    "51": [
+      "opencode_plugins_graphify_js",
+      "plugins_graphify_graphifyplugin"
+    ],
+    "52": [
+      "skill_feedback_procedure",
+      "skill_feedback_template"
+    ],
+    "53": [
+      "hooks_use_accounts_useaccounts",
+      "src_hooks_use_accounts_ts"
+    ],
+    "54": [
+      "initial_schema_migration",
+      "storage_setup_migration"
+    ],
+    "55": [
+      "concept_appropriate_data_types",
+      "schema_data_types_ref"
+    ],
+    "56": [
+      "frontend_next_env_d_ts"
+    ],
+    "57": [
+      "utils"
+    ],
+    "58": [
+      "root_layout"
+    ],
+    "59": [
+      "media_storage_bucket"
+    ],
+    "60": [
+      "frontend_next_app"
+    ],
+    "61": [
+      "globe_icon"
+    ],
+    "62": [
+      "vercel_logo"
+    ],
+    "63": [
+      "next_logo"
+    ],
+    "64": [
+      "frontend_progress"
+    ],
+    "65": [
+      "next_env_d_ts"
+    ]
+  },
+  "cohesion": {
+    "0": 0.08144796380090498,
+    "1": 0.06896551724137931,
+    "2": 0.08620689655172414,
+    "3": 0.12962962962962962,
+    "4": 0.09846153846153846,
+    "5": 0.22134387351778656,
+    "6": 0.11857707509881422,
+    "7": 0.1,
+    "8": 0.14705882352941177,
+    "9": 0.13333333333333333,
+    "10": 0.17582417582417584,
+    "11": 0.15384615384615385,
+    "12": 0.15384615384615385,
+    "13": 0.16666666666666666,
+    "14": 0.18181818181818182,
+    "15": 0.18181818181818182,
+    "16": 0.2,
+    "17": 0.2,
+    "18": 0.3055555555555556,
+    "19": 0.2857142857142857,
+    "20": 0.2857142857142857,
+    "21": 0.3333333333333333,
+    "22": 0.2857142857142857,
+    "23": 0.4666666666666667,
+    "24": 0.3333333333333333,
+    "25": 0.4,
+    "26": 0.4,
+    "27": 0.4,
+    "28": 0.4,
+    "29": 0.4,
+    "30": 0.5,
+    "31": 0.5,
+    "32": 0.5,
+    "33": 0.5,
+    "34": 0.5,
+    "35": 0.6666666666666666,
+    "36": 0.6666666666666666,
+    "37": 0.6666666666666666,
+    "38": 0.6666666666666666,
+    "39": 0.6666666666666666,
+    "40": 0.6666666666666666,
+    "41": 0.6666666666666666,
+    "42": 0.6666666666666666,
+    "43": 0.6666666666666666,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0
+  },
+  "gods": [
+    {
+      "id": "supabase_postgres_best_practices_skill",
+      "label": "Supabase Postgres Best Practices",
+      "degree": 24
+    },
+    {
+      "id": "frontend_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "hooks_use_auth_useauth",
+      "label": "useAuth()",
+      "degree": 15
+    },
+    {
+      "id": "n8n_social_scheduler",
+      "label": "N8N Social Scheduler SaaS",
+      "degree": 14
+    },
+    {
+      "id": "lib_utils_cn",
+      "label": "cn()",
+      "degree": 11
+    },
+    {
+      "id": "posts_page",
+      "label": "PostsPage",
+      "degree": 11
+    },
+    {
+      "id": "composer_page",
+      "label": "ComposerPage",
+      "degree": 11
+    },
+    {
+      "id": "accounts_page",
+      "label": "AccountsPage",
+      "degree": 11
+    },
+    {
+      "id": "workflows_11_logging_workflow_workflow",
+      "label": "workflow",
+      "degree": 10
+    },
+    {
+      "id": "workflows_09_retry_handler_workflow_workflow",
+      "label": "workflow",
+      "degree": 10
+    }
+  ],
+  "surprises": [
+    {
+      "source": "N8N Social Scheduler SaaS",
+      "target": "N8N Social Scheduler PRD",
+      "source_files": [
+        "Phase 1 Planning.md",
+        "N8N_Social_Scheduler_PRD.pdf"
+      ],
+      "confidence": "AMBIGUOUS",
+      "relation": "cites",
+      "why": "ambiguous connection - not explicitly stated in source; crosses file types (doc \u2194 paper); connects across different repos/directories; peripheral node `N8N Social Scheduler PRD` unexpectedly reaches hub `N8N Social Scheduler SaaS`"
+    },
+    {
+      "source": "scheduled_posts Table",
+      "target": "WF-4 Post CRUD Workflow",
+      "source_files": [
+        "supabase/migrations/001_initial_schema.sql",
+        "Phase 4 Planning.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `WF-4 Post CRUD Workflow` unexpectedly reaches hub `scheduled_posts Table`"
+    },
+    {
+      "source": "scheduled_posts Table",
+      "target": "post_media Junction Table",
+      "source_files": [
+        "supabase/migrations/001_initial_schema.sql",
+        "Phase 2 Planning.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `post_media Junction Table` unexpectedly reaches hub `scheduled_posts Table`"
+    },
+    {
+      "source": "scheduled_posts Table",
+      "target": "WF-5 Cron Scheduler Workflow",
+      "source_files": [
+        "supabase/migrations/001_initial_schema.sql",
+        "Phase 4 Planning.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories"
+    },
+    {
+      "source": "scheduled_posts Table",
+      "target": "social_accounts Table",
+      "source_files": [
+        "supabase/migrations/001_initial_schema.sql",
+        "Phase 2 Planning.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `N8N Social Scheduler SaaS` and `N8N Social Scheduler PRD`?",
+      "why": "Edge tagged AMBIGUOUS (relation: cites) - confidence is low."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Supabase Postgres Best Practices` connect `Community 11` to `Community 33`, `Community 34`, `Community 44`, `Community 19`, `Community 22`, `Community 55`, `Community 24`, `Community 29`?",
+      "why": "High betweenness centrality (0.010) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `N8N Social Scheduler SaaS` connect `Community 4` to `Community 3`?",
+      "why": "High betweenness centrality (0.005) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Meta Graph API v21.0` connect `Community 3` to `Community 4`?",
+      "why": "High betweenness centrality (0.004) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `version`, `source`, `sourceType` to the rest of the system?",
+      "why": "243 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08144796380090498 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

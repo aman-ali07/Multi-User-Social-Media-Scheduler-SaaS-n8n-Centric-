@@ -1,0 +1,31 @@
+'use client'
+
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/hooks/use-auth'
+
+export function AuthGuard({ children }: { children: React.ReactNode }) {
+  const { session, loading } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!loading && !session) {
+      router.push('/auth/login')
+    }
+  }, [session, loading, router])
+
+  if (loading) {
+    return (
+      <div className="h-screen bg-bg flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="w-8 h-8 border border-gold/30 border-t-gold rounded-full animate-spin mx-auto" />
+          <p className="text-text-dim text-sm font-mono">Initializing console...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!session) return null
+
+  return <>{children}</>
+}

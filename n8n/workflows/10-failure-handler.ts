@@ -36,7 +36,7 @@ const logToWorkflowRuns = node({
     name: 'Log to Workflow Runs',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO workflow_runs (workflow_name, status, error_message, started_at, finished_at, metadata) VALUES ($1, 'failed', $2, NOW(), NOW(), $3::jsonb) RETURNING id",
+      query: "INSERT INTO workflow_runs (workflow_name, status, error_message, input_payload, duration_ms, triggered_by) VALUES ($1, 'failed', $2, $3::jsonb, 0, NULL) RETURNING id",
       options: {
         queryReplacement: expr('{{ $json.body.workflowName }}, {{ $json.body.error }}, { "attempt_number": {{ $json.body.attemptNumber }}, "source": "{{ $json.body.source }}", "postId": "{{ $json.body.postId }}" }')
       }

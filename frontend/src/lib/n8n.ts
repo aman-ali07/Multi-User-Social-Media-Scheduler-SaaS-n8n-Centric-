@@ -1,0 +1,56 @@
+interface WebhookOptions {
+  body?: unknown
+}
+
+async function callWebhook(path: string, options: WebhookOptions = {}) {
+  const res = await fetch(`/api/n8n/${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: options.body ? JSON.stringify(options.body) : undefined,
+  })
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: res.statusText }))
+    throw new Error(err.error || `Request failed (${res.status})`)
+  }
+
+  return res.json()
+}
+
+export async function connectOAuth(userId: string, platform: 'facebook') {
+  return callWebhook('oauth-connect', { body: { userId, platform } })
+}
+
+export async function createPost(data: {
+  userId: string
+  accountId: string
+  title?: string
+  caption?: string
+  mediaIds?: string[]
+  platforms: string[]
+  scheduleAt?: string | null
+  timezone: string
+  status: 'draft' | 'scheduled'
+}) {
+  return callWebhook('post', { body: { operation: 'create', ...data } })
+}
+
+export async function updatePost(data: {
+  postId: string
+  caption?: string
+  scheduleAt?: string | null
+  status?: string
+  userId: string
+}) {
+  return callWebhook('post', { body: { operation: 'edit', ...data } })
+}
+
+export async function cancelPost(postId: string, userId: string) {
+  return callWebhook('post', { body: { operation: 'cancel', postId, userId } })
+}
+
+export async function registerMedia(userId: string, fileUrl: string, fileType: string) {
+  return callWebhook('media-upload', {
+    body: { userId, fileUrl, fileType },
+  })
+}
