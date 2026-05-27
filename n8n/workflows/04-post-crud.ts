@@ -31,6 +31,19 @@ const webhookTrigger = trigger({
   }]
 });
 
+const verifyAuth = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Verify Auth',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const h = $json.headers || {};\nconst auth = h.authorization || h.Authorization || '';\nif (!auth.startsWith('Bearer ')) throw new Error('Unauthorized');\nconst r = await fetch($env.SUPABASE_AUTH_URL, {\n  headers: { Authorization: auth }\n});\nif (!r.ok) throw new Error('Auth failed');\nconst u = await r.json();\nconst uid = $json.body?.userId;\nif (uid && u.id !== uid) throw new Error('User mismatch');\nreturn [{ json: { ...$json, verifiedUserId: u.id } }];"
+    }
+  },
+  output: [{ body: {}, verifiedUserId: 'uuid' }]
+});
+
 const routeOperation = switchCase({
   version: 3.2,
   config: {
@@ -75,7 +88,7 @@ const parseCreateData = node({
     name: 'Parse Create Data',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const b = $json.body;\nreturn [{ json: {\n  user_id: b.userId,\n  account_id: b.accountId || null,\n  title: b.title || null,\n  caption: b.caption || null,\n  platforms: b.platforms || ['facebook'],\n  schedule_at: b.scheduleAt || null,\n  timezone: b.timezone || 'UTC',\n  status: b.status || 'draft',\n  media_ids: b.mediaIds || []\n}}];"
+      jsCode: "const b = $json.body;\nreturn [{ json: {\n  user_id: $json.verifiedUserId,\n  account_id: b.accountId || null,\n  title: b.title || null,\n  caption: b.caption || null,\n  platforms: b.platforms || ['facebook'],\n  schedule_at: b.scheduleAt || null,\n  timezone: b.timezone || 'UTC',\n  status: b.status || 'draft',\n  media_ids: b.mediaIds || []\n}}];"
     }
   },
   output: [{
@@ -117,32 +130,14 @@ const linkMedia = node({
     name: 'Link Media to Post',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const postId = $json.id;\nconst mediaIds = $('Parse Create Data').item.json.media_ids;\nif (!mediaIds || mediaIds.length === 0) return [{ json: { post_id: postId, linked: false } }];\nreturn mediaIds.map((mid, i) => ({ json: { post_id: postId, media_id: mid, sort_order: i } }));"
+      jsCode: "const postId = $json.id;\nconst mediaIds = $('Parse Create Data').item.json.media_ids || [];\nconst pgMediaIds = '{' + mediaIds.join(',') + '}';\nconst pgSortOrders = '{' + mediaIds.map((_, i) => i).join(',') + '}';\nreturn [{ json: { post_id: postId, pgMediaIds, pgSortOrders } }];"
     }
   },
   output: [{
     post_id: 'uuid',
-    media_id: 'uuid',
-    sort_order: 0
+    pgMediaIds: '{uuid1,uuid2}',
+    pgSortOrders: '{0,1}'
   }]
-});
-
-const checkNeedsMedia = ifElse({
-  version: 2.3,
-  config: {
-    name: 'Has Media?',
-    parameters: {
-      conditions: {
-        options: { caseSensitive: true, leftValue: '', typeValidation: 'strict' },
-        conditions: [{
-          leftValue: expr('{{ $json.linked }}'),
-          operator: { type: 'boolean', operation: 'equals' },
-          rightValue: false
-        }],
-        combinator: 'and'
-      }
-    }
-  }
 });
 
 const insertPostMedia = node({
@@ -152,9 +147,9 @@ const insertPostMedia = node({
     name: 'Insert Post-Media Links',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_media (post_id, media_id, sort_order) VALUES ($1::uuid, $2::uuid, $3) ON CONFLICT DO NOTHING",
+      query: "INSERT INTO post_media (post_id, media_id, sort_order) SELECT $1::uuid, unnest($2::text[]::uuid[]), unnest($3::int[]) ON CONFLICT DO NOTHING",
       options: {
-        queryReplacement: expr('{{ $json.post_id }}, {{ $json.media_id }}, {{ $json.sort_order }}')
+        queryReplacement: expr('{{ $json.post_id }}, {{ $json.pgMediaIds }}, {{ $json.pgSortOrders }}')
       }
     }
   },
@@ -171,9 +166,9 @@ const logCreate = node({
     name: 'Log Create',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, attempt_number) VALUES ($1::uuid, 'post-crud', 'success', 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, attempt_number) VALUES ($1::uuid, 'post-crud', 'success', $2::uuid, 1)",
       options: {
-        queryReplacement: expr('{{ $json.id || $json.post_id }}')
+        queryReplacement: expr('{{ $("Insert Scheduled Post").item.json.id }}, {{ $("Parse Create Data").item.json.user_id }}')
       }
     }
   },
@@ -191,7 +186,7 @@ const respondCreate = node({
     parameters: {
       respondWith: 'json',
       responseBody: {
-        id: expr('{{ $json.id }}'),
+        id: expr('{{ $("Insert Scheduled Post").item.json.id }}'),
         status: expr('{{ $("Parse Create Data").item.json.status }}')
       }
     }
@@ -206,7 +201,7 @@ const parseEditData = node({
     name: 'Parse Edit Data',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const b = $json.body;\nreturn [{ json: {\n  post_id: b.postId,\n  user_id: b.userId,\n  title: b.title || null,\n  caption: b.caption || null,\n  platforms: b.platforms || null,\n  account_id: b.accountId || null,\n  schedule_at: b.scheduleAt || null,\n  status: b.status || null\n}}];"
+      jsCode: "const b = $json.body;\nreturn [{ json: {\n  post_id: b.postId,\n  user_id: $json.verifiedUserId,\n  title: b.title || null,\n  caption: b.caption || null,\n  platforms: b.platforms || null,\n  account_id: b.accountId || null,\n  schedule_at: b.scheduleAt || null,\n  status: b.status || null\n}}];"
     }
   },
   output: [{
@@ -260,7 +255,7 @@ const parseCancelData = node({
     name: 'Parse Cancel Data',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const b = $json.body;\nreturn [{ json: { post_id: b.postId, user_id: b.userId } }];"
+      jsCode: "const b = $json.body;\nreturn [{ json: { post_id: b.postId, user_id: $json.verifiedUserId } }];"
     }
   },
   output: [{
@@ -303,8 +298,9 @@ const respondCancel = node({
 
 export default workflow('post-crud', 'Post CRUD')
   .add(webhookTrigger)
+  .to(verifyAuth)
   .to(routeOperation
-    .onCase(0, parseCreateData.to(insertPost.to(linkMedia.to(checkNeedsMedia.onFalse(insertPostMedia).onTrue(logCreate))).to(logCreate).to(respondCreate)))
+    .onCase(0, parseCreateData.to(insertPost.to(linkMedia.to(insertPostMedia.to(logCreate.to(respondCreate))))))
     .onCase(1, parseEditData.to(updatePost).to(respondEdit))
     .onCase(2, parseCancelData.to(cancelPost).to(respondCancel))
   );

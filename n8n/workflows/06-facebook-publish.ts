@@ -1,5 +1,3 @@
-import { workflow, node, trigger, expr, newCredential, ifElse } from '@n8n/workflow-sdk';
-
 const webhookTrigger = trigger({
   type: 'n8n-nodes-base.webhook',
   version: 2.1,
@@ -24,10 +22,22 @@ const webhookTrigger = trigger({
       accessToken: 'token',
       pageId: '12345',
       caption: 'Hello world!',
-      mediaUrl: 'https://supabase.co/storage/v1/object/public/media/uuid/file.jpg',
-      mediaType: 'image/jpeg'
+      mediaUrls: [],
+      mediaTypes: []
     }
   }]
+});
+
+const verifyInternalToken = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Verify Internal Token',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const h = $json.headers || {};\nconst token = h['x-internal-token'] || h['X-Internal-Token'] || '';\nconst expected = $env.INTERNAL_WEBHOOK_SECRET;\nif (!expected) throw new Error('INTERNAL_WEBHOOK_SECRET not configured');\nif (token !== expected) throw new Error('Forbidden: invalid internal token');\nreturn [{ json: $json }];"
+    }
+  }
 });
 
 const buildFbPayload = node({
@@ -37,7 +47,7 @@ const buildFbPayload = node({
     name: 'Build Facebook Payload',
     parameters: {
       mode: 'runOnceForAllItems',
-      code: "const payload = $json.body;\nconst url = payload.mediaUrl\n  ? `https://graph.facebook.com/v21.0/${payload.pageId}/photos?url=${encodeURIComponent(payload.mediaUrl)}&message=${encodeURIComponent(payload.caption || '')}&access_token=${payload.accessToken}&published=true`\n  : `https://graph.facebook.com/v21.0/${payload.pageId}/feed?message=${encodeURIComponent(payload.caption || '')}&access_token=${payload.accessToken}`;\n\nreturn [{\n  json: {\n    url: url,\n    method: 'POST',\n    postId: payload.postId,\n    userId: payload.userId,\n    caption: payload.caption\n  }\n}];"
+      jsCode: "const payload = $json.body;\nconst mediaUrls = Array.isArray(payload.mediaUrls) ? payload.mediaUrls : (payload.mediaUrl ? [payload.mediaUrl] : []);\nconst caption = payload.caption || '';\nconst pageId = payload.pageId;\nconst accessToken = payload.accessToken;\n\nif (mediaUrls.length === 0) {\n  const url = `https://graph.facebook.com/v21.0/${pageId}/feed?message=${encodeURIComponent(caption)}&access_token=${accessToken}`;\n  return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption } }];\n}\n\nif (mediaUrls.length === 1) {\n  const url = `https://graph.facebook.com/v21.0/${pageId}/photos?url=${encodeURIComponent(mediaUrls[0])}&message=${encodeURIComponent(caption)}&access_token=${accessToken}&published=true`;\n  return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption } }];\n}\n\nconst photoIds = [];\nfor (const mediaUrl of mediaUrls) {\n  const uploadUrl = `https://graph.facebook.com/v21.0/${pageId}/photos?url=${encodeURIComponent(mediaUrl)}&published=false&access_token=${accessToken}`;\n  const res = await fetch(uploadUrl, { method: 'POST' });\n  const data = await res.json();\n  if (!data.id) throw new Error(`Photo upload failed: ${data.error?.message || 'unknown error'}`);\n  photoIds.push(data.id);\n}\n\nconst attachedMedia = photoIds.map(id => ({ media_fbid: id }));\nconst url = `https://graph.facebook.com/v21.0/${pageId}/feed?message=${encodeURIComponent(caption)}&access_token=${accessToken}&attached_media_ids=${encodeURIComponent(JSON.stringify(attachedMedia))}`;\nreturn [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption } }];"
     }
   },
   output: [{
@@ -121,9 +131,9 @@ const logSuccess = node({
     name: 'Log Success',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, response_payload, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'success', $2::jsonb, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, response_payload, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'success', $2::uuid, $3::jsonb, 1)",
       options: {
-        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Post to Facebook").item.json.body }}')
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Post to Facebook").item.json.body }}')
       }
     }
   },
@@ -140,9 +150,9 @@ const logFailure = node({
     name: 'Log Failure',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, error_message, response_payload, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2, $3::jsonb, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, response_payload, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, $4::jsonb, 1)",
       options: {
-        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Post to Facebook").item.json.body.error.message }}, {{ $("Post to Facebook").item.json.body }}')
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Post to Facebook").item.json.body.error.message }}, {{ $("Post to Facebook").item.json.body }}')
       }
     }
   },
@@ -187,6 +197,11 @@ const callRetry = node({
         postId: expr('{{ $("Build Facebook Payload").item.json.postId }}'),
         platform: 'facebook',
         error: expr('{{ $("Post to Facebook").item.json.body.error.message }}')
+      },
+      headerParameters: {
+        parameters: [
+          { name: 'x-internal-token', value: expr('{{ $env.INTERNAL_WEBHOOK_SECRET }}') }
+        ]
       },
       options: {
         response: {
@@ -236,6 +251,7 @@ const respondError = node({
 
 export default workflow('facebook-publish', 'Facebook Publish Workflow')
   .add(webhookTrigger)
+  .to(verifyInternalToken)
   .to(buildFbPayload)
   .to(callFbApi)
   .to(checkResult

@@ -15,7 +15,7 @@ export function useMedia() {
     setLoading(true)
     const { data, error: err } = await supabase
       .from('media_assets')
-      .select('*')
+      .select('id, user_id, file_url, file_type, file_size, storage_path, width, height, duration, created_at')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
     if (err) setError(err.message)

@@ -15,7 +15,7 @@ export function useAccounts() {
     setLoading(true)
     const { data, error: err } = await supabase
       .from('social_accounts')
-      .select('*')
+      .select('id, user_id, platform, page_id, page_name, ig_user_id, ig_username, token_expires_at, status, created_at')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
     if (err) setError(err.message)

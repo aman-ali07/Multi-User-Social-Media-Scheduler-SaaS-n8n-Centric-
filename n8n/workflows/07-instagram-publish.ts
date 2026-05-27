@@ -1,5 +1,3 @@
-import { workflow, node, trigger, expr, newCredential, ifElse } from '@n8n/workflow-sdk';
-
 const webhookTrigger = trigger({
   type: 'n8n-nodes-base.webhook',
   version: 2.1,
@@ -24,10 +22,22 @@ const webhookTrigger = trigger({
       accessToken: 'token',
       igUserId: '12345',
       caption: 'Hello Instagram!',
-      mediaUrl: 'https://supabase.co/storage/v1/object/public/media/uuid/file.jpg',
-      mediaType: 'image/jpeg'
+      mediaUrls: [],
+      mediaTypes: []
     }
   }]
+});
+
+const verifyInternalToken = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Verify Internal Token',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const h = $json.headers || {};\nconst token = h['x-internal-token'] || h['X-Internal-Token'] || '';\nconst expected = $env.INTERNAL_WEBHOOK_SECRET;\nif (!expected) throw new Error('INTERNAL_WEBHOOK_SECRET not configured');\nif (token !== expected) throw new Error('Forbidden: invalid internal token');\nreturn [{ json: $json }];"
+    }
+  }
 });
 
 const buildContainerUrl = node({
@@ -37,12 +47,32 @@ const buildContainerUrl = node({
     name: 'Build Container URL',
     parameters: {
       mode: 'runOnceForAllItems',
-      code: "const p = $json.body;\nconst isVideo = p.mediaType.startsWith('video');\nconst baseUrl = `https://graph.facebook.com/v21.0/${p.igUserId}/media`;\nconst caption = encodeURIComponent(p.caption || '');\nconst mediaUrl = encodeURIComponent(p.mediaUrl);\nlet url;\nif (isVideo) {\n  url = `${baseUrl}?video_url=${mediaUrl}&media_type=VIDEO&caption=${caption}&access_token=${p.accessToken}`;\n} else {\n  url = `${baseUrl}?image_url=${mediaUrl}&caption=${caption}&access_token=${p.accessToken}`;\n}\nreturn [{ json: { url, method: 'POST', postId: p.postId, userId: p.userId, accessToken: p.accessToken, igUserId: p.igUserId } }];"
+      jsCode: "const p = $json.body;\nconst mediaUrls = Array.isArray(p.mediaUrls) ? p.mediaUrls : (p.mediaUrl ? [p.mediaUrl] : []);\nconst mediaTypes = Array.isArray(p.mediaTypes) ? p.mediaTypes : (p.mediaType ? [p.mediaType] : []);\nif (mediaUrls.length === 0) throw new Error('Instagram requires at least one media item');\nreturn [{ json: { postId: p.postId, userId: p.userId, accessToken: p.accessToken, igUserId: p.igUserId, caption: p.caption || '', mediaUrls, mediaTypes } }];"
     }
   },
   output: [{
-    url: 'https://graph.facebook.com/...',
-    method: 'POST',
+    postId: 'uuid',
+    userId: 'uuid',
+    accessToken: 'token',
+    igUserId: '12345',
+    caption: 'Hello',
+    mediaUrls: [],
+    mediaTypes: []
+  }]
+});
+
+const createContainer = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Create Container',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const { accessToken, igUserId, caption, mediaUrls, mediaTypes, postId, userId } = $json;\n\nif (mediaUrls.length === 1) {\n  const mediaUrl = mediaUrls[0];\n  const isVideo = mediaTypes[0]?.startsWith('video');\n  const params = isVideo\n    ? `video_url=${encodeURIComponent(mediaUrl)}&media_type=VIDEO`\n    : `image_url=${encodeURIComponent(mediaUrl)}&media_type=IMAGE`;\n  const url = `https://graph.facebook.com/v21.0/${igUserId}/media?${params}&caption=${encodeURIComponent(caption)}&access_token=${accessToken}`;\n  const res = await fetch(url, { method: 'POST' });\n  const data = await res.json();\n  if (!data.id) throw new Error(`Container creation failed: ${data.error?.message || 'unknown'}`);\n  return [{ json: { containerId: data.id, postId, userId, accessToken, igUserId } }];\n}\n\nconst childrenIds = [];\nfor (const mediaUrl of mediaUrls) {\n  const url = `https://graph.facebook.com/v21.0/${igUserId}/media?image_url=${encodeURIComponent(mediaUrl)}&is_carousel_item=true&access_token=${accessToken}`;\n  const res = await fetch(url, { method: 'POST' });\n  const data = await res.json();\n  if (!data.id) throw new Error(`Carousel item creation failed: ${data.error?.message || 'unknown'}`);\n  childrenIds.push(data.id);\n}\n\nconst carouselUrl = `https://graph.facebook.com/v21.0/${igUserId}/media?media_type=CAROUSEL&children=${encodeURIComponent(childrenIds.join(','))}&caption=${encodeURIComponent(caption)}&access_token=${accessToken}`;\nconst res = await fetch(carouselUrl, { method: 'POST' });\nconst data = await res.json();\nif (!data.id) throw new Error(`Carousel container creation failed: ${data.error?.message || 'unknown'}`);\nreturn [{ json: { containerId: data.id, postId, userId, accessToken, igUserId } }];"
+    }
+  },
+  output: [{
+    containerId: '123456789',
     postId: 'uuid',
     userId: 'uuid',
     accessToken: 'token',
@@ -50,43 +80,17 @@ const buildContainerUrl = node({
   }]
 });
 
-const createContainer = node({
-  type: 'n8n-nodes-base.httpRequest',
-  version: 4.4,
+const checkContainerStatus = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
   config: {
-    name: 'Create Container',
+    name: 'Check Container Status',
     parameters: {
-      method: 'POST',
-      url: expr('{{ $json.url }}'),
-      authentication: 'none',
-      options: {
-        response: {
-          response: {
-            fullResponse: true,
-            neverError: true
-          }
-        }
-      }
+      mode: 'runOnceForAllItems',
+      jsCode: "const containerId = $(\"Create Container\").item.json.containerId;\nconst accessToken = $(\"Create Container\").item.json.accessToken;\nconst maxAttempts = 6;\nconst pollMs = 5000;\nfor (let i = 0; i < maxAttempts; i++) {\n  if (i > 0) await new Promise(r => setTimeout(r, pollMs));\n  const res = await fetch(`https://graph.facebook.com/v21.0/${containerId}?fields=status_code&access_token=${accessToken}`);\n  const data = await res.json();\n  if (data.status_code === 'FINISHED') return [{ json: { containerId } }];\n  if (data.status_code === 'ERROR') throw new Error(`Container processing failed with ERROR status`);\n  if (data.error) throw new Error(`Container check failed: ${data.error.message}`);\n}\nthrow new Error(`Container not FINISHED after ${maxAttempts * pollMs / 1000}s (status: ${data.status_code}), will retry`);"
     }
   },
-  output: [{
-    body: { id: '123456789' },
-    statusCode: 200
-  }]
-});
-
-const waitNode = node({
-  type: 'n8n-nodes-base.wait',
-  version: 1.1,
-  config: {
-    name: 'Wait for Processing',
-    parameters: {
-      resume: 'timeInterval',
-      amount: 5,
-      unit: 'seconds'
-    }
-  },
-  output: [{}]
+  output: [{ containerId: '123456789' }]
 });
 
 const buildPublishUrl = node({
@@ -96,7 +100,7 @@ const buildPublishUrl = node({
     name: 'Build Publish URL',
     parameters: {
       mode: 'runOnceForAllItems',
-      code: "const containerId = $(\"Create Container\").item.json.body.id;\nconst p = $(\"Build Container URL\").item.json;\nconst url = `https://graph.facebook.com/v21.0/${p.igUserId}/media_publish?creation_id=${containerId}&access_token=${p.accessToken}`;\nreturn [{ json: { url, method: 'POST', postId: p.postId, containerId } }];"
+      jsCode: "const containerId = $(\"Create Container\").item.json.containerId;\nconst p = $(\"Create Container\").item.json;\nconst url = `https://graph.facebook.com/v21.0/${p.igUserId}/media_publish?creation_id=${containerId}&access_token=${p.accessToken}`;\nreturn [{ json: { url, method: 'POST', postId: p.postId, containerId } }];"
     }
   },
   output: [{
@@ -159,7 +163,7 @@ const markPublished = node({
       operation: 'executeQuery',
       query: "UPDATE scheduled_posts SET status = 'published', published_at = NOW(), updated_at = NOW() WHERE id = $1::uuid",
       options: {
-        queryReplacement: expr('{{ $("Build Publish URL").item.json.postId }}')
+        queryReplacement: expr('{{ $("Create Container").item.json.postId }}')
       }
     }
   },
@@ -176,9 +180,9 @@ const logSuccess = node({
     name: 'Log Success',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, response_payload, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'success', $2::jsonb, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, response_payload, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'success', $2::uuid, $3::jsonb, 1)",
       options: {
-        queryReplacement: expr('{{ $("Build Publish URL").item.json.postId }}, {{ $("Publish Container").item.json.body }}')
+        queryReplacement: expr('{{ $("Create Container").item.json.postId }}, {{ $("Create Container").item.json.userId }}, {{ $("Publish Container").item.json.body }}')
       }
     }
   },
@@ -197,7 +201,7 @@ const respond = node({
       respondWith: 'json',
       responseBody: {
         success: true,
-        postId: expr('{{ $("Build Publish URL").item.json.postId }}'),
+        postId: expr('{{ $("Create Container").item.json.postId }}'),
         igPostId: expr('{{ $("Publish Container").item.json.body.id }}')
       }
     }
@@ -212,9 +216,9 @@ const logFailure = node({
     name: 'Log Failure',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, error_message, response_payload, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'error', $2, $3::jsonb, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, response_payload, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'error', $2::uuid, $3, $4::jsonb, 1)",
       options: {
-        queryReplacement: expr('{{ $("Build Publish URL").item.json.postId }}, {{ $("Publish Container").item.json.body.error.message }}, {{ $("Publish Container").item.json.body }}')
+        queryReplacement: expr('{{ $("Create Container").item.json.postId }}, {{ $("Create Container").item.json.userId }}, {{ $("Publish Container").item.json.body.error.message }}, {{ $("Publish Container").item.json.body }}')
       }
     }
   },
@@ -233,7 +237,7 @@ const markFailed = node({
       operation: 'executeQuery',
       query: "UPDATE scheduled_posts SET status = 'failed', error_message = $1, retry_count = retry_count + 1, updated_at = NOW() WHERE id = $2::uuid",
       options: {
-        queryReplacement: expr('{{ $("Publish Container").item.json.body.error.message }}, {{ $("Build Publish URL").item.json.postId }}')
+        queryReplacement: expr('{{ $("Publish Container").item.json.body.error.message }}, {{ $("Create Container").item.json.postId }}')
       }
     }
   },
@@ -256,9 +260,14 @@ const callRetry = node({
       contentType: 'json',
       specifyBody: 'json',
       jsonBody: {
-        postId: expr('{{ $("Build Publish URL").item.json.postId }}'),
+        postId: expr('{{ $("Create Container").item.json.postId }}'),
         platform: 'instagram',
         error: expr('{{ $("Publish Container").item.json.body.error.message }}')
+      },
+      headerParameters: {
+        parameters: [
+          { name: 'x-internal-token', value: expr('{{ $env.INTERNAL_WEBHOOK_SECRET }}') }
+        ]
       },
       options: {
         response: {
@@ -281,7 +290,7 @@ const respondError = node({
       respondWith: 'json',
       responseBody: {
         success: false,
-        postId: expr('{{ $("Build Publish URL").item.json.postId }}'),
+        postId: expr('{{ $("Create Container").item.json.postId }}'),
         error: expr('{{ $("Publish Container").item.json.body.error.message }}')
       }
     }
@@ -291,9 +300,10 @@ const respondError = node({
 
 export default workflow('instagram-publish', 'Instagram Publish Workflow')
   .add(webhookTrigger)
+  .to(verifyInternalToken)
   .to(buildContainerUrl)
   .to(createContainer)
-  .to(waitNode)
+  .to(checkContainerStatus)
   .to(buildPublishUrl)
   .to(publishContainer)
   .to(checkPublishResult

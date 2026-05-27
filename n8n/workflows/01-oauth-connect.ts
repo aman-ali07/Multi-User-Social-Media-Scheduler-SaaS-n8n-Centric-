@@ -23,6 +23,19 @@ const webhookTrigger = trigger({
   }]
 });
 
+const verifyAuth = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Verify Auth',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const h = $json.headers || {};\nconst auth = h.authorization || h.Authorization || '';\nif (!auth.startsWith('Bearer ')) throw new Error('Unauthorized');\nconst r = await fetch($env.SUPABASE_AUTH_URL, {\n  headers: { Authorization: auth }\n});\nif (!r.ok) throw new Error('Auth failed');\nconst u = await r.json();\nconst uid = $json.body?.userId;\nif (uid && u.id !== uid) throw new Error('User mismatch');\nreturn [{ json: { ...$json, verifiedUserId: u.id } }];"
+    }
+  },
+  output: [{ body: {}, verifiedUserId: 'uuid' }]
+});
+
 const generateState = node({
   type: 'n8n-nodes-base.code',
   version: 2,
@@ -30,7 +43,7 @@ const generateState = node({
     name: 'Generate OAuth State',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const crypto = require('crypto');\nconst { userId, platform } = $json.body;\nconst state = crypto.randomBytes(32).toString('hex');\nconst codeVerifier = crypto.randomBytes(32).toString('hex');\nconst expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();\n\nreturn [{\n  json: {\n    userId,\n    platform,\n    state,\n    codeVerifier,\n    expiresAt\n  }\n}];"
+      jsCode: "const crypto = require('crypto');\nconst { userId, platform } = $json.body;\nconst state = crypto.randomBytes(32).toString('hex');\nconst codeVerifier = crypto.randomBytes(32).toString('hex');\nconst codeChallenge = crypto.createHash('sha256').update(codeVerifier).digest('base64')\n  .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');\nconst expiresAt = new Date(Date.now() + 30 * 60 * 1000).toISOString();\n\nreturn [{\n  json: {\n    userId,\n    platform,\n    state,\n    codeVerifier,\n    codeChallenge,\n    expiresAt\n  }\n}];"
     }
   },
   output: [{
@@ -49,7 +62,7 @@ const storeState = node({
     name: 'Store OAuth State',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO oauth_state (user_id, platform, state, code_verifier, expires_at) VALUES ($1::uuid, $2::platform_enum, $3, $4, $5::timestamptz) RETURNING id",
+      query: "INSERT INTO oauth_state (user_id, platform, state, code_verifier, expires_at) VALUES ($1::uuid, $2::platform_enum, $3, $4, $5::timestamptz)",
       options: {
         queryReplacement: expr('{{ $json.userId }}, {{ $json.platform }}, {{ $json.state }}, {{ $json.codeVerifier }}, {{ $json.expiresAt }}')
       }
@@ -58,7 +71,7 @@ const storeState = node({
   credentials: {
     postgres: newCredential('Supabase DB')
   },
-  output: [{ id: 'uuid' }]
+  output: [{}]
 });
 
 const buildRedirectUrl = node({
@@ -68,13 +81,10 @@ const buildRedirectUrl = node({
     name: 'Build Redirect URL',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const { state, userId } = $json;\nconst appId = $env.FACEBOOK_APP_ID;\nconst redirectUri = `${$env.N8N_WEBHOOK_URL}/webhook/oauth-callback`;\nconst scope = 'pages_manage_posts,pages_read_engagement,instagram_basic,instagram_content_publish';\nconst url = `https://www.facebook.com/v21.0/dialog/oauth?client_id=${appId}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}&scope=${encodeURIComponent(scope)}&response_type=code`;\n\nreturn [{ json: { url, userId } }];"
+      jsCode: "const stateItem = $('Generate OAuth State').item.json;\nconst base = 'https://www.facebook.com/v21.0/dialog/oauth';\nconst params = new URLSearchParams({\n  client_id: $env.FACEBOOK_APP_ID,\n  redirect_uri: $env.FRONTEND_URL + '/accounts/connect',\n  state: stateItem.state,\n  response_type: 'code',\n  scope: 'pages_show_list,pages_manage_posts,pages_read_engagement,instagram_basic,instagram_content_publish'\n});\nreturn [{ json: { redirectUrl: base + '?' + params.toString() } }];"
     }
   },
-  output: [{
-    url: 'https://www.facebook.com/...',
-    userId: 'uuid'
-  }]
+  output: [{ redirectUrl: 'https://...' }]
 });
 
 const respond = node({
@@ -85,7 +95,7 @@ const respond = node({
     parameters: {
       respondWith: 'json',
       responseBody: {
-        url: expr('{{ $json.url }}')
+        redirectUrl: expr('{{ $json.redirectUrl }}')
       }
     }
   },
@@ -94,6 +104,7 @@ const respond = node({
 
 export default workflow('oauth-connect', 'OAuth Connect')
   .add(webhookTrigger)
+  .to(verifyAuth)
   .to(generateState)
   .to(storeState)
   .to(buildRedirectUrl)

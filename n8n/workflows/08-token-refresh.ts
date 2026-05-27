@@ -25,6 +25,18 @@ const webhookTrigger = trigger({
   }]
 });
 
+const verifyInternalToken = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Verify Internal Token',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const h = $json.headers || {};\nconst token = h['x-internal-token'] || h['X-Internal-Token'] || '';\nconst expected = $env.INTERNAL_WEBHOOK_SECRET;\nif (!expected) throw new Error('INTERNAL_WEBHOOK_SECRET not configured');\nif (token !== expected) throw new Error('Forbidden: invalid internal token');\nreturn [{ json: $json }];"
+    }
+  }
+});
+
 const refreshToken = node({
   type: 'n8n-nodes-base.httpRequest',
   version: 4.4,
@@ -78,7 +90,7 @@ const updateToken = node({
     name: 'Update Token',
     parameters: {
       operation: 'executeQuery',
-      query: "UPDATE social_accounts SET access_token = $1, token_expires_at = $2::timestamptz, updated_at = NOW() WHERE id = $3::uuid",
+      query: "UPDATE social_accounts SET access_token = encrypt_token($1), token_expires_at = $2::timestamptz, updated_at = NOW() WHERE id = $3::uuid",
       options: {
         queryReplacement: expr('{{ $json.body.access_token }}, {{ new Date(Date.now() + $json.body.expires_in * 1000).toISOString() }}, {{ $("Token Refresh Webhook").item.json.body.accountId }}')
       }
@@ -175,6 +187,7 @@ const respondError = node({
 
 export default workflow('token-refresh', 'Token Refresh')
   .add(webhookTrigger)
+  .to(verifyInternalToken)
   .to(refreshToken)
   .to(checkResult
     .onTrue(updateToken.to(logRefresh).to(respond))

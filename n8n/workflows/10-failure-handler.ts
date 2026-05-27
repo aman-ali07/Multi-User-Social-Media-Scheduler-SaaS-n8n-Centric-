@@ -29,6 +29,18 @@ const webhookTrigger = trigger({
   }]
 });
 
+const verifyInternalToken = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Verify Internal Token',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const h = $json.headers || {};\nconst token = h['x-internal-token'] || h['X-Internal-Token'] || '';\nconst expected = $env.INTERNAL_WEBHOOK_SECRET;\nif (!expected) throw new Error('INTERNAL_WEBHOOK_SECRET not configured');\nif (token !== expected) throw new Error('Forbidden: invalid internal token');\nreturn [{ json: $json }];"
+    }
+  }
+});
+
 const logToWorkflowRuns = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
@@ -48,36 +60,6 @@ const logToWorkflowRuns = node({
   output: [{ id: 'uuid' }]
 });
 
-const callRetry = node({
-  type: 'n8n-nodes-base.httpRequest',
-  version: 4.4,
-  config: {
-    name: 'Call Retry Handler',
-    parameters: {
-      method: 'POST',
-      url: expr('{{ $env.N8N_WEBHOOK_URL }}/webhook/retry'),
-      authentication: 'none',
-      sendBody: true,
-      contentType: 'json',
-      specifyBody: 'json',
-      jsonBody: {
-        postId: expr('{{ $("Failure Handler Webhook").item.json.body.postId }}'),
-        platform: expr('{{ $("Failure Handler Webhook").item.json.body.platform }}'),
-        error: expr('{{ $("Failure Handler Webhook").item.json.body.error }}'),
-        attemptNumber: expr('{{ $("Failure Handler Webhook").item.json.body.attemptNumber }}')
-      },
-      options: {
-        response: {
-          response: {
-            neverError: true
-          }
-        }
-      }
-    }
-  },
-  output: [{}]
-});
-
 const respond = node({
   type: 'n8n-nodes-base.respondToWebhook',
   version: 1.5,
@@ -87,7 +69,7 @@ const respond = node({
       respondWith: 'json',
       responseBody: {
         success: true,
-        message: 'Failure handled and retry initiated'
+        message: 'Failure recorded, retries exhausted'
       }
     }
   },
@@ -96,6 +78,6 @@ const respond = node({
 
 export default workflow('failure-handler', 'Failure Handler Workflow')
   .add(webhookTrigger)
+  .to(verifyInternalToken)
   .to(logToWorkflowRuns)
-  .to(callRetry)
   .to(respond);

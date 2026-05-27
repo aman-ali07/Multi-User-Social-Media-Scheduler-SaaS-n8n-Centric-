@@ -1,0 +1,44 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      # n8n internal storage (SQLite — lightweight, no extra Postgres needed)
+      DB_TYPE: sqlite
+      DB_SQLITE_POOL_SIZE: 2
+
+      # n8n config
+      N8N_HOST: ""                    # Set to your Oracle instance domain/IP
+      N8N_PORT: 5678
+      N8N_PROTOCOL: https             # Set to http if not using reverse proxy
+      N8N_EDITOR_BASE_URL: ""         # Same as N8N_HOST
+
+      # Webhook URL (public-facing URL for this n8n instance)
+      N8N_WEBHOOK_URL: ""             # e.g. https://your-instance.com/
+
+      # Facebook/Meta API credentials
+      FACEBOOK_APP_ID: ""             # Your Meta App ID
+      FACEBOOK_APP_SECRET: ""         # Your Meta App Secret
+      FACEBOOK_TOKEN_URL: "https://graph.facebook.com/v21.0/oauth/access_token"
+
+      # Internal webhook secret (shared between scheduler and internal workflows)
+      INTERNAL_WEBHOOK_SECRET: ""     # Generate with: openssl rand -hex 32
+
+      # Frontend URL (for OAuth redirects)
+      FRONTEND_URL: ""                # e.g. https://your-app.vercel.app
+
+      # Supabase Auth URL (for token verification in n8n workflows)
+      SUPABASE_AUTH_URL: ""           # e.g. https://<ref>.supabase.co/auth/v1/user
+
+      # Supabase connection (already configured in n8n Postgres credential)
+      # No env vars needed — n8n uses its internal credential store
+
+      # Optional: Node.js memory limit for Oracle free tier
+      NODE_OPTIONS: "--max-old-space-size=512"
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:

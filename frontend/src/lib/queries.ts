@@ -8,7 +8,7 @@ export async function getMyPosts(userId: string, filters: {
 } = {}) {
   let query = supabase
     .from('scheduled_posts')
-    .select('*')
+    .select('id, title, caption, platforms, status, schedule_at, published_at, timezone, retry_count, max_retries, created_at, deleted_at')
     .eq('user_id', userId)
     .is('deleted_at', null)
     .order('created_at', { ascending: false })
@@ -23,7 +23,7 @@ export async function getMyPosts(userId: string, filters: {
 export async function getUpcomingPosts(userId: string, limit = 5) {
   return supabase
     .from('scheduled_posts')
-    .select('*')
+    .select('id, title, status, schedule_at, platforms')
     .eq('user_id', userId)
     .eq('status', 'scheduled')
     .gte('schedule_at', new Date().toISOString())
@@ -44,7 +44,7 @@ export async function getCalendarPosts(userId: string, from: string, to: string)
 export async function getPostById(userId: string, id: string) {
   return supabase
     .from('scheduled_posts')
-    .select('*')
+    .select('id, user_id, account_id, title, caption, platforms, schedule_at, published_at, timezone, status, retry_count, max_retries, error_message, created_at, updated_at, deleted_at')
     .eq('user_id', userId)
     .eq('id', id)
     .single()
@@ -53,7 +53,7 @@ export async function getPostById(userId: string, id: string) {
 export async function getMyAccounts(userId: string) {
   return supabase
     .from('social_accounts')
-    .select('*')
+    .select('id, user_id, platform, page_id, page_name, ig_user_id, ig_username, status, token_expires_at, created_at')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
 }
@@ -61,7 +61,7 @@ export async function getMyAccounts(userId: string) {
 export async function getMyMedia(userId: string) {
   return supabase
     .from('media_assets')
-    .select('*')
+    .select('id, user_id, file_url, file_type, file_size, storage_path, width, height, duration, created_at')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
 }
@@ -69,7 +69,7 @@ export async function getMyMedia(userId: string) {
 export async function getLogsForPost(postId: string) {
   return supabase
     .from('post_logs')
-    .select('*')
+    .select('id, post_id, workflow_name, status, error_message, response_payload, attempt_number, created_at')
     .eq('post_id', postId)
     .order('created_at', { ascending: false })
 }
@@ -77,7 +77,7 @@ export async function getLogsForPost(postId: string) {
 export async function getAllLogs(userId: string, limit = 50) {
   return supabase
     .from('post_logs')
-    .select('*, scheduled_posts!inner(user_id)')
+    .select('id, post_id, workflow_name, status, error_message, response_payload, attempt_number, created_at, scheduled_posts!inner(user_id)')
     .eq('scheduled_posts.user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit)
@@ -94,7 +94,7 @@ export async function getDashboardStats(userId: string): Promise<{ data: Dashboa
 
   const { count: scheduledToday } = await supabase
     .from('scheduled_posts')
-    .select('*', { count: 'exact', head: true })
+    .select('id', { count: 'exact', head: true })
     .eq('user_id', userId)
     .eq('status', 'scheduled')
     .gte('schedule_at', todayStr)
@@ -102,19 +102,19 @@ export async function getDashboardStats(userId: string): Promise<{ data: Dashboa
 
   const { count: totalPublished } = await supabase
     .from('scheduled_posts')
-    .select('*', { count: 'exact', head: true })
+    .select('id', { count: 'exact', head: true })
     .eq('user_id', userId)
     .eq('status', 'published')
 
   const { count: totalFailed } = await supabase
     .from('scheduled_posts')
-    .select('*', { count: 'exact', head: true })
+    .select('id', { count: 'exact', head: true })
     .eq('user_id', userId)
     .eq('status', 'failed')
 
   const { count: connectedAccounts } = await supabase
     .from('social_accounts')
-    .select('*', { count: 'exact', head: true })
+    .select('id', { count: 'exact', head: true })
     .eq('user_id', userId)
     .eq('status', 'active')
 

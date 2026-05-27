@@ -28,6 +28,18 @@ const webhookTrigger = trigger({
   }]
 });
 
+const verifyInternalToken = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Verify Internal Token',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const h = $json.headers || {};\nconst token = h['x-internal-token'] || h['X-Internal-Token'] || '';\nconst expected = $env.INTERNAL_WEBHOOK_SECRET;\nif (!expected) throw new Error('INTERNAL_WEBHOOK_SECRET not configured');\nif (token !== expected) throw new Error('Forbidden: invalid internal token');\nreturn [{ json: $json }];"
+    }
+  }
+});
+
 const insertLog = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
@@ -62,5 +74,6 @@ const respond = node({
 
 export default workflow('logging', 'Logging')
   .add(webhookTrigger)
+  .to(verifyInternalToken)
   .to(insertLog)
   .to(respond);

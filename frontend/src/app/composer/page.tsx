@@ -47,7 +47,7 @@ export default function ComposerPage() {
     if (!user) return
     supabase
       .from('social_accounts')
-      .select('*')
+      .select('id, user_id, platform, page_id, page_name, ig_user_id, ig_username, status, token_expires_at, created_at')
       .eq('user_id', user.id)
       .eq('status', 'active')
       .then(({ data }) => setAccounts(data || []))
