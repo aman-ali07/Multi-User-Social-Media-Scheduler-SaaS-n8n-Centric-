@@ -33,10 +33,23 @@ export function HeroSection() {
 
         <motion.h1
           variants={item}
-          className="font-serif text-[56px] sm:text-[72px] md:text-[88px] text-text tracking-tight leading-[0.95]"
+          className="font-serif text-[56px] sm:text-[72px] md:text-[80px] text-text tracking-tight leading-[0.95]"
+        >
+          Orchestrate Your Content.
+        </motion.h1>
+        <motion.p
+          variants={item}
+          className="font-serif text-[56px] sm:text-[72px] md:text-[80px] text-text tracking-tight leading-[0.95] -mt-2 sm:-mt-3"
+        >
+          Amplify Your Reach.
+        </motion.p>
+
+        <motion.p
+          variants={item}
+          className="mt-4 font-serif text-[24px] sm:text-[28px] tracking-[0.15em] text-text-muted"
         >
           Console
-        </motion.h1>
+        </motion.p>
 
         <motion.p
           variants={item}
