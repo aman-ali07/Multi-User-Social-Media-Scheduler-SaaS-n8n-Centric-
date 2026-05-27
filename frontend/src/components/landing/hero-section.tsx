@@ -35,14 +35,9 @@ export function HeroSection() {
           variants={item}
           className="font-serif text-[56px] sm:text-[72px] md:text-[80px] text-text tracking-tight leading-[0.95]"
         >
-          Orchestrate Your Content.
-        </motion.h1>
-        <motion.p
-          variants={item}
-          className="font-serif text-[56px] sm:text-[72px] md:text-[80px] text-text tracking-tight leading-[0.95] -mt-2 sm:-mt-3"
-        >
+          Orchestrate Your Content.<br />
           Amplify Your Reach.
-        </motion.p>
+        </motion.h1>
 
         <motion.p
           variants={item}
