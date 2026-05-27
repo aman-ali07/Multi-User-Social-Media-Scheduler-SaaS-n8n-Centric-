@@ -1,16 +1,16 @@
-# Graph Report - saas  (2026-05-28)
+# Graph Report - saas  (2026-05-27)
 
 ## Corpus Check
-- 159 files · ~128,899 words
+- 156 files · ~126,876 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1671 nodes · 1874 edges · 220 communities (184 shown, 36 thin omitted)
+- 1668 nodes · 1871 edges · 219 communities (183 shown, 36 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8bd0b216`
+- Built from commit: `06682ff1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -104,7 +104,6 @@
 - [[_COMMUNITY_Community 88|Community 88]]
 - [[_COMMUNITY_Community 89|Community 89]]
 - [[_COMMUNITY_Community 90|Community 90]]
-- [[_COMMUNITY_Community 91|Community 91]]
 - [[_COMMUNITY_Community 92|Community 92]]
 - [[_COMMUNITY_Community 93|Community 93]]
 - [[_COMMUNITY_Community 94|Community 94]]
@@ -229,7 +228,6 @@
 - [[_COMMUNITY_Community 216|Community 216]]
 - [[_COMMUNITY_Community 217|Community 217]]
 - [[_COMMUNITY_Community 218|Community 218]]
-- [[_COMMUNITY_Community 219|Community 219]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `New session - 2026-05-27T10:21:05.651Z` - 110 edges
@@ -265,23 +263,23 @@
 - **Connection Management Practices** — concept_connection_limits, concept_connection_pooling, concept_idle_connection_timeout, concept_pgbouncer [INFERRED 0.90]
 - **Postgres Index Types** — concept_btree_index, concept_gin_index, concept_gist_index, concept_brin_index, concept_hash_index [EXTRACTED 1.00]
 
-## Communities (220 total, 36 thin omitted)
+## Communities (219 total, 36 thin omitted)
 
 ### Community 0 - "Auth & Accounts UI"
-Cohesion: 0.15
-Nodes (8): bilderberg, jetbrainsMono, metadata, RootLayout(), satoshi, ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState
+Cohesion: 0.12
+Nodes (17): container, item, themes, AuthGuard(), CalendarPage(), container, item, monthNames (+9 more)
 
 ### Community 1 - "Post & Calendar Components"
-Cohesion: 0.11
-Nodes (24): AccountCard(), AccountCardProps, container, item, PostDetailPage(), ActivityTimeline(), ActivityTimelineProps, PostRow() (+16 more)
+Cohesion: 0.10
+Nodes (26): AccountCard(), AccountCardProps, AccountSelector(), AccountSelectorProps, UpcomingList(), UpcomingListProps, UpcomingPost, ActivityTimeline() (+18 more)
 
 ### Community 2 - "Dashboard Activity Feed"
-Cohesion: 0.05
-Nodes (28): ActivityFeed(), ActivityFeedProps, ActivityItem, activityItems, container, DashboardPage(), item, statCards (+20 more)
+Cohesion: 0.08
+Nodes (21): ActivityFeed(), ActivityFeedProps, ActivityItem, activityItems, container, DashboardPage(), item, statCards (+13 more)
 
 ### Community 3 - "Root Layout & Calendar Grid"
-Cohesion: 0.17
-Nodes (7): MediaDropzone(), MediaDropzoneProps, cn(), containerVariants, itemVariants, LeftNav(), navItems
+Cohesion: 0.07
+Nodes (22): bilderberg, jetbrainsMono, metadata, RootLayout(), satoshi, CalendarGrid(), CalendarGridProps, CalendarPost (+14 more)
 
 ### Community 4 - "Project Dependencies"
 Cohesion: 0.07
@@ -296,20 +294,20 @@ Cohesion: 0.04
 Nodes (46): 1.1 Authorization URL, 1.2 Token Exchange (Code → Short-lived Token), 1.3 Short-lived → Long-lived Token (60 days), 1.4 Refresh Long-lived Token, 1. OAuth 2.0 Flow, 2.1 Get User's Pages, 2.2 Get Page's Instagram Business Account, 2.3 Create Text Post (+38 more)
 
 ### Community 7 - "Landing Page UI"
-Cohesion: 0.09
-Nodes (17): FeatureCard(), FeatureCardProps, features, FeaturesSection(), AUTH_PATHS, FloatingSignIn(), Footer(), container (+9 more)
+Cohesion: 0.10
+Nodes (15): FeatureCard(), FeatureCardProps, features, FeaturesSection(), Footer(), container, HeroSection(), item (+7 more)
 
 ### Community 8 - "TypeScript Configuration"
 Cohesion: 0.10
 Nodes (19): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+11 more)
 
 ### Community 9 - "Post Composer UI"
-Cohesion: 0.11
-Nodes (23): AccountSelector(), AccountSelectorProps, CaptionEditor(), CaptionEditorProps, ComposerPage(), container, item, options (+15 more)
+Cohesion: 0.14
+Nodes (15): CaptionEditor(), CaptionEditorProps, ComposerPage(), container, item, options, PlatformSelector(), PlatformSelectorProps (+7 more)
 
 ### Community 10 - "Auth Pages & Forms"
-Cohesion: 0.19
-Nodes (11): AuthFormProps, useSettings(), container, item, SettingsPage(), Button, ButtonProps, sizeStyles (+3 more)
+Cohesion: 0.26
+Nodes (7): AuthForm(), AuthFormProps, AuthLayout(), AuthLayoutProps, MotionNarrative(), LoginPage(), RegisterPage()
 
 ### Community 11 - "Instagram Publish Workflow"
 Cohesion: 0.12
@@ -333,7 +331,7 @@ Nodes (9): Breaking Next.js Changes, Local Next.js Documentation Guide, AGENTS.m
 
 ### Community 16 - "Community 16"
 Cohesion: 0.20
-Nodes (10): AuthCallbackPage, AuthGuard, AuthLayout, ConsoleShell, LeftNav, RegisterPage, StatusBar, Supabase Client (+2 more)
+Nodes (11): AuthCallbackPage, AuthGuard, AuthLayout, ConsoleShell, LeftNav, LoginPage, RegisterPage, StatusBar (+3 more)
 
 ### Community 17 - "Community 17"
 Cohesion: 0.06
@@ -384,20 +382,20 @@ Cohesion: 0.07
 Nodes (28): code:typescript (import { workflow, node, trigger, expr, newCredential } from), code:bash (npx n8n-workflow-sdk deploy n8n/workflows/ \), code:bash (# Search for deployed workflows), code:bash (curl -X POST https://aman01.app.n8n.cloud/webhook/oauth-conn), code:bash (curl -X POST https://aman01.app.n8n.cloud/webhook/post \), code:bash (curl -X POST https://aman01.app.n8n.cloud/webhook/media-uplo), code:typescript (import { workflow, node, trigger, expr, newCredential, ifEls), code:typescript (import { workflow, node, trigger, expr, newCredential } from) (+20 more)
 
 ### Community 61 - "Community 61"
-Cohesion: 0.25
-Nodes (7): CalendarGrid(), CalendarGridProps, CalendarPost, dayLabels, CalendarPost, DayCell(), DayCellProps
+Cohesion: 0.43
+Nodes (7): callWebhook(), cancelPost(), connectOAuth(), createPost(), registerMedia(), updatePost(), WebhookOptions
 
 ### Community 62 - "Community 62"
 Cohesion: 0.07
 Nodes (26): 1. `profiles`, 2. `oauth_state`, 3. `social_accounts`, 4. `media_assets`, 5. `scheduled_posts`, 6. `post_media` (junction), 7. `post_logs`, 8. `workflow_runs` (+18 more)
 
 ### Community 63 - "Community 63"
-Cohesion: 0.26
-Nodes (7): useAuth(), CalendarPost, supabase, container, item, LogsPage(), TopBar()
+Cohesion: 0.20
+Nodes (8): useAuth(), CalendarPost, ActivityItem, UpcomingPost, VelocityDay, supabase, TopBar(), DashboardStats
 
 ### Community 64 - "Community 64"
-Cohesion: 0.16
-Nodes (12): container, item, themes, AuthGuard(), CalendarPage(), container, item, monthNames (+4 more)
+Cohesion: 0.13
+Nodes (15): ConnectButton(), AccountsPage(), container, item, useAccounts(), useMedia(), MediaGrid(), MediaGridProps (+7 more)
 
 ### Community 65 - "Community 65"
 Cohesion: 0.50
@@ -440,8 +438,8 @@ Cohesion: 0.12
 Nodes (15): cancelPost, insertPost, insertPostMedia, linkMedia, logCreate, parseCancelData, parseCreateData, parseEditData (+7 more)
 
 ### Community 75 - "Community 75"
-Cohesion: 0.19
-Nodes (9): ConnectButton(), ConnectButtonProps, AccountsPage(), container, item, useAccounts(), SkeletonCard(), SkeletonGrid() (+1 more)
+Cohesion: 0.18
+Nodes (11): ConnectButtonProps, container, item, PostDetailPage(), PostRow(), PostRowProps, ScheduledPost, Button (+3 more)
 
 ### Community 76 - "Community 76"
 Cohesion: 0.15
@@ -502,10 +500,6 @@ Nodes (8): callFailureHandler, checkPost, checkRetries, computeBackoff, reschedu
 ### Community 90 - "Community 90"
 Cohesion: 0.29
 Nodes (6): code:block1 (references/query-missing-indexes.md), How to Use, References, Rule Categories by Priority, Supabase Postgres Best Practices, When to Apply
-
-### Community 91 - "Community 91"
-Cohesion: 0.25
-Nodes (6): AuthForm(), AuthLayout(), AuthLayoutProps, MotionNarrative(), LoginPage(), RegisterPage()
 
 ### Community 92 - "Community 92"
 Cohesion: 0.33
@@ -979,16 +973,12 @@ Nodes (3): Assistant (Build · DeepSeek V4 Flash Free · 9.7s), code:json ({), c
 Cohesion: 0.67
 Nodes (3): Assistant (Plan · DeepSeek V4 Flash Free · 2.9s), code:json ({), code:block261 (<path>/home/aman/projects/saas/supabase/migrations</path>)
 
-### Community 219 - "Community 219"
-Cohesion: 0.31
-Nodes (7): useMedia(), MediaGrid(), MediaGridProps, container, item, MediaPage(), MediaAsset
-
 ## Ambiguous Edges - Review These
 - `N8N Social Scheduler SaaS` → `N8N Social Scheduler PRD`  [AMBIGUOUS]
   N8N_Social_Scheduler_PRD.pdf · relation: cites
 
 ## Knowledge Gaps
-- **1056 isolated node(s):** `AUTH_PATHS`, `container`, `item`, `name`, `version` (+1051 more)
+- **1054 isolated node(s):** `name`, `version`, `description`, `main`, `doc` (+1049 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -999,13 +989,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: cites) - confidence is low._
 - **Why does `New session - 2026-05-27T10:21:05.651Z` connect `Community 67` to `Community 72`, `Community 73`, `Community 76`, `Community 77`, `Community 82`, `Community 83`, `Community 84`, `Community 86`, `Community 87`, `Community 96`, `Community 130`, `Community 139`, `Community 140`, `Community 141`, `Community 142`, `Community 143`, `Community 144`, `Community 145`, `Community 146`, `Community 147`, `Community 148`, `Community 149`, `Community 150`, `Community 151`, `Community 152`, `Community 153`, `Community 154`, `Community 155`, `Community 156`, `Community 157`, `Community 158`, `Community 159`, `Community 160`, `Community 161`, `Community 162`, `Community 163`, `Community 164`, `Community 165`, `Community 166`, `Community 167`, `Community 168`, `Community 169`, `Community 170`, `Community 171`, `Community 172`, `Community 173`, `Community 174`, `Community 175`, `Community 176`, `Community 177`, `Community 178`, `Community 179`, `Community 180`, `Community 181`, `Community 182`, `Community 183`, `Community 184`, `Community 185`, `Community 186`, `Community 187`, `Community 188`, `Community 189`, `Community 190`, `Community 191`, `Community 192`, `Community 193`, `Community 194`, `Community 195`, `Community 196`, `Community 197`, `Community 198`, `Community 199`, `Community 200`, `Community 201`, `Community 202`, `Community 203`, `Community 204`, `Community 205`, `Community 206`, `Community 207`, `Community 208`, `Community 209`, `Community 210`, `Community 211`, `Community 212`, `Community 213`, `Community 214`, `Community 215`, `Community 216`, `Community 217`, `Community 218`?**
   _High betweenness centrality (0.070) - this node is a cross-community bridge._
-- **Why does `Assistant (Build · DeepSeek V4 Flash Free · 5.1s)` connect `Community 76` to `Community 67`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `Assistant (Plan · DeepSeek V4 Flash Free · 4.2s)` connect `Community 84` to `Community 67`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **What connects `AUTH_PATHS`, `container`, `item` to the rest of the system?**
-  _1056 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `Assistant (Plan · DeepSeek V4 Flash Free · 4.6s)` connect `Community 72` to `Community 67`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **What connects `name`, `version`, `description` to the rest of the system?**
+  _1054 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Auth & Accounts UI` be split into smaller, more focused modules?**
+  _Cohesion score 0.12 - nodes in this community are weakly interconnected._
 - **Should `Post & Calendar Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.11264367816091954 - nodes in this community are weakly interconnected._
-- **Should `Dashboard Activity Feed` be split into smaller, more focused modules?**
-  _Cohesion score 0.04591836734693878 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09848484848484848 - nodes in this community are weakly interconnected._

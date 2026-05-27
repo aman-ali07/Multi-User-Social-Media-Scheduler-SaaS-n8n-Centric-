@@ -52,8 +52,4 @@ export async function cancelPost(postId: string, userId: string) {
   return callWebhook('post', { body: { operation: 'cancel', postId, userId } })
 }
 
-export async function registerMedia(userId: string, fileUrl: string, fileType: string) {
-  return callWebhook('media-upload', {
-    body: { userId, fileUrl, fileType },
-  })
-}
+

@@ -51,6 +51,7 @@ const generateState = node({
     platform: 'facebook',
     state: 'abc123...',
     codeVerifier: 'def456...',
+    codeChallenge: 'base64url...',
     expiresAt: '2026-05-27T...'
   }]
 });
@@ -81,7 +82,7 @@ const buildRedirectUrl = node({
     name: 'Build Redirect URL',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const stateItem = $('Generate OAuth State').item.json;\nconst base = 'https://www.facebook.com/v21.0/dialog/oauth';\nconst params = new URLSearchParams({\n  client_id: $env.FACEBOOK_APP_ID,\n  redirect_uri: $env.FRONTEND_URL + '/accounts/connect',\n  state: stateItem.state,\n  response_type: 'code',\n  scope: 'pages_show_list,pages_manage_posts,pages_read_engagement,instagram_basic,instagram_content_publish'\n});\nreturn [{ json: { redirectUrl: base + '?' + params.toString() } }];"
+      jsCode: "const stateItem = $('Generate OAuth State').item.json;\nconst base = 'https://www.facebook.com/v21.0/dialog/oauth';\nconst params = new URLSearchParams({\n  client_id: $env.FACEBOOK_APP_ID,\n  redirect_uri: $env.FRONTEND_URL + '/accounts/connect',\n  state: stateItem.state,\n  response_type: 'code',\n  code_challenge_method: 'S256',\n  code_challenge: stateItem.codeChallenge,\n  scope: 'pages_show_list,pages_manage_posts,pages_read_engagement,instagram_basic,instagram_content_publish'\n});\nreturn [{ json: { redirectUrl: base + '?' + params.toString() } }];"
     }
   },
   output: [{ redirectUrl: 'https://...' }]

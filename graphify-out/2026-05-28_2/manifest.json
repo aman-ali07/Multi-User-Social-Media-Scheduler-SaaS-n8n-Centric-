@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/page.tsx": {
-    "mtime": 1779913652.821294,
-    "ast_hash": "0dc2833337de63bdf520576f50a8b7ac",
+    "mtime": 1779810560.8495133,
+    "ast_hash": "7c86d14c82e0348cfe010dbe2cd5be06",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/FRONTEND_PROGRESS.md": {
@@ -230,9 +230,9 @@
     "semantic_hash": "058ab0499b8f9867e53988c401e26953"
   },
   "/home/aman/projects/saas/frontend/src/app/auth/login/page.tsx": {
-    "mtime": 1779915348.0281086,
-    "ast_hash": "5a0a05602296d1b6c5d2a1e1a68cd5f3",
-    "semantic_hash": ""
+    "mtime": 1779797324.2175233,
+    "ast_hash": "70ad253d325bfcb12777f0be46fa3237",
+    "semantic_hash": "70ad253d325bfcb12777f0be46fa3237"
   },
   "/home/aman/projects/saas/frontend/src/app/dashboard/page.tsx": {
     "mtime": 1779822648.836132,
@@ -260,8 +260,8 @@
     "semantic_hash": "da1f4ab70f97d020d6d8919c4d807a2b"
   },
   "/home/aman/projects/saas/skills-lock.json": {
-    "mtime": 1779914023.7019892,
-    "ast_hash": "8a92e6a82049dba50f770f54bd931a0b",
+    "mtime": 1779906300.5090504,
+    "ast_hash": "b76efad1b4e9ccc09d2d4f59e99c96eb",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/auth/callback/page.tsx": {
@@ -824,9 +824,9 @@
     "ast_hash": "aeeceb67db46efb27f287e54d25f17f5",
     "semantic_hash": ""
   },
-  "/home/aman/projects/saas/frontend/src/components/landing/floating-sign-in.tsx": {
-    "mtime": 1779913534.1998131,
-    "ast_hash": "1d1e6edc2e18d9f43000541fa82f1d47",
+  "/home/aman/projects/saas/.agents/skills/find-skills/SKILL.md": {
+    "mtime": 1779906300.5040505,
+    "ast_hash": "efcaee1dd97ebac4f2f4071585cff6b5",
     "semantic_hash": ""
   }
 }

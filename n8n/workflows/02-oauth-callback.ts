@@ -55,7 +55,7 @@ const lookupState = node({
   output: [{
     id: 'uuid',
     user_id: 'uuid',
-    code_verifier: 'abc',
+    code_verifier: 'abc123...',
     platform: 'facebook'
   }]
 });
@@ -95,7 +95,8 @@ const exchangeCode = node({
           { name: 'client_id', value: expr('{{ $env.FACEBOOK_APP_ID }}') },
           { name: 'client_secret', value: expr('{{ $env.FACEBOOK_APP_SECRET }}') },
           { name: 'redirect_uri', value: expr('{{ $env.FRONTEND_URL }}/accounts/connect') },
-          { name: 'code', value: expr('{{ $json.body.code }}') }
+          { name: 'code', value: expr('{{ $json.body.code }}') },
+          { name: 'code_verifier', value: expr('{{ $("Lookup OAuth State").item.json.code_verifier }}') }
         ]
       },
       options: {

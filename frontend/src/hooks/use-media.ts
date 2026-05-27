@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
-import { registerMedia } from '@/lib/n8n'
 import type { MediaAsset } from '@/types/database'
 
 export function useMedia() {
@@ -27,9 +26,10 @@ export function useMedia() {
 
   const upload = async (file: File) => {
     if (!user) return
+    const path = `${user.id}/${Date.now()}-${file.name}`
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('media')
-      .upload(`${user.id}/${Date.now()}-${file.name}`, file)
+      .upload(path, file)
 
     if (uploadError) { setError(uploadError.message); return }
 
@@ -37,7 +37,18 @@ export function useMedia() {
       .from('media')
       .getPublicUrl(uploadData.path)
 
-    await registerMedia(user.id, publicUrl, file.type)
+    const { error: insertError } = await supabase
+      .from('media_assets')
+      .insert({
+        user_id: user.id,
+        file_url: publicUrl,
+        file_type: file.type,
+        file_size: file.size,
+        storage_path: path,
+      })
+
+    if (insertError) { setError(insertError.message); return }
+
     await load()
   }
 

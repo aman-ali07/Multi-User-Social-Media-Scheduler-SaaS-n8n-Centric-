@@ -127,6 +127,7 @@ const callFailureHandler = node({
       specifyBody: 'json',
       jsonBody: {
         postId: expr('{{ $("Check Post Status").item.json.id }}'),
+        userId: expr('{{ $("Check Post Status").item.json.user_id || "" }}'),
         workflowName: expr('{{ $("Retry Handler Webhook").item.json.body.platform }}-publish'),
         error: expr('{{ $("Retry Handler Webhook").item.json.body.error }}'),
         attemptNumber: expr('{{ $("Retry Handler Webhook").item.json.body.attemptNumber || 1 }}'),

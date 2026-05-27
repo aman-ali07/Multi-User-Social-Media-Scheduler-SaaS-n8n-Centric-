@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/page.tsx": {
-    "mtime": 1779913652.821294,
-    "ast_hash": "0dc2833337de63bdf520576f50a8b7ac",
+    "mtime": 1779810560.8495133,
+    "ast_hash": "7c86d14c82e0348cfe010dbe2cd5be06",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/FRONTEND_PROGRESS.md": {
@@ -230,9 +230,9 @@
     "semantic_hash": "058ab0499b8f9867e53988c401e26953"
   },
   "/home/aman/projects/saas/frontend/src/app/auth/login/page.tsx": {
-    "mtime": 1779915348.0281086,
-    "ast_hash": "5a0a05602296d1b6c5d2a1e1a68cd5f3",
-    "semantic_hash": ""
+    "mtime": 1779797324.2175233,
+    "ast_hash": "70ad253d325bfcb12777f0be46fa3237",
+    "semantic_hash": "70ad253d325bfcb12777f0be46fa3237"
   },
   "/home/aman/projects/saas/frontend/src/app/dashboard/page.tsx": {
     "mtime": 1779822648.836132,
@@ -245,8 +245,8 @@
     "semantic_hash": "6df4cdfcb3efbdcf36dc42112fc76411"
   },
   "/home/aman/projects/saas/frontend/src/lib/n8n.ts": {
-    "mtime": 1779904029.9939873,
-    "ast_hash": "979f4f13a14477f535817939ffb7da27",
+    "mtime": 1779822449.812448,
+    "ast_hash": "7a97c10d8aef17be21731fac4b8ecd3a",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/lib/supabase.ts": {
@@ -260,9 +260,9 @@
     "semantic_hash": "da1f4ab70f97d020d6d8919c4d807a2b"
   },
   "/home/aman/projects/saas/skills-lock.json": {
-    "mtime": 1779914023.7019892,
+    "mtime": 1779806433.491837,
     "ast_hash": "8a92e6a82049dba50f770f54bd931a0b",
-    "semantic_hash": ""
+    "semantic_hash": "8a92e6a82049dba50f770f54bd931a0b"
   },
   "/home/aman/projects/saas/frontend/src/app/auth/callback/page.tsx": {
     "mtime": 1779803901.7852407,
@@ -615,8 +615,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-media.ts": {
-    "mtime": 1779904022.8710527,
-    "ast_hash": "e81e6eca867c702c040cacf16a17e781",
+    "mtime": 1779899056.8423126,
+    "ast_hash": "af974b453653521f3a61425008321d50",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-calendar.ts": {
@@ -645,8 +645,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/components/landing/hero-section.tsx": {
-    "mtime": 1779912348.4510434,
-    "ast_hash": "8ab850d15866b9749136c88d38c7c7dd",
+    "mtime": 1779810889.6381137,
+    "ast_hash": "328872c9b12f73424d15add7f1fa4c4d",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/components/landing/how-it-works.tsx": {
@@ -680,8 +680,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/n8n/workflows/09-retry-handler.ts": {
-    "mtime": 1779903410.3265605,
-    "ast_hash": "5f4670f579e0b48b0d912d0c5a274231",
+    "mtime": 1779895275.2610426,
+    "ast_hash": "67655998047ede4fe21363c1765cc399",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/n8n/workflows/01-oauth-connect.ts": {
@@ -797,36 +797,6 @@
   "/home/aman/projects/saas/docker-compose.yml": {
     "mtime": 1779899154.7076726,
     "ast_hash": "76c956fbc41beedd6682858be8d64336",
-    "semantic_hash": ""
-  },
-  "/home/aman/projects/saas/supabase/migrations/010_workflow_runs_user_id.sql": {
-    "mtime": 1779900676.2429163,
-    "ast_hash": "e22a7d059731e4adbca0015fef5c56f5",
-    "semantic_hash": ""
-  },
-  "/home/aman/projects/saas/session_opencode.md": {
-    "mtime": 1779903519.1892352,
-    "ast_hash": "2f076107de538f2b29c29383dae9e831",
-    "semantic_hash": ""
-  },
-  "/home/aman/projects/saas/docs/ORACLE_DEPLOYMENT.md": {
-    "mtime": 1779904123.7739906,
-    "ast_hash": "28ee59eebf4ea310b59dd8ec08540144",
-    "semantic_hash": ""
-  },
-  "/home/aman/projects/saas/docs/superpowers/plans/2026-05-28-hero-redesign.md": {
-    "mtime": 1779911257.600983,
-    "ast_hash": "dd88c51adb414a088d487b19f898fa26",
-    "semantic_hash": ""
-  },
-  "/home/aman/projects/saas/docs/superpowers/specs/2026-05-28-hero-redesign-design.md": {
-    "mtime": 1779911168.5979147,
-    "ast_hash": "aeeceb67db46efb27f287e54d25f17f5",
-    "semantic_hash": ""
-  },
-  "/home/aman/projects/saas/frontend/src/components/landing/floating-sign-in.tsx": {
-    "mtime": 1779913534.1998131,
-    "ast_hash": "1d1e6edc2e18d9f43000541fa82f1d47",
     "semantic_hash": ""
   }
 }
