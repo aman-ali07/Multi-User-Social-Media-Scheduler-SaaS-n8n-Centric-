@@ -10,9 +10,9 @@
     "semantic_hash": "69164065d97b973e653a4a719bbfb79a"
   },
   "/home/aman/projects/saas/.opencode/opencode.json": {
-    "mtime": 1779806762.483435,
-    "ast_hash": "16a7b0d768269867ed1c8fb41006936c",
-    "semantic_hash": "16a7b0d768269867ed1c8fb41006936c"
+    "mtime": 1779820531.5585976,
+    "ast_hash": "e710e73b9c37cb0b57bcd8836b36ab75",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/.opencode/package.json": {
     "mtime": 1779794923.1174402,
@@ -25,9 +25,9 @@
     "semantic_hash": "64ccd3c03dbfe0980b6095766f5c4e52"
   },
   "/home/aman/projects/saas/supabase/migrations/002_storage_setup.sql": {
-    "mtime": 1779793971.6973782,
-    "ast_hash": "186e47e6b08cf181e5abd8bc1c5be958",
-    "semantic_hash": "186e47e6b08cf181e5abd8bc1c5be958"
+    "mtime": 1779826881.3222125,
+    "ast_hash": "c1657a8bbbcf5a63139d284abb01e364",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/supabase/migrations/001_initial_schema.sql": {
     "mtime": 1779793962.3201785,
@@ -90,9 +90,9 @@
     "semantic_hash": "239f3ebf717465dc636818a1a619398d"
   },
   "/home/aman/projects/saas/frontend/next-env.d.ts": {
-    "mtime": 1779809151.3041208,
+    "mtime": 1779826953.5472686,
     "ast_hash": "2a74d3909800ca5467fa83b0ab4a4890",
-    "semantic_hash": "2a74d3909800ca5467fa83b0ab4a4890"
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/package.json": {
     "mtime": 1779797092.122469,
@@ -110,14 +110,14 @@
     "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
   },
   "/home/aman/projects/saas/frontend/src/app/layout.tsx": {
-    "mtime": 1779805133.001465,
-    "ast_hash": "0e030793b9544ca376186ebcc17acf10",
-    "semantic_hash": "0e030793b9544ca376186ebcc17acf10"
+    "mtime": 1779822486.7036963,
+    "ast_hash": "b1ebe7bb6a36ac84c9dd4c2aa749b71b",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/page.tsx": {
-    "mtime": 1779797389.6613853,
-    "ast_hash": "498f5bb84e6865b9728dea7db59cde2b",
-    "semantic_hash": "498f5bb84e6865b9728dea7db59cde2b"
+    "mtime": 1779810560.8495133,
+    "ast_hash": "7c86d14c82e0348cfe010dbe2cd5be06",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/FRONTEND_PROGRESS.md": {
     "mtime": 1779796858.956405,
@@ -180,9 +180,9 @@
     "semantic_hash": "259f08c4352f94699444dc3897fcb5eb"
   },
   "/home/aman/projects/saas/frontend/src/components/auth/motion-narrative.tsx": {
-    "mtime": 1779797297.820176,
-    "ast_hash": "b91adb994ac0602ab092b4accdedffc0",
-    "semantic_hash": "b91adb994ac0602ab092b4accdedffc0"
+    "mtime": 1779813339.7956436,
+    "ast_hash": "7cf0063b72438b825fa2729b1b3ef2d7",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/components/auth/auth-layout.tsx": {
     "mtime": 1779797314.612397,
@@ -190,9 +190,9 @@
     "semantic_hash": "7c7fc454f75c6f832b54043b01407948"
   },
   "/home/aman/projects/saas/frontend/src/components/auth/auth-form.tsx": {
-    "mtime": 1779797542.8864036,
-    "ast_hash": "44a441aa34c2a68d6a8a52fdcc626281",
-    "semantic_hash": "44a441aa34c2a68d6a8a52fdcc626281"
+    "mtime": 1779813340.516651,
+    "ast_hash": "aec898705bd04f096d963f71ccf7cfe5",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/components/ui/badge.tsx": {
     "mtime": 1779797598.3711348,
@@ -210,9 +210,9 @@
     "semantic_hash": "265af17cd3e79af09facb7c27659493c"
   },
   "/home/aman/projects/saas/frontend/src/components/shell/status-bar.tsx": {
-    "mtime": 1779797266.9547696,
-    "ast_hash": "aa8967af49b69372290b860788dbae15",
-    "semantic_hash": "aa8967af49b69372290b860788dbae15"
+    "mtime": 1779826857.3918574,
+    "ast_hash": "97311f140fc25f69bb365a98588832c5",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/components/shell/left-nav.tsx": {
     "mtime": 1779797544.273422,
@@ -245,9 +245,9 @@
     "semantic_hash": "70ad253d325bfcb12777f0be46fa3237"
   },
   "/home/aman/projects/saas/frontend/src/app/dashboard/page.tsx": {
-    "mtime": 1779808916.3999977,
-    "ast_hash": "ab44443468a3382be999d53f59b01237",
-    "semantic_hash": "ab44443468a3382be999d53f59b01237"
+    "mtime": 1779822648.836132,
+    "ast_hash": "03dc21134847707ff092e3d8137f78cf",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-auth.ts": {
     "mtime": 1779797198.0238621,
@@ -255,9 +255,9 @@
     "semantic_hash": "6df4cdfcb3efbdcf36dc42112fc76411"
   },
   "/home/aman/projects/saas/frontend/src/lib/n8n.ts": {
-    "mtime": 1779803910.492346,
-    "ast_hash": "5b21a80d0eb2937b4ca7ffb3debe1371",
-    "semantic_hash": "5b21a80d0eb2937b4ca7ffb3debe1371"
+    "mtime": 1779822449.812448,
+    "ast_hash": "7a97c10d8aef17be21731fac4b8ecd3a",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/lib/supabase.ts": {
     "mtime": 1779797192.7557929,
@@ -280,24 +280,24 @@
     "semantic_hash": "875f4c4d5f06c3fe0af5431bb38e9c86"
   },
   "/home/aman/projects/saas/frontend/src/app/posts/page.tsx": {
-    "mtime": 1779808916.3939977,
-    "ast_hash": "9ac2db6e9047ca271a1bb00bd6f3fb42",
-    "semantic_hash": "9ac2db6e9047ca271a1bb00bd6f3fb42"
+    "mtime": 1779822535.0800114,
+    "ast_hash": "a67d05ce471aa2005880dc1a49754ea7",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/api/n8n/[...path]/route.ts": {
-    "mtime": 1779803907.6963122,
-    "ast_hash": "64f9c6ecf29aa63c924d2dfc0519f63d",
-    "semantic_hash": "64f9c6ecf29aa63c924d2dfc0519f63d"
+    "mtime": 1779822304.2953422,
+    "ast_hash": "487a7b0e28ce7584ba4d449f5c09e424",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/composer/page.tsx": {
-    "mtime": 1779808916.4409983,
-    "ast_hash": "6fc4215e0029587864965d784a8851d6",
-    "semantic_hash": "6fc4215e0029587864965d784a8851d6"
+    "mtime": 1779822597.8054082,
+    "ast_hash": "a8c57e78c9112a3ea26b6ce842e39bc4",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/accounts/page.tsx": {
-    "mtime": 1779808916.4539983,
-    "ast_hash": "3f7db364bc0c3c82a398bed8d3b45365",
-    "semantic_hash": "3f7db364bc0c3c82a398bed8d3b45365"
+    "mtime": 1779822556.6001487,
+    "ast_hash": "c4f873456d52678244c2ecfafa784f9c",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/SKILL.md": {
     "mtime": 1779806433.4348366,
@@ -499,15 +499,10 @@
     "ast_hash": "490ec569e68ec951ff10b4c5d5a26257",
     "semantic_hash": "490ec569e68ec951ff10b4c5d5a26257"
   },
-  "/home/aman/projects/saas/frontend/src/components/posts/post-card.tsx": {
-    "mtime": 1779808853.5521512,
-    "ast_hash": "08288018cbf215ef9a52126e1c1a3334",
-    "semantic_hash": "08288018cbf215ef9a52126e1c1a3334"
-  },
   "/home/aman/projects/saas/frontend/src/components/dashboard/stats-row.tsx": {
-    "mtime": 1779808799.154414,
-    "ast_hash": "1ce85c9d610028b971efee958097c54c",
-    "semantic_hash": "1ce85c9d610028b971efee958097c54c"
+    "mtime": 1779813339.7816434,
+    "ast_hash": "a5b2be63f2d79136cc833f1c92e59a0e",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/components/dashboard/publishing-velocity.tsx": {
     "mtime": 1779808799.156414,
@@ -525,9 +520,9 @@
     "semantic_hash": "5b70ace44b1dba2340831df973a761cc"
   },
   "/home/aman/projects/saas/frontend/src/components/calendar/calendar-grid.tsx": {
-    "mtime": 1779808960.1205835,
-    "ast_hash": "69fb34a7346c8ad227f69b78705e0049",
-    "semantic_hash": "69fb34a7346c8ad227f69b78705e0049"
+    "mtime": 1779813339.7966435,
+    "ast_hash": "2eedfff50182858bf7f6d8b69f00f270",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/components/calendar/day-cell.tsx": {
     "mtime": 1779808960.1125834,
@@ -580,39 +575,39 @@
     "semantic_hash": "06de3d836071dc2811f2c3039cf93273"
   },
   "/home/aman/projects/saas/frontend/src/app/posts/[id]/page.tsx": {
-    "mtime": 1779808960.1805842,
-    "ast_hash": "73cae534f6513331843199dcaa41ee8e",
-    "semantic_hash": "73cae534f6513331843199dcaa41ee8e"
+    "mtime": 1779820447.2896152,
+    "ast_hash": "a1c82072cf88ac099ac062ec3e399497",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/calendar/page.tsx": {
-    "mtime": 1779808960.2825856,
-    "ast_hash": "b45868bef1e5a71c9ab0ad2635748590",
-    "semantic_hash": "b45868bef1e5a71c9ab0ad2635748590"
+    "mtime": 1779822576.2952733,
+    "ast_hash": "64bb95ab577967dac8a8a35ed05877c1",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/composer/[id]/page.tsx": {
-    "mtime": 1779808960.1805842,
-    "ast_hash": "b0bf5810fb92872580fdff3c968a1dda",
-    "semantic_hash": "b0bf5810fb92872580fdff3c968a1dda"
+    "mtime": 1779822455.0504837,
+    "ast_hash": "4774536ad3e8ce423d7bcfe4566bb912",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/accounts/connect/route.ts": {
-    "mtime": 1779808999.6101105,
-    "ast_hash": "12faab76fc4ee29ba52610339aca91a9",
-    "semantic_hash": "12faab76fc4ee29ba52610339aca91a9"
+    "mtime": 1779825226.799895,
+    "ast_hash": "4ed573914a7798a0f9cbe72bb2f19bc8",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/media/page.tsx": {
-    "mtime": 1779808999.5951104,
-    "ast_hash": "df06c1a9c85b9ead698094080b9fe36b",
-    "semantic_hash": "df06c1a9c85b9ead698094080b9fe36b"
+    "mtime": 1779822544.0400689,
+    "ast_hash": "37b217579f93a5df01c0f91e03e26715",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/logs/page.tsx": {
-    "mtime": 1779808999.5951104,
-    "ast_hash": "daf94cf39fa58cedcaf3275bf743c277",
-    "semantic_hash": "daf94cf39fa58cedcaf3275bf743c277"
+    "mtime": 1779822566.714213,
+    "ast_hash": "8b875bd38be5c7666aa72c1499a9c696",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/settings/page.tsx": {
-    "mtime": 1779808999.6101105,
-    "ast_hash": "cc0a6784d84f04977e4c176f03b18918",
-    "semantic_hash": "cc0a6784d84f04977e4c176f03b18918"
+    "mtime": 1779815999.7941456,
+    "ast_hash": "3e1e3ed087328d503696d2d8ead4d445",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/settings/appearance/page.tsx": {
     "mtime": 1779808999.6101105,
@@ -620,19 +615,19 @@
     "semantic_hash": "8a14528009af5f88e3c3ad6a85a6ba4c"
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-accounts.ts": {
-    "mtime": 1779808733.958524,
-    "ast_hash": "288ac356875d7de4c7bc044a2aa3bb00",
-    "semantic_hash": "288ac356875d7de4c7bc044a2aa3bb00"
+    "mtime": 1779820327.7038221,
+    "ast_hash": "04a70b998523a11ca44b339f354899d8",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-posts.ts": {
-    "mtime": 1779808733.9535239,
-    "ast_hash": "bcc63071be33a57f59d7d83d13a6134d",
-    "semantic_hash": "bcc63071be33a57f59d7d83d13a6134d"
+    "mtime": 1779822504.6728144,
+    "ast_hash": "71839a3f1bb6a2cd5ac1ff59a72fd2e1",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-media.ts": {
-    "mtime": 1779808733.961524,
-    "ast_hash": "5338c695deede7d0cc0cfc8041afd188",
-    "semantic_hash": "5338c695deede7d0cc0cfc8041afd188"
+    "mtime": 1779820337.8909984,
+    "ast_hash": "7739e035758a91a0de995bf84ba0bb84",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-calendar.ts": {
     "mtime": 1779808733.957524,
@@ -640,13 +635,198 @@
     "semantic_hash": "a7b2f5fd0da7c0ad87072693988ed3b4"
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-settings.ts": {
-    "mtime": 1779808733.961524,
-    "ast_hash": "c5bde896631844cd49bde5c4486d7eae",
-    "semantic_hash": "c5bde896631844cd49bde5c4486d7eae"
+    "mtime": 1779820419.3822448,
+    "ast_hash": "38cf2f2f2bb12194cfe30493e32201ce",
+    "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/lib/queries.ts": {
-    "mtime": 1779808700.1630597,
-    "ast_hash": "fd315bd56f2b2f5e384fe83d43160d9a",
-    "semantic_hash": "fd315bd56f2b2f5e384fe83d43160d9a"
+    "mtime": 1779822347.976704,
+    "ast_hash": "3b448021d86271fba62ba12fc7aaaa7a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/features-section.tsx": {
+    "mtime": 1779810486.3058286,
+    "ast_hash": "8a5757bcf4495f4a1cc41120501cdcc1",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/footer.tsx": {
+    "mtime": 1779826863.275945,
+    "ast_hash": "a9c555df3468985ea70da1ee7b414f07",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/hero-section.tsx": {
+    "mtime": 1779810889.6381137,
+    "ast_hash": "328872c9b12f73424d15add7f1fa4c4d",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/how-it-works.tsx": {
+    "mtime": 1779810486.3068285,
+    "ast_hash": "b6d9a3ccf444263d2874f52eacd522a7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/feature-card.tsx": {
+    "mtime": 1779810486.3048286,
+    "ast_hash": "4dc5d05ef5366ee398d81849bad635c3",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/topographic-lines.tsx": {
+    "mtime": 1779810486.3028286,
+    "ast_hash": "0b0b23512f368ddcf523f0265ffeaaee",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/stats-bar.tsx": {
+    "mtime": 1779826732.7769613,
+    "ast_hash": "4a22d49f9bffdb7f0ef77f56b225f527",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/README.md": {
+    "mtime": 1779811662.2349365,
+    "ast_hash": "f63b22f116ae1e244ff4e4f925410da3",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/package.json": {
+    "mtime": 1779823300.5903857,
+    "ast_hash": "c0201b33c35fafcbe13e59ed401685b3",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/01-oauth-connect_2026-05-26T19-30-21-208Z_4244659e.json": {
+    "mtime": 1779823821.2099411,
+    "ast_hash": "01abd3b44f46f7a00cb13377f90d0e70",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/09-retry-handler_2026-05-26T19-30-37-323Z_8dbfe071.json": {
+    "mtime": 1779823837.3242464,
+    "ast_hash": "d99fc2fc144b2e4fdb275c05a8f44674",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/09-retry-handler.ts": {
+    "mtime": 1779825560.6242192,
+    "ast_hash": "31429c88d6105189bbfaf4e9fbc750ed",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/01-oauth-connect.ts": {
+    "mtime": 1779825551.2031264,
+    "ast_hash": "bed5d1df87c549497818295e639fad86",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/05-cron-scheduler.ts": {
+    "mtime": 1779825712.7361672,
+    "ast_hash": "34f4e8c13e9a110b65ef6106a23cc0a2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/02-oauth-callback.ts": {
+    "mtime": 1779825553.4861488,
+    "ast_hash": "05831ecc99ae3bdcc01fae0dc9b16d03",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/03-media-upload_2026-05-26T19-30-26-352Z_471e8ea2.json": {
+    "mtime": 1779823826.353039,
+    "ast_hash": "5607c38c1f5cb2d7605b105d78a6428f",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/02-oauth-callback_2026-05-26T19-30-23-761Z_40176afe.json": {
+    "mtime": 1779823823.7619898,
+    "ast_hash": "d01ff5d997a3aeb74cb9e9d9f26f2f07",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/04-post-crud_2026-05-26T19-40-42-707Z_ee00a3a1.json": {
+    "mtime": 1779824442.7083,
+    "ast_hash": "4ff914aa9146ee69c6b007e6b5377f19",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/03-media-upload_2026-05-26T19-40-40-703Z_cfef9b0f.json": {
+    "mtime": 1779824440.7052755,
+    "ast_hash": "2d38cf877ff63494434514f31e9e118a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/11-logging.ts": {
+    "mtime": 1779825190.3385253,
+    "ast_hash": "6855f9de5b16babc1ed3f120b6b24fee",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/05-cron-scheduler_2026-05-26T19-40-45-593Z_971d2ca9.json": {
+    "mtime": 1779824445.5943358,
+    "ast_hash": "9d5ba7eac10c7ef0bb11f3fc0aad61f9",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/04-post-crud.ts": {
+    "mtime": 1779825558.0191934,
+    "ast_hash": "c31334cf90b9f145c823d4c504d1e844",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/11-logging_2026-05-26T19-30-39-817Z_5036b44a.json": {
+    "mtime": 1779823839.8192933,
+    "ast_hash": "7cc38240b148de7477a1a605f736a6a0",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/11-logging_2026-05-26T19-40-55-331Z_df371c0a.json": {
+    "mtime": 1779824455.3324556,
+    "ast_hash": "e7c95e4ac89fe8cc576b74ffb47b2672",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/01-oauth-connect_2026-05-26T19-40-35-017Z_6145dac9.json": {
+    "mtime": 1779824435.019205,
+    "ast_hash": "3f100bb3efa36d872f2be8f94d48874f",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/02-oauth-callback_2026-05-26T19-40-37-955Z_6dd951e5.json": {
+    "mtime": 1779824437.9562414,
+    "ast_hash": "953c1e91b6cd561acb3a5c0ac0d20f6c",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/05-cron-scheduler_2026-05-26T19-30-32-239Z_f4cf2c3b.json": {
+    "mtime": 1779823832.2431507,
+    "ast_hash": "4e4d95da11ca54d8478c350109aa19f8",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/09-retry-handler_2026-05-26T19-40-52-362Z_e19f2728.json": {
+    "mtime": 1779824452.363419,
+    "ast_hash": "07ddd77e46bf53d82807588c2dfeaacb",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/03-media-upload.ts": {
+    "mtime": 1779825189.1125128,
+    "ast_hash": "53fcf6c4d5b8f48f7210e787c3c39609",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/ui/skeleton.tsx": {
+    "mtime": 1779822525.4639494,
+    "ast_hash": "48d97f0c0790858aed03f5b4d54b6f04",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/ui/error-boundary.tsx": {
+    "mtime": 1779822477.4056344,
+    "ast_hash": "8bf127014152d3386bc8334034bca0aa",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/not-found.tsx": {
+    "mtime": 1779822602.437437,
+    "ast_hash": "3339a899f8be9c386919c937441e00fa",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/api/stats/global/route.ts": {
+    "mtime": 1779826835.6365323,
+    "ast_hash": "e79b23d97f1cf6564e6dccf64c0d2c5e",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-dashboard.ts": {
+    "mtime": 1779822384.440983,
+    "ast_hash": "2bea05c6e4c23985fca29ee435773ebd",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.aider.chat.history.md": {
+    "mtime": 1779819814.7008376,
+    "ast_hash": "192851ab4975612ef7fec415ab279e01",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/PROJECT_CONTEXT.md": {
+    "mtime": 1779817829.9604461,
+    "ast_hash": "237d03298ef2446d3e14145e10108a40",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/docs/superpowers/plans/2026-05-27-n8n-workflows.md": {
+    "mtime": 1779823135.1658487,
+    "ast_hash": "94d9bb8a7e1031f2d8110faf2349b59b",
+    "semantic_hash": ""
   }
 }

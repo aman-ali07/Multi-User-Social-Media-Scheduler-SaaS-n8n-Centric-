@@ -1,0 +1,91 @@
+{
+  "id": "media-upload",
+  "name": "Media Upload",
+  "nodes": [
+    {
+      "id": "b85046e4-762b-4890-a211-899a685ba012",
+      "name": "Media Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "media-upload",
+        "authentication": "none",
+        "responseMode": "onReceived",
+        "options": {
+          "responseCode": {
+            "values": {
+              "responseCode": 200
+            }
+          }
+        }
+      },
+      "webhookId": "0dfe112b-c7e2-4467-af70-6cc5f7504aea"
+    },
+    {
+      "id": "31dd7139-58ab-4a1d-9d61-b4809391b8a7",
+      "name": "Insert Media Asset",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        300,
+        300
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO media_assets (user_id, file_url, file_type) VALUES ($1::uuid, $2, $3) RETURNING id, file_url, file_type, created_at",
+        "options": {
+          "queryReplacement": "={{ $json.body.userId }}, {{ $json.body.fileUrl }}, {{ $json.body.fileType }}"
+        }
+      }
+    },
+    {
+      "id": "dbcf706f-34d1-4a41-8032-b6ad52ff42d3",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        500,
+        300
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "id": "={{ $json.id }}",
+          "file_url": "={{ $json.file_url }}",
+          "file_type": "={{ $json.file_type }}",
+          "created_at": "={{ $json.created_at }}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Media Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "Insert Media Asset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Media Asset": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}

@@ -15,15 +15,26 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL('/accounts?error=missing_params', request.url))
   }
 
+  let userId: string | undefined
+  try {
+    const parsed = JSON.parse(state)
+    userId = parsed.userId ?? parsed.sub ?? undefined
+  } catch {
+    userId = state
+  }
+
   try {
     const res = await fetch(`${N8N_BASE}/webhook/oauth-callback`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code, state }),
+      body: JSON.stringify({ code, state, userId }),
     })
 
-    if (!res.ok) {
-      return NextResponse.redirect(new URL('/accounts?error=callback_failed', request.url))
+    const body = await res.json()
+
+    if (body.error) {
+      const msg = encodeURIComponent(body.error)
+      return NextResponse.redirect(new URL(`/accounts?error=${msg}`, request.url))
     }
 
     return NextResponse.redirect(new URL('/accounts?success=connected', request.url))

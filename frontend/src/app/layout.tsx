@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { JetBrains_Mono } from 'next/font/google'
 import { cn } from '@/lib/utils'
+import { ErrorBoundary } from '@/components/ui/error-boundary'
 import './globals.css'
 
 const bilderberg = localFont({
@@ -52,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-screen bg-bg text-text" suppressHydrationWarning>
         <div className="noise-overlay" />
-        {children}
+        <ErrorBoundary>{children}</ErrorBoundary>
       </body>
     </html>
   )

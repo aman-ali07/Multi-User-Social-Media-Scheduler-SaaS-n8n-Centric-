@@ -1,7 +1,6 @@
 'use client'
 
 import { DayCell } from './day-cell'
-import { cn } from '@/lib/utils'
 
 interface CalendarPost {
   id: string

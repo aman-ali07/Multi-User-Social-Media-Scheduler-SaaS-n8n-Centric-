@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { ConsoleShell } from '@/components/shell/console-shell'
 import { Badge } from '@/components/ui/badge'
@@ -81,7 +82,7 @@ export default function PostDetailPage() {
         <ConsoleShell>
           <div className="p-6 space-y-4">
             <p className="text-red text-sm font-mono">{error || 'Post not found'}</p>
-            <a href="/posts" className="text-gold text-sm hover:underline">← Back to posts</a>
+            <Link href="/posts" className="text-gold text-sm hover:underline">← Back to posts</Link>
           </div>
         </ConsoleShell>
       </AuthGuard>

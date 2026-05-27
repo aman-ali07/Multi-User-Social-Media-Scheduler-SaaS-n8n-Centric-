@@ -37,7 +37,10 @@ export async function createPost(data: {
 
 export async function updatePost(data: {
   postId: string
+  title?: string
   caption?: string
+  platforms?: string[]
+  accountId?: string
   scheduleAt?: string | null
   status?: string
   userId: string

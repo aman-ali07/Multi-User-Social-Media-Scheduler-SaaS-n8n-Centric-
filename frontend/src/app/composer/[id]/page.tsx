@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { ConsoleShell } from '@/components/shell/console-shell'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { AuthGuard } from '@/components/auth/auth-guard'
 import { CaptionEditor } from '@/components/composer/caption-editor'
-import { PlatformSelector } from '@/components/composer/platform-selector'
 import { SchedulePicker } from '@/components/composer/schedule-picker'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/use-auth'
@@ -63,7 +63,10 @@ export default function EditPostPage() {
       await updatePost({
         postId: post.id,
         userId: user.id,
+        title: post.title || undefined,
         caption: caption || undefined,
+        platforms: post.platforms,
+        accountId: post.account_id || undefined,
         scheduleAt: scheduleAt ? new Date(scheduleAt).toISOString() : null,
         status,
       })
@@ -95,7 +98,7 @@ export default function EditPostPage() {
         <ConsoleShell>
           <div className="p-6 space-y-4">
             <p className="text-red text-sm font-mono">{error || 'Post not found'}</p>
-            <a href="/posts" className="text-gold text-sm hover:underline">← Back to posts</a>
+            <Link href="/posts" className="text-gold text-sm hover:underline">← Back to posts</Link>
           </div>
         </ConsoleShell>
       </AuthGuard>

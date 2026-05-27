@@ -7,18 +7,21 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const } },
 }
 
+const colors = ['gold', 'lime', 'red', 'steel'] as const
+type StatColor = typeof colors[number]
+
 interface StatCardProps {
   label: string
   value: string
   trend?: string
-  color: string
+  color: StatColor
 }
 
-const colorMap: Record<string, string> = {
-  gold: 'border-gold/20 text-gold',
-  lime: 'border-lime/20 text-lime',
-  red: 'border-red/20 text-red',
-  steel: 'border-steel/20 text-steel',
+const barColors: Record<StatColor, string> = {
+  gold: 'bg-gold/10',
+  lime: 'bg-lime/10',
+  red: 'bg-red/10',
+  steel: 'bg-steel/10',
 }
 
 function StatCard({ label, value, trend, color }: StatCardProps) {
@@ -33,7 +36,7 @@ function StatCard({ label, value, trend, color }: StatCardProps) {
           </span>
         )}
       </div>
-      <div className={`mt-3 h-px ${colorMap[color]?.split(' ')[0] ? `bg-${color}/10` : 'bg-border'}`} />
+      <div className={`mt-3 h-px ${barColors[color] || 'bg-border'}`} />
     </motion.div>
   )
 }

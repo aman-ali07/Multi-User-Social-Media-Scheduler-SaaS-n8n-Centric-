@@ -1,0 +1,138 @@
+{
+  "id": "oauth-connect",
+  "name": "OAuth Connect",
+  "nodes": [
+    {
+      "id": "044a5d68-6803-4e24-bde3-36148ac4f1ae",
+      "name": "OAuth Connect Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "oauth-connect",
+        "authentication": "none",
+        "responseMode": "onReceived",
+        "options": {
+          "responseCode": {
+            "values": {
+              "responseCode": 200
+            }
+          }
+        }
+      },
+      "webhookId": "9837d470-8aa8-490e-b0ab-241146cd9ac7"
+    },
+    {
+      "id": "d70cd733-5f22-462f-ac0a-c4c15c0d8d53",
+      "name": "Generate OAuth State",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        300,
+        300
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "code": "const crypto = require('crypto');\nconst { userId, platform } = $json.body;\nconst state = crypto.randomBytes(32).toString('hex');\nconst codeVerifier = crypto.randomBytes(32).toString('hex');\nconst expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();\n\nreturn [{\n  json: {\n    userId,\n    platform,\n    state,\n    codeVerifier,\n    expiresAt\n  }\n}];"
+      }
+    },
+    {
+      "id": "97bb93e6-e08f-4ff8-9629-ba3dd2430260",
+      "name": "Store OAuth State",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        500,
+        300
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO oauth_state (user_id, platform, state, code_verifier, expires_at) VALUES ($1::uuid, $2::platform_enum, $3, $4, $5::timestamptz) RETURNING id",
+        "options": {
+          "queryReplacement": "={{ $json.userId }}, {{ $json.platform }}, {{ $json.state }}, {{ $json.codeVerifier }}, {{ $json.expiresAt }}"
+        }
+      }
+    },
+    {
+      "id": "d7545309-8530-4df1-afb7-37b035ca7440",
+      "name": "Build Redirect URL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        300
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "code": "const { state, userId } = $json;\nconst appId = $env.FACEBOOK_APP_ID;\nconst redirectUri = `${$env.N8N_WEBHOOK_URL}/webhook/oauth-callback`;\nconst scope = 'pages_manage_posts,pages_read_engagement,instagram_basic,instagram_content_publish';\nconst url = `https://www.facebook.com/v21.0/dialog/oauth?client_id=${appId}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}&scope=${encodeURIComponent(scope)}&response_type=code`;\n\nreturn [{ json: { url, userId } }];"
+      }
+    },
+    {
+      "id": "caecde9a-e898-4b8c-96ae-c4a8d3509d5d",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        900,
+        300
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "url": "={{ $json.url }}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "OAuth Connect Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate OAuth State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate OAuth State": {
+      "main": [
+        [
+          {
+            "node": "Store OAuth State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store OAuth State": {
+      "main": [
+        [
+          {
+            "node": "Build Redirect URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Redirect URL": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}

@@ -1,0 +1,234 @@
+{
+  "id": "retry-handler",
+  "name": "Retry Handler",
+  "nodes": [
+    {
+      "id": "63e95279-02b8-4c67-a52d-95ed9f3d6f5c",
+      "name": "Retry Handler Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "retry",
+        "authentication": "none",
+        "responseMode": "onReceived",
+        "options": {
+          "responseCode": {
+            "values": {
+              "responseCode": 200
+            }
+          }
+        }
+      },
+      "webhookId": "d3f1e2fb-1d59-4a96-b3f5-bb3687db9318"
+    },
+    {
+      "id": "dc8b6aba-23ac-4ff5-b569-31aad527583b",
+      "name": "Check Post Status",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        300,
+        300
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id, retry_count, max_retries FROM scheduled_posts WHERE id = $1::uuid",
+        "options": {
+          "queryReplacement": "={{ $json.body.postId }}"
+        }
+      }
+    },
+    {
+      "id": "0d17d6f2-8d5c-49bb-9f10-8c47c5bfa764",
+      "name": "Retries Remaining?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        500,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.retry_count }}",
+              "operator": {
+                "type": "number",
+                "operation": "lessThan"
+              },
+              "rightValue": "={{ $json.max_retries }}"
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "11b28e52-284c-42fb-bbca-6fe79d985222",
+      "name": "Compute Backoff",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        300
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "code": "const retryCount = $json.retry_count;\nconst delayMinutes = Math.pow(2, retryCount) * 5;\nconst retryAt = new Date(Date.now() + delayMinutes * 60 * 1000).toISOString();\nreturn [{ json: { retryAt, delayMinutes } }];"
+      }
+    },
+    {
+      "id": "2e81c17e-c5f4-4097-8415-53e2193231fc",
+      "name": "Reschedule Post",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        900,
+        300
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE scheduled_posts SET status = 'scheduled', schedule_at = $1::timestamptz, updated_at = NOW() WHERE id = $2::uuid",
+        "options": {
+          "queryReplacement": "={{ $json.retryAt }}, {{ $(\"Check Post Status\").item.json.id }}"
+        }
+      }
+    },
+    {
+      "id": "224869c7-f337-403d-af95-0b8c9dfa7ff9",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        900,
+        450
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "action": "={{ $json.delayMinutes ? \"retry\" : \"exhausted\" }}",
+          "postId": "={{ $(\"Check Post Status\").item.json.id }}"
+        }
+      }
+    },
+    {
+      "id": "1800d29e-fbe6-4bdd-b439-096064d3b720",
+      "name": "Call Failure Handler",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        700,
+        450
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.N8N_WEBHOOK_URL }}/webhook/failure-handler",
+        "authentication": "none",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": {
+          "postId": "={{ $json.body.postId }}",
+          "workflowName": "={{ $json.body.platform }}-publish",
+          "error": "={{ $json.body.error }}",
+          "attemptNumber": "={{ $json.body.attemptNumber || 1 }}",
+          "platform": "={{ $json.body.platform }}",
+          "source": "Retry Handler"
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Retry Handler Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check Post Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Post Status": {
+      "main": [
+        [
+          {
+            "node": "Retries Remaining?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retries Remaining?": {
+      "main": [
+        [
+          {
+            "node": "Compute Backoff",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call Failure Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Backoff": {
+      "main": [
+        [
+          {
+            "node": "Reschedule Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reschedule Post": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Failure Handler": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}

@@ -41,7 +41,12 @@ export default function SettingsPage() {
       <ConsoleShell>
         <motion.div variants={container} initial="hidden" animate="visible" className="p-6 space-y-6 max-w-2xl">
           <motion.div variants={item}>
-            <h1 className="font-serif text-[28px] text-text tracking-tight">Settings</h1>
+            <div className="flex items-center gap-3">
+              <h1 className="font-serif text-[28px] text-text tracking-tight">Settings</h1>
+              <span className="text-[10px] text-text-dim font-mono uppercase tracking-widest border border-border rounded-sm px-1.5 py-0.5">
+                Profile
+              </span>
+            </div>
             <p className="text-text-muted text-sm font-sans mt-1">Profile and preferences</p>
           </motion.div>
 

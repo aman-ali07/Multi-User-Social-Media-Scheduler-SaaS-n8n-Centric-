@@ -1,0 +1,13 @@
+import type { Node, CallExpression, MemberExpression } from 'estree';
+export declare const ALLOWED_SDK_FUNCTIONS: Set<string>;
+export declare const AUTO_RENAMEABLE_SDK_FUNCTIONS: Set<string>;
+export declare function isAutoRenameableSDKFunction(name: string): boolean;
+export declare const ALLOWED_METHODS: Set<string>;
+export declare function validateNodeType(node: Node, sourceCode: string): void;
+export declare function validateIdentifier(name: string, _allowedVariables: Set<string>, node: Node, sourceCode: string): void;
+export declare function validateCallExpression(node: CallExpression, sourceCode: string): void;
+export declare function validateMemberExpression(node: MemberExpression, sourceCode: string): void;
+export declare function isAllowedSDKFunction(name: string): boolean;
+export declare function isAllowedMethod(name: string): boolean;
+export declare function getSafeJSONMethod(objectName: string, methodName: string): ((...args: unknown[]) => unknown) | undefined;
+export declare function getSafeStringMethod(value: unknown, methodName: string): ((...args: unknown[]) => unknown) | undefined;

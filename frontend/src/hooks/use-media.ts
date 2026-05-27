@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
 import { registerMedia } from '@/lib/n8n'
@@ -10,7 +10,7 @@ export function useMedia() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const load = async () => {
+  const load = useCallback(async () => {
     if (!user) return
     setLoading(true)
     const { data, error: err } = await supabase
@@ -21,9 +21,9 @@ export function useMedia() {
     if (err) setError(err.message)
     else setMedia(data || [])
     setLoading(false)
-  }
+  }, [user])
 
-  useEffect(() => { load() }, [user])
+  useEffect(() => { load() }, [load])
 
   const upload = async (file: File) => {
     if (!user) return

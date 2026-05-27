@@ -5,6 +5,7 @@ import { ConsoleShell } from '@/components/shell/console-shell'
 import { AuthGuard } from '@/components/auth/auth-guard'
 import { AccountCard } from '@/components/accounts/account-card'
 import { ConnectButton } from '@/components/accounts/connect-button'
+import { SkeletonCard } from '@/components/ui/skeleton'
 import { useAccounts } from '@/hooks/use-accounts'
 
 const container = {
@@ -39,9 +40,9 @@ export default function AccountsPage() {
           )}
 
           {loading ? (
-            <motion.div variants={item} className="flex items-center gap-2 text-text-dim text-sm font-mono">
-              <span className="w-3 h-3 border border-gold/30 border-t-gold rounded-full animate-spin" />
-              Loading accounts...
+            <motion.div variants={item} className="grid grid-cols-1 gap-3">
+              <SkeletonCard />
+              <SkeletonCard />
             </motion.div>
           ) : accounts.length === 0 ? (
             <motion.div variants={item} className="rounded-sm border border-border bg-surface p-8 text-center">

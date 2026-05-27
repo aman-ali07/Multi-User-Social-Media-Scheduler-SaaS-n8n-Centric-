@@ -87,7 +87,7 @@ DECLARE
 BEGIN
   project_url := current_setting('app.supabase_url', true);
   IF project_url IS NULL THEN
-    project_url := 'https://<your-project>.supabase.co';
+    RAISE EXCEPTION 'app.supabase_url not set — run: SELECT set_config(''app.supabase_url'', ''https://<project>.supabase.co'', false)';
   END IF;
   RETURN project_url || '/storage/v1/object/public/' || storage_path;
 END;

@@ -20,15 +20,9 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-6">
-          {['Documentation', 'Status', 'GitHub'].map((link) => (
-            <a
-              key={link}
-              href="#"
-              className="text-[12px] text-text-muted hover:text-text font-sans transition-colors"
-            >
-              {link}
-            </a>
-          ))}
+          <span className="text-[12px] text-text-dim font-sans">Documentation</span>
+          <span className="text-[12px] text-text-dim font-sans">Status</span>
+          <span className="text-[12px] text-text-dim font-sans">GitHub</span>
         </div>
 
         <p className="text-[11px] text-text-dim font-mono">

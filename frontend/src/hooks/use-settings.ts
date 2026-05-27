@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
 import type { Profile } from '@/types/database'
@@ -10,7 +10,7 @@ export function useSettings() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const load = async () => {
+  const load = useCallback(async () => {
     if (!user) return
     setLoading(true)
     const { data, error: err } = await supabase
@@ -21,9 +21,9 @@ export function useSettings() {
     if (err) setError(err.message)
     else setProfile(data)
     setLoading(false)
-  }
+  }, [user])
 
-  useEffect(() => { load() }, [user])
+  useEffect(() => { load() }, [load])
 
   const update = async (updates: Partial<Profile>) => {
     if (!user) return

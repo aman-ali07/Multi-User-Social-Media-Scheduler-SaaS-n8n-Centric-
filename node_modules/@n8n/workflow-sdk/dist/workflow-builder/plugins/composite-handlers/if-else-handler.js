@@ -1,0 +1,115 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ifElseHandler = void 0;
+const branch_handler_utils_1 = require("./branch-handler-utils");
+const node_builder_1 = require("../../node-builders/node-builder");
+const type_guards_1 = require("../../type-guards");
+exports.ifElseHandler = {
+    id: 'core:if-else',
+    name: 'If/Else Handler',
+    priority: 100,
+    canHandle(input) {
+        return (0, type_guards_1.isIfElseComposite)(input) || (0, node_builder_1.isIfElseBuilder)(input);
+    },
+    getHeadNodeName(input) {
+        if ((0, node_builder_1.isIfElseBuilder)(input)) {
+            return { name: input.ifNode.name, id: input.ifNode.id };
+        }
+        const composite = input;
+        return { name: composite.ifNode.name, id: composite.ifNode.id };
+    },
+    collectPinData(input, collector) {
+        if ((0, node_builder_1.isIfElseBuilder)(input)) {
+            collector(input.ifNode);
+            (0, branch_handler_utils_1.collectFromTarget)(input.trueBranch, collector);
+            (0, branch_handler_utils_1.collectFromTarget)(input.falseBranch, collector);
+            if (input.errorBranch) {
+                (0, branch_handler_utils_1.collectFromTarget)(input.errorBranch, collector);
+            }
+        }
+        else {
+            const composite = input;
+            collector(composite.ifNode);
+            (0, branch_handler_utils_1.collectFromTarget)(composite.trueBranch, collector);
+            (0, branch_handler_utils_1.collectFromTarget)(composite.falseBranch, collector);
+        }
+    },
+    addNodes(input, ctx) {
+        const ifMainConns = new Map();
+        if ((0, node_builder_1.isIfElseBuilder)(input)) {
+            const builder = input;
+            const targetNodeIds = new Map();
+            (0, branch_handler_utils_1.processBranchForBuilder)(builder.trueBranch, 0, ifMainConns, targetNodeIds);
+            (0, branch_handler_utils_1.processBranchForBuilder)(builder.falseBranch, 1, ifMainConns, targetNodeIds);
+            let ifErrorConns;
+            const errorTargetNodeIds = new Map();
+            if (builder.errorBranch) {
+                ifErrorConns = new Map();
+                (0, branch_handler_utils_1.processBranchForBuilder)(builder.errorBranch, 0, ifErrorConns, errorTargetNodeIds);
+            }
+            const existingIfNode = ctx.nodes.get(builder.ifNode.name);
+            if (existingIfNode) {
+                const existingMainConns = existingIfNode.connections.get('main') ?? new Map();
+                for (const [outputIndex, targets] of ifMainConns) {
+                    const existingTargets = existingMainConns.get(outputIndex) ?? [];
+                    for (const target of targets) {
+                        const alreadyExists = existingTargets.some((t) => t.node === target.node && t.index === target.index);
+                        if (!alreadyExists) {
+                            existingTargets.push(target);
+                        }
+                    }
+                    existingMainConns.set(outputIndex, existingTargets);
+                }
+                existingIfNode.connections.set('main', existingMainConns);
+                if (ifErrorConns && ifErrorConns.size > 0) {
+                    const existingErrorConns = existingIfNode.connections.get('error') ?? new Map();
+                    for (const [outputIndex, targets] of ifErrorConns) {
+                        const existingTargets = existingErrorConns.get(outputIndex) ?? [];
+                        for (const target of targets) {
+                            const alreadyExists = existingTargets.some((t) => t.node === target.node && t.index === target.index);
+                            if (!alreadyExists) {
+                                existingTargets.push(target);
+                            }
+                        }
+                        existingErrorConns.set(outputIndex, existingTargets);
+                    }
+                    existingIfNode.connections.set('error', existingErrorConns);
+                }
+            }
+            else {
+                const ifConns = new Map();
+                ifConns.set('main', ifMainConns);
+                if (ifErrorConns && ifErrorConns.size > 0) {
+                    ifConns.set('error', ifErrorConns);
+                }
+                ctx.nodes.set(builder.ifNode.name, {
+                    instance: builder.ifNode,
+                    connections: ifConns,
+                });
+            }
+            (0, branch_handler_utils_1.addBranchTargetNodes)(builder.trueBranch, ctx);
+            (0, branch_handler_utils_1.addBranchTargetNodes)(builder.falseBranch, ctx);
+            if (builder.errorBranch) {
+                (0, branch_handler_utils_1.addBranchTargetNodes)(builder.errorBranch, ctx);
+            }
+            if (ctx.nameMapping) {
+                (0, branch_handler_utils_1.fixupBranchConnectionTargets)(ifMainConns, targetNodeIds, ctx.nameMapping);
+                if (ifErrorConns) {
+                    (0, branch_handler_utils_1.fixupBranchConnectionTargets)(ifErrorConns, errorTargetNodeIds, ctx.nameMapping);
+                }
+            }
+            return builder.ifNode.name;
+        }
+        const composite = input;
+        (0, branch_handler_utils_1.processBranchForComposite)(composite.trueBranch, 0, ctx, ifMainConns);
+        (0, branch_handler_utils_1.processBranchForComposite)(composite.falseBranch, 1, ctx, ifMainConns);
+        const ifConns = new Map();
+        ifConns.set('main', ifMainConns);
+        ctx.nodes.set(composite.ifNode.name, {
+            instance: composite.ifNode,
+            connections: ifConns,
+        });
+        return composite.ifNode.name;
+    },
+};
+//# sourceMappingURL=if-else-handler.js.map

@@ -1,7 +1,7 @@
 import { supabase } from './supabase'
-import type { PostStatus, ScheduledPost, SocialAccount, MediaAsset, PostLog, DashboardStats } from '@/types/database'
+import type { PostStatus, DashboardStats } from '@/types/database'
 
-export async function getMyPosts(filters: {
+export async function getMyPosts(userId: string, filters: {
   status?: PostStatus
   limit?: number
   offset?: number
@@ -9,6 +9,7 @@ export async function getMyPosts(filters: {
   let query = supabase
     .from('scheduled_posts')
     .select('*')
+    .eq('user_id', userId)
     .is('deleted_at', null)
     .order('created_at', { ascending: false })
 
@@ -19,44 +20,49 @@ export async function getMyPosts(filters: {
   return query
 }
 
-export async function getUpcomingPosts(limit = 5) {
+export async function getUpcomingPosts(userId: string, limit = 5) {
   return supabase
     .from('scheduled_posts')
     .select('*')
+    .eq('user_id', userId)
     .eq('status', 'scheduled')
     .gte('schedule_at', new Date().toISOString())
     .order('schedule_at', { ascending: true })
     .limit(limit)
 }
 
-export async function getCalendarPosts(from: string, to: string) {
+export async function getCalendarPosts(userId: string, from: string, to: string) {
   return supabase
     .from('scheduled_posts')
     .select('id, title, status, platforms, schedule_at, published_at')
+    .eq('user_id', userId)
     .in('status', ['scheduled', 'published'])
     .gte('schedule_at', from)
     .lte('schedule_at', to)
 }
 
-export async function getPostById(id: string) {
+export async function getPostById(userId: string, id: string) {
   return supabase
     .from('scheduled_posts')
     .select('*')
+    .eq('user_id', userId)
     .eq('id', id)
     .single()
 }
 
-export async function getMyAccounts() {
+export async function getMyAccounts(userId: string) {
   return supabase
     .from('social_accounts')
     .select('*')
+    .eq('user_id', userId)
     .order('created_at', { ascending: false })
 }
 
-export async function getMyMedia() {
+export async function getMyMedia(userId: string) {
   return supabase
     .from('media_assets')
     .select('*')
+    .eq('user_id', userId)
     .order('created_at', { ascending: false })
 }
 
@@ -68,15 +74,16 @@ export async function getLogsForPost(postId: string) {
     .order('created_at', { ascending: false })
 }
 
-export async function getAllLogs(limit = 50) {
+export async function getAllLogs(userId: string, limit = 50) {
   return supabase
     .from('post_logs')
-    .select('*')
+    .select('*, scheduled_posts!inner(user_id)')
+    .eq('scheduled_posts.user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit)
 }
 
-export async function getDashboardStats(): Promise<{ data: DashboardStats | null; error: string | null }> {
+export async function getDashboardStats(userId: string): Promise<{ data: DashboardStats | null; error: string | null }> {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
   const todayStr = today.toISOString()
@@ -88,6 +95,7 @@ export async function getDashboardStats(): Promise<{ data: DashboardStats | null
   const { count: scheduledToday } = await supabase
     .from('scheduled_posts')
     .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
     .eq('status', 'scheduled')
     .gte('schedule_at', todayStr)
     .lt('schedule_at', tomorrowStr)
@@ -95,16 +103,19 @@ export async function getDashboardStats(): Promise<{ data: DashboardStats | null
   const { count: totalPublished } = await supabase
     .from('scheduled_posts')
     .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
     .eq('status', 'published')
 
   const { count: totalFailed } = await supabase
     .from('scheduled_posts')
     .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
     .eq('status', 'failed')
 
   const { count: connectedAccounts } = await supabase
     .from('social_accounts')
     .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
     .eq('status', 'active')
 
   return {

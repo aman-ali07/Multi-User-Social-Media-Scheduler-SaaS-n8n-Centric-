@@ -1,0 +1,271 @@
+{
+  "id": "token-refresh",
+  "name": "Token Refresh",
+  "nodes": [
+    {
+      "id": "4b025c63-b140-42cd-b33c-b0e511fcbb06",
+      "name": "Token Refresh Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "token-refresh",
+        "authentication": "none",
+        "responseMode": "onReceived",
+        "options": {
+          "responseCode": {
+            "values": {
+              "responseCode": 200
+            }
+          }
+        }
+      },
+      "webhookId": "84812168-80e9-4966-bdbb-52233e5fc24f"
+    },
+    {
+      "id": "601d31f1-fa80-4159-9dc7-de9a4c822b42",
+      "name": "Refresh Token",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        300,
+        300
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "=https://graph.facebook.com/v21.0/oauth/access_token?grant_type=fb_exchange_token&client_id={{ $env.FACEBOOK_APP_ID }}&client_secret={{ $env.FACEBOOK_APP_SECRET }}&fb_exchange_token={{ $json.body.accessToken }}",
+        "authentication": "none",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "b09285fe-5b0b-40a4-97c6-b1e840757d08",
+      "name": "Refresh Success?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        500,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.statusCode }}",
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              },
+              "rightValue": 200
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "7cee75a1-0b84-4262-95b0-3e1621e955bd",
+      "name": "Update Token",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        700,
+        300
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE social_accounts SET access_token = $1, token_expires_at = $2::timestamptz, updated_at = NOW() WHERE id = $3::uuid",
+        "options": {
+          "queryReplacement": "={{ $json.body.access_token }}, {{ new Date(Date.now() + $json.body.expires_in * 1000).toISOString() }}, {{ $(\"Token Refresh Webhook\").item.json.body.accountId }}"
+        }
+      }
+    },
+    {
+      "id": "a996a3cb-130b-4046-8858-5a4f05be8dad",
+      "name": "Log Refresh",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        900,
+        300
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO token_refresh_log (account_id, status, error_message) VALUES ($1::uuid, $2, $3)",
+        "options": {
+          "queryReplacement": "={{ $(\"Token Refresh Webhook\").item.json.body.accountId }}, success, NULL"
+        }
+      }
+    },
+    {
+      "id": "d6213502-7563-4bf0-aba7-2b74cc4b46da",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1100,
+        300
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "success": true
+        }
+      }
+    },
+    {
+      "id": "48a9c4a7-7e2f-4fe3-9d6a-0e6c3650d00c",
+      "name": "Log Failed",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        700,
+        450
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO token_refresh_log (account_id, status, error_message) VALUES ($1::uuid, 'failed', $2)",
+        "options": {
+          "queryReplacement": "={{ $(\"Token Refresh Webhook\").item.json.body.accountId }}, {{ $json.body.error?.message || \"Token refresh failed\" }}"
+        }
+      }
+    },
+    {
+      "id": "dbe68ff8-e608-4ae4-8b54-f416440a5f4f",
+      "name": "Mark Account Expired",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        900,
+        450
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE social_accounts SET status = 'expired', updated_at = NOW() WHERE id = $1::uuid",
+        "options": {
+          "queryReplacement": "={{ $(\"Token Refresh Webhook\").item.json.body.accountId }}"
+        }
+      }
+    },
+    {
+      "id": "1cf978e8-67e5-41e7-ac34-1715f4afcaf4",
+      "name": "Respond Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1100,
+        450
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "success": false,
+          "error": "={{ $json.body?.error?.message || \"Token refresh failed\" }}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Token Refresh Webhook": {
+      "main": [
+        [
+          {
+            "node": "Refresh Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Refresh Token": {
+      "main": [
+        [
+          {
+            "node": "Refresh Success?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Refresh Success?": {
+      "main": [
+        [
+          {
+            "node": "Update Token",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Token": {
+      "main": [
+        [
+          {
+            "node": "Log Refresh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Refresh": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Failed": {
+      "main": [
+        [
+          {
+            "node": "Mark Account Expired",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Account Expired": {
+      "main": [
+        [
+          {
+            "node": "Respond Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}

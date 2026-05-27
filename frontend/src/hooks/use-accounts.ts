@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
 import { connectOAuth as connectOAuthApi } from '@/lib/n8n'
@@ -10,7 +10,7 @@ export function useAccounts() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const load = async () => {
+  const load = useCallback(async () => {
     if (!user) return
     setLoading(true)
     const { data, error: err } = await supabase
@@ -21,9 +21,9 @@ export function useAccounts() {
     if (err) setError(err.message)
     else setAccounts(data || [])
     setLoading(false)
-  }
+  }, [user])
 
-  useEffect(() => { load() }, [user])
+  useEffect(() => { load() }, [load])
 
   const connect = async (platform: 'facebook') => {
     if (!user) return

@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import { ConsoleShell } from '@/components/shell/console-shell'
 import { AuthGuard } from '@/components/auth/auth-guard'
 import { CalendarGrid } from '@/components/calendar/calendar-grid'
 import { Button } from '@/components/ui/button'
+import { SkeletonGrid } from '@/components/ui/skeleton'
 import { useCalendar } from '@/hooks/use-calendar'
 
 const container = {
@@ -24,6 +26,7 @@ const monthNames = [
 ]
 
 export default function CalendarPage() {
+  const router = useRouter()
   const today = new Date()
   const [year, setYear] = useState(today.getFullYear())
   const [month, setMonth] = useState(today.getMonth())
@@ -68,19 +71,47 @@ export default function CalendarPage() {
           </motion.div>
 
           {loading ? (
-            <motion.div variants={item} className="flex items-center gap-2 text-text-dim text-sm font-mono">
-              <span className="w-3 h-3 border border-gold/30 border-t-gold rounded-full animate-spin" />
-              Loading calendar...
+            <motion.div variants={item}>
+              <div className="grid grid-cols-7 gap-2">
+                {Array.from({ length: 35 }).map((_, i) => (
+                  <div key={i} className="h-24 rounded-sm border border-border bg-surface animate-pulse p-1.5">
+                    <div className="w-5 h-3 rounded-sm bg-surface-2" />
+                  </div>
+                ))}
+              </div>
             </motion.div>
           ) : (
-            <motion.div variants={item}>
-              <CalendarGrid
-                year={year}
-                month={month}
-                postsByDate={postsByDate}
-                onDayClick={(date) => console.log('Day clicked:', date)}
-              />
-            </motion.div>
+            <>
+              <motion.div variants={item}>
+                <CalendarGrid
+                  year={year}
+                  month={month}
+                  postsByDate={postsByDate}
+                  onDayClick={(date) => router.push(`/posts?date=${date}`)}
+                />
+              </motion.div>
+              <motion.div variants={item} className="flex items-center gap-6 pt-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] text-text-dim font-mono uppercase tracking-wider">Legenda</span>
+                  <div className="flex items-center gap-2">
+                    {[
+                      { label: 'Scheduled', color: 'bg-gold' },
+                      { label: 'Published', color: 'bg-lime' },
+                      { label: 'Failed', color: 'bg-red' },
+                    ].map((l) => (
+                      <div key={l.label} className="flex items-center gap-1.5">
+                        <span className={`w-2 h-2 rounded-full ${l.color}`} />
+                        <span className="text-[10px] text-text-muted font-mono">{l.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] text-text-dim font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold/50" />
+                  {Object.values(postsByDate).flat().length} scheduled
+                </div>
+              </motion.div>
+            </>
           )}
         </motion.div>
       </ConsoleShell>

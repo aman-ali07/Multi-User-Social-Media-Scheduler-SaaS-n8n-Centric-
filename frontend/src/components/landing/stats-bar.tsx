@@ -3,11 +3,17 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
-const stats = [
-  { label: 'Posts Published', value: 1247, suffix: '+' },
-  { label: 'Accounts Connected', value: 89, suffix: '+' },
-  { label: 'Avg. Uptime', value: 99.9, suffix: '%' },
-  { label: 'Retries Saved', value: 342, suffix: '+' },
+interface GlobalStat {
+  label: string
+  value: number
+  suffix: string
+}
+
+const fallbackStats: GlobalStat[] = [
+  { label: 'Posts Published', value: 0, suffix: '+' },
+  { label: 'Accounts Connected', value: 0, suffix: '+' },
+  { label: 'Avg. Uptime', value: 0, suffix: '%' },
+  { label: 'Active Users', value: 0, suffix: '+' },
 ]
 
 function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) {
@@ -47,6 +53,15 @@ function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) 
 }
 
 export function StatsBar() {
+  const [stats, setStats] = useState<GlobalStat[]>(fallbackStats)
+
+  useEffect(() => {
+    fetch('/api/stats/global')
+      .then((res) => res.json())
+      .then((data: GlobalStat[]) => setStats(data))
+      .catch(() => {})
+  }, [])
+
   return (
     <section className="w-full border-y border-border bg-surface/80">
       <div className="max-w-5xl mx-auto px-6 py-16">

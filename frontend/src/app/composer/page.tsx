@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { ConsoleShell } from '@/components/shell/console-shell'
 import { Button } from '@/components/ui/button'
@@ -14,6 +14,7 @@ import { AccountSelector } from '@/components/composer/account-selector'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/use-auth'
 import { createPost } from '@/lib/n8n'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import type { SocialAccount } from '@/types/database'
 
@@ -36,9 +37,11 @@ export default function ComposerPage() {
   const [platforms, setPlatforms] = useState<string[]>(['facebook'])
   const [scheduleAt, setScheduleAt] = useState('')
   const [mediaUrl, setMediaUrl] = useState('')
+  const [mediaFile, setMediaFile] = useState<File | null>(null)
   const [accountId, setAccountId] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const prevObjectUrl = useRef<string | null>(null)
 
   useEffect(() => {
     if (!user) return
@@ -55,11 +58,40 @@ export default function ComposerPage() {
     setSaving(true)
     setError(null)
     try {
+      let mediaIds: string[] | undefined
+      if (mediaFile) {
+        const path = `${user.id}/${Date.now()}-${mediaFile.name}`
+        const { error: uploadError } = await supabase.storage
+          .from('media')
+          .upload(path, mediaFile)
+        if (uploadError) throw new Error(uploadError.message)
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('media')
+          .getPublicUrl(path)
+
+        const { data: newMedia, error: insertError } = await supabase
+          .from('media_assets')
+          .insert({
+            user_id: user.id,
+            file_url: publicUrl,
+            file_type: mediaFile.type,
+            file_size: mediaFile.size,
+            storage_path: path,
+          })
+          .select('id')
+          .single()
+
+        if (insertError) throw new Error(insertError.message)
+        if (newMedia) mediaIds = [newMedia.id]
+      }
+
       await createPost({
         userId: user.id,
         accountId,
         title: title || undefined,
         caption: caption || undefined,
+        mediaIds,
         platforms,
         scheduleAt: status === 'scheduled' && scheduleAt ? new Date(scheduleAt).toISOString() : null,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -74,8 +106,18 @@ export default function ComposerPage() {
     }
   }
 
+  useEffect(() => {
+    return () => {
+      if (prevObjectUrl.current) URL.revokeObjectURL(prevObjectUrl.current)
+    }
+  }, [])
+
   const handleFile = (file: File) => {
-    setMediaUrl(URL.createObjectURL(file))
+    if (prevObjectUrl.current) URL.revokeObjectURL(prevObjectUrl.current)
+    const url = URL.createObjectURL(file)
+    prevObjectUrl.current = url
+    setMediaUrl(url)
+    setMediaFile(file)
   }
 
   return (
@@ -109,8 +151,19 @@ export default function ComposerPage() {
             <MediaDropzone onFile={handleFile} />
 
             {mediaUrl && (
-              <div className="rounded-sm border border-border bg-surface p-2">
+              <div className="rounded-sm border border-border bg-surface p-2 relative group">
                 <img src={mediaUrl} alt="Preview" className="max-h-40 rounded-sm object-contain" />
+                <button
+                  onClick={() => {
+                    if (prevObjectUrl.current) URL.revokeObjectURL(prevObjectUrl.current)
+                    prevObjectUrl.current = null
+                    setMediaUrl('')
+                    setMediaFile(null)
+                  }}
+                  className="absolute top-1 right-1 w-6 h-6 rounded-sm bg-red/80 text-white text-[10px] font-mono flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  ✕
+                </button>
               </div>
             )}
 
@@ -138,6 +191,15 @@ export default function ComposerPage() {
                 {saving ? 'Saving...' : 'Schedule'}
               </Button>
             </div>
+            {!accountId && accounts.length > 0 && (
+              <p className="text-[11px] text-text-dim font-mono">Select an account to enable saving</p>
+            )}
+            {accounts.length === 0 && (
+              <p className="text-[11px] text-text-dim font-mono">
+                No active accounts.{' '}
+                <Link href="/accounts" className="text-gold hover:underline">Connect one</Link>
+              </p>
+            )}
           </motion.div>
         </motion.div>
       </ConsoleShell>

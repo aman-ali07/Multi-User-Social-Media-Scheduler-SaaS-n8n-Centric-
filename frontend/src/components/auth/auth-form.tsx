@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { cn } from '@/lib/utils'
 
 interface AuthFormProps {
   mode: 'login' | 'register'
@@ -23,8 +22,8 @@ export function AuthForm({ mode, onSubmit }: AuthFormProps) {
     setError(null)
     try {
       await onSubmit(email, password)
-    } catch (err: any) {
-      setError(err?.message || 'Authentication failed')
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Authentication failed')
     } finally {
       setLoading(false)
     }

@@ -1,0 +1,60 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isCycleOutput = exports.getNodeSemantics = exports.getCompositeType = exports.getInputName = exports.getOutputName = exports.generateCode = exports.buildCompositeTree = exports.annotateGraph = exports.buildSemanticGraph = void 0;
+exports.generateWorkflowCode = generateWorkflowCode;
+const code_generator_1 = require("./code-generator");
+const composite_builder_1 = require("./composite-builder");
+const execution_status_1 = require("./execution-status");
+const expression_annotator_1 = require("./expression-annotator");
+const graph_annotator_1 = require("./graph-annotator");
+const semantic_graph_1 = require("./semantic-graph");
+var semantic_graph_2 = require("./semantic-graph");
+Object.defineProperty(exports, "buildSemanticGraph", { enumerable: true, get: function () { return semantic_graph_2.buildSemanticGraph; } });
+var graph_annotator_2 = require("./graph-annotator");
+Object.defineProperty(exports, "annotateGraph", { enumerable: true, get: function () { return graph_annotator_2.annotateGraph; } });
+var composite_builder_2 = require("./composite-builder");
+Object.defineProperty(exports, "buildCompositeTree", { enumerable: true, get: function () { return composite_builder_2.buildCompositeTree; } });
+var code_generator_2 = require("./code-generator");
+Object.defineProperty(exports, "generateCode", { enumerable: true, get: function () { return code_generator_2.generateCode; } });
+var semantic_registry_1 = require("./semantic-registry");
+Object.defineProperty(exports, "getOutputName", { enumerable: true, get: function () { return semantic_registry_1.getOutputName; } });
+Object.defineProperty(exports, "getInputName", { enumerable: true, get: function () { return semantic_registry_1.getInputName; } });
+Object.defineProperty(exports, "getCompositeType", { enumerable: true, get: function () { return semantic_registry_1.getCompositeType; } });
+Object.defineProperty(exports, "getNodeSemantics", { enumerable: true, get: function () { return semantic_registry_1.getNodeSemantics; } });
+Object.defineProperty(exports, "isCycleOutput", { enumerable: true, get: function () { return semantic_registry_1.isCycleOutput; } });
+function isOptionsObject(input) {
+    return 'workflow' in input && input.workflow !== undefined;
+}
+function generateWorkflowCode(input) {
+    const { workflow, executionSchema, expressionValues, executionData, valuesExcluded, pinnedNodes, } = isOptionsObject(input)
+        ? input
+        : {
+            workflow: input,
+            executionSchema: undefined,
+            expressionValues: undefined,
+            executionData: undefined,
+            valuesExcluded: undefined,
+            pinnedNodes: undefined,
+        };
+    const graph = (0, semantic_graph_1.buildSemanticGraph)(workflow);
+    (0, graph_annotator_1.annotateGraph)(graph);
+    const tree = (0, composite_builder_1.buildCompositeTree)(graph);
+    const expressionAnnotations = (0, expression_annotator_1.buildExpressionAnnotations)(expressionValues);
+    const nodeExecutionStatus = (0, execution_status_1.buildNodeExecutionStatus)(executionData);
+    const nodeSchemas = new Map();
+    if (executionSchema) {
+        for (const { nodeName, schema } of executionSchema) {
+            nodeSchemas.set(nodeName, schema);
+        }
+    }
+    const workflowStatusJSDoc = (0, execution_status_1.formatExecutionStatusJSDoc)(executionData);
+    return (0, code_generator_1.generateCode)(tree, workflow, graph, {
+        expressionAnnotations: expressionAnnotations.size > 0 ? expressionAnnotations : undefined,
+        nodeExecutionStatus: nodeExecutionStatus.size > 0 ? nodeExecutionStatus : undefined,
+        nodeSchemas: nodeSchemas.size > 0 ? nodeSchemas : undefined,
+        workflowStatusJSDoc: workflowStatusJSDoc || undefined,
+        valuesExcluded,
+        pinnedNodes: pinnedNodes ? new Set(pinnedNodes) : undefined,
+    });
+}
+//# sourceMappingURL=index.js.map
