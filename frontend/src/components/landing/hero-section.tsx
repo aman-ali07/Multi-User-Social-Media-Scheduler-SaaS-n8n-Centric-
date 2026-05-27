@@ -1,11 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { TopographicLines } from './topographic-lines'
 
 const container = {
   hidden: { opacity: 0 },
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
 }
 
 const item = {
@@ -45,18 +46,18 @@ export function HeroSection() {
         </motion.p>
 
         <motion.div variants={item} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
+          <Link
             href="/auth/register"
             className="inline-flex items-center justify-center h-12 px-8 rounded-sm bg-gold text-bg font-sans text-sm font-medium tracking-wide hover:bg-gold/90 active:bg-gold-dim transition-colors border border-gold/30"
           >
             Get Started
-          </a>
-          <a
+          </Link>
+          <Link
             href="/auth/login"
             className="inline-flex items-center justify-center h-12 px-8 rounded-sm bg-transparent text-text-muted font-sans text-sm font-medium tracking-wide hover:text-text hover:bg-surface-2 transition-colors border border-border"
           >
             Sign In
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div
