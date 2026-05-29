@@ -21,7 +21,7 @@ export function DayCell({ day, isCurrentMonth, isToday, posts, onClick }: DayCel
     <button
       onClick={onClick}
       className={cn(
-        'relative flex flex-col items-center justify-start p-1.5 h-24 rounded-sm border transition-all',
+        'relative flex flex-col items-center justify-start p-1.5 min-h-[80px] lg:h-24 rounded-sm border transition-all',
         isCurrentMonth ? 'border-border bg-surface' : 'border-border/50 bg-surface/50',
         isToday && 'border-gold/40 bg-gold/5',
         'hover:border-gold/30 hover:bg-gold/[0.02]',

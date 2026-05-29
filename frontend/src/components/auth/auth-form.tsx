@@ -34,9 +34,9 @@ export function AuthForm({ mode, onSubmit }: AuthFormProps) {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
-      className="flex-1 flex items-center justify-center p-8"
+      className="flex-1 flex items-center justify-center p-4 sm:p-8"
     >
-      <div className="w-full max-w-sm space-y-8">
+      <div className="w-full max-w-xs sm:max-w-sm space-y-8">
         <div className="space-y-2">
           <h1 className="font-serif text-[28px] text-text tracking-tight">
             {mode === 'login' ? 'Welcome back' : 'Join Console'}

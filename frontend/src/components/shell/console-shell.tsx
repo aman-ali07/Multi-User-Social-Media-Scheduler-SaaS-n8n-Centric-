@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { LeftNav } from './left-nav'
 import { TopBar } from './top-bar'
 import { StatusBar } from './status-bar'
@@ -11,12 +12,14 @@ interface ConsoleShellProps {
 }
 
 export function ConsoleShell({ children, rightPanel }: ConsoleShellProps) {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
+
   return (
     <div className="flex h-screen overflow-hidden">
-      <LeftNav />
+      <LeftNav mobileOpen={mobileNavOpen} onMobileClose={() => setMobileNavOpen(false)} />
 
       <div className="flex-1 flex flex-col min-w-0">
-        <TopBar />
+        <TopBar onMenuClick={() => setMobileNavOpen(true)} />
 
         <motion.main
           initial={{ opacity: 0 }}
@@ -24,7 +27,7 @@ export function ConsoleShell({ children, rightPanel }: ConsoleShellProps) {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="flex-1 overflow-auto scrollbar-custom"
         >
-          <div className="flex h-full">
+          <div className="flex flex-col lg:flex-row h-full">
             <div className="flex-1 min-w-0">
               {children}
             </div>
@@ -33,7 +36,7 @@ export function ConsoleShell({ children, rightPanel }: ConsoleShellProps) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="w-80 border-l border-border bg-surface overflow-y-auto flex-shrink-0"
+                className="lg:w-80 border-t lg:border-t-0 lg:border-l border-border bg-surface overflow-y-auto flex-shrink-0"
               >
                 {rightPanel}
               </motion.aside>

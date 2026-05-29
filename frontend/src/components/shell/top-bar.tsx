@@ -4,7 +4,11 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/hooks/use-auth'
 
-export function TopBar() {
+interface TopBarProps {
+  onMenuClick?: () => void
+}
+
+export function TopBar({ onMenuClick }: TopBarProps) {
   const { user } = useAuth()
 
   return (
@@ -12,10 +16,17 @@ export function TopBar() {
       initial={{ opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const }}
-      className="h-14 border-b border-border bg-surface flex items-center justify-between px-6"
+      className="h-14 border-b border-border bg-surface flex items-center justify-between px-4 lg:px-6"
     >
       <div className="flex items-center gap-4">
-        <span className="text-[13px] text-text-muted font-sans tracking-wide">
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden text-text-dim hover:text-text-muted transition-colors text-sm mr-1"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+        <span className="text-[13px] text-text-muted font-sans tracking-wide hidden sm:inline">
           Content Operations
         </span>
         <span className="text-text-dim text-[10px] font-mono uppercase tracking-widest border border-border rounded-sm px-2 py-0.5">
@@ -35,7 +46,7 @@ export function TopBar() {
           </div>
         </div>
 
-        <div className="w-px h-6 bg-border" />
+        <div className="w-px h-6 bg-border hidden sm:block" />
 
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-sm bg-surface-3 border border-border flex items-center justify-center">

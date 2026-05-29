@@ -52,39 +52,41 @@ export function CalendarGrid({ year, month, postsByDate, onDayClick }: CalendarG
   }
 
   return (
-    <div className="rounded-sm border border-border bg-surface">
-      <div className="grid grid-cols-7 border-b border-border">
-        {dayLabels.map((label) => (
-          <div key={label} className="px-2 py-2 text-[10px] text-text-muted font-mono uppercase tracking-wider text-center">
-            {label}
-          </div>
-        ))}
-      </div>
-      <div className="divide-y divide-border">
-        {weeks.map((week, wi) => (
-          <div key={wi} className="grid grid-cols-7 divide-x divide-border">
-            {week.map((cell, ci) => {
-              const isToday =
-                cell.isCurrentMonth &&
-                cell.day === today.getDate() &&
-                month === today.getMonth() &&
-                year === today.getFullYear()
+    <div className="rounded-sm border border-border bg-surface overflow-x-auto">
+      <div className="min-w-[700px]">
+        <div className="grid grid-cols-7 border-b border-border">
+          {dayLabels.map((label) => (
+            <div key={label} className="px-2 py-2 text-[10px] text-text-muted font-mono uppercase tracking-wider text-center">
+              {label}
+            </div>
+          ))}
+        </div>
+        <div className="divide-y divide-border">
+          {weeks.map((week, wi) => (
+            <div key={wi} className="grid grid-cols-7 divide-x divide-border">
+              {week.map((cell, ci) => {
+                const isToday =
+                  cell.isCurrentMonth &&
+                  cell.day === today.getDate() &&
+                  month === today.getMonth() &&
+                  year === today.getFullYear()
 
-              const posts = postsByDate[cell.dateStr] || []
+                const posts = postsByDate[cell.dateStr] || []
 
-              return (
-                <DayCell
-                  key={`${wi}-${ci}`}
-                  day={cell.day}
-                  isCurrentMonth={cell.isCurrentMonth}
-                  isToday={isToday}
-                  posts={posts.map((p) => ({ id: p.id, status: p.status, platforms: p.platforms }))}
-                  onClick={() => onDayClick?.(cell.dateStr)}
-                />
-              )
-            })}
-          </div>
-        ))}
+                return (
+                  <DayCell
+                    key={`${wi}-${ci}`}
+                    day={cell.day}
+                    isCurrentMonth={cell.isCurrentMonth}
+                    isToday={isToday}
+                    posts={posts.map((p) => ({ id: p.id, status: p.status, platforms: p.platforms }))}
+                    onClick={() => onDayClick?.(cell.dateStr)}
+                  />
+                )
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

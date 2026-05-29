@@ -26,10 +26,10 @@ const barColors: Record<StatColor, string> = {
 
 function StatCard({ label, value, trend, color }: StatCardProps) {
   return (
-    <motion.div variants={item} className="flex-1 min-w-[160px] rounded-sm border border-border bg-surface p-4">
+    <motion.div variants={item} className="rounded-sm border border-border bg-surface p-3 lg:p-4">
       <p className="text-[11px] text-text-muted font-mono uppercase tracking-wider">{label}</p>
       <div className="flex items-baseline gap-2 mt-2">
-        <span className="font-serif text-[32px] text-text leading-none">{value}</span>
+        <span className="font-serif text-[24px] sm:text-[32px] text-text leading-none">{value}</span>
         {trend && (
           <span className={`text-[12px] font-mono ${trend.startsWith('+') ? 'text-lime' : 'text-red'}`}>
             {trend}
@@ -47,7 +47,7 @@ interface StatsRowProps {
 
 export function StatsRow({ stats }: StatsRowProps) {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
       {stats.map((s) => (
         <StatCard key={s.label} {...s} />
       ))}

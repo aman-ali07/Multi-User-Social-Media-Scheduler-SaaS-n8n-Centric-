@@ -4,7 +4,12 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+interface LeftNavProps {
+  mobileOpen?: boolean
+  onMobileClose?: () => void
+}
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: '◈' },
@@ -30,11 +35,20 @@ const itemVariants = {
   visible: { opacity: 1, x: 0 },
 }
 
-export function LeftNav() {
+export function LeftNav({ mobileOpen, onMobileClose }: LeftNavProps) {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
 
-  return (
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
+  const navContent = (
     <motion.nav
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
@@ -75,6 +89,7 @@ export function LeftNav() {
             <motion.div key={item.href} variants={itemVariants}>
               <Link
                 href={item.href}
+                onClick={onMobileClose}
                 className={cn(
                   'flex items-center gap-3 rounded-sm px-3 h-9 text-sm transition-all duration-150',
                   'hover:bg-surface-2 group relative',
@@ -114,5 +129,31 @@ export function LeftNav() {
         </div>
       </div>
     </motion.nav>
+  )
+
+  return (
+    <>
+      <div className="hidden lg:flex h-full">
+        {navContent}
+      </div>
+
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div
+            className="absolute inset-0 bg-bg/60 backdrop-blur-sm"
+            onClick={onMobileClose}
+          />
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const }}
+            className="relative h-full w-56 shadow-xl"
+          >
+            {navContent}
+          </motion.div>
+        </div>
+      )}
+    </>
   )
 }

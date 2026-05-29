@@ -39,7 +39,7 @@ export default function SettingsPage() {
   return (
     <AuthGuard>
       <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 space-y-6 max-w-2xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-2xl">
           <motion.div variants={item}>
             <div className="flex items-center gap-3">
               <h1 className="font-serif text-[28px] text-text tracking-tight">Settings</h1>

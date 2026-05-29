@@ -92,7 +92,7 @@ export default function PostDetailPage() {
   return (
     <AuthGuard>
       <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 space-y-6 max-w-3xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-3xl">
           <motion.div variants={item} className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export default function PostDetailPage() {
             <Badge variant={post.status} />
           </motion.div>
 
-          <motion.div variants={item} className="grid grid-cols-2 gap-4">
+          <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="rounded-sm border border-border bg-surface p-4 space-y-3">
               <h3 className="text-[10px] text-text-dim font-mono uppercase tracking-wider">Details</h3>
               <div className="space-y-2 text-[13px]">

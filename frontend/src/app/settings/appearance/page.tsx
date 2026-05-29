@@ -24,7 +24,7 @@ export default function AppearancePage() {
   return (
     <AuthGuard>
       <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 space-y-6 max-w-2xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-2xl">
           <motion.div variants={item}>
             <div className="flex items-center gap-3">
               <a href="/settings" className="text-text-dim hover:text-text transition-colors text-sm">←</a>
@@ -35,7 +35,7 @@ export default function AppearancePage() {
 
           <motion.div variants={item} className="space-y-3">
             <h2 className="text-[13px] text-text-muted font-mono uppercase tracking-wider">Theme</h2>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {themes.map((theme) => (
                 <div
                   key={theme.id}

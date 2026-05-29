@@ -31,7 +31,7 @@ export default function MediaPage() {
   return (
     <AuthGuard>
       <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 space-y-6 max-w-5xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-5xl">
           <motion.div variants={item} className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-3">

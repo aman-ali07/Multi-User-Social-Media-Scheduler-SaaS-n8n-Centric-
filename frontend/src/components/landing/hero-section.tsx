@@ -16,7 +16,7 @@ const item = {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg py-12 sm:py-0">
       <TopographicLines />
 
       <motion.div

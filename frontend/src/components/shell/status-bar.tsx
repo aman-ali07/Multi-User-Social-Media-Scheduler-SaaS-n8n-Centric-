@@ -50,19 +50,19 @@ export function StatusBar() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.2 }}
-      className="h-8 border-t border-border bg-surface flex items-center justify-between px-4"
+      className="h-8 border-t border-border bg-surface flex items-center justify-between px-3 lg:px-4"
     >
-      <div className="flex items-center gap-4 text-[10px] text-text-dim font-mono uppercase tracking-widest">
+      <div className="flex items-center gap-3 lg:gap-4 text-[10px] text-text-dim font-mono uppercase tracking-widest">
         <span className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_4px_rgba(138,184,42,0.5)]" />
-          Live
+          <span className="hidden sm:inline">Live</span>
         </span>
-        <span>Queue: {queue ?? '—'}</span>
+        <span>Q: {queue ?? '—'}</span>
       </div>
 
-      <div className="flex items-center gap-4 text-[10px] text-text-dim font-mono">
-        <span>Last publish: {lastPublish ?? '—'}</span>
-        <span>{timeStr} UTC</span>
+      <div className="flex items-center gap-3 lg:gap-4 text-[10px] text-text-dim font-mono">
+        <span className="hidden md:inline">Last: {lastPublish ?? '—'}</span>
+        <span>{timeStr}</span>
       </div>
     </motion.footer>
   )

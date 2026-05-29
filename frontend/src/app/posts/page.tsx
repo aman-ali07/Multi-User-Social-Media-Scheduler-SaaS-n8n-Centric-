@@ -32,7 +32,7 @@ function PostsContent() {
   return (
     <AuthGuard>
       <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 space-y-6 max-w-4xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-4xl">
           <motion.div variants={item}>
             <h1 className="font-serif text-[28px] text-text tracking-tight">Posts</h1>
             <p className="text-text-muted text-sm font-sans mt-1">Manage your content</p>

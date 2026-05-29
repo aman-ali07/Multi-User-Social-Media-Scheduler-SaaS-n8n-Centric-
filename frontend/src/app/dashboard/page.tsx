@@ -47,7 +47,7 @@ export default function DashboardPage() {
       <ConsoleShell
         rightPanel={<ActivityFeed items={activity} />}
       >
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 space-y-8 max-w-6xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-8 max-w-6xl">
           <motion.div variants={item}>
             <h1 className="font-serif text-[28px] text-text tracking-tight">Dashboard</h1>
             <p className="text-text-muted text-sm font-sans mt-1">Content operations cockpit</p>
