@@ -828,5 +828,10 @@
     "mtime": 1780078336.696739,
     "ast_hash": "875a29f4dddf5590021768be01da69b2",
     "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/docs/superpowers/specs/2026-05-29-responsive-design-spec.md": {
+    "mtime": 1780078252.775361,
+    "ast_hash": "88c0ca06d15ca481354409138a132bda",
+    "semantic_hash": ""
   }
 }
