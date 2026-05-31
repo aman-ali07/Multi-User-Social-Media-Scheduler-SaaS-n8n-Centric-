@@ -9,17 +9,25 @@ export default function AuthCallbackPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const handleCallback = async () => {
-      const { error } = await supabase.auth.exchangeCodeForSession(
-        window.location.href
-      )
+    // @supabase/ssr handles code exchange automatically on createBrowserClient.
+    // Wait for the session to settle, then redirect.
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
         setError(error.message)
         return
       }
-      router.push('/dashboard')
-    }
-    handleCallback()
+      if (session) {
+        router.push('/dashboard')
+      }
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN') {
+        router.push('/dashboard')
+      }
+    })
+
+    return () => subscription.unsubscribe()
   }, [router])
 
   if (error) {

@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { AuthLayout } from '@/components/auth/auth-layout'
@@ -10,8 +10,26 @@ import { useAuth } from '@/hooks/use-auth'
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { signIn } = useAuth()
+  const { signIn, session, loading } = useAuth()
   const [showVerified, setShowVerified] = useState(searchParams.get('verified') === '1')
+
+  useEffect(() => {
+    if (!loading && session) {
+      router.push('/dashboard')
+    }
+  }, [session, loading, router])
+
+  if (loading) {
+    return (
+      <AuthLayout>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="w-8 h-8 border border-gold/30 border-t-gold rounded-full animate-spin" />
+        </div>
+      </AuthLayout>
+    )
+  }
+
+  if (session) return null
 
   const handleLogin = async (email: string, password: string) => {
     const { error } = await signIn(email, password)

@@ -1,7 +1,7 @@
 {
   "/home/aman/projects/saas/.opencode/opencode.json": {
-    "mtime": 1779820531.5585976,
-    "ast_hash": "e710e73b9c37cb0b57bcd8836b36ab75",
+    "mtime": 1780229315.6154637,
+    "ast_hash": "abf23d6b768f18bdd05c9e2e6414a980",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/.opencode/package.json": {
@@ -80,8 +80,8 @@
     "semantic_hash": "239f3ebf717465dc636818a1a619398d"
   },
   "/home/aman/projects/saas/frontend/next-env.d.ts": {
-    "mtime": 1779826953.5472686,
-    "ast_hash": "2a74d3909800ca5467fa83b0ab4a4890",
+    "mtime": 1780231362.8799415,
+    "ast_hash": "d0f8375ae1199dc7acd3977fc33b78b8",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/package.json": {
@@ -275,8 +275,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/api/n8n/[...path]/route.ts": {
-    "mtime": 1779900407.8444862,
-    "ast_hash": "3844ab90644c6ce542c697ab450b9366",
+    "mtime": 1780233674.2677343,
+    "ast_hash": "9baf42f38f0eeedab0bfccd5e32a694d",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/app/composer/page.tsx": {
@@ -625,8 +625,8 @@
     "semantic_hash": "a7b2f5fd0da7c0ad87072693988ed3b4"
   },
   "/home/aman/projects/saas/frontend/src/hooks/use-settings.ts": {
-    "mtime": 1779899095.1848443,
-    "ast_hash": "2376a6957d666da1d4e239f248e8a413",
+    "mtime": 1780232317.2287447,
+    "ast_hash": "473241ff3c48cf5d2164cc66b693ddbd",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/frontend/src/lib/queries.ts": {
@@ -670,8 +670,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/README.md": {
-    "mtime": 1779892074.4098153,
-    "ast_hash": "0952cf7a6a58d8540d5670caa1740ed0",
+    "mtime": 1780235484.6299744,
+    "ast_hash": "40d72af78a47bd0ea54a276a0e8a53a7",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/package.json": {
@@ -785,13 +785,8 @@
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/SETUP.md": {
-    "mtime": 1779893800.619822,
-    "ast_hash": "02990e98b0eb9d4354b02b687da0f36d",
-    "semantic_hash": ""
-  },
-  "/home/aman/projects/saas/DEPLOYMENT.md": {
-    "mtime": 1779900043.8520818,
-    "ast_hash": "15db4684310cfc2226bb1d795a128f14",
+    "mtime": 1780235479.912957,
+    "ast_hash": "af4a103e33b6693e18621c95a7f42c7a",
     "semantic_hash": ""
   },
   "/home/aman/projects/saas/docker-compose.yml": {
@@ -809,11 +804,6 @@
     "ast_hash": "2f076107de538f2b29c29383dae9e831",
     "semantic_hash": ""
   },
-  "/home/aman/projects/saas/docs/ORACLE_DEPLOYMENT.md": {
-    "mtime": 1779904123.7739906,
-    "ast_hash": "28ee59eebf4ea310b59dd8ec08540144",
-    "semantic_hash": ""
-  },
   "/home/aman/projects/saas/docs/superpowers/plans/2026-05-28-hero-redesign.md": {
     "mtime": 1779911257.600983,
     "ast_hash": "dd88c51adb414a088d487b19f898fa26",
@@ -827,6 +817,131 @@
   "/home/aman/projects/saas/frontend/src/components/landing/floating-sign-in.tsx": {
     "mtime": 1780078336.696739,
     "ast_hash": "875a29f4dddf5590021768be01da69b2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/PRODUCTION_READINESS.md": {
+    "mtime": 1780233635.765254,
+    "ast_hash": "6fef9430260187707db5d5076645ba1b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-50-48-246Z.yml": {
+    "mtime": 1780231848.2473977,
+    "ast_hash": "917ea85a67076c087a067230fde63af6",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-46-641Z.yml": {
+    "mtime": 1780232146.644429,
+    "ast_hash": "a9701660b04b7986a94b456205862459",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-22-09-335Z.yml": {
+    "mtime": 1780233729.348425,
+    "ast_hash": "a9701660b04b7986a94b456205862459",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-21-42-407Z.yml": {
+    "mtime": 1780233702.4080865,
+    "ast_hash": "993e0747ca9e49873a60e3e5ff695530",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-22-42-298Z.yml": {
+    "mtime": 1780233762.29784,
+    "ast_hash": "1157dfe9db9445661eccf382e303964a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-49-56-539Z.yml": {
+    "mtime": 1780231796.5387025,
+    "ast_hash": "4b2a91e1f34f4e279d79054e4d4dcfef",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-10-246Z.yml": {
+    "mtime": 1780232110.2509358,
+    "ast_hash": "56bd617a23144223a0e3303c7bc4f1dd",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-52-668Z.yml": {
+    "mtime": 1780232092.6676977,
+    "ast_hash": "0beff6776851039b0ab56be8d2548562",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-01-374Z.yml": {
+    "mtime": 1780232101.3738155,
+    "ast_hash": "64b158fbc3322ed0e64f3ad72a83efb2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-51-12-835Z.yml": {
+    "mtime": 1780231872.8347285,
+    "ast_hash": "325deee86d7df794d906103b0cb8ff10",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-13-572Z.yml": {
+    "mtime": 1780232053.5721684,
+    "ast_hash": "23fdf05d2a627f4460451d79efc9e01a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-19-392Z.yml": {
+    "mtime": 1780232119.3960598,
+    "ast_hash": "bbe7d3175544f49fd92741ea13aa50c3",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-22-02-232Z.yml": {
+    "mtime": 1780233722.2373354,
+    "ast_hash": "80594abedddf20a46cd6956e010dd012",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-27-991Z.yml": {
+    "mtime": 1780232127.992176,
+    "ast_hash": "da6c156f6f6a23fa9e4b8ffb589ed8b7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-50-55-187Z.yml": {
+    "mtime": 1780231855.187491,
+    "ast_hash": "38a83c7903570210117045df59343a3b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-51-03-630Z.yml": {
+    "mtime": 1780231863.6306045,
+    "ast_hash": "ee5efa57f23ddef5abfc458a7dd7978c",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-59-019Z.yml": {
+    "mtime": 1780232159.0195968,
+    "ast_hash": "690c80d2e5471c4c792874a4dbabbbe7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-25-169Z.yml": {
+    "mtime": 1780232065.1693254,
+    "ast_hash": "a893fc9df6d25e08a7d2b1a73355fa7c",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-53-54-646Z.yml": {
+    "mtime": 1780232034.6509125,
+    "ast_hash": "993e0747ca9e49873a60e3e5ff695530",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-37-583Z.yml": {
+    "mtime": 1780232137.5843062,
+    "ast_hash": "a8bc1d3ec0b16aac9f9a2be874da5580",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-49-03-486Z.yml": {
+    "mtime": 1780231743.4879906,
+    "ast_hash": "15cbd4b7062426546846f26f2eacf9c9",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-59-15-699Z.yml": {
+    "mtime": 1780232355.6992676,
+    "ast_hash": "5b437e0d22474c3095f0e76488198db2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-49-45-770Z.yml": {
+    "mtime": 1780231785.7705579,
+    "ast_hash": "b7d30b3610f19cd7c6e6bed3fd55ac04",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-40-766Z.yml": {
+    "mtime": 1780232080.7655365,
+    "ast_hash": "e560a443d791b3c5aabdbea28bc95f5c",
     "semantic_hash": ""
   }
 }

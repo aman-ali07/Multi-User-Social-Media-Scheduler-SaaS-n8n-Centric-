@@ -1,119 +1,207 @@
 {
   "communities": {
     "0": [
-      "accounts_connect_button_connectbutton",
-      "accounts_connect_button_connectbuttonprops",
-      "accounts_page_accountspage",
-      "accounts_page_container",
-      "accounts_page_item",
-      "appearance_page_appearancepage",
-      "appearance_page_container",
-      "appearance_page_item",
-      "appearance_page_themes",
-      "auth_auth_guard_authguard",
-      "calendar_page_calendarpage",
-      "calendar_page_container",
-      "calendar_page_item",
-      "calendar_page_monthnames",
-      "callback_page_authcallbackpage",
-      "frontend_src_app_accounts_page_tsx",
-      "frontend_src_app_auth_callback_page_tsx",
-      "frontend_src_app_calendar_page_tsx",
-      "frontend_src_app_composer_id_page_tsx",
-      "frontend_src_app_composer_id_page_tsx_id_page_container",
-      "frontend_src_app_composer_id_page_tsx_id_page_item",
+      "phase_5_meta_graph_api_md",
+      "saas_phase_5_meta_graph_api_1_1_authorization_url",
+      "saas_phase_5_meta_graph_api_1_2_token_exchange_code_short_lived_token",
+      "saas_phase_5_meta_graph_api_1_3_short_lived_long_lived_token_60_days",
+      "saas_phase_5_meta_graph_api_1_4_refresh_long_lived_token",
+      "saas_phase_5_meta_graph_api_1_oauth_2_0_flow",
+      "saas_phase_5_meta_graph_api_2_1_get_user_s_pages",
+      "saas_phase_5_meta_graph_api_2_2_get_page_s_instagram_business_account",
+      "saas_phase_5_meta_graph_api_2_3_create_text_post",
+      "saas_phase_5_meta_graph_api_2_4_create_photo_post",
+      "saas_phase_5_meta_graph_api_2_5_create_video_post",
+      "saas_phase_5_meta_graph_api_2_6_publish_existing_draft",
+      "saas_phase_5_meta_graph_api_2_facebook_pages",
+      "saas_phase_5_meta_graph_api_3_1_authentication",
+      "saas_phase_5_meta_graph_api_3_2_publishing_flow",
+      "saas_phase_5_meta_graph_api_3_3_create_media_container",
+      "saas_phase_5_meta_graph_api_3_4_check_container_status",
+      "saas_phase_5_meta_graph_api_3_5_publish_container",
+      "saas_phase_5_meta_graph_api_3_6_media_requirements",
+      "saas_phase_5_meta_graph_api_3_7_rate_limits",
+      "saas_phase_5_meta_graph_api_3_instagram_content_publishing",
+      "saas_phase_5_meta_graph_api_4_token_types_lifetimes",
+      "saas_phase_5_meta_graph_api_5_error_codes",
+      "saas_phase_5_meta_graph_api_6_request_flow_diagram",
+      "saas_phase_5_meta_graph_api_7_endpoint_summary",
+      "saas_phase_5_meta_graph_api_codeblock_1",
+      "saas_phase_5_meta_graph_api_codeblock_10",
+      "saas_phase_5_meta_graph_api_codeblock_11",
+      "saas_phase_5_meta_graph_api_codeblock_12",
+      "saas_phase_5_meta_graph_api_codeblock_13",
+      "saas_phase_5_meta_graph_api_codeblock_14",
+      "saas_phase_5_meta_graph_api_codeblock_15",
+      "saas_phase_5_meta_graph_api_codeblock_16",
+      "saas_phase_5_meta_graph_api_codeblock_17",
+      "saas_phase_5_meta_graph_api_codeblock_18",
+      "saas_phase_5_meta_graph_api_codeblock_19",
+      "saas_phase_5_meta_graph_api_codeblock_2",
+      "saas_phase_5_meta_graph_api_codeblock_20",
+      "saas_phase_5_meta_graph_api_codeblock_21",
+      "saas_phase_5_meta_graph_api_codeblock_3",
+      "saas_phase_5_meta_graph_api_codeblock_4",
+      "saas_phase_5_meta_graph_api_codeblock_5",
+      "saas_phase_5_meta_graph_api_codeblock_6",
+      "saas_phase_5_meta_graph_api_codeblock_7",
+      "saas_phase_5_meta_graph_api_codeblock_8",
+      "saas_phase_5_meta_graph_api_codeblock_9",
+      "saas_phase_5_meta_graph_api_phase_5_meta_graph_api_documentation"
+    ],
+    "1": [
+      "agents_config",
+      "media_assets_table",
+      "meta_graph_api",
+      "n8n_backend",
+      "n8n_social_scheduler",
+      "n8n_social_scheduler_prd",
+      "nextjs_frontend",
+      "oauth_state_table",
+      "pg_advisory_locks",
+      "pg_batch_inserts",
+      "pg_fk_indexes",
+      "pg_full_text_search",
+      "pg_n_plus_one",
+      "pg_partial_indexes",
+      "pg_prepared_statements",
+      "pg_primary_keys",
+      "pg_skip_locked",
+      "phase_1_planning",
+      "phase_2_database",
+      "phase_3_storage",
+      "phase_4_n8n_workflows",
+      "phase_5_meta_api",
+      "phase_6_frontend",
+      "post_logs_table",
+      "post_media_table",
+      "profiles_table",
+      "scheduled_posts_table",
+      "signal_design_system",
+      "social_accounts_table",
+      "supabase_auth",
+      "supabase_db",
+      "supabase_pg_skill",
+      "supabase_skill",
+      "supabase_storage",
+      "token_refresh_log_table",
+      "wf_cron_scheduler",
+      "wf_facebook_publish",
+      "wf_failure_handler",
+      "wf_instagram_publish",
+      "wf_logging",
+      "wf_media_upload",
+      "wf_oauth_callback",
+      "wf_oauth_connect",
+      "wf_post_crud",
+      "wf_retry_handler",
+      "wf_token_refresh",
+      "workflow_runs_table"
+    ],
+    "2": [
+      "phase_1_planning_md",
+      "saas_phase_1_planning_1_goals_mvp_scope",
+      "saas_phase_1_planning_2_architecture",
+      "saas_phase_1_planning_3_database_entity_model",
+      "saas_phase_1_planning_4_n8n_workflow_map",
+      "saas_phase_1_planning_5_n8n_webhook_api_contracts",
+      "saas_phase_1_planning_6_security_requirements",
+      "saas_phase_1_planning_7_implementation_plan_chunked_phases",
+      "saas_phase_1_planning_8_engineering_decisions_assumptions",
+      "saas_phase_1_planning_9_directory_structure_target",
+      "saas_phase_1_planning_chunk_1_foundation_phase_2_3",
+      "saas_phase_1_planning_chunk_2_meta_integration_phase_5",
+      "saas_phase_1_planning_chunk_3_n8n_core_workflows_phase_4_workflows_1_5",
+      "saas_phase_1_planning_chunk_4_n8n_publish_workflows_phase_4_workflows_6_11",
+      "saas_phase_1_planning_chunk_5_frontend_phase_6",
+      "saas_phase_1_planning_chunk_6_security_deployment_phase_7_8",
+      "saas_phase_1_planning_chunk_7_testing_phase_9",
+      "saas_phase_1_planning_codeblock_1",
+      "saas_phase_1_planning_codeblock_2",
+      "saas_phase_1_planning_codeblock_3",
+      "saas_phase_1_planning_codeblock_4",
+      "saas_phase_1_planning_codeblock_5",
+      "saas_phase_1_planning_codeblock_6",
+      "saas_phase_1_planning_codeblock_7",
+      "saas_phase_1_planning_data_flow",
+      "saas_phase_1_planning_entity_relationships",
+      "saas_phase_1_planning_get_webhook_logs",
+      "saas_phase_1_planning_get_webhook_oauth_callback",
+      "saas_phase_1_planning_get_webhook_posts",
+      "saas_phase_1_planning_goals",
+      "saas_phase_1_planning_mvp_scope",
+      "saas_phase_1_planning_phase_1_system_understanding_artifact",
+      "saas_phase_1_planning_post_webhook_media_upload",
+      "saas_phase_1_planning_post_webhook_oauth_connect",
+      "saas_phase_1_planning_post_webhook_post_cancel",
+      "saas_phase_1_planning_post_webhook_post_create",
+      "saas_phase_1_planning_project_overview",
+      "saas_phase_1_planning_put_webhook_post_edit",
+      "saas_phase_1_planning_tables",
+      "saas_phase_1_planning_v2_not_in_scope_now"
+    ],
+    "3": [
+      "phase_6_frontend_plan_md",
+      "saas_phase_6_frontend_plan_accounts_page",
+      "saas_phase_6_frontend_plan_api_integration_layer",
+      "saas_phase_6_frontend_plan_calendar_page_components",
+      "saas_phase_6_frontend_plan_codeblock_1",
+      "saas_phase_6_frontend_plan_codeblock_10",
+      "saas_phase_6_frontend_plan_codeblock_11",
+      "saas_phase_6_frontend_plan_codeblock_2",
+      "saas_phase_6_frontend_plan_codeblock_3",
+      "saas_phase_6_frontend_plan_codeblock_4",
+      "saas_phase_6_frontend_plan_codeblock_5",
+      "saas_phase_6_frontend_plan_codeblock_6",
+      "saas_phase_6_frontend_plan_codeblock_7",
+      "saas_phase_6_frontend_plan_codeblock_8",
+      "saas_phase_6_frontend_plan_codeblock_9",
+      "saas_phase_6_frontend_plan_component_tree",
+      "saas_phase_6_frontend_plan_composer_page_components",
+      "saas_phase_6_frontend_plan_dashboard_page_components",
+      "saas_phase_6_frontend_plan_data_models_typescript",
+      "saas_phase_6_frontend_plan_design_direction_signal",
+      "saas_phase_6_frontend_plan_design_tokens",
+      "saas_phase_6_frontend_plan_directory_structure",
+      "saas_phase_6_frontend_plan_implementation_order",
+      "saas_phase_6_frontend_plan_key_design_decisions",
+      "saas_phase_6_frontend_plan_n8n_webhook_contract_map",
+      "saas_phase_6_frontend_plan_next_step",
+      "saas_phase_6_frontend_plan_pages_routes",
+      "saas_phase_6_frontend_plan_phase_6_next_js_frontend_plan",
+      "saas_phase_6_frontend_plan_phase_6a_scaffold_auth",
+      "saas_phase_6_frontend_plan_phase_6b_navigation_layout",
+      "saas_phase_6_frontend_plan_phase_6c_data_layer",
+      "saas_phase_6_frontend_plan_phase_6d_core_pages",
+      "saas_phase_6_frontend_plan_phase_6e_management_pages",
+      "saas_phase_6_frontend_plan_phase_6f_polish",
+      "saas_phase_6_frontend_plan_posts_list_page",
+      "saas_phase_6_frontend_plan_sidebar",
+      "saas_phase_6_frontend_plan_supabase_direct_access_pattern",
+      "saas_phase_6_frontend_plan_supabase_direct_queries_rls_protected_frontend_safe"
+    ],
+    "4": [
+      "accounts_account_card_accountcard",
+      "accounts_account_card_accountcardprops",
+      "dashboard_upcoming_list_upcominglist",
+      "dashboard_upcoming_list_upcominglistprops",
+      "dashboard_upcoming_list_upcomingpost",
       "frontend_src_app_logs_page_tsx",
-      "frontend_src_app_media_page_tsx",
-      "frontend_src_app_posts_id_page_tsx",
-      "frontend_src_app_posts_id_page_tsx_id_page_container",
-      "frontend_src_app_posts_id_page_tsx_id_page_item",
-      "frontend_src_app_settings_appearance_page_tsx",
-      "frontend_src_app_settings_page_tsx",
-      "frontend_src_components_accounts_connect_button_tsx",
-      "frontend_src_components_auth_auth_guard_tsx",
-      "frontend_src_components_shell_console_shell_tsx",
-      "frontend_src_components_shell_status_bar_tsx",
-      "frontend_src_components_shell_top_bar_tsx",
-      "frontend_src_components_ui_button_tsx",
-      "frontend_src_hooks_use_accounts_ts",
-      "frontend_src_hooks_use_auth_ts",
-      "frontend_src_hooks_use_calendar_ts",
-      "frontend_src_hooks_use_media_ts",
-      "frontend_src_hooks_use_posts_ts",
-      "frontend_src_hooks_use_settings_ts",
-      "frontend_src_lib_n8n_ts",
-      "frontend_src_lib_supabase_ts",
-      "hooks_use_accounts_useaccounts",
-      "hooks_use_auth_useauth",
-      "hooks_use_calendar_calendarpost",
-      "hooks_use_calendar_usecalendar",
-      "hooks_use_media_usemedia",
-      "hooks_use_settings_usesettings",
-      "id_page_editpostpage",
-      "id_page_postdetailpage",
-      "lib_n8n_callwebhook",
-      "lib_n8n_cancelpost",
-      "lib_n8n_connectoauth",
-      "lib_n8n_createpost",
-      "lib_n8n_registermedia",
-      "lib_n8n_updatepost",
-      "lib_n8n_webhookoptions",
-      "lib_supabase_supabase",
+      "frontend_src_components_accounts_account_card_tsx",
+      "frontend_src_components_dashboard_upcoming_list_tsx",
+      "frontend_src_components_logs_activity_timeline_tsx",
+      "frontend_src_components_posts_post_row_tsx",
+      "frontend_src_components_ui_badge_tsx",
+      "frontend_src_types_database_ts",
+      "logs_activity_timeline_activitytimeline",
+      "logs_activity_timeline_activitytimelineprops",
       "logs_page_container",
       "logs_page_item",
       "logs_page_logspage",
-      "media_page_container",
-      "media_page_item",
-      "media_page_mediapage",
-      "settings_page_container",
-      "settings_page_item",
-      "settings_page_settingspage",
-      "shell_console_shell_consoleshell",
-      "shell_console_shell_consoleshellprops",
-      "shell_status_bar_statusbar",
-      "shell_top_bar_topbar",
-      "ui_button_button",
-      "ui_button_buttonprops",
-      "ui_button_sizestyles",
-      "ui_button_variantstyles"
-    ],
-    "1": [
-      "accounts_account_card_accountcard",
-      "frontend_src_app_posts_page_tsx",
-      "frontend_src_components_accounts_account_card_tsx",
-      "frontend_src_components_logs_activity_timeline_tsx",
-      "frontend_src_components_media_media_grid_tsx",
-      "frontend_src_components_posts_filter_bar_tsx",
-      "frontend_src_components_posts_post_row_tsx",
-      "frontend_src_components_ui_badge_tsx",
-      "frontend_src_lib_queries_ts",
-      "frontend_src_types_database_ts",
-      "hooks_use_posts_useposts",
-      "lib_queries_getalllogs",
-      "lib_queries_getcalendarposts",
-      "lib_queries_getdashboardstats",
-      "lib_queries_getlogsforpost",
-      "lib_queries_getmyaccounts",
-      "lib_queries_getmymedia",
-      "lib_queries_getmyposts",
-      "lib_queries_getpostbyid",
-      "lib_queries_getupcomingposts",
-      "logs_activity_timeline_activitytimeline",
-      "logs_activity_timeline_activitytimelineprops",
-      "media_media_grid_mediagrid",
-      "media_media_grid_mediagridprops",
-      "posts_filter_bar_filterbar",
-      "posts_filter_bar_filterbarprops",
-      "posts_filter_bar_statustabs",
-      "posts_page_container",
-      "posts_page_item",
-      "posts_page_postspage",
       "posts_post_row_postrow",
       "posts_post_row_postrowprops",
       "types_database_accountstatus",
-      "types_database_dashboardstats",
       "types_database_logstatus",
-      "types_database_mediaasset",
       "types_database_oauthstate",
       "types_database_platform",
       "types_database_postlog",
@@ -128,72 +216,147 @@
       "ui_badge_badgeprops",
       "ui_badge_variantstyles"
     ],
-    "2": [
-      "dashboard_activity_feed_activitydot",
-      "dashboard_activity_feed_activityfeed",
-      "dashboard_activity_feed_activityfeedprops",
-      "dashboard_activity_feed_activityitem",
-      "dashboard_page_activityitems",
-      "dashboard_page_container",
-      "dashboard_page_dashboardpage",
-      "dashboard_page_item",
-      "dashboard_page_statcards",
-      "dashboard_page_upcomingposts",
-      "dashboard_page_velocitydays",
-      "dashboard_publishing_velocity_publishingvelocity",
-      "dashboard_publishing_velocity_publishingvelocityprops",
-      "dashboard_publishing_velocity_timelinebar",
-      "dashboard_publishing_velocity_velocityday",
-      "dashboard_stats_row_barcolors",
-      "dashboard_stats_row_colors",
-      "dashboard_stats_row_item",
-      "dashboard_stats_row_statcard",
-      "dashboard_stats_row_statcardprops",
-      "dashboard_stats_row_statcolor",
-      "dashboard_stats_row_statsrow",
-      "dashboard_stats_row_statsrowprops",
-      "dashboard_upcoming_list_upcominglist",
-      "dashboard_upcoming_list_upcominglistprops",
-      "dashboard_upcoming_list_upcomingpost",
-      "frontend_src_app_dashboard_page_tsx",
-      "frontend_src_components_dashboard_activity_feed_tsx",
-      "frontend_src_components_dashboard_publishing_velocity_tsx",
-      "frontend_src_components_dashboard_stats_row_tsx",
-      "frontend_src_components_dashboard_upcoming_list_tsx"
+    "5": [
+      "config_docker_compose",
+      "db_table_app_config",
+      "db_table_media_assets",
+      "db_table_oauth_state",
+      "db_table_post_logs",
+      "db_table_scheduled_posts",
+      "db_table_social_accounts",
+      "db_table_workflow_runs",
+      "doc_n8n_workflows_plan",
+      "doc_production_readiness",
+      "doc_project_context",
+      "doc_readme",
+      "doc_setup",
+      "func_cancel_posts_on_account_delete",
+      "func_cleanup_expired_oauth_state",
+      "func_cleanup_old_logs",
+      "func_decrypt_token",
+      "func_encrypt_token",
+      "func_get_global_stats",
+      "func_get_media_public_url",
+      "migration_003",
+      "migration_006",
+      "migration_008",
+      "migration_009",
+      "migration_010",
+      "package_n8n_sdk",
+      "project_saas",
+      "workflow_cron_scheduler",
+      "workflow_facebook_publish",
+      "workflow_instagram_publish",
+      "workflow_media_upload",
+      "workflow_oauth_callback",
+      "workflow_oauth_connect",
+      "workflow_post_crud"
     ],
-    "3": [
-      "app_layout_bilderberg",
-      "app_layout_jetbrainsmono",
-      "app_layout_metadata",
-      "app_layout_rootlayout",
-      "app_layout_satoshi",
-      "calendar_calendar_grid_calendargrid",
-      "calendar_calendar_grid_calendargridprops",
-      "calendar_calendar_grid_calendarpost",
-      "calendar_calendar_grid_daylabels",
-      "calendar_day_cell_calendarpost",
-      "calendar_day_cell_daycell",
-      "calendar_day_cell_daycellprops",
-      "composer_media_dropzone_mediadropzone",
-      "composer_media_dropzone_mediadropzoneprops",
-      "frontend_src_app_layout_tsx",
-      "frontend_src_components_calendar_calendar_grid_tsx",
-      "frontend_src_components_calendar_day_cell_tsx",
-      "frontend_src_components_composer_media_dropzone_tsx",
-      "frontend_src_components_shell_left_nav_tsx",
-      "frontend_src_lib_utils_ts",
-      "lib_utils_cn",
-      "lib_utils_daysuntilexpiry",
-      "lib_utils_formatdate",
-      "lib_utils_formatrelative",
-      "lib_utils_formattime",
-      "lib_utils_timeuntil",
-      "shell_left_nav_containervariants",
-      "shell_left_nav_itemvariants",
-      "shell_left_nav_leftnav",
-      "shell_left_nav_navitems"
+    "6": [
+      "saas_setup_1_clone_install",
+      "saas_setup_2_supabase",
+      "saas_setup_3_n8n",
+      "saas_setup_3a_n8n_cloud",
+      "saas_setup_3a_self_hosted_oracle_docker",
+      "saas_setup_3b_n8n_cloud",
+      "saas_setup_3c_postgres_credential",
+      "saas_setup_3d_deploy_workflows",
+      "saas_setup_4_meta_facebook_app",
+      "saas_setup_5_run_frontend",
+      "saas_setup_architecture_notes",
+      "saas_setup_auth_flow",
+      "saas_setup_codeblock_1",
+      "saas_setup_codeblock_2",
+      "saas_setup_codeblock_3",
+      "saas_setup_codeblock_4",
+      "saas_setup_codeblock_5",
+      "saas_setup_codeblock_6",
+      "saas_setup_codeblock_7",
+      "saas_setup_codeblock_8",
+      "saas_setup_codeblock_9",
+      "saas_setup_database",
+      "saas_setup_database_migrations",
+      "saas_setup_environment_variables",
+      "saas_setup_helpful_commands",
+      "saas_setup_key_files",
+      "saas_setup_meta",
+      "saas_setup_modifying_workflows",
+      "saas_setup_n8n_is_the_backend",
+      "saas_setup_prerequisites",
+      "saas_setup_setup_guide",
+      "saas_setup_storage",
+      "saas_setup_workflow_patterns",
+      "setup_md"
     ],
-    "4": [
+    "7": [
+      "docs_oracle_deployment_10_maintenance",
+      "docs_oracle_deployment_1_provision_oracle_instance",
+      "docs_oracle_deployment_2_install_docker",
+      "docs_oracle_deployment_3_clone_repo_configure",
+      "docs_oracle_deployment_4_set_up_reverse_proxy_caddy",
+      "docs_oracle_deployment_5_start_services",
+      "docs_oracle_deployment_6_configure_n8n",
+      "docs_oracle_deployment_7_deploy_workflows",
+      "docs_oracle_deployment_8_activate_workflows",
+      "docs_oracle_deployment_9_verify_end_to_end",
+      "docs_oracle_deployment_codeblock_1",
+      "docs_oracle_deployment_codeblock_10",
+      "docs_oracle_deployment_codeblock_2",
+      "docs_oracle_deployment_codeblock_3",
+      "docs_oracle_deployment_codeblock_4",
+      "docs_oracle_deployment_codeblock_5",
+      "docs_oracle_deployment_codeblock_6",
+      "docs_oracle_deployment_codeblock_7",
+      "docs_oracle_deployment_codeblock_8",
+      "docs_oracle_deployment_codeblock_9",
+      "docs_oracle_deployment_logs_retention",
+      "docs_oracle_deployment_md",
+      "docs_oracle_deployment_oauth_invalid_state_error",
+      "docs_oracle_deployment_option_a_via_opencode_n8n_mcp_recommended",
+      "docs_oracle_deployment_option_b_manual_creation_in_n8n_ui",
+      "docs_oracle_deployment_oracle_free_tier_deployment_guide",
+      "docs_oracle_deployment_posts_not_publishing",
+      "docs_oracle_deployment_prerequisites",
+      "docs_oracle_deployment_ssl_https_issues",
+      "docs_oracle_deployment_token_refresh",
+      "docs_oracle_deployment_troubleshooting",
+      "docs_oracle_deployment_unauthorized_from_n8n_webhooks",
+      "docs_oracle_deployment_updates"
+    ],
+    "8": [
+      "production_readiness_md",
+      "saas_production_readiness_1_1_deploy_n8n_workflows_to_cloud_instance",
+      "saas_production_readiness_1_2_set_n8n_environment_variables",
+      "saas_production_readiness_1_3_set_frontend_environment_variables",
+      "saas_production_readiness_1_4_create_meta_app",
+      "saas_production_readiness_1_5_verify_supabase_storage_bucket",
+      "saas_production_readiness_2_1_enable_oauth_connect_flow",
+      "saas_production_readiness_2_2_enable_meta_oauth_signup_login_if_desired",
+      "saas_production_readiness_2_3_test_media_upload",
+      "saas_production_readiness_2_4_test_post_creation",
+      "saas_production_readiness_3_1_test_cron_scheduler",
+      "saas_production_readiness_3_2_test_facebook_publishing",
+      "saas_production_readiness_3_3_test_instagram_publishing",
+      "saas_production_readiness_3_4_test_retry_failure_handling",
+      "saas_production_readiness_3_5_test_token_refresh",
+      "saas_production_readiness_4_1_verify_dashboard_stats",
+      "saas_production_readiness_4_2_verify_activity_logs",
+      "saas_production_readiness_4_3_fix_remaining_issues",
+      "saas_production_readiness_4_4_security_remediation",
+      "saas_production_readiness_5_1_full_happy_path",
+      "saas_production_readiness_5_2_error_scenarios",
+      "saas_production_readiness_codeblock_1",
+      "saas_production_readiness_codeblock_2",
+      "saas_production_readiness_known_issues_logged",
+      "saas_production_readiness_phase_1_infrastructure_configuration",
+      "saas_production_readiness_phase_2_core_feature_integration",
+      "saas_production_readiness_phase_3_scheduling_publishing",
+      "saas_production_readiness_phase_4_monitoring_polish_security",
+      "saas_production_readiness_phase_5_end_to_end_verification",
+      "saas_production_readiness_production_readiness_plan",
+      "saas_production_readiness_quick_status"
+    ],
+    "9": [
       "frontend_package_dependencies",
       "frontend_package_dependencies_class_variance_authority",
       "frontend_package_dependencies_clsx",
@@ -224,69 +387,43 @@
       "frontend_package_scripts_start",
       "frontend_package_version"
     ],
-    "5": [
-      "facebook_graph_api",
-      "facebook_publish_workflow",
-      "failure_handler_workflow",
-      "instagram_publish_workflow",
-      "logging_workflow",
-      "media_assets_table",
-      "meta_graph_api",
-      "oauth_state_table",
-      "post_logs_table",
-      "post_media_table",
-      "profiles_table",
-      "retry_handler_workflow",
-      "scheduled_posts_table",
-      "social_accounts_table",
-      "supabase_db_credential",
-      "token_refresh_log_table",
-      "wf_cron_scheduler",
-      "wf_facebook_publish",
-      "wf_failure_handler",
-      "wf_instagram_publish",
-      "wf_logging",
-      "wf_media_upload",
-      "wf_oauth_callback",
-      "wf_oauth_connect",
-      "wf_post_crud",
-      "wf_retry_handler",
-      "wf_token_refresh",
-      "workflow_runs_table"
+    "10": [
+      "docs_superpowers_plans_2026_05_27_n8n_workflows_md",
+      "plans_2026_05_27_n8n_workflows_codeblock_1",
+      "plans_2026_05_27_n8n_workflows_codeblock_10",
+      "plans_2026_05_27_n8n_workflows_codeblock_11",
+      "plans_2026_05_27_n8n_workflows_codeblock_12",
+      "plans_2026_05_27_n8n_workflows_codeblock_13",
+      "plans_2026_05_27_n8n_workflows_codeblock_14",
+      "plans_2026_05_27_n8n_workflows_codeblock_2",
+      "plans_2026_05_27_n8n_workflows_codeblock_3",
+      "plans_2026_05_27_n8n_workflows_codeblock_4",
+      "plans_2026_05_27_n8n_workflows_codeblock_5",
+      "plans_2026_05_27_n8n_workflows_codeblock_6",
+      "plans_2026_05_27_n8n_workflows_codeblock_7",
+      "plans_2026_05_27_n8n_workflows_codeblock_8",
+      "plans_2026_05_27_n8n_workflows_codeblock_9",
+      "plans_2026_05_27_n8n_workflows_file_map",
+      "plans_2026_05_27_n8n_workflows_n8n_workflows_implementation_plan",
+      "plans_2026_05_27_n8n_workflows_task_10_deploy_workflows",
+      "plans_2026_05_27_n8n_workflows_task_11_end_to_end_smoke_tests",
+      "plans_2026_05_27_n8n_workflows_task_12_environment_variables_setup",
+      "plans_2026_05_27_n8n_workflows_task_1_wf_01_oauth_connect",
+      "plans_2026_05_27_n8n_workflows_task_2_wf_02_oauth_callback",
+      "plans_2026_05_27_n8n_workflows_task_3_wf_03_media_upload",
+      "plans_2026_05_27_n8n_workflows_task_4_wf_04_post_crud",
+      "plans_2026_05_27_n8n_workflows_task_5_wf_05_cron_scheduler",
+      "plans_2026_05_27_n8n_workflows_task_6_wf_08_token_refresh_sdk_conversion",
+      "plans_2026_05_27_n8n_workflows_task_7_wf_09_retry_handler_sdk_conversion",
+      "plans_2026_05_27_n8n_workflows_task_8_wf_11_logging_sdk_conversion",
+      "plans_2026_05_27_n8n_workflows_task_9_validate_all_workflows"
     ],
-    "6": [
-      "agents_config",
-      "n8n_backend",
-      "n8n_social_scheduler",
-      "n8n_social_scheduler_prd",
-      "nextjs_frontend",
-      "pg_advisory_locks",
-      "pg_batch_inserts",
-      "pg_fk_indexes",
-      "pg_full_text_search",
-      "pg_n_plus_one",
-      "pg_partial_indexes",
-      "pg_prepared_statements",
-      "pg_primary_keys",
-      "pg_skip_locked",
-      "phase_1_planning",
-      "phase_2_database",
-      "phase_3_storage",
-      "phase_4_n8n_workflows",
-      "phase_5_meta_api",
-      "phase_6_frontend",
-      "signal_design_system",
-      "supabase_auth",
-      "supabase_db",
-      "supabase_pg_skill",
-      "supabase_skill",
-      "supabase_storage"
-    ],
-    "7": [
+    "11": [
       "app_page_landingpage",
       "frontend_src_app_page_tsx",
       "frontend_src_components_landing_feature_card_tsx",
       "frontend_src_components_landing_features_section_tsx",
+      "frontend_src_components_landing_floating_sign_in_tsx",
       "frontend_src_components_landing_footer_tsx",
       "frontend_src_components_landing_hero_section_tsx",
       "frontend_src_components_landing_how_it_works_tsx",
@@ -296,6 +433,8 @@
       "landing_feature_card_featurecardprops",
       "landing_features_section_features",
       "landing_features_section_featuressection",
+      "landing_floating_sign_in_auth_paths",
+      "landing_floating_sign_in_floatingsignin",
       "landing_footer_footer",
       "landing_hero_section_container",
       "landing_hero_section_herosection",
@@ -303,11 +442,366 @@
       "landing_how_it_works_howitworks",
       "landing_how_it_works_steps",
       "landing_stats_bar_animatednumber",
+      "landing_stats_bar_fallbackstats",
+      "landing_stats_bar_globalstat",
       "landing_stats_bar_stats",
       "landing_stats_bar_statsbar",
       "landing_topographic_lines_topographiclines"
     ],
-    "8": [
+    "12": [
+      "docs_superpowers_plans_2026_05_28_hero_redesign_md",
+      "plans_2026_05_28_hero_redesign_codeblock_1",
+      "plans_2026_05_28_hero_redesign_codeblock_10",
+      "plans_2026_05_28_hero_redesign_codeblock_11",
+      "plans_2026_05_28_hero_redesign_codeblock_12",
+      "plans_2026_05_28_hero_redesign_codeblock_13",
+      "plans_2026_05_28_hero_redesign_codeblock_14",
+      "plans_2026_05_28_hero_redesign_codeblock_15",
+      "plans_2026_05_28_hero_redesign_codeblock_16",
+      "plans_2026_05_28_hero_redesign_codeblock_17",
+      "plans_2026_05_28_hero_redesign_codeblock_18",
+      "plans_2026_05_28_hero_redesign_codeblock_19",
+      "plans_2026_05_28_hero_redesign_codeblock_2",
+      "plans_2026_05_28_hero_redesign_codeblock_3",
+      "plans_2026_05_28_hero_redesign_codeblock_4",
+      "plans_2026_05_28_hero_redesign_codeblock_5",
+      "plans_2026_05_28_hero_redesign_codeblock_6",
+      "plans_2026_05_28_hero_redesign_codeblock_7",
+      "plans_2026_05_28_hero_redesign_codeblock_8",
+      "plans_2026_05_28_hero_redesign_codeblock_9",
+      "plans_2026_05_28_hero_redesign_file_structure",
+      "plans_2026_05_28_hero_redesign_hero_section_redesign_implementation_plan",
+      "plans_2026_05_28_hero_redesign_task_1_fix_hero_opacity_bug_and_replace_a_with_link",
+      "plans_2026_05_28_hero_redesign_task_2_hero_typography_value_prop_headline",
+      "plans_2026_05_28_hero_redesign_task_3_floating_login_button_on_landing_page",
+      "plans_2026_05_28_hero_redesign_task_4_handle_verified_1_on_login_page",
+      "plans_2026_05_28_hero_redesign_task_5_authguard_redirect_to_landing_page",
+      "plans_2026_05_28_hero_redesign_task_6_full_build_verification"
+    ],
+    "13": [
+      "phase_2_planning_md",
+      "saas_phase_2_planning_1_profiles",
+      "saas_phase_2_planning_2_oauth_state",
+      "saas_phase_2_planning_3_social_accounts",
+      "saas_phase_2_planning_4_media_assets",
+      "saas_phase_2_planning_5_scheduled_posts",
+      "saas_phase_2_planning_6_post_media_junction",
+      "saas_phase_2_planning_7_post_logs",
+      "saas_phase_2_planning_8_workflow_runs",
+      "saas_phase_2_planning_9_token_refresh_log",
+      "saas_phase_2_planning_bucket_media",
+      "saas_phase_2_planning_codeblock_1",
+      "saas_phase_2_planning_codeblock_2",
+      "saas_phase_2_planning_deliverables",
+      "saas_phase_2_planning_enums_to_create",
+      "saas_phase_2_planning_execution_order",
+      "saas_phase_2_planning_overview",
+      "saas_phase_2_planning_phase_2_database_storage_implementation_plan",
+      "saas_phase_2_planning_philosophy",
+      "saas_phase_2_planning_policy_per_table",
+      "saas_phase_2_planning_signed_url_strategy",
+      "saas_phase_2_planning_step_1_database_schema_design",
+      "saas_phase_2_planning_step_2_rls_policies",
+      "saas_phase_2_planning_step_3_storage_setup",
+      "saas_phase_2_planning_step_4_sql_migration_structure",
+      "saas_phase_2_planning_storage_policies",
+      "saas_phase_2_planning_tables_to_create_in_dependency_order"
+    ],
+    "14": [
+      "composer_account_selector_accountselector",
+      "composer_account_selector_accountselectorprops",
+      "composer_caption_editor_captioneditor",
+      "composer_caption_editor_captioneditorprops",
+      "composer_page_composerpage",
+      "composer_page_container",
+      "composer_page_item",
+      "composer_platform_selector_options",
+      "composer_platform_selector_platformselector",
+      "composer_platform_selector_platformselectorprops",
+      "composer_schedule_picker_schedulepicker",
+      "composer_schedule_picker_schedulepickerprops",
+      "frontend_src_app_composer_id_page_tsx",
+      "frontend_src_app_composer_id_page_tsx_id_page_container",
+      "frontend_src_app_composer_id_page_tsx_id_page_item",
+      "frontend_src_app_composer_page_tsx",
+      "frontend_src_components_composer_account_selector_tsx",
+      "frontend_src_components_composer_caption_editor_tsx",
+      "frontend_src_components_composer_platform_selector_tsx",
+      "frontend_src_components_composer_schedule_picker_tsx",
+      "frontend_src_components_ui_input_tsx",
+      "id_page_editpostpage",
+      "types_database_socialaccount",
+      "ui_input_input",
+      "ui_input_inputprops"
+    ],
+    "15": [
+      "accounts_connect_button_connectbuttonprops",
+      "appearance_page_appearancepage",
+      "appearance_page_container",
+      "appearance_page_item",
+      "appearance_page_themes",
+      "auth_auth_guard_authguard",
+      "calendar_page_calendarpage",
+      "calendar_page_container",
+      "calendar_page_item",
+      "calendar_page_monthnames",
+      "frontend_src_app_calendar_page_tsx",
+      "frontend_src_app_settings_appearance_page_tsx",
+      "frontend_src_app_settings_page_tsx",
+      "frontend_src_components_accounts_connect_button_tsx",
+      "frontend_src_components_auth_auth_guard_tsx",
+      "frontend_src_components_ui_button_tsx",
+      "hooks_use_calendar_usecalendar",
+      "hooks_use_settings_usesettings",
+      "settings_page_container",
+      "settings_page_item",
+      "settings_page_settingspage",
+      "ui_button_button",
+      "ui_button_buttonprops",
+      "ui_button_sizestyles",
+      "ui_button_variantstyles"
+    ],
+    "16": [
+      "accounts_page",
+      "api_integration",
+      "auth_login_page",
+      "auth_register_page",
+      "calendar_page",
+      "composer_form",
+      "composer_page",
+      "content_operations_app",
+      "content_orchestration_platform",
+      "dashboard_page",
+      "dashboard_stats",
+      "logs_page",
+      "media_page",
+      "media_upload",
+      "meta_integration",
+      "n8n_integration",
+      "navigation_sidebar",
+      "platform_feature_monitor",
+      "platform_feature_orchestrate",
+      "platform_feature_publish",
+      "post_status_filters",
+      "posts_page",
+      "settings_page"
+    ],
+    "17": [
+      "callback_page_authcallbackpage",
+      "frontend_src_app_auth_callback_page_tsx",
+      "frontend_src_app_posts_id_page_tsx",
+      "frontend_src_app_posts_id_page_tsx_id_page_container",
+      "frontend_src_app_posts_id_page_tsx_id_page_item",
+      "frontend_src_hooks_use_accounts_ts",
+      "frontend_src_hooks_use_auth_ts",
+      "frontend_src_hooks_use_calendar_ts",
+      "frontend_src_hooks_use_media_ts",
+      "frontend_src_hooks_use_posts_ts",
+      "frontend_src_hooks_use_settings_ts",
+      "frontend_src_lib_n8n_ts",
+      "frontend_src_lib_supabase_ts",
+      "hooks_use_auth_useauth",
+      "hooks_use_calendar_calendarpost",
+      "id_page_postdetailpage",
+      "lib_n8n_callwebhook",
+      "lib_n8n_cancelpost",
+      "lib_n8n_connectoauth",
+      "lib_n8n_createpost",
+      "lib_n8n_updatepost",
+      "lib_n8n_webhookoptions",
+      "lib_supabase_supabase"
+    ],
+    "18": [
+      "composer_media_dropzone_mediadropzone",
+      "composer_media_dropzone_mediadropzoneprops",
+      "frontend_src_components_composer_media_dropzone_tsx",
+      "frontend_src_components_shell_console_shell_tsx",
+      "frontend_src_components_shell_left_nav_tsx",
+      "frontend_src_components_shell_status_bar_tsx",
+      "frontend_src_components_shell_top_bar_tsx",
+      "frontend_src_lib_utils_ts",
+      "lib_utils_cn",
+      "lib_utils_daysuntilexpiry",
+      "lib_utils_formatdate",
+      "lib_utils_formatrelative",
+      "lib_utils_formattime",
+      "lib_utils_timeuntil",
+      "shell_console_shell_consoleshellprops",
+      "shell_left_nav_containervariants",
+      "shell_left_nav_itemvariants",
+      "shell_left_nav_leftnav",
+      "shell_left_nav_leftnavprops",
+      "shell_left_nav_navitems",
+      "shell_status_bar_statusbar",
+      "shell_top_bar_topbar",
+      "shell_top_bar_topbarprops"
+    ],
+    "19": [
+      "agents_skills_supabase_postgres_best_practices_references_contributing_md",
+      "references_contributing_1_concrete_transformation_patterns",
+      "references_contributing_2_error_first_structure",
+      "references_contributing_3_quantified_impact",
+      "references_contributing_4_self_contained_examples",
+      "references_contributing_5_semantic_naming",
+      "references_contributing_code_example_standards",
+      "references_contributing_codeblock_1",
+      "references_contributing_codeblock_2",
+      "references_contributing_codeblock_3",
+      "references_contributing_codeblock_4",
+      "references_contributing_codeblock_5",
+      "references_contributing_codeblock_6",
+      "references_contributing_codeblock_7",
+      "references_contributing_comments",
+      "references_contributing_impact_level_guidelines",
+      "references_contributing_key_principles",
+      "references_contributing_language_tags",
+      "references_contributing_reference_standards",
+      "references_contributing_review_checklist",
+      "references_contributing_sql_formatting",
+      "references_contributing_when_to_include_application_code",
+      "references_contributing_writing_guidelines_for_postgres_references"
+    ],
+    "20": [
+      "app_console",
+      "feature_monitoring",
+      "feature_orchestration",
+      "feature_scheduling",
+      "nav_sidebar",
+      "page_404",
+      "page_accounts",
+      "page_auth_error",
+      "page_calendar",
+      "page_composer",
+      "page_dashboard",
+      "page_landing",
+      "page_login",
+      "page_logs",
+      "page_media",
+      "page_posts",
+      "page_register",
+      "page_settings",
+      "page_settings_appearance",
+      "tech_meta_api",
+      "tech_n8n",
+      "tech_supabase"
+    ],
+    "21": [
+      "deployment_md",
+      "saas_deployment_1_provision_oracle_instance",
+      "saas_deployment_2_install_docker",
+      "saas_deployment_3_clone_configure",
+      "saas_deployment_4_add_reverse_proxy_caddy",
+      "saas_deployment_5_start",
+      "saas_deployment_6_configure_n8n",
+      "saas_deployment_7_deploy_workflows",
+      "saas_deployment_8_required_env_vars_in_n8n",
+      "saas_deployment_9_activate_workflows",
+      "saas_deployment_codeblock_1",
+      "saas_deployment_codeblock_2",
+      "saas_deployment_codeblock_3",
+      "saas_deployment_codeblock_4",
+      "saas_deployment_codeblock_5",
+      "saas_deployment_codeblock_6",
+      "saas_deployment_meta_developer_portal_configuration",
+      "saas_deployment_n8n_proxy_route",
+      "saas_deployment_notes",
+      "saas_deployment_oracle_free_tier_deployment_guide",
+      "saas_deployment_prerequisites",
+      "saas_deployment_steps"
+    ],
+    "22": [
+      "phase_4_planning_md",
+      "saas_phase_4_planning_approach",
+      "saas_phase_4_planning_codeblock_1",
+      "saas_phase_4_planning_codeblock_2",
+      "saas_phase_4_planning_credentials_needed_manual_setup_in_n8n_ui",
+      "saas_phase_4_planning_implementation_strategy",
+      "saas_phase_4_planning_overview",
+      "saas_phase_4_planning_phase_4_n8n_workflow_implementation_plan",
+      "saas_phase_4_planning_stored_files",
+      "saas_phase_4_planning_wf_10_failure_handler",
+      "saas_phase_4_planning_wf_11_logging_workflow",
+      "saas_phase_4_planning_wf_1_oauth_connect",
+      "saas_phase_4_planning_wf_2_oauth_callback",
+      "saas_phase_4_planning_wf_3_media_upload",
+      "saas_phase_4_planning_wf_4_post_crud",
+      "saas_phase_4_planning_wf_5_cron_scheduler",
+      "saas_phase_4_planning_wf_6_facebook_publish",
+      "saas_phase_4_planning_wf_7_instagram_publish",
+      "saas_phase_4_planning_wf_8_token_refresh",
+      "saas_phase_4_planning_wf_9_retry_handler",
+      "saas_phase_4_planning_workflow_designs",
+      "saas_phase_4_planning_workflow_execution_order_dependency_aware"
+    ],
+    "23": [
+      "package_json",
+      "saas_package_author",
+      "saas_package_bugs",
+      "saas_package_bugs_url",
+      "saas_package_dependencies",
+      "saas_package_dependencies_n8n_workflow_sdk",
+      "saas_package_description",
+      "saas_package_directories",
+      "saas_package_directories_doc",
+      "saas_package_homepage",
+      "saas_package_keywords",
+      "saas_package_license",
+      "saas_package_main",
+      "saas_package_name",
+      "saas_package_repository",
+      "saas_package_repository_type",
+      "saas_package_repository_url",
+      "saas_package_scripts",
+      "saas_package_scripts_test",
+      "saas_package_type",
+      "saas_package_version"
+    ],
+    "24": [
+      "phase_3_planning_md",
+      "saas_phase_3_planning_bucket_media",
+      "saas_phase_3_planning_codeblock_1",
+      "saas_phase_3_planning_codeblock_2",
+      "saas_phase_3_planning_codeblock_3",
+      "saas_phase_3_planning_codeblock_4",
+      "saas_phase_3_planning_frontend_upload_flow",
+      "saas_phase_3_planning_justification_for_public_bucket",
+      "saas_phase_3_planning_migration_file_structure",
+      "saas_phase_3_planning_n8n_implementation",
+      "saas_phase_3_planning_n8n_publish_flow",
+      "saas_phase_3_planning_overview",
+      "saas_phase_3_planning_phase_3_supabase_storage_implementation_plan",
+      "saas_phase_3_planning_step_1_bucket_configuration",
+      "saas_phase_3_planning_step_2_file_path_convention",
+      "saas_phase_3_planning_step_3_storage_rls_policies",
+      "saas_phase_3_planning_step_4_signed_url_strategy",
+      "saas_phase_3_planning_step_5_deliverables",
+      "saas_phase_3_planning_step_6_integration_points",
+      "saas_phase_3_planning_strategy",
+      "saas_phase_3_planning_when_used"
+    ],
+    "25": [
+      "accounts_connect_button_connectbutton",
+      "accounts_page_accountspage",
+      "accounts_page_container",
+      "accounts_page_item",
+      "frontend_src_app_accounts_page_tsx",
+      "frontend_src_app_media_page_tsx",
+      "frontend_src_components_media_media_grid_tsx",
+      "frontend_src_components_ui_skeleton_tsx",
+      "hooks_use_accounts_useaccounts",
+      "hooks_use_media_usemedia",
+      "media_media_grid_mediagrid",
+      "media_media_grid_mediagridprops",
+      "media_page_container",
+      "media_page_item",
+      "media_page_mediapage",
+      "types_database_mediaasset",
+      "ui_skeleton_skeletoncard",
+      "ui_skeleton_skeletongrid",
+      "ui_skeleton_skeletonlist",
+      "ui_skeleton_skeletonrow"
+    ],
+    "26": [
       "frontend_tsconfig_compileroptions",
       "frontend_tsconfig_compileroptions_allowjs",
       "frontend_tsconfig_compileroptions_esmoduleinterop",
@@ -329,28 +823,196 @@
       "frontend_tsconfig_json",
       "frontend_tsconfig_paths"
     ],
-    "9": [
-      "accounts_account_card_accountcardprops",
-      "composer_account_selector_accountselector",
-      "composer_account_selector_accountselectorprops",
-      "composer_caption_editor_captioneditor",
-      "composer_caption_editor_captioneditorprops",
-      "composer_page_composerpage",
-      "composer_page_container",
-      "composer_page_item",
-      "composer_platform_selector_options",
-      "composer_platform_selector_platformselector",
-      "composer_platform_selector_platformselectorprops",
-      "composer_schedule_picker_schedulepicker",
-      "composer_schedule_picker_schedulepickerprops",
-      "frontend_src_app_composer_page_tsx",
-      "frontend_src_components_composer_account_selector_tsx",
-      "frontend_src_components_composer_caption_editor_tsx",
-      "frontend_src_components_composer_platform_selector_tsx",
-      "frontend_src_components_composer_schedule_picker_tsx",
-      "types_database_socialaccount"
+    "27": [
+      "opencode_opencode_env_firecrawl_api_key",
+      "opencode_opencode_firecrawl_mcp_command",
+      "opencode_opencode_firecrawl_mcp_enabled",
+      "opencode_opencode_firecrawl_mcp_env",
+      "opencode_opencode_firecrawl_mcp_type",
+      "opencode_opencode_json",
+      "opencode_opencode_mcp",
+      "opencode_opencode_mcp_firecrawl_mcp",
+      "opencode_opencode_mcp_playwright",
+      "opencode_opencode_mcp_supabase",
+      "opencode_opencode_playwright_command",
+      "opencode_opencode_playwright_enabled",
+      "opencode_opencode_playwright_type",
+      "opencode_opencode_plugin",
+      "opencode_opencode_schema",
+      "opencode_opencode_skills",
+      "opencode_opencode_skills_paths",
+      "opencode_opencode_supabase_enabled",
+      "opencode_opencode_supabase_type",
+      "opencode_opencode_supabase_url"
     ],
-    "10": [
+    "28": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free",
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_14_4s",
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_6_5s",
+      "saas_session_opencode_assistant_compaction_deepseek_v4_flash_free_15_6s",
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_53_4s",
+      "saas_session_opencode_constraints_preferences",
+      "saas_session_opencode_critical_context",
+      "saas_session_opencode_goal",
+      "saas_session_opencode_key_decisions",
+      "saas_session_opencode_new_session_2026_05_27t10_21_05_651z",
+      "saas_session_opencode_next_steps",
+      "saas_session_opencode_relevant_files",
+      "saas_session_opencode_user",
+      "saas_session_opencode_user_12929",
+      "saas_session_opencode_user_14258",
+      "saas_session_opencode_user_5563",
+      "saas_session_opencode_user_7660",
+      "saas_session_opencode_user_7749",
+      "saas_session_opencode_what_was_accomplished",
+      "session_opencode_md"
+    ],
+    "29": [
+      "docs_superpowers_specs_2026_05_29_responsive_design_spec_md",
+      "specs_2026_05_29_responsive_design_spec_404",
+      "specs_2026_05_29_responsive_design_spec_accounts",
+      "specs_2026_05_29_responsive_design_spec_auth",
+      "specs_2026_05_29_responsive_design_spec_calendar",
+      "specs_2026_05_29_responsive_design_spec_composer_media_logs",
+      "specs_2026_05_29_responsive_design_spec_console_shell_tsx",
+      "specs_2026_05_29_responsive_design_spec_dashboard",
+      "specs_2026_05_29_responsive_design_spec_files_changed_26_files",
+      "specs_2026_05_29_responsive_design_spec_goal",
+      "specs_2026_05_29_responsive_design_spec_landing",
+      "specs_2026_05_29_responsive_design_spec_left_nav_tsx",
+      "specs_2026_05_29_responsive_design_spec_page_level_changes",
+      "specs_2026_05_29_responsive_design_spec_posts",
+      "specs_2026_05_29_responsive_design_spec_responsive_design_spec_multi_user_social_media_scheduler",
+      "specs_2026_05_29_responsive_design_spec_settings",
+      "specs_2026_05_29_responsive_design_spec_shell_global_layout",
+      "specs_2026_05_29_responsive_design_spec_status_bar_tsx",
+      "specs_2026_05_29_responsive_design_spec_strategy",
+      "specs_2026_05_29_responsive_design_spec_top_bar_tsx"
+    ],
+    "30": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_6s_11248",
+      "saas_session_opencode_codeblock_262",
+      "saas_session_opencode_codeblock_263",
+      "saas_session_opencode_codeblock_264",
+      "saas_session_opencode_codeblock_265",
+      "saas_session_opencode_codeblock_266",
+      "saas_session_opencode_codeblock_267",
+      "saas_session_opencode_codeblock_268",
+      "saas_session_opencode_codeblock_269",
+      "saas_session_opencode_codeblock_270",
+      "saas_session_opencode_codeblock_271",
+      "saas_session_opencode_codeblock_272",
+      "saas_session_opencode_codeblock_273",
+      "saas_session_opencode_codeblock_274",
+      "saas_session_opencode_codeblock_275",
+      "saas_session_opencode_codeblock_276",
+      "saas_session_opencode_codeblock_277"
+    ],
+    "31": [
+      "n8n_workflows_04_post_crud_ts",
+      "workflows_04_post_crud_cancelpost",
+      "workflows_04_post_crud_insertpost",
+      "workflows_04_post_crud_insertpostmedia",
+      "workflows_04_post_crud_linkmedia",
+      "workflows_04_post_crud_logcreate",
+      "workflows_04_post_crud_parsecanceldata",
+      "workflows_04_post_crud_parsecreatedata",
+      "workflows_04_post_crud_parseeditdata",
+      "workflows_04_post_crud_respondcancel",
+      "workflows_04_post_crud_respondcreate",
+      "workflows_04_post_crud_respondedit",
+      "workflows_04_post_crud_routeoperation",
+      "workflows_04_post_crud_updatepost",
+      "workflows_04_post_crud_verifyauth",
+      "workflows_04_post_crud_webhooktrigger"
+    ],
+    "32": [
+      "n8n_workflows_07_instagram_publish_ts",
+      "workflows_07_instagram_publish_buildcontainerurl",
+      "workflows_07_instagram_publish_buildpublishurl",
+      "workflows_07_instagram_publish_callretry",
+      "workflows_07_instagram_publish_checkcontainerstatus",
+      "workflows_07_instagram_publish_checkpublishresult",
+      "workflows_07_instagram_publish_createcontainer",
+      "workflows_07_instagram_publish_logfailure",
+      "workflows_07_instagram_publish_logsuccess",
+      "workflows_07_instagram_publish_markfailed",
+      "workflows_07_instagram_publish_markpublished",
+      "workflows_07_instagram_publish_publishcontainer",
+      "workflows_07_instagram_publish_respond",
+      "workflows_07_instagram_publish_responderror",
+      "workflows_07_instagram_publish_verifyinternaltoken",
+      "workflows_07_instagram_publish_webhooktrigger"
+    ],
+    "33": [
+      "docs_superpowers_specs_2026_05_28_hero_redesign_design_md",
+      "specs_2026_05_28_hero_redesign_design_1_hero_typography",
+      "specs_2026_05_28_hero_redesign_design_2_floating_login_button",
+      "specs_2026_05_28_hero_redesign_design_3_opacity_bug_fix",
+      "specs_2026_05_28_hero_redesign_design_4_hero_a_link",
+      "specs_2026_05_28_hero_redesign_design_5_verified_1_handling_on_login_page",
+      "specs_2026_05_28_hero_redesign_design_6_authguard_redirect",
+      "specs_2026_05_28_hero_redesign_design_codeblock_1",
+      "specs_2026_05_28_hero_redesign_design_codeblock_2",
+      "specs_2026_05_28_hero_redesign_design_current_state",
+      "specs_2026_05_28_hero_redesign_design_error_handling",
+      "specs_2026_05_28_hero_redesign_design_files_changed",
+      "specs_2026_05_28_hero_redesign_design_hero_section_redesign_design_spec",
+      "specs_2026_05_28_hero_redesign_design_overview",
+      "specs_2026_05_28_hero_redesign_design_target_state_option_1",
+      "specs_2026_05_28_hero_redesign_design_testing"
+    ],
+    "34": [
+      "n8n_workflows_02_oauth_callback_ts",
+      "workflows_02_oauth_callback_checkstate",
+      "workflows_02_oauth_callback_checktoken",
+      "workflows_02_oauth_callback_exchangecode",
+      "workflows_02_oauth_callback_exchangelonglived",
+      "workflows_02_oauth_callback_fetchpages",
+      "workflows_02_oauth_callback_insertaccounts",
+      "workflows_02_oauth_callback_lookupstate",
+      "workflows_02_oauth_callback_markstateused",
+      "workflows_02_oauth_callback_respondinvalidstate",
+      "workflows_02_oauth_callback_respondsuccess",
+      "workflows_02_oauth_callback_respondtokenfailed",
+      "workflows_02_oauth_callback_storeaccount",
+      "workflows_02_oauth_callback_verifyauth",
+      "workflows_02_oauth_callback_webhooktrigger"
+    ],
+    "35": [
+      "n8n_workflows_05_cron_scheduler_ts",
+      "workflows_05_cron_scheduler_callfacebookpublish",
+      "workflows_05_cron_scheduler_callinstagrampublish",
+      "workflows_05_cron_scheduler_calltokenrefresh",
+      "workflows_05_cron_scheduler_checkhasposts",
+      "workflows_05_cron_scheduler_dispatchtopublish",
+      "workflows_05_cron_scheduler_fetchexpiringtokens",
+      "workflows_05_cron_scheduler_fetchmedia",
+      "workflows_05_cron_scheduler_fetchpendingposts",
+      "workflows_05_cron_scheduler_hasexpiringtokens",
+      "workflows_05_cron_scheduler_refreshsib",
+      "workflows_05_cron_scheduler_routeplatform",
+      "workflows_05_cron_scheduler_scheduletrigger",
+      "workflows_05_cron_scheduler_sib",
+      "workflows_05_cron_scheduler_storerefreshedtoken"
+    ],
+    "36": [
+      "app_layout_bilderberg",
+      "app_layout_jetbrainsmono",
+      "app_layout_metadata",
+      "app_layout_rootlayout",
+      "app_layout_satoshi",
+      "frontend_src_app_layout_tsx",
+      "frontend_src_components_ui_error_boundary_tsx",
+      "ui_error_boundary_errorboundary",
+      "ui_error_boundary_errorboundary_componentdidcatch",
+      "ui_error_boundary_errorboundary_constructor",
+      "ui_error_boundary_errorboundary_getderivedstatefromerror",
+      "ui_error_boundary_errorboundary_render",
+      "ui_error_boundary_errorboundaryprops",
+      "ui_error_boundary_errorboundarystate"
+    ],
+    "37": [
       "auth_auth_form_authform",
       "auth_auth_form_authformprops",
       "auth_auth_layout_authlayout",
@@ -361,30 +1023,71 @@
       "frontend_src_components_auth_auth_form_tsx",
       "frontend_src_components_auth_auth_layout_tsx",
       "frontend_src_components_auth_motion_narrative_tsx",
-      "frontend_src_components_ui_input_tsx",
+      "login_page_loginform",
       "login_page_loginpage",
-      "register_page_registerpage",
-      "ui_input_input",
-      "ui_input_inputprops"
+      "register_page_registerpage"
     ],
-    "11": [
-      "n8n_workflows_07_instagram_publish_ts",
-      "workflows_07_instagram_publish_buildcontainerurl",
-      "workflows_07_instagram_publish_buildpublishurl",
-      "workflows_07_instagram_publish_callretry",
-      "workflows_07_instagram_publish_checkpublishresult",
-      "workflows_07_instagram_publish_createcontainer",
-      "workflows_07_instagram_publish_logfailure",
-      "workflows_07_instagram_publish_logsuccess",
-      "workflows_07_instagram_publish_markfailed",
-      "workflows_07_instagram_publish_markpublished",
-      "workflows_07_instagram_publish_publishcontainer",
-      "workflows_07_instagram_publish_respond",
-      "workflows_07_instagram_publish_responderror",
-      "workflows_07_instagram_publish_waitnode",
-      "workflows_07_instagram_publish_webhooktrigger"
+    "38": [
+      "dashboard_page_container",
+      "dashboard_page_dashboardpage",
+      "dashboard_page_item",
+      "frontend_src_app_dashboard_page_tsx",
+      "frontend_src_hooks_use_dashboard_ts",
+      "hooks_use_dashboard_activityitem",
+      "hooks_use_dashboard_formatrelativetime",
+      "hooks_use_dashboard_getdaylabel",
+      "hooks_use_dashboard_upcomingpost",
+      "hooks_use_dashboard_usedashboard",
+      "hooks_use_dashboard_velocityday",
+      "shell_console_shell_consoleshell",
+      "types_database_dashboardstats"
     ],
-    "12": [
+    "39": [
+      "n8n_workflows_06_facebook_publish_ts",
+      "workflows_06_facebook_publish_buildfbpayload",
+      "workflows_06_facebook_publish_callfbapi",
+      "workflows_06_facebook_publish_callretry",
+      "workflows_06_facebook_publish_checkresult",
+      "workflows_06_facebook_publish_logfailure",
+      "workflows_06_facebook_publish_logsuccess",
+      "workflows_06_facebook_publish_markfailed",
+      "workflows_06_facebook_publish_markpublished",
+      "workflows_06_facebook_publish_respond",
+      "workflows_06_facebook_publish_responderror",
+      "workflows_06_facebook_publish_verifyinternaltoken",
+      "workflows_06_facebook_publish_webhooktrigger"
+    ],
+    "40": [
+      "saas_session_opencode_1_system_architecture_overview",
+      "saas_session_opencode_2_strong_points",
+      "saas_session_opencode_3_1_authentication_gaps",
+      "saas_session_opencode_3_2_oauth_design_weaknesses",
+      "saas_session_opencode_3_3_n8n_anti_patterns",
+      "saas_session_opencode_3_4_supabase_postgres_issues",
+      "saas_session_opencode_3_5_frontend_issues",
+      "saas_session_opencode_3_6_deployment_infrastructure",
+      "saas_session_opencode_3_7_monitoring_observability",
+      "saas_session_opencode_3_issues_risks",
+      "saas_session_opencode_4_recommendations_by_priority",
+      "saas_session_opencode_architecture_review_multi_user_social_media_scheduler",
+      "saas_session_opencode_codeblock_288"
+    ],
+    "41": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_1s",
+      "saas_session_opencode_codeblock_126",
+      "saas_session_opencode_codeblock_127",
+      "saas_session_opencode_codeblock_128",
+      "saas_session_opencode_codeblock_129",
+      "saas_session_opencode_codeblock_130",
+      "saas_session_opencode_codeblock_131",
+      "saas_session_opencode_codeblock_132",
+      "saas_session_opencode_codeblock_133",
+      "saas_session_opencode_codeblock_134",
+      "saas_session_opencode_codeblock_135",
+      "saas_session_opencode_codeblock_136",
+      "saas_session_opencode_codeblock_137"
+    ],
+    "42": [
       "saas_skills_lock_skills",
       "saas_skills_lock_skills_supabase",
       "saas_skills_lock_skills_supabase_postgres_best_practices",
@@ -399,7 +1102,7 @@
       "saas_skills_lock_version",
       "skills_lock_json"
     ],
-    "13": [
+    "43": [
       "concept_covering_index",
       "concept_lowercase_identifiers",
       "concept_pg_stat_statements",
@@ -413,21 +1116,171 @@
       "supabase_postgres_best_practices_skill",
       "template_ref"
     ],
-    "14": [
-      "n8n_workflows_06_facebook_publish_ts",
-      "workflows_06_facebook_publish_buildfbpayload",
-      "workflows_06_facebook_publish_callfbapi",
-      "workflows_06_facebook_publish_callretry",
-      "workflows_06_facebook_publish_checkresult",
-      "workflows_06_facebook_publish_logfailure",
-      "workflows_06_facebook_publish_logsuccess",
-      "workflows_06_facebook_publish_markfailed",
-      "workflows_06_facebook_publish_markpublished",
-      "workflows_06_facebook_publish_respond",
-      "workflows_06_facebook_publish_responderror",
-      "workflows_06_facebook_publish_webhooktrigger"
+    "44": [
+      "agents_skills_supabase_skill_md",
+      "supabase_skill_codeblock_1",
+      "supabase_skill_codeblock_2",
+      "supabase_skill_codeblock_3",
+      "supabase_skill_codeblock_4",
+      "supabase_skill_core_principles",
+      "supabase_skill_making_and_committing_schema_changes",
+      "supabase_skill_reference_guides",
+      "supabase_skill_supabase",
+      "supabase_skill_supabase_cli",
+      "supabase_skill_supabase_documentation",
+      "supabase_skill_supabase_mcp_server"
     ],
-    "15": [
+    "45": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_3_6s",
+      "saas_session_opencode_codeblock_240",
+      "saas_session_opencode_codeblock_241",
+      "saas_session_opencode_codeblock_242",
+      "saas_session_opencode_codeblock_243",
+      "saas_session_opencode_codeblock_244",
+      "saas_session_opencode_codeblock_245",
+      "saas_session_opencode_codeblock_246",
+      "saas_session_opencode_codeblock_247",
+      "saas_session_opencode_codeblock_248",
+      "saas_session_opencode_codeblock_249"
+    ],
+    "46": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_3_9s",
+      "saas_session_opencode_codeblock_230",
+      "saas_session_opencode_codeblock_231",
+      "saas_session_opencode_codeblock_232",
+      "saas_session_opencode_codeblock_233",
+      "saas_session_opencode_codeblock_234",
+      "saas_session_opencode_codeblock_235",
+      "saas_session_opencode_codeblock_236",
+      "saas_session_opencode_codeblock_237",
+      "saas_session_opencode_codeblock_238",
+      "saas_session_opencode_codeblock_239"
+    ],
+    "47": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_0s",
+      "saas_session_opencode_codeblock_250",
+      "saas_session_opencode_codeblock_251",
+      "saas_session_opencode_codeblock_252",
+      "saas_session_opencode_codeblock_253",
+      "saas_session_opencode_codeblock_254",
+      "saas_session_opencode_codeblock_255",
+      "saas_session_opencode_codeblock_256",
+      "saas_session_opencode_codeblock_257",
+      "saas_session_opencode_codeblock_258",
+      "saas_session_opencode_codeblock_259"
+    ],
+    "48": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_2s",
+      "saas_session_opencode_codeblock_194",
+      "saas_session_opencode_codeblock_195",
+      "saas_session_opencode_codeblock_196",
+      "saas_session_opencode_codeblock_197",
+      "saas_session_opencode_codeblock_198",
+      "saas_session_opencode_codeblock_199",
+      "saas_session_opencode_codeblock_200",
+      "saas_session_opencode_codeblock_201",
+      "saas_session_opencode_codeblock_202",
+      "saas_session_opencode_codeblock_203"
+    ],
+    "49": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_9s",
+      "saas_session_opencode_codeblock_210",
+      "saas_session_opencode_codeblock_211",
+      "saas_session_opencode_codeblock_212",
+      "saas_session_opencode_codeblock_213",
+      "saas_session_opencode_codeblock_214",
+      "saas_session_opencode_codeblock_215",
+      "saas_session_opencode_codeblock_216",
+      "saas_session_opencode_codeblock_217",
+      "saas_session_opencode_codeblock_218",
+      "saas_session_opencode_codeblock_219"
+    ],
+    "50": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_5_0s",
+      "saas_session_opencode_codeblock_220",
+      "saas_session_opencode_codeblock_221",
+      "saas_session_opencode_codeblock_222",
+      "saas_session_opencode_codeblock_223",
+      "saas_session_opencode_codeblock_224",
+      "saas_session_opencode_codeblock_225",
+      "saas_session_opencode_codeblock_226",
+      "saas_session_opencode_codeblock_227",
+      "saas_session_opencode_codeblock_228",
+      "saas_session_opencode_codeblock_229"
+    ],
+    "51": [
+      "frontend_src_app_posts_page_tsx",
+      "frontend_src_components_posts_filter_bar_tsx",
+      "hooks_use_posts_useposts",
+      "posts_filter_bar_filterbar",
+      "posts_filter_bar_filterbarprops",
+      "posts_filter_bar_statustabs",
+      "posts_page_container",
+      "posts_page_item",
+      "posts_page_postscontent",
+      "posts_page_postspage"
+    ],
+    "52": [
+      "frontend_src_lib_queries_ts",
+      "lib_queries_getalllogs",
+      "lib_queries_getcalendarposts",
+      "lib_queries_getdashboardstats",
+      "lib_queries_getlogsforpost",
+      "lib_queries_getmyaccounts",
+      "lib_queries_getmymedia",
+      "lib_queries_getmyposts",
+      "lib_queries_getpostbyid",
+      "lib_queries_getupcomingposts"
+    ],
+    "53": [
+      "agents_skills_supabase_postgres_best_practices_references_sections_md",
+      "references_sections_1_query_performance_query",
+      "references_sections_2_connection_management_conn",
+      "references_sections_3_security_rls_security",
+      "references_sections_4_schema_design_schema",
+      "references_sections_5_concurrency_locking_lock",
+      "references_sections_6_data_access_patterns_data",
+      "references_sections_7_monitoring_diagnostics_monitor",
+      "references_sections_8_advanced_features_advanced",
+      "references_sections_section_definitions"
+    ],
+    "54": [
+      "project_context_md",
+      "saas_project_context_codeblock_1",
+      "saas_project_context_current_status",
+      "saas_project_context_database_9_tables",
+      "saas_project_context_frontend_14_routes",
+      "saas_project_context_key_design_decisions",
+      "saas_project_context_motive",
+      "saas_project_context_multi_user_social_media_scheduler_project_context",
+      "saas_project_context_n8n_workflow_map_11_workflows",
+      "saas_project_context_stack"
+    ],
+    "55": [
+      "readme_md",
+      "saas_readme_architecture",
+      "saas_readme_codeblock_1",
+      "saas_readme_codeblock_2",
+      "saas_readme_codeblock_3",
+      "saas_readme_multi_user_social_media_scheduler",
+      "saas_readme_project_structure",
+      "saas_readme_quick_start",
+      "saas_readme_stack",
+      "saas_readme_workflows"
+    ],
+    "56": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_9_1s",
+      "saas_session_opencode_codeblock_29",
+      "saas_session_opencode_codeblock_30",
+      "saas_session_opencode_codeblock_31",
+      "saas_session_opencode_codeblock_32",
+      "saas_session_opencode_codeblock_33",
+      "saas_session_opencode_codeblock_34",
+      "saas_session_opencode_codeblock_35",
+      "saas_session_opencode_codeblock_36",
+      "saas_session_opencode_codeblock_37"
+    ],
+    "57": [
       "frontend_agents_breaking_changes",
       "frontend_agents_local_docs",
       "frontend_claude_agents_ref",
@@ -436,62 +1289,97 @@
       "frontend_readme_page_tsx",
       "frontend_readme_vercel_deploy",
       "public_file_file_icon",
-      "public_window_window_icon",
-      "readme_n8n_centric",
-      "readme_project_title"
+      "public_window_window_icon"
     ],
-    "16": [
-      "auth_callback_page",
-      "auth_guard",
-      "auth_layout",
-      "console_shell",
-      "left_nav",
-      "login_page",
-      "register_page",
-      "status_bar",
-      "supabase_client",
-      "top_bar",
-      "use_auth"
+    "58": [
+      "dashboard_stats_row_barcolors",
+      "dashboard_stats_row_colors",
+      "dashboard_stats_row_item",
+      "dashboard_stats_row_statcard",
+      "dashboard_stats_row_statcardprops",
+      "dashboard_stats_row_statcolor",
+      "dashboard_stats_row_statsrow",
+      "dashboard_stats_row_statsrowprops",
+      "frontend_src_components_dashboard_stats_row_tsx"
     ],
-    "17": [
-      "n8n_workflows_09_retry_handler_workflow_json",
-      "workflows_09_retry_handler_workflow_workflow",
-      "workflows_09_retry_handler_workflow_workflow_active",
-      "workflows_09_retry_handler_workflow_workflow_description",
-      "workflows_09_retry_handler_workflow_workflow_id",
-      "workflows_09_retry_handler_workflow_workflow_name",
-      "workflows_09_retry_handler_workflow_workflow_nodecount",
-      "workflows_09_retry_handler_workflow_workflow_nodes",
-      "workflows_09_retry_handler_workflow_workflow_path",
-      "workflows_09_retry_handler_workflow_workflow_webhookmethod",
-      "workflows_09_retry_handler_workflow_workflow_webhookurl"
+    "59": [
+      "calendar_calendar_grid_calendargrid",
+      "calendar_calendar_grid_calendargridprops",
+      "calendar_calendar_grid_calendarpost",
+      "calendar_calendar_grid_daylabels",
+      "calendar_day_cell_calendarpost",
+      "calendar_day_cell_daycell",
+      "calendar_day_cell_daycellprops",
+      "frontend_src_components_calendar_calendar_grid_tsx",
+      "frontend_src_components_calendar_day_cell_tsx"
     ],
-    "18": [
-      "n8n_workflows_11_logging_workflow_json",
-      "workflows_11_logging_workflow_workflow",
-      "workflows_11_logging_workflow_workflow_active",
-      "workflows_11_logging_workflow_workflow_description",
-      "workflows_11_logging_workflow_workflow_id",
-      "workflows_11_logging_workflow_workflow_name",
-      "workflows_11_logging_workflow_workflow_nodecount",
-      "workflows_11_logging_workflow_workflow_nodes",
-      "workflows_11_logging_workflow_workflow_path",
-      "workflows_11_logging_workflow_workflow_webhookmethod",
-      "workflows_11_logging_workflow_workflow_webhookurl"
+    "60": [
+      "n8n_workflows_09_retry_handler_ts",
+      "workflows_09_retry_handler_callfailurehandler",
+      "workflows_09_retry_handler_checkpost",
+      "workflows_09_retry_handler_checkretries",
+      "workflows_09_retry_handler_computebackoff",
+      "workflows_09_retry_handler_reschedulepost",
+      "workflows_09_retry_handler_respond",
+      "workflows_09_retry_handler_verifyinternaltoken",
+      "workflows_09_retry_handler_webhooktrigger"
     ],
-    "19": [
-      "opencode_opencode_json",
-      "opencode_opencode_mcp",
-      "opencode_opencode_mcp_supabase",
-      "opencode_opencode_plugin",
-      "opencode_opencode_schema",
-      "opencode_opencode_skills",
-      "opencode_opencode_skills_paths",
-      "opencode_opencode_supabase_enabled",
-      "opencode_opencode_supabase_type",
-      "opencode_opencode_supabase_url"
+    "61": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_14_7s",
+      "saas_session_opencode_codeblock_118",
+      "saas_session_opencode_codeblock_119",
+      "saas_session_opencode_codeblock_120",
+      "saas_session_opencode_codeblock_121",
+      "saas_session_opencode_codeblock_122",
+      "saas_session_opencode_codeblock_123",
+      "saas_session_opencode_codeblock_124",
+      "saas_session_opencode_codeblock_125"
     ],
-    "20": [
+    "62": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_28_4s",
+      "saas_session_opencode_codeblock_170",
+      "saas_session_opencode_codeblock_171",
+      "saas_session_opencode_codeblock_172",
+      "saas_session_opencode_codeblock_173",
+      "saas_session_opencode_codeblock_174",
+      "saas_session_opencode_codeblock_175",
+      "saas_session_opencode_codeblock_176",
+      "saas_session_opencode_codeblock_177"
+    ],
+    "63": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_28_5s",
+      "saas_session_opencode_codeblock_300",
+      "saas_session_opencode_codeblock_301",
+      "saas_session_opencode_codeblock_302",
+      "saas_session_opencode_codeblock_303",
+      "saas_session_opencode_codeblock_304",
+      "saas_session_opencode_codeblock_305",
+      "saas_session_opencode_codeblock_306",
+      "saas_session_opencode_codeblock_307"
+    ],
+    "64": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_29_1s",
+      "saas_session_opencode_codeblock_150",
+      "saas_session_opencode_codeblock_151",
+      "saas_session_opencode_codeblock_152",
+      "saas_session_opencode_codeblock_153",
+      "saas_session_opencode_codeblock_154",
+      "saas_session_opencode_codeblock_155",
+      "saas_session_opencode_codeblock_156",
+      "saas_session_opencode_codeblock_157"
+    ],
+    "65": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_61_3s",
+      "saas_session_opencode_codeblock_138",
+      "saas_session_opencode_codeblock_139",
+      "saas_session_opencode_codeblock_140",
+      "saas_session_opencode_codeblock_141",
+      "saas_session_opencode_codeblock_142",
+      "saas_session_opencode_codeblock_143",
+      "saas_session_opencode_codeblock_144",
+      "saas_session_opencode_codeblock_145"
+    ],
+    "66": [
       "advanced_jsonb_indexing_ref",
       "concept_brin_index",
       "concept_btree_index",
@@ -501,221 +1389,1182 @@
       "concept_jsonb_indexing",
       "query_index_types_ref"
     ],
-    "21": [
+    "67": [
+      "config_opencode",
+      "mcp_firecrawl",
+      "mcp_playwright",
+      "mcp_supabase",
+      "plugin_graphify",
+      "skill_supabase",
+      "skill_supabase_postgres"
+    ],
+    "68": [
+      "n8n_workflows_01_oauth_connect_ts",
+      "workflows_01_oauth_connect_buildredirecturl",
+      "workflows_01_oauth_connect_generatestate",
+      "workflows_01_oauth_connect_respond",
+      "workflows_01_oauth_connect_storestate",
+      "workflows_01_oauth_connect_verifyauth",
+      "workflows_01_oauth_connect_webhooktrigger"
+    ],
+    "69": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_23_6s",
+      "saas_session_opencode_codeblock_112",
+      "saas_session_opencode_codeblock_113",
+      "saas_session_opencode_codeblock_114",
+      "saas_session_opencode_codeblock_115",
+      "saas_session_opencode_codeblock_116",
+      "saas_session_opencode_codeblock_117"
+    ],
+    "70": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_2s_985",
+      "saas_session_opencode_codeblock_64",
+      "saas_session_opencode_codeblock_65",
+      "saas_session_opencode_codeblock_66",
+      "saas_session_opencode_codeblock_67",
+      "saas_session_opencode_codeblock_68",
+      "saas_session_opencode_codeblock_69"
+    ],
+    "71": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_52_4s",
+      "saas_session_opencode_codeblock_164",
+      "saas_session_opencode_codeblock_165",
+      "saas_session_opencode_codeblock_166",
+      "saas_session_opencode_codeblock_167",
+      "saas_session_opencode_codeblock_168",
+      "saas_session_opencode_codeblock_169"
+    ],
+    "72": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_6s",
+      "saas_session_opencode_codeblock_204",
+      "saas_session_opencode_codeblock_205",
+      "saas_session_opencode_codeblock_206",
+      "saas_session_opencode_codeblock_207",
+      "saas_session_opencode_codeblock_208",
+      "saas_session_opencode_codeblock_209"
+    ],
+    "73": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_46_1s",
+      "saas_session_opencode_codeblock_158",
+      "saas_session_opencode_codeblock_159",
+      "saas_session_opencode_codeblock_160",
+      "saas_session_opencode_codeblock_161",
+      "saas_session_opencode_codeblock_162",
+      "saas_session_opencode_codeblock_163"
+    ],
+    "74": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_1s",
+      "saas_session_opencode_codeblock_188",
+      "saas_session_opencode_codeblock_189",
+      "saas_session_opencode_codeblock_190",
+      "saas_session_opencode_codeblock_191",
+      "saas_session_opencode_codeblock_192",
+      "saas_session_opencode_codeblock_193"
+    ],
+    "75": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_3_9s_12070",
+      "saas_session_opencode_codeblock_278",
+      "saas_session_opencode_codeblock_279",
+      "saas_session_opencode_codeblock_280",
+      "saas_session_opencode_codeblock_281",
+      "saas_session_opencode_codeblock_282",
+      "saas_session_opencode_codeblock_283"
+    ],
+    "76": [
+      "agents_skills_supabase_postgres_best_practices_skill_md",
+      "supabase_postgres_best_practices_skill_codeblock_1",
+      "supabase_postgres_best_practices_skill_how_to_use",
+      "supabase_postgres_best_practices_skill_references",
+      "supabase_postgres_best_practices_skill_rule_categories_by_priority",
+      "supabase_postgres_best_practices_skill_supabase_postgres_best_practices",
+      "supabase_postgres_best_practices_skill_when_to_apply"
+    ],
+    "77": [
+      "auth_callback_page",
+      "auth_guard",
+      "auth_layout",
+      "register_page",
+      "supabase_client",
+      "use_auth"
+    ],
+    "78": [
+      "agents_skills_supabase_postgres_best_practices_references_lock_deadlock_prevention_md",
+      "references_lock_deadlock_prevention_codeblock_1",
+      "references_lock_deadlock_prevention_codeblock_2",
+      "references_lock_deadlock_prevention_codeblock_3",
+      "references_lock_deadlock_prevention_codeblock_4",
+      "references_lock_deadlock_prevention_prevent_deadlocks_with_consistent_lock_ordering"
+    ],
+    "79": [
+      "agents_skills_supabase_postgres_best_practices_references_schema_constraints_md",
+      "references_schema_constraints_add_constraints_safely_in_migrations",
+      "references_schema_constraints_codeblock_1",
+      "references_schema_constraints_codeblock_2",
+      "references_schema_constraints_codeblock_3",
+      "references_schema_constraints_codeblock_4"
+    ],
+    "80": [
+      "agents_skills_supabase_postgres_best_practices_references_security_rls_performance_md",
+      "references_security_rls_performance_codeblock_1",
+      "references_security_rls_performance_codeblock_2",
+      "references_security_rls_performance_codeblock_3",
+      "references_security_rls_performance_codeblock_4",
+      "references_security_rls_performance_optimize_rls_policies_for_performance"
+    ],
+    "81": [
+      "frontend_progress_md",
+      "saas_frontend_progress_files_created",
+      "saas_frontend_progress_frontend_build_progress",
+      "saas_frontend_progress_notes",
+      "saas_frontend_progress_phase_6a_scaffold_design_system",
+      "saas_frontend_progress_todo"
+    ],
+    "82": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_12_4s",
+      "saas_session_opencode_codeblock_314",
+      "saas_session_opencode_codeblock_315",
+      "saas_session_opencode_codeblock_316",
+      "saas_session_opencode_codeblock_317",
+      "saas_session_opencode_codeblock_318"
+    ],
+    "83": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_416_1s",
+      "saas_session_opencode_codeblock_331",
+      "saas_session_opencode_codeblock_332",
+      "saas_session_opencode_codeblock_333",
+      "saas_session_opencode_codeblock_334",
+      "saas_session_opencode_codeblock_335"
+    ],
+    "84": [
+      "agents_skills_supabase_postgres_best_practices_references_advanced_full_text_search_md",
+      "references_advanced_full_text_search_codeblock_1",
+      "references_advanced_full_text_search_codeblock_2",
+      "references_advanced_full_text_search_codeblock_3",
+      "references_advanced_full_text_search_use_tsvector_for_full_text_search"
+    ],
+    "85": [
+      "agents_skills_supabase_postgres_best_practices_references_advanced_jsonb_indexing_md",
+      "references_advanced_jsonb_indexing_codeblock_1",
+      "references_advanced_jsonb_indexing_codeblock_2",
+      "references_advanced_jsonb_indexing_codeblock_3",
+      "references_advanced_jsonb_indexing_index_jsonb_columns_for_efficient_querying"
+    ],
+    "86": [
+      "agents_skills_supabase_postgres_best_practices_references_conn_idle_timeout_md",
+      "references_conn_idle_timeout_codeblock_1",
+      "references_conn_idle_timeout_codeblock_2",
+      "references_conn_idle_timeout_codeblock_3",
+      "references_conn_idle_timeout_configure_idle_connection_timeouts"
+    ],
+    "87": [
+      "agents_skills_supabase_postgres_best_practices_references_data_n_plus_one_md",
+      "references_data_n_plus_one_codeblock_1",
+      "references_data_n_plus_one_codeblock_2",
+      "references_data_n_plus_one_codeblock_3",
+      "references_data_n_plus_one_eliminate_n_1_queries_with_batch_loading"
+    ],
+    "88": [
+      "agents_skills_supabase_postgres_best_practices_references_query_index_types_md",
+      "references_query_index_types_choose_the_right_index_type_for_your_data",
+      "references_query_index_types_codeblock_1",
+      "references_query_index_types_codeblock_2",
+      "references_query_index_types_codeblock_3"
+    ],
+    "89": [
+      "agents_skills_supabase_postgres_best_practices_references_schema_data_types_md",
+      "references_schema_data_types_choose_appropriate_data_types",
+      "references_schema_data_types_codeblock_1",
+      "references_schema_data_types_codeblock_2",
+      "references_schema_data_types_codeblock_3"
+    ],
+    "90": [
+      "agents_skills_supabase_postgres_best_practices_references_security_rls_basics_md",
+      "references_security_rls_basics_codeblock_1",
+      "references_security_rls_basics_codeblock_2",
+      "references_security_rls_basics_codeblock_3",
+      "references_security_rls_basics_enable_row_level_security_for_multi_tenant_data"
+    ],
+    "91": [
       "concept_connection_pooling",
       "concept_idle_connection_timeout",
       "concept_pgbouncer",
       "conn_idle_timeout_ref",
       "conn_pooling_ref"
     ],
-    "22": [
+    "92": [
       "concept_rls_performance_optimization",
       "concept_row_level_security",
       "concept_security_definer_function",
       "security_rls_basics_ref",
       "security_rls_performance_ref"
     ],
-    "23": [
+    "93": [
+      "frontend_readme_codeblock_1",
+      "frontend_readme_deploy_on_vercel",
+      "frontend_readme_getting_started",
+      "frontend_readme_learn_more",
+      "frontend_readme_md"
+    ],
+    "94": [
+      "dashboard_activity_feed_activitydot",
+      "dashboard_activity_feed_activityfeed",
+      "dashboard_activity_feed_activityfeedprops",
+      "dashboard_activity_feed_activityitem",
+      "frontend_src_components_dashboard_activity_feed_tsx"
+    ],
+    "95": [
+      "dashboard_publishing_velocity_publishingvelocity",
+      "dashboard_publishing_velocity_publishingvelocityprops",
+      "dashboard_publishing_velocity_timelinebar",
+      "dashboard_publishing_velocity_velocityday",
+      "frontend_src_components_dashboard_publishing_velocity_tsx"
+    ],
+    "96": [
+      "n8n_workflows_11_logging_ts",
+      "workflows_11_logging_insertlog",
+      "workflows_11_logging_respond",
+      "workflows_11_logging_verifyinternaltoken",
+      "workflows_11_logging_webhooktrigger"
+    ],
+    "97": [
+      "frontend_src_app_api_n8n_path_route_ts",
+      "path_route_corsheaders",
+      "path_route_n8n_base",
+      "path_route_options",
+      "path_route_post"
+    ],
+    "98": [
+      "agents_skills_supabase_postgres_best_practices_references_conn_limits_md",
+      "references_conn_limits_codeblock_1",
+      "references_conn_limits_codeblock_2",
+      "references_conn_limits_codeblock_3",
+      "references_conn_limits_set_appropriate_connection_limits"
+    ],
+    "99": [
+      "agents_skills_supabase_postgres_best_practices_references_conn_prepared_statements_md",
+      "references_conn_prepared_statements_codeblock_1",
+      "references_conn_prepared_statements_codeblock_2",
+      "references_conn_prepared_statements_codeblock_3",
+      "references_conn_prepared_statements_use_prepared_statements_correctly_with_pooling"
+    ],
+    "100": [
+      "agents_skills_supabase_postgres_best_practices_references_data_batch_inserts_md",
+      "references_data_batch_inserts_batch_insert_statements_for_bulk_data",
+      "references_data_batch_inserts_codeblock_1",
+      "references_data_batch_inserts_codeblock_2",
+      "references_data_batch_inserts_codeblock_3"
+    ],
+    "101": [
+      "agents_skills_supabase_postgres_best_practices_references_data_pagination_md",
+      "references_data_pagination_codeblock_1",
+      "references_data_pagination_codeblock_2",
+      "references_data_pagination_codeblock_3",
+      "references_data_pagination_use_cursor_based_pagination_instead_of_offset"
+    ],
+    "102": [
+      "agents_skills_supabase_postgres_best_practices_references_data_upsert_md",
+      "references_data_upsert_codeblock_1",
+      "references_data_upsert_codeblock_2",
+      "references_data_upsert_codeblock_3",
+      "references_data_upsert_use_upsert_for_insert_or_update_operations"
+    ],
+    "103": [
+      "agents_skills_supabase_postgres_best_practices_references_lock_advisory_md",
+      "references_lock_advisory_codeblock_1",
+      "references_lock_advisory_codeblock_2",
+      "references_lock_advisory_codeblock_3",
+      "references_lock_advisory_use_advisory_locks_for_application_level_locking"
+    ],
+    "104": [
+      "agents_skills_supabase_postgres_best_practices_references_lock_short_transactions_md",
+      "references_lock_short_transactions_codeblock_1",
+      "references_lock_short_transactions_codeblock_2",
+      "references_lock_short_transactions_codeblock_3",
+      "references_lock_short_transactions_keep_transactions_short_to_reduce_lock_contention"
+    ],
+    "105": [
+      "agents_skills_supabase_postgres_best_practices_references_lock_skip_locked_md",
+      "references_lock_skip_locked_codeblock_1",
+      "references_lock_skip_locked_codeblock_2",
+      "references_lock_skip_locked_codeblock_3",
+      "references_lock_skip_locked_use_skip_locked_for_non_blocking_queue_processing"
+    ],
+    "106": [
+      "agents_skills_supabase_postgres_best_practices_references_monitor_explain_analyze_md",
+      "references_monitor_explain_analyze_codeblock_1",
+      "references_monitor_explain_analyze_codeblock_2",
+      "references_monitor_explain_analyze_codeblock_3",
+      "references_monitor_explain_analyze_use_explain_analyze_to_diagnose_slow_queries"
+    ],
+    "107": [
+      "agents_skills_supabase_postgres_best_practices_references_monitor_pg_stat_statements_md",
+      "references_monitor_pg_stat_statements_codeblock_1",
+      "references_monitor_pg_stat_statements_codeblock_2",
+      "references_monitor_pg_stat_statements_codeblock_3",
+      "references_monitor_pg_stat_statements_enable_pg_stat_statements_for_query_analysis"
+    ],
+    "108": [
+      "agents_skills_supabase_postgres_best_practices_references_monitor_vacuum_analyze_md",
+      "references_monitor_vacuum_analyze_codeblock_1",
+      "references_monitor_vacuum_analyze_codeblock_2",
+      "references_monitor_vacuum_analyze_codeblock_3",
+      "references_monitor_vacuum_analyze_maintain_table_statistics_with_vacuum_and_analyze"
+    ],
+    "109": [
+      "agents_skills_supabase_postgres_best_practices_references_query_composite_indexes_md",
+      "references_query_composite_indexes_codeblock_1",
+      "references_query_composite_indexes_codeblock_2",
+      "references_query_composite_indexes_codeblock_3",
+      "references_query_composite_indexes_create_composite_indexes_for_multi_column_queries"
+    ],
+    "110": [
+      "agents_skills_supabase_postgres_best_practices_references_query_covering_indexes_md",
+      "references_query_covering_indexes_codeblock_1",
+      "references_query_covering_indexes_codeblock_2",
+      "references_query_covering_indexes_codeblock_3",
+      "references_query_covering_indexes_use_covering_indexes_to_avoid_table_lookups"
+    ],
+    "111": [
+      "agents_skills_supabase_postgres_best_practices_references_query_missing_indexes_md",
+      "references_query_missing_indexes_add_indexes_on_where_and_join_columns",
+      "references_query_missing_indexes_codeblock_1",
+      "references_query_missing_indexes_codeblock_2",
+      "references_query_missing_indexes_codeblock_3"
+    ],
+    "112": [
+      "agents_skills_supabase_postgres_best_practices_references_query_partial_indexes_md",
+      "references_query_partial_indexes_codeblock_1",
+      "references_query_partial_indexes_codeblock_2",
+      "references_query_partial_indexes_codeblock_3",
+      "references_query_partial_indexes_use_partial_indexes_for_filtered_queries"
+    ],
+    "113": [
+      "agents_skills_supabase_postgres_best_practices_references_schema_foreign_key_indexes_md",
+      "references_schema_foreign_key_indexes_codeblock_1",
+      "references_schema_foreign_key_indexes_codeblock_2",
+      "references_schema_foreign_key_indexes_codeblock_3",
+      "references_schema_foreign_key_indexes_index_foreign_key_columns"
+    ],
+    "114": [
+      "agents_skills_supabase_postgres_best_practices_references_schema_lowercase_identifiers_md",
+      "references_schema_lowercase_identifiers_codeblock_1",
+      "references_schema_lowercase_identifiers_codeblock_2",
+      "references_schema_lowercase_identifiers_codeblock_3",
+      "references_schema_lowercase_identifiers_use_lowercase_identifiers_for_compatibility"
+    ],
+    "115": [
+      "agents_skills_supabase_postgres_best_practices_references_security_privileges_md",
+      "references_security_privileges_apply_principle_of_least_privilege",
+      "references_security_privileges_codeblock_1",
+      "references_security_privileges_codeblock_2",
+      "references_security_privileges_codeblock_3"
+    ],
+    "116": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_35_2s",
+      "saas_session_opencode_codeblock_19",
+      "saas_session_opencode_codeblock_20",
+      "saas_session_opencode_codeblock_21",
+      "saas_session_opencode_codeblock_22"
+    ],
+    "117": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_4s_904",
+      "saas_session_opencode_codeblock_58",
+      "saas_session_opencode_codeblock_59",
+      "saas_session_opencode_codeblock_60",
+      "saas_session_opencode_codeblock_61"
+    ],
+    "118": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_5s",
+      "saas_session_opencode_codeblock_40",
+      "saas_session_opencode_codeblock_41",
+      "saas_session_opencode_codeblock_42",
+      "saas_session_opencode_codeblock_43"
+    ],
+    "119": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_12_8s",
+      "saas_session_opencode_codeblock_108",
+      "saas_session_opencode_codeblock_109",
+      "saas_session_opencode_codeblock_110",
+      "saas_session_opencode_codeblock_111"
+    ],
+    "120": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_173_8s",
+      "saas_session_opencode_codeblock_346",
+      "saas_session_opencode_codeblock_347",
+      "saas_session_opencode_codeblock_348",
+      "saas_session_opencode_codeblock_349"
+    ],
+    "121": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_4s_1420",
+      "saas_session_opencode_codeblock_86",
+      "saas_session_opencode_codeblock_87",
+      "saas_session_opencode_codeblock_88",
+      "saas_session_opencode_codeblock_89"
+    ],
+    "122": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_6s",
+      "saas_session_opencode_codeblock_44",
+      "saas_session_opencode_codeblock_45",
+      "saas_session_opencode_codeblock_46",
+      "saas_session_opencode_codeblock_47"
+    ],
+    "123": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_4s_1548",
+      "saas_session_opencode_codeblock_92",
+      "saas_session_opencode_codeblock_93",
+      "saas_session_opencode_codeblock_94",
+      "saas_session_opencode_codeblock_95"
+    ],
+    "124": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_6_3s",
+      "saas_session_opencode_codeblock_70",
+      "saas_session_opencode_codeblock_71",
+      "saas_session_opencode_codeblock_72",
+      "saas_session_opencode_codeblock_73"
+    ],
+    "125": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_1s_12308",
+      "saas_session_opencode_codeblock_284",
+      "saas_session_opencode_codeblock_285",
+      "saas_session_opencode_codeblock_286",
+      "saas_session_opencode_codeblock_287"
+    ],
+    "126": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_3s",
+      "saas_session_opencode_codeblock_184",
+      "saas_session_opencode_codeblock_185",
+      "saas_session_opencode_codeblock_186",
+      "saas_session_opencode_codeblock_187"
+    ],
+    "127": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_36_0s",
+      "saas_session_opencode_codeblock_146",
+      "saas_session_opencode_codeblock_147",
+      "saas_session_opencode_codeblock_148",
+      "saas_session_opencode_codeblock_149"
+    ],
+    "128": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_6_7s_1305",
+      "saas_session_opencode_codeblock_82",
+      "saas_session_opencode_codeblock_83",
+      "saas_session_opencode_codeblock_84",
+      "saas_session_opencode_codeblock_85"
+    ],
+    "129": [
       "n8n_workflows_10_failure_handler_ts",
-      "workflows_10_failure_handler_callretry",
       "workflows_10_failure_handler_logtoworkflowruns",
       "workflows_10_failure_handler_respond",
+      "workflows_10_failure_handler_verifyinternaltoken",
       "workflows_10_failure_handler_webhooktrigger"
     ],
-    "24": [
-      "connect_route_get",
-      "connect_route_n8n_base",
-      "frontend_src_app_accounts_connect_route_ts"
+    "130": [
+      "agents_skills_supabase_assets_feedback_issue_template_md",
+      "assets_feedback_issue_template_fix_suggestion",
+      "assets_feedback_issue_template_source",
+      "assets_feedback_issue_template_what_happened"
     ],
-    "25": [
+    "131": [
+      "agents_skills_supabase_postgres_best_practices_references_conn_pooling_md",
+      "references_conn_pooling_codeblock_1",
+      "references_conn_pooling_codeblock_2",
+      "references_conn_pooling_use_connection_pooling_for_all_applications"
+    ],
+    "132": [
+      "agents_skills_supabase_postgres_best_practices_references_schema_partitioning_md",
+      "references_schema_partitioning_codeblock_1",
+      "references_schema_partitioning_codeblock_2",
+      "references_schema_partitioning_partition_large_tables_for_better_performance"
+    ],
+    "133": [
+      "agents_skills_supabase_postgres_best_practices_references_schema_primary_keys_md",
+      "references_schema_primary_keys_codeblock_1",
+      "references_schema_primary_keys_codeblock_2",
+      "references_schema_primary_keys_select_optimal_primary_key_strategy"
+    ],
+    "134": [
+      "frontend_vercel_buildcommand",
+      "frontend_vercel_framework",
+      "frontend_vercel_json",
+      "frontend_vercel_outputdirectory"
+    ],
+    "135": [
+      "agents_skills_supabase_references_skill_feedback_md",
+      "references_skill_feedback_codeblock_1",
+      "references_skill_feedback_skill_feedback",
+      "references_skill_feedback_steps"
+    ],
+    "136": [
+      "agents_skills_supabase_postgres_best_practices_references_template_md",
+      "references_template_codeblock_1",
+      "references_template_codeblock_2",
+      "references_template_rule_title"
+    ],
+    "137": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_8_5s",
+      "saas_session_opencode_codeblock_289",
+      "saas_session_opencode_codeblock_290",
+      "saas_session_opencode_codeblock_291"
+    ],
+    "138": [
+      "saas_session_opencode_blocked",
+      "saas_session_opencode_done",
+      "saas_session_opencode_in_progress",
+      "saas_session_opencode_progress"
+    ],
+    "139": [
       "concept_analyze",
       "concept_vacuum",
       "monitor_vacuum_analyze_ref"
     ],
-    "26": [
-      "frontend_src_app_api_n8n_path_route_ts",
-      "path_route_n8n_base",
-      "path_route_post"
+    "140": [
+      "connect_route_get",
+      "connect_route_n8n_base",
+      "frontend_src_app_accounts_connect_route_ts"
     ],
-    "27": [
+    "141": [
+      "config_vercel",
+      "doc_hero_redesign_plan",
+      "doc_hero_redesign_spec"
+    ],
+    "142": [
       "opencode_package_dependencies",
       "opencode_package_dependencies_opencode_ai_plugin",
       "opencode_package_json"
     ],
-    "28": [
+    "143": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_18_5s",
+      "saas_session_opencode_codeblock_180",
+      "saas_session_opencode_codeblock_181"
+    ],
+    "144": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_2_9s",
+      "saas_session_opencode_codeblock_27",
+      "saas_session_opencode_codeblock_28"
+    ],
+    "145": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_33_0s",
+      "saas_session_opencode_codeblock_38",
+      "saas_session_opencode_codeblock_39"
+    ],
+    "146": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_34_1s",
+      "saas_session_opencode_codeblock_74",
+      "saas_session_opencode_codeblock_75"
+    ],
+    "147": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_34_5s",
+      "saas_session_opencode_codeblock_62",
+      "saas_session_opencode_codeblock_63"
+    ],
+    "148": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_36_7s",
+      "saas_session_opencode_codeblock_80",
+      "saas_session_opencode_codeblock_81"
+    ],
+    "149": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_1s",
+      "saas_session_opencode_codeblock_90",
+      "saas_session_opencode_codeblock_91"
+    ],
+    "150": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_2s",
+      "saas_session_opencode_codeblock_11",
+      "saas_session_opencode_codeblock_12"
+    ],
+    "151": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_2s_239",
+      "saas_session_opencode_codeblock_17",
+      "saas_session_opencode_codeblock_18"
+    ],
+    "152": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_2s_382",
+      "saas_session_opencode_codeblock_25",
+      "saas_session_opencode_codeblock_26"
+    ],
+    "153": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_4s",
+      "saas_session_opencode_codeblock_13",
+      "saas_session_opencode_codeblock_14"
+    ],
+    "154": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_5s",
+      "saas_session_opencode_codeblock_76",
+      "saas_session_opencode_codeblock_77"
+    ],
+    "155": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_7s",
+      "saas_session_opencode_codeblock_106",
+      "saas_session_opencode_codeblock_107"
+    ],
+    "156": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_7s_13954",
+      "saas_session_opencode_codeblock_325",
+      "saas_session_opencode_codeblock_326"
+    ],
+    "157": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_8s",
+      "saas_session_opencode_codeblock_52",
+      "saas_session_opencode_codeblock_53"
+    ],
+    "158": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_9s_1780",
+      "saas_session_opencode_codeblock_104",
+      "saas_session_opencode_codeblock_105"
+    ],
+    "159": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_9s_773",
+      "saas_session_opencode_codeblock_50",
+      "saas_session_opencode_codeblock_51"
+    ],
+    "160": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_0s",
+      "saas_session_opencode_codeblock_310",
+      "saas_session_opencode_codeblock_311"
+    ],
+    "161": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_2s",
+      "saas_session_opencode_codeblock_1",
+      "saas_session_opencode_codeblock_2"
+    ],
+    "162": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_2s_1185",
+      "saas_session_opencode_codeblock_78",
+      "saas_session_opencode_codeblock_79"
+    ],
+    "163": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_4s",
+      "saas_session_opencode_codeblock_56",
+      "saas_session_opencode_codeblock_57"
+    ],
+    "164": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_4s_13880",
+      "saas_session_opencode_codeblock_319",
+      "saas_session_opencode_codeblock_320"
+    ],
+    "165": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_4s_5446",
+      "saas_session_opencode_codeblock_182",
+      "saas_session_opencode_codeblock_183"
+    ],
+    "166": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_5s_13384",
+      "saas_session_opencode_codeblock_296",
+      "saas_session_opencode_codeblock_297"
+    ],
+    "167": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_8s",
+      "saas_session_opencode_codeblock_10",
+      "saas_session_opencode_codeblock_9"
+    ],
+    "168": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_4_9s",
+      "saas_session_opencode_codeblock_294",
+      "saas_session_opencode_codeblock_295"
+    ],
+    "169": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_0s",
+      "saas_session_opencode_codeblock_98",
+      "saas_session_opencode_codeblock_99"
+    ],
+    "170": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_2s",
+      "saas_session_opencode_codeblock_321",
+      "saas_session_opencode_codeblock_322"
+    ],
+    "171": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_4s",
+      "saas_session_opencode_codeblock_48",
+      "saas_session_opencode_codeblock_49"
+    ],
+    "172": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_5s_13717",
+      "saas_session_opencode_codeblock_308",
+      "saas_session_opencode_codeblock_309"
+    ],
+    "173": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_6s",
+      "saas_session_opencode_codeblock_178",
+      "saas_session_opencode_codeblock_179"
+    ],
+    "174": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_6_4s",
+      "saas_session_opencode_codeblock_312",
+      "saas_session_opencode_codeblock_313"
+    ],
+    "175": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_6_5s_13978",
+      "saas_session_opencode_codeblock_327",
+      "saas_session_opencode_codeblock_328"
+    ],
+    "176": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_6_6s",
+      "saas_session_opencode_codeblock_102",
+      "saas_session_opencode_codeblock_103"
+    ],
+    "177": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_6_7s",
+      "saas_session_opencode_codeblock_7",
+      "saas_session_opencode_codeblock_8"
+    ],
+    "178": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_9_7s",
+      "saas_session_opencode_codeblock_298",
+      "saas_session_opencode_codeblock_299"
+    ],
+    "179": [
+      "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_2_9s",
+      "saas_session_opencode_codeblock_260",
+      "saas_session_opencode_codeblock_261"
+    ],
+    "180": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_449_1s",
+      "saas_session_opencode_codeblock_100",
+      "saas_session_opencode_codeblock_101"
+    ],
+    "181": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_0s",
+      "saas_session_opencode_codeblock_15",
+      "saas_session_opencode_codeblock_16"
+    ],
+    "182": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_5s",
+      "saas_session_opencode_codeblock_23",
+      "saas_session_opencode_codeblock_24"
+    ],
+    "183": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_7_9s",
+      "saas_session_opencode_codeblock_292",
+      "saas_session_opencode_codeblock_293"
+    ],
+    "184": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_5_0s_13928",
+      "saas_session_opencode_codeblock_323",
+      "saas_session_opencode_codeblock_324"
+    ],
+    "185": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_375_7s",
+      "saas_session_opencode_codeblock_329",
+      "saas_session_opencode_codeblock_330"
+    ],
+    "186": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_557_8s",
+      "saas_session_opencode_codeblock_336",
+      "saas_session_opencode_codeblock_337"
+    ],
+    "187": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_532_4s",
+      "saas_session_opencode_codeblock_338",
+      "saas_session_opencode_codeblock_339"
+    ],
+    "188": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_491_6s",
+      "saas_session_opencode_codeblock_340",
+      "saas_session_opencode_codeblock_341"
+    ],
+    "189": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_178_8s",
+      "saas_session_opencode_codeblock_342",
+      "saas_session_opencode_codeblock_343"
+    ],
+    "190": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_184_0s",
+      "saas_session_opencode_codeblock_344",
+      "saas_session_opencode_codeblock_345"
+    ],
+    "191": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_9s",
+      "saas_session_opencode_codeblock_3",
+      "saas_session_opencode_codeblock_4"
+    ],
+    "192": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_33_1s",
+      "saas_session_opencode_codeblock_5",
+      "saas_session_opencode_codeblock_6"
+    ],
+    "193": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_34_0s",
+      "saas_session_opencode_codeblock_54",
+      "saas_session_opencode_codeblock_55"
+    ],
+    "194": [
+      "saas_session_opencode_assistant_build_deepseek_v4_flash_free_3_3s",
+      "saas_session_opencode_codeblock_96",
+      "saas_session_opencode_codeblock_97"
+    ],
+    "195": [
       "badge",
       "database_types"
     ],
-    "29": [
+    "196": [
       "concept_appropriate_data_types",
       "schema_data_types_ref"
     ],
-    "30": [
+    "197": [
       "concept_connection_limits",
       "conn_limits_ref"
     ],
-    "31": [
+    "198": [
       "concept_least_privilege",
       "security_privileges_ref"
     ],
-    "32": [
+    "199": [
       "concept_cursor_pagination",
       "data_pagination_ref"
     ],
-    "33": [
+    "200": [
       "concept_upsert",
       "data_upsert_ref"
     ],
-    "34": [
+    "201": [
       "concept_deadlock_prevention",
       "lock_deadlock_prevention_ref"
     ],
-    "35": [
+    "202": [
       "concept_explain_analyze",
       "monitor_explain_analyze_ref"
     ],
-    "36": [
+    "203": [
       "concept_composite_index",
       "query_composite_indexes_ref"
     ],
-    "37": [
+    "204": [
       "concept_missing_index",
       "query_missing_indexes_ref"
     ],
-    "38": [
+    "205": [
       "concept_table_partitioning",
       "schema_partitioning_ref"
     ],
-    "39": [
+    "206": [
+      "db_media_bucket",
+      "migration_002"
+    ],
+    "207": [
+      "frontend_agents_md",
+      "frontend_agents_this_is_not_the_next_js_you_know"
+    ],
+    "208": [
       "frontend_eslint_config_eslintconfig",
       "frontend_eslint_config_mjs"
     ],
-    "40": [
+    "209": [
       "frontend_next_config_nextconfig",
       "frontend_next_config_ts"
     ],
-    "41": [
+    "210": [
       "frontend_postcss_config_config",
       "frontend_postcss_config_mjs"
     ],
-    "42": [
-      "graphify_plugin",
-      "opencode_config"
+    "211": [
+      "frontend_src_app_api_stats_global_route_ts",
+      "global_route_get"
     ],
-    "43": [
-      "n8n_api_proxy",
-      "n8n_client"
+    "212": [
+      "app_not_found_notfound",
+      "frontend_src_app_not_found_tsx"
     ],
-    "44": [
+    "213": [
       "opencode_plugins_graphify_js",
       "plugins_graphify_graphifyplugin"
     ],
-    "45": [
+    "214": [
+      "agents_md",
+      "saas_agents_graphify"
+    ],
+    "215": [
+      "aider_chat_history_md",
+      "saas_aider_chat_history_aider_chat_started_at_2026_05_26_23_52_59"
+    ],
+    "216": [
       "skill_feedback_procedure",
       "skill_feedback_template"
     ],
-    "46": [
+    "217": [
       "frontend_next_env_d_ts"
     ],
-    "47": [
+    "218": [
+      "frontend_claude_md"
+    ],
+    "219": [
+      "graphify_plugin"
+    ],
+    "220": [
       "storage_setup_migration"
     ],
-    "48": [
+    "221": [
       "media_storage_bucket"
     ],
-    "49": [
+    "222": [
       "initial_schema_migration"
     ],
-    "50": [
+    "223": [
       "input"
     ],
-    "51": [
+    "224": [
       "button"
     ],
-    "52": [
+    "225": [
       "root_layout"
     ],
-    "53": [
+    "226": [
       "utils"
     ],
-    "54": [
+    "227": [
       "frontend_progress"
     ],
-    "55": [
+    "228": [
       "globe_icon"
     ],
-    "56": [
+    "229": [
       "vercel_logo"
     ],
-    "57": [
+    "230": [
       "next_logo"
     ]
   },
   "cohesion": {
-    "0": 0.06486486486486487,
-    "1": 0.06207482993197279,
-    "2": 0.07311827956989247,
-    "3": 0.08735632183908046,
-    "4": 0.06896551724137931,
-    "5": 0.12962962962962962,
-    "6": 0.09846153846153846,
-    "7": 0.11462450592885376,
-    "8": 0.1,
-    "9": 0.14035087719298245,
-    "10": 0.2,
-    "11": 0.13333333333333333,
-    "12": 0.15384615384615385,
-    "13": 0.18181818181818182,
-    "14": 0.16666666666666666,
-    "15": 0.18181818181818182,
-    "16": 0.2,
-    "17": 0.18181818181818182,
-    "18": 0.18181818181818182,
-    "19": 0.2,
-    "20": 0.2857142857142857,
-    "21": 0.4,
-    "22": 0.4,
-    "23": 0.4,
-    "24": 0.6666666666666666,
-    "25": 1.0,
-    "26": 0.6666666666666666,
-    "27": 0.6666666666666666,
-    "28": 1.0,
-    "29": 1.0,
-    "30": 1.0,
-    "31": 1.0,
-    "32": 1.0,
-    "33": 1.0,
-    "34": 1.0,
-    "35": 1.0,
-    "36": 1.0,
-    "37": 1.0,
-    "38": 1.0,
-    "39": 1.0,
-    "40": 1.0,
-    "41": 1.0,
-    "42": 1.0,
-    "43": 1.0,
-    "44": 1.0,
-    "45": 1.0,
-    "46": 1.0,
-    "47": 1.0,
-    "48": 1.0,
-    "49": 1.0,
-    "50": 1.0,
-    "51": 1.0,
-    "52": 1.0,
-    "53": 1.0,
-    "54": 1.0,
-    "55": 1.0,
-    "56": 1.0,
-    "57": 1.0
+    "0": 0.0425531914893617,
+    "1": 0.06290471785383904,
+    "2": 0.05,
+    "3": 0.05263157894736842,
+    "4": 0.0944741532976827,
+    "5": 0.08199643493761141,
+    "6": 0.0659536541889483,
+    "7": 0.06060606060606061,
+    "8": 0.06451612903225806,
+    "9": 0.06896551724137931,
+    "10": 0.06896551724137931,
+    "11": 0.09259259259259259,
+    "12": 0.07142857142857142,
+    "13": 0.07407407407407407,
+    "14": 0.12,
+    "15": 0.11666666666666667,
+    "16": 0.1422924901185771,
+    "17": 0.20948616600790515,
+    "18": 0.1225296442687747,
+    "19": 0.08695652173913043,
+    "20": 0.15151515151515152,
+    "21": 0.09090909090909091,
+    "22": 0.09090909090909091,
+    "23": 0.09523809523809523,
+    "24": 0.09523809523809523,
+    "25": 0.13157894736842105,
+    "26": 0.1,
+    "27": 0.1,
+    "28": 0.1,
+    "29": 0.1,
+    "30": 0.11764705882352941,
+    "31": 0.125,
+    "32": 0.125,
+    "33": 0.125,
+    "34": 0.13333333333333333,
+    "35": 0.13333333333333333,
+    "36": 0.15384615384615385,
+    "37": 0.23076923076923078,
+    "38": 0.1794871794871795,
+    "39": 0.15384615384615385,
+    "40": 0.15384615384615385,
+    "41": 0.15384615384615385,
+    "42": 0.15384615384615385,
+    "43": 0.18181818181818182,
+    "44": 0.16666666666666666,
+    "45": 0.18181818181818182,
+    "46": 0.18181818181818182,
+    "47": 0.18181818181818182,
+    "48": 0.18181818181818182,
+    "49": 0.18181818181818182,
+    "50": 0.18181818181818182,
+    "51": 0.26666666666666666,
+    "52": 0.2,
+    "53": 0.2,
+    "54": 0.2,
+    "55": 0.2,
+    "56": 0.2,
+    "57": 0.2222222222222222,
+    "58": 0.2222222222222222,
+    "59": 0.25,
+    "60": 0.2222222222222222,
+    "61": 0.2222222222222222,
+    "62": 0.2222222222222222,
+    "63": 0.2222222222222222,
+    "64": 0.2222222222222222,
+    "65": 0.2222222222222222,
+    "66": 0.2857142857142857,
+    "67": 0.2857142857142857,
+    "68": 0.2857142857142857,
+    "69": 0.2857142857142857,
+    "70": 0.2857142857142857,
+    "71": 0.2857142857142857,
+    "72": 0.2857142857142857,
+    "73": 0.2857142857142857,
+    "74": 0.2857142857142857,
+    "75": 0.2857142857142857,
+    "76": 0.2857142857142857,
+    "77": 0.3333333333333333,
+    "78": 0.3333333333333333,
+    "79": 0.3333333333333333,
+    "80": 0.3333333333333333,
+    "81": 0.3333333333333333,
+    "82": 0.3333333333333333,
+    "83": 0.3333333333333333,
+    "84": 0.4,
+    "85": 0.4,
+    "86": 0.4,
+    "87": 0.4,
+    "88": 0.4,
+    "89": 0.4,
+    "90": 0.4,
+    "91": 0.4,
+    "92": 0.4,
+    "93": 0.4,
+    "94": 0.4,
+    "95": 0.4,
+    "96": 0.4,
+    "97": 0.6,
+    "98": 0.4,
+    "99": 0.4,
+    "100": 0.4,
+    "101": 0.4,
+    "102": 0.4,
+    "103": 0.4,
+    "104": 0.4,
+    "105": 0.4,
+    "106": 0.4,
+    "107": 0.4,
+    "108": 0.4,
+    "109": 0.4,
+    "110": 0.4,
+    "111": 0.4,
+    "112": 0.4,
+    "113": 0.4,
+    "114": 0.4,
+    "115": 0.4,
+    "116": 0.4,
+    "117": 0.4,
+    "118": 0.4,
+    "119": 0.4,
+    "120": 0.4,
+    "121": 0.4,
+    "122": 0.4,
+    "123": 0.4,
+    "124": 0.4,
+    "125": 0.4,
+    "126": 0.4,
+    "127": 0.4,
+    "128": 0.4,
+    "129": 0.4,
+    "130": 0.5,
+    "131": 0.5,
+    "132": 0.5,
+    "133": 0.5,
+    "134": 0.5,
+    "135": 0.5,
+    "136": 0.5,
+    "137": 0.5,
+    "138": 0.5,
+    "139": 1.0,
+    "140": 0.6666666666666666,
+    "141": 0.6666666666666666,
+    "142": 0.6666666666666666,
+    "143": 0.6666666666666666,
+    "144": 0.6666666666666666,
+    "145": 0.6666666666666666,
+    "146": 0.6666666666666666,
+    "147": 0.6666666666666666,
+    "148": 0.6666666666666666,
+    "149": 0.6666666666666666,
+    "150": 0.6666666666666666,
+    "151": 0.6666666666666666,
+    "152": 0.6666666666666666,
+    "153": 0.6666666666666666,
+    "154": 0.6666666666666666,
+    "155": 0.6666666666666666,
+    "156": 0.6666666666666666,
+    "157": 0.6666666666666666,
+    "158": 0.6666666666666666,
+    "159": 0.6666666666666666,
+    "160": 0.6666666666666666,
+    "161": 0.6666666666666666,
+    "162": 0.6666666666666666,
+    "163": 0.6666666666666666,
+    "164": 0.6666666666666666,
+    "165": 0.6666666666666666,
+    "166": 0.6666666666666666,
+    "167": 0.6666666666666666,
+    "168": 0.6666666666666666,
+    "169": 0.6666666666666666,
+    "170": 0.6666666666666666,
+    "171": 0.6666666666666666,
+    "172": 0.6666666666666666,
+    "173": 0.6666666666666666,
+    "174": 0.6666666666666666,
+    "175": 0.6666666666666666,
+    "176": 0.6666666666666666,
+    "177": 0.6666666666666666,
+    "178": 0.6666666666666666,
+    "179": 0.6666666666666666,
+    "180": 0.6666666666666666,
+    "181": 0.6666666666666666,
+    "182": 0.6666666666666666,
+    "183": 0.6666666666666666,
+    "184": 0.6666666666666666,
+    "185": 0.6666666666666666,
+    "186": 0.6666666666666666,
+    "187": 0.6666666666666666,
+    "188": 0.6666666666666666,
+    "189": 0.6666666666666666,
+    "190": 0.6666666666666666,
+    "191": 0.6666666666666666,
+    "192": 0.6666666666666666,
+    "193": 0.6666666666666666,
+    "194": 0.6666666666666666,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0,
+    "200": 1.0,
+    "201": 1.0,
+    "202": 1.0,
+    "203": 1.0,
+    "204": 1.0,
+    "205": 1.0,
+    "206": 1.0,
+    "207": 1.0,
+    "208": 1.0,
+    "209": 1.0,
+    "210": 1.0,
+    "211": 1.0,
+    "212": 1.0,
+    "213": 1.0,
+    "214": 1.0,
+    "215": 1.0,
+    "216": 1.0,
+    "217": 1.0,
+    "218": 1.0,
+    "219": 1.0,
+    "220": 1.0,
+    "221": 1.0,
+    "222": 1.0,
+    "223": 1.0,
+    "224": 1.0,
+    "225": 1.0,
+    "226": 1.0,
+    "227": 1.0,
+    "228": 1.0,
+    "229": 1.0,
+    "230": 1.0
   },
   "gods": [
     {
+      "id": "saas_session_opencode_new_session_2026_05_27t10_21_05_651z",
+      "label": "New session - 2026-05-27T10:21:05.651Z",
+      "degree": 110
+    },
+    {
       "id": "hooks_use_auth_useauth",
       "label": "useAuth()",
-      "degree": 27
+      "degree": 30
     },
     {
       "id": "supabase_postgres_best_practices_skill",
@@ -723,101 +2572,96 @@
       "degree": 24
     },
     {
+      "id": "saas_session_opencode_assistant_plan_deepseek_v4_flash_free_4_6s_11248",
+      "label": "Assistant (Plan \u00b7 DeepSeek V4 Flash Free \u00b7 4.6s)",
+      "degree": 17
+    },
+    {
       "id": "frontend_tsconfig_compileroptions",
       "label": "compilerOptions",
       "degree": 16
     },
     {
+      "id": "app_console",
+      "label": "Console Content Orchestration Platform",
+      "degree": 16
+    },
+    {
+      "id": "lib_supabase_supabase",
+      "label": "supabase",
+      "degree": 15
+    },
+    {
       "id": "lib_utils_cn",
       "label": "cn()",
-      "degree": 14
+      "degree": 15
+    },
+    {
+      "id": "content_operations_app",
+      "label": "Content Operations",
+      "degree": 15
     },
     {
       "id": "n8n_social_scheduler",
       "label": "N8N Social Scheduler SaaS",
       "degree": 14
-    },
-    {
-      "id": "auth_auth_guard_authguard",
-      "label": "AuthGuard()",
-      "degree": 13
-    },
-    {
-      "id": "lib_supabase_supabase",
-      "label": "supabase",
-      "degree": 13
-    },
-    {
-      "id": "shell_console_shell_consoleshell",
-      "label": "ConsoleShell()",
-      "degree": 12
-    },
-    {
-      "id": "ui_button_button",
-      "label": "Button",
-      "degree": 11
-    },
-    {
-      "id": "workflows_11_logging_workflow_workflow",
-      "label": "workflow",
-      "degree": 10
     }
   ],
   "surprises": [
     {
-      "source": "N8N Social Scheduler PRD",
-      "target": "N8N Social Scheduler SaaS",
+      "source": "N8N Social Scheduler SaaS",
+      "target": "N8N Social Scheduler PRD",
       "source_files": [
-        "N8N_Social_Scheduler_PRD.pdf",
-        "Phase 1 Planning.md"
+        "Phase 1 Planning.md",
+        "N8N_Social_Scheduler_PRD.pdf"
       ],
       "confidence": "AMBIGUOUS",
       "relation": "cites",
-      "why": "ambiguous connection - not explicitly stated in source; crosses file types (doc ↔ paper); connects across different repos/directories; peripheral node `N8N Social Scheduler PRD` unexpectedly reaches hub `N8N Social Scheduler SaaS`"
-    },
-    {
-      "source": "post_media Junction Table",
-      "target": "scheduled_posts Table",
-      "source_files": [
-        "Phase 2 Planning.md",
-        "supabase/migrations/001_initial_schema.sql"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `post_media Junction Table` unexpectedly reaches hub `scheduled_posts Table`"
-    },
-    {
-      "source": "WF-4 Post CRUD Workflow",
-      "target": "scheduled_posts Table",
-      "source_files": [
-        "Phase 4 Planning.md",
-        "supabase/migrations/001_initial_schema.sql"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `WF-4 Post CRUD Workflow` unexpectedly reaches hub `scheduled_posts Table`"
+      "why": "ambiguous connection - not explicitly stated in source; crosses file types (doc \u2194 paper); connects across different repos/directories; peripheral node `N8N Social Scheduler PRD` unexpectedly reaches hub `N8N Social Scheduler SaaS`"
     },
     {
       "source": "scheduled_posts Table",
-      "target": "social_accounts Table",
+      "target": "post_media Junction Table",
       "source_files": [
         "supabase/migrations/001_initial_schema.sql",
         "Phase 2 Planning.md"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories"
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `post_media Junction Table` unexpectedly reaches hub `scheduled_posts Table`"
     },
     {
-      "source": "WF-5 Cron Scheduler Workflow",
-      "target": "scheduled_posts Table",
+      "source": "scheduled_posts Table",
+      "target": "WF-4 Post CRUD Workflow",
       "source_files": [
-        "Phase 4 Planning.md",
-        "supabase/migrations/001_initial_schema.sql"
+        "supabase/migrations/001_initial_schema.sql",
+        "Phase 4 Planning.md"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories"
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `WF-4 Post CRUD Workflow` unexpectedly reaches hub `scheduled_posts Table`"
+    },
+    {
+      "source": "workflow_runs Table",
+      "target": "WF-11 Logging Workflow",
+      "source_files": [
+        "supabase/migrations/001_initial_schema.sql",
+        "Phase 4 Planning.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `workflow_runs Table` unexpectedly reaches hub `WF-11 Logging Workflow`"
+    },
+    {
+      "source": "n8n Workflows Implementation Plan",
+      "target": "@n8n/workflow-sdk",
+      "source_files": [
+        "docs/superpowers/plans/2026-05-27-n8n-workflows.md",
+        "package.json"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `@n8n/workflow-sdk` unexpectedly reaches hub `n8n Workflows Implementation Plan`"
     }
   ],
   "questions": [
@@ -828,33 +2672,33 @@
     },
     {
       "type": "bridge_node",
-      "question": "Why does `useAuth()` connect `Community 0` to `Community 9`, `Community 10`, `Community 1`?",
-      "why": "High betweenness centrality (0.017) - this node is a cross-community bridge."
+      "question": "Why does `New session - 2026-05-27T10:21:05.651Z` connect `Community 28` to `Community 30`, `Community 40`, `Community 41`, `Community 45`, `Community 46`, `Community 47`, `Community 48`, `Community 49`, `Community 50`, `Community 56`, `Community 61`, `Community 62`, `Community 63`, `Community 64`, `Community 65`, `Community 69`, `Community 70`, `Community 71`, `Community 72`, `Community 73`, `Community 74`, `Community 75`, `Community 82`, `Community 83`, `Community 116`, `Community 117`, `Community 118`, `Community 119`, `Community 120`, `Community 121`, `Community 122`, `Community 123`, `Community 124`, `Community 125`, `Community 126`, `Community 127`, `Community 128`, `Community 137`, `Community 138`, `Community 143`, `Community 144`, `Community 145`, `Community 146`, `Community 147`, `Community 148`, `Community 149`, `Community 150`, `Community 151`, `Community 152`, `Community 153`, `Community 154`, `Community 155`, `Community 156`, `Community 157`, `Community 158`, `Community 159`, `Community 160`, `Community 161`, `Community 162`, `Community 163`, `Community 164`, `Community 165`, `Community 166`, `Community 167`, `Community 168`, `Community 169`, `Community 170`, `Community 171`, `Community 172`, `Community 173`, `Community 174`, `Community 175`, `Community 176`, `Community 177`, `Community 178`, `Community 179`, `Community 180`, `Community 181`, `Community 182`, `Community 183`, `Community 184`, `Community 185`, `Community 186`, `Community 187`, `Community 188`, `Community 189`, `Community 190`, `Community 191`, `Community 192`, `Community 193`, `Community 194`?",
+      "why": "High betweenness centrality (0.055) - this node is a cross-community bridge."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `AuthGuard()` connect `Community 0` to `Community 1`, `Community 2`, `Community 9`?",
-      "why": "High betweenness centrality (0.013) - this node is a cross-community bridge."
+      "question": "Why does `Assistant (Plan \u00b7 DeepSeek V4 Flash Free \u00b7 4.0s)` connect `Community 47` to `Community 28`?",
+      "why": "High betweenness centrality (0.006) - this node is a cross-community bridge."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `cn()` connect `Community 3` to `Community 0`, `Community 1`, `Community 10`?",
-      "why": "High betweenness centrality (0.011) - this node is a cross-community bridge."
+      "question": "Why does `Assistant (Build \u00b7 DeepSeek V4 Flash Free \u00b7 5.1s)` connect `Community 41` to `Community 28`?",
+      "why": "High betweenness centrality (0.004) - this node is a cross-community bridge."
     },
     {
       "type": "isolated_nodes",
-      "question": "What connects `version`, `source`, `sourceType` to the rest of the system?",
-      "why": "266 weakly-connected nodes found - possible documentation gaps or missing edges."
+      "question": "What connects `name`, `version`, `description` to the rest of the system?",
+      "why": "1149 weakly-connected nodes found - possible documentation gaps or missing edges."
     },
     {
       "type": "low_cohesion",
       "question": "Should `Community 0` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.06486486486486487 - nodes in this community are weakly interconnected."
+      "why": "Cohesion score 0.0425531914893617 - nodes in this community are weakly interconnected."
     },
     {
       "type": "low_cohesion",
       "question": "Should `Community 1` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.06207482993197279 - nodes in this community are weakly interconnected."
+      "why": "Cohesion score 0.06290471785383904 - nodes in this community are weakly interconnected."
     }
   ]
 }

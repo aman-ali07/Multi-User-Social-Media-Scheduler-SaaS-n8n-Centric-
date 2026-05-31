@@ -3,16 +3,21 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/hooks/use-auth'
 
 export function StatusBar() {
+  const { user } = useAuth()
   const [queue, setQueue] = useState<number | null>(null)
   const [lastPublish, setLastPublish] = useState<string | null>(null)
 
   useEffect(() => {
+    if (!user) return
+
     const fetchStats = async () => {
       const { count: queueCount } = await supabase
         .from('scheduled_posts')
         .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id)
         .eq('status', 'scheduled')
         .is('deleted_at', null)
 
@@ -21,6 +26,7 @@ export function StatusBar() {
       const { data: last } = await supabase
         .from('scheduled_posts')
         .select('published_at')
+        .eq('user_id', user.id)
         .eq('status', 'published')
         .not('published_at', 'is', null)
         .order('published_at', { ascending: false })
@@ -35,7 +41,7 @@ export function StatusBar() {
     fetchStats()
     const interval = setInterval(fetchStats, 30000)
     return () => clearInterval(interval)
-  }, [])
+  }, [user])
 
   const now = new Date()
   const timeStr = now.toLocaleTimeString('en-US', {

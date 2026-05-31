@@ -73,15 +73,7 @@ Expected: `media | media | true`
 
 ## 3. n8n
 
-### 3a. Self-hosted (Oracle, Docker)
-
-```bash
-docker compose up -d
-```
-
-Then set env vars in `docker-compose.yml` (see `env.example`).
-
-### 3b. n8n Cloud
+### 3a. n8n Cloud
 
 Set these in **Settings → Environment Variables**:
 
@@ -219,7 +211,7 @@ Do not modify existing migrations — create new ones to replace functions/trigg
 | `n8n/workflows/*.ts` | n8n workflow SDK source |
 | `supabase/migrations/` | Database schema |
 | `docker-compose.yml` | n8n self-hosted deployment |
-| `env.example` | Required environment variables |
+| `n8n.env.example` | Required environment variables for n8n |
 
 ### Helpful commands
 

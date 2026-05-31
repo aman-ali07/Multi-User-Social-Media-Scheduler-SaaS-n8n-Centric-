@@ -39,8 +39,8 @@ saas/
 ├── frontend/          # Next.js 16 app (18 routes)
 ├── n8n/workflows/     # n8n workflow SDK source (11 .ts files)
 ├── supabase/migrations/  # Database schema (7 migrations)
-├── docker-compose.yml # n8n self-hosted deployment
-└── env.example        # Required environment variables
+├── docker-compose.yml # n8n self-hosted deployment (local dev)
+└── n8n.env.example    # Required environment variables for n8n
 ```
 
 ## Architecture
