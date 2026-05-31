@@ -9,7 +9,7 @@ import { useSettings } from '@/hooks/use-settings'
 
 const container = {
   hidden: { opacity: 0 },
-  visible: { transition: { staggerChildren: 0.06 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
 }
 
 const item = {

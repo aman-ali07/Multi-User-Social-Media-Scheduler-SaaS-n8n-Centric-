@@ -1,3 +1,5 @@
+import { workflow, trigger, node, expr, newCredential } from '@n8n/workflow-sdk';
+
 const webhookTrigger = trigger({
   type: 'n8n-nodes-base.webhook',
   version: 2.1,

@@ -1,5 +1,0 @@
-Total messages: 3 (Errors: 3, Warnings: 0)
-
-[ERROR] Failed to load resource: the server responded with a status of 406 () @ https://dzbkiqtzyofzcfqgundy.supabase.co/rest/v1/profiles?select=id%2Cdisplay_name%2Ctimezone%2Ccreated_at%2Cupdated_at&id=eq.c9190586-98af-4510-8cc2-77cb4f92d383:0
-[ERROR] Failed to load resource: the server responded with a status of 406 () @ https://dzbkiqtzyofzcfqgundy.supabase.co/rest/v1/profiles?select=id%2Cdisplay_name%2Ctimezone%2Ccreated_at%2Cupdated_at&id=eq.c9190586-98af-4510-8cc2-77cb4f92d383:0
-[ERROR] Failed to load resource: the server responded with a status of 406 () @ https://dzbkiqtzyofzcfqgundy.supabase.co/rest/v1/profiles?select=id%2Cdisplay_name%2Ctimezone%2Ccreated_at%2Cupdated_at&id=eq.c9190586-98af-4510-8cc2-77cb4f92d383:0

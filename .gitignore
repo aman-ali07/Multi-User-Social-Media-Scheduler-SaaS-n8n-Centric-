@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+graphify-out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Session / test artifacts
+session_opencode.md
+.aider*
+.playwright-mcp/
+.superpowers/
+
+# Unknown extensionless files (session/test artifacts)
+accounts-page
+api-global-stats
+auth-callback
+calendar-page
+composer-page
+dashboard-auth-guard
+dashboard-logged-in
+landing-page
+login-page
+login-page-creds
+logs-page
+media-page
+media-page-test
+nav-open
+nav-open-2
+not-found
+posts-page
+register-page
+settings-appearance
+settings-errors
+settings-fixed
+settings-page
+
+# Archives
+*.zip

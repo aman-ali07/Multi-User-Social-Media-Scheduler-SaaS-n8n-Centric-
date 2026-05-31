@@ -16,7 +16,7 @@ Frontend (Next.js 16) ──→ n8n (backend) ──→ Supabase DB + Storage
 | Layer | Technology | Role |
 |-------|-----------|------|
 | Frontend | Next.js 16 + React 19 + Tailwind CSS 4 | UI only; no API routes |
-| Backend | **n8n** (11 workflows) | All business logic, orchestration |
+| Backend | **n8n** (10 workflows) | All business logic, orchestration |
 | Auth | Supabase Auth (server-side sessions) | Login + JWT for n8n webhook auth |
 | Database | Supabase PostgreSQL | 9 tables, RLS, pgcrypto encryption |
 | Storage | Supabase Storage (public bucket) | Media files |
@@ -44,15 +44,14 @@ All user-owned tables have RLS policies keyed to `auth.uid()`. n8n uses service_
 |---|------|---------|---------|
 | 1 | OAuth Connect | Webhook | Generate Meta OAuth URL with state |
 | 2 | OAuth Callback | Webhook | Exchange code, store tokens, create social_accounts |
-| 3 | Media Upload | Webhook | Validate upload, register media_assets record |
-| 4 | Post CRUD | Webhook | Create/edit/cancel scheduled_posts |
-| 5 | Scheduler Cron | Cron (1min) | Poll pending posts, dispatch publish workflows |
-| 6 | Facebook Publish | Sub-workflow | Create FB post via Graph API |
-| 7 | Instagram Publish | Sub-workflow | Create IG media container → publish |
-| 8 | Token Refresh | Sub-workflow | Refresh expiring Meta tokens |
-| 9 | Retry Handler | Sub-workflow | Exponential backoff (max 3 retries) |
-| 10 | Failure Handler | Sub-workflow | Log failures, notify |
-| 11 | Logging | All nodes | Centralized structured logging |
+| 3 | Post CRUD | Webhook | Create/edit/cancel scheduled_posts |
+| 4 | Scheduler Cron | Cron (5min) | Poll pending posts, dispatch publish workflows |
+| 5 | Facebook Publish | Sub-workflow | Create FB post via Graph API |
+| 6 | Instagram Publish | Sub-workflow | Create IG media container → publish |
+| 7 | Token Refresh | Sub-workflow | Refresh expiring Meta page tokens |
+| 8 | Retry Handler | Sub-workflow | Exponential backoff (max 3 retries) |
+| 9 | Failure Handler | Sub-workflow | Log failures, notify |
+| 10 | Logging | All nodes | Centralized structured logging |
 
 ## Frontend (14 routes)
 

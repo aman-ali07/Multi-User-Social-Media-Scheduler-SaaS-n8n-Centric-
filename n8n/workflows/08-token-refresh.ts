@@ -1,3 +1,5 @@
+import { workflow, trigger, node, expr, newCredential } from '@n8n/workflow-sdk';
+
 const webhookTrigger = trigger({
   type: 'n8n-nodes-base.webhook',
   version: 2.1,
@@ -37,23 +39,33 @@ const verifyInternalToken = node({
   }
 });
 
-const refreshToken = node({
-  type: 'n8n-nodes-base.httpRequest',
-  version: 4.4,
+const lookupAccount = node({
+  type: 'n8n-nodes-base.postgres',
+  version: 2.6,
   config: {
-    name: 'Refresh Token',
+    name: 'Lookup Account Page ID',
     parameters: {
-      method: 'GET',
-      url: expr('https://graph.facebook.com/v21.0/oauth/access_token?grant_type=fb_exchange_token&client_id={{ $env.FACEBOOK_APP_ID }}&client_secret={{ $env.FACEBOOK_APP_SECRET }}&fb_exchange_token={{ $json.body.accessToken }}'),
-      authentication: 'none',
+      operation: 'executeQuery',
+      query: "SELECT page_id FROM social_accounts WHERE id = $1::uuid",
       options: {
-        response: {
-          response: {
-            fullResponse: true,
-            neverError: true
-          }
-        }
+        queryReplacement: expr('{{ $("Token Refresh Webhook").item.json.body.accountId }}')
       }
+    }
+  },
+  credentials: {
+    postgres: newCredential('Supabase DB')
+  },
+  output: [{ page_id: '12345' }]
+});
+
+const refreshPageToken = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Refresh Page Token',
+    parameters: {
+      mode: 'runOnceForAllItems',
+      jsCode: "const pageId = $('Lookup Account Page ID').item.json.page_id;\nconst accessToken = $('Token Refresh Webhook').item.json.body.accessToken;\nconst url = `https://graph.facebook.com/v21.0/${pageId}?fields=access_token&access_token=${encodeURIComponent(accessToken)}`;\nconst res = await fetch(url);\nconst data = await res.json();\nif (!data.access_token) {\n  return [{ json: { body: { error: data.error || { message: 'Token refresh via page endpoint failed' } }, statusCode: 400 } }];\n}\nconst expiresAt = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString();\nreturn [{ json: { body: { access_token: data.access_token, expires_in: 5184000 }, statusCode: 200 } }];"
     }
   },
   output: [{
@@ -188,7 +200,8 @@ const respondError = node({
 export default workflow('token-refresh', 'Token Refresh')
   .add(webhookTrigger)
   .to(verifyInternalToken)
-  .to(refreshToken)
+  .to(lookupAccount)
+  .to(refreshPageToken)
   .to(checkResult
     .onTrue(updateToken.to(logRefresh).to(respond))
     .onFalse(logFailed.to(markExpired).to(respondError))

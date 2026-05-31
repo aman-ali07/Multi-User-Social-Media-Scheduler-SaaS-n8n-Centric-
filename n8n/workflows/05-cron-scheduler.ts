@@ -1,3 +1,5 @@
+import { workflow, trigger, node, expr, newCredential } from '@n8n/workflow-sdk';
+
 const scheduleTrigger = trigger({
   type: 'n8n-nodes-base.scheduleTrigger',
   version: 1.3,

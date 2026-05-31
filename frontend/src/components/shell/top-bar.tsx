@@ -3,13 +3,34 @@
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/hooks/use-auth'
+import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface TopBarProps {
   onMenuClick?: () => void
 }
 
 export function TopBar({ onMenuClick }: TopBarProps) {
-  const { user } = useAuth()
+  const { user, signOut } = useAuth()
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  async function handleSignOut() {
+    setDropdownOpen(false)
+    await signOut()
+    router.push('/login')
+  }
 
   return (
     <motion.header
@@ -48,12 +69,30 @@ export function TopBar({ onMenuClick }: TopBarProps) {
 
         <div className="w-px h-6 bg-border hidden sm:block" />
 
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-sm bg-surface-3 border border-border flex items-center justify-center">
+        <div className="flex items-center gap-2 relative" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="w-7 h-7 rounded-sm bg-surface-3 border border-border flex items-center justify-center hover:border-text-dim transition-colors cursor-pointer"
+          >
             <span className="text-[11px] text-text-muted font-sans uppercase">
               {user?.email?.charAt(0) || '?'}
             </span>
-          </div>
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute right-0 top-full mt-2 w-48 bg-surface-2 border border-border rounded-sm shadow-lg z-50 py-1">
+              <div className="px-3 py-2 text-[12px] text-text-dim font-sans truncate">
+                {user?.email || 'Unknown'}
+              </div>
+              <div className="border-t border-border my-1" />
+              <button
+                onClick={handleSignOut}
+                className="w-full text-left px-3 py-1.5 text-[12px] text-red-dim hover:bg-surface-3 transition-colors font-sans"
+              >
+                Sign Out
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </motion.header>

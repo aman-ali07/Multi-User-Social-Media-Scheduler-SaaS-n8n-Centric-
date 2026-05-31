@@ -1,3 +1,5 @@
+import { workflow, trigger, node, expr, newCredential } from '@n8n/workflow-sdk';
+
 const webhookTrigger = trigger({
   type: 'n8n-nodes-base.webhook',
   version: 2.1,
@@ -44,7 +46,7 @@ const checkPost = node({
     name: 'Check Post Status',
     parameters: {
       operation: 'executeQuery',
-      query: "SELECT id, retry_count, max_retries FROM scheduled_posts WHERE id = $1::uuid",
+      query: "SELECT id, user_id, retry_count, max_retries FROM scheduled_posts WHERE id = $1::uuid",
       options: {
         queryReplacement: expr('{{ $json.body.postId }}')
       }
@@ -55,6 +57,7 @@ const checkPost = node({
   },
   output: [{
     id: 'uuid',
+    user_id: 'uuid',
     retry_count: 1,
     max_retries: 3
   }]

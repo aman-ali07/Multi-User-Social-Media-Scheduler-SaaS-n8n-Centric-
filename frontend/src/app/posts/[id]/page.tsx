@@ -15,7 +15,7 @@ import type { ScheduledPost, PostLog } from '@/types/database'
 
 const container = {
   hidden: { opacity: 0 },
-  visible: { transition: { staggerChildren: 0.06 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
 }
 
 const item = {
