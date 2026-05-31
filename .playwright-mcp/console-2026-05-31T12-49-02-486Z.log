@@ -1,0 +1,2 @@
+[   42393ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://multi-user-social-media-scheduler-s.vercel.app/auth/login:0
+[   52973ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://multi-user-social-media-scheduler-s.vercel.app/auth/register:0

@@ -1,0 +1,7 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - heading "404" [level=1] [ref=e4]
+    - paragraph [ref=e5]: This page does not exist.
+    - link "Back to Dashboard" [ref=e6] [cursor=pointer]:
+      - /url: /dashboard
+  - alert [ref=e7]

@@ -1,0 +1,26 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - generic [ref=e6]:
+        - button "Open navigation" [ref=e7]: ☰
+        - generic [ref=e8]: Content Operations
+        - generic [ref=e9]: v0.1
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e14]: n8n
+          - generic [ref=e17]: API
+        - generic [ref=e21]: "?"
+    - main [ref=e22]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - heading "Settings" [level=1] [ref=e28]
+            - generic [ref=e29]: Profile
+          - paragraph [ref=e30]: Profile and preferences
+        - generic [ref=e31]: Loading settings...
+    - contentinfo [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e37]: Live
+        - generic [ref=e38]: "Q: —"
+      - generic [ref=e40]: 18:29:15

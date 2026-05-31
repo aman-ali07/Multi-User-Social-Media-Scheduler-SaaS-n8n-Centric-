@@ -12,6 +12,19 @@
       "type": "remote",
       "url": "https://mcp.supabase.com/mcp?project_ref=dzbkiqtzyofzcfqgundy",
       "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "firecrawl-mcp": {
+      "type": "local",
+      "command": ["npx", "-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "fc-d056956cec6946e8a4ea52a60f0ea2ee"
+      },
+      "enabled": true
     }
   }
 }

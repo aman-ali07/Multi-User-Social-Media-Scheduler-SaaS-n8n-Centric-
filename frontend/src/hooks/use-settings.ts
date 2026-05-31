@@ -13,11 +13,12 @@ export function useSettings() {
   const load = useCallback(async () => {
     if (!user) return
     setLoading(true)
+    setError(null)
     const { data, error: err } = await supabase
       .from('profiles')
       .select('id, display_name, timezone, created_at, updated_at')
       .eq('id', user.id)
-      .single()
+      .maybeSingle()
     if (err) setError(err.message)
     else setProfile(data)
     setLoading(false)
@@ -33,7 +34,7 @@ export function useSettings() {
       .from('profiles')
       .upsert({ id: user.id, ...updates, updated_at: new Date().toISOString() })
     if (err) setError(err.message)
-    else setProfile((prev) => prev ? { ...prev, ...updates, updated_at: new Date().toISOString() } : prev)
+    else setProfile((prev) => prev ? { ...prev, ...updates, updated_at: new Date().toISOString() } : { id: user.id, ...updates } as Profile)
     setSaving(false)
   }
 

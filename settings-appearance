@@ -1,0 +1,50 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - generic [ref=e6]:
+        - button "Open navigation" [ref=e7]: ☰
+        - generic [ref=e8]: Content Operations
+        - generic [ref=e9]: v0.1
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e14]: n8n
+          - generic [ref=e17]: API
+        - generic [ref=e21]: a
+    - main [ref=e22]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - link "←" [ref=e28] [cursor=pointer]:
+              - /url: /settings
+            - heading "Appearance" [level=1] [ref=e29]
+          - paragraph [ref=e30]: Theme and display preferences
+        - generic [ref=e31]:
+          - heading "Theme" [level=2] [ref=e32]
+          - generic [ref=e33]:
+            - generic [ref=e34]:
+              - generic [ref=e35]:
+                - generic [ref=e36]: Console Dark
+                - generic [ref=e37]: Active
+              - paragraph [ref=e38]: Warm dark — broadcast control room
+            - generic [ref=e39]:
+              - generic [ref=e41]: Signal Light
+              - paragraph [ref=e42]: Warm light mode (coming soon)
+        - generic [ref=e43]:
+          - heading "Typography" [level=2] [ref=e44]
+          - generic [ref=e45]:
+            - generic [ref=e46]:
+              - paragraph [ref=e47]: Headings
+              - paragraph [ref=e48]: Bilderberg
+            - generic [ref=e49]:
+              - paragraph [ref=e50]: Body
+              - paragraph [ref=e51]: Satoshi
+            - generic [ref=e52]:
+              - paragraph [ref=e53]: Monospace
+              - paragraph [ref=e54]: JetBrains Mono
+        - button "← Back to Settings" [ref=e56]
+    - contentinfo [ref=e57]:
+      - generic [ref=e58]:
+        - generic [ref=e61]: Live
+        - generic [ref=e62]: "Q: 0"
+      - generic [ref=e64]: 18:25:59

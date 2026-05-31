@@ -1,0 +1,6 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - paragraph [ref=e4]: PKCE code verifier not found in storage. This can happen if the auth flow was initiated in a different browser or device, or if the storage was cleared. For SSR frameworks (Next.js, SvelteKit, etc.), use @supabase/ssr on both the server and client to store the code verifier in cookies.
+    - link "Back to login" [ref=e5] [cursor=pointer]:
+      - /url: /auth/login
+  - alert [ref=e6]
