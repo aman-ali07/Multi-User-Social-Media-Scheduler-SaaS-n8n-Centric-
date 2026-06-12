@@ -16,8 +16,6 @@ node_modules/
 
 # Build artifacts & output directories
 graphify-out/
-frontend-astro/dist/
-frontend-astro/.astro/
 
 # IDE / Editor
 .idea/

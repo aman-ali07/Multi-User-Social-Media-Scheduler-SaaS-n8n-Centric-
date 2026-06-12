@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useAuth } from './use-auth'
-import { connectOAuth as connectOAuthApi } from '@/lib/n8n'
+
 import { getAccounts } from '@/lib/query'
 import type { SocialAccount } from '@/types/database'
 
@@ -14,7 +14,7 @@ export function useAccounts() {
     if (!user) return
     try {
       const data = await getAccounts()
-      setAccounts((data.accounts || []) as SocialAccount[])
+      setAccounts(Array.isArray(data.accounts) ? (data.accounts as SocialAccount[]) : [])
       setLoading(false)
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to load accounts')

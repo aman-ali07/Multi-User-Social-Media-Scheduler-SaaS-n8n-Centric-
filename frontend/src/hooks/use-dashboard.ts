@@ -18,9 +18,9 @@ export function useDashboard() {
       const data = await getDashboard({ signal })
       if (signal.aborted) return
       setStats(data.stats)
-      setUpcoming(data.upcoming)
-      setVelocity(data.velocity)
-      setActivity(data.activity)
+      setUpcoming(Array.isArray(data.upcoming) ? data.upcoming : [])
+      setVelocity(Array.isArray(data.velocity) ? data.velocity : [])
+      setActivity(Array.isArray(data.activity) ? data.activity : [])
       setLoading(false)
     } catch (err: unknown) {
       if (signal.aborted) return

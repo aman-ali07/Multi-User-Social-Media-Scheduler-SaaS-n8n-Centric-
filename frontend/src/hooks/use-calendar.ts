@@ -23,7 +23,7 @@ export function useCalendar(year: number, month: number) {
     const abort = new AbortController()
     getCalendar(year, month, { signal: abort.signal })
       .then((data) => {
-        setPosts((data.posts || []) as CalendarPost[])
+        setPosts(Array.isArray(data.posts) ? (data.posts as CalendarPost[]) : [])
         setLoading(false)
       })
       .catch(() => setLoading(false))

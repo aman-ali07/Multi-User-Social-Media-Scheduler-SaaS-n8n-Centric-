@@ -207,6 +207,7 @@ export default function ComposerPage() {
 
             {mediaUrl && (
               <div className="rounded-sm border border-border bg-surface p-2 relative group">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={mediaUrl} alt="Preview" className="max-h-40 rounded-sm object-contain" />
                 <button
                   onClick={() => {

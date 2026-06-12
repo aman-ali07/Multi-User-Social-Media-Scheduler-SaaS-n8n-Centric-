@@ -14,7 +14,7 @@ export function useMedia() {
     if (!user) return
     try {
       const data = await getMedia({ signal })
-      setMedia((data.media || []) as MediaAsset[])
+      setMedia(Array.isArray(data.media) ? (data.media as MediaAsset[]) : [])
       setLoading(false)
     } catch (err: unknown) {
       if ((err as Error)?.name === 'AbortError') return
@@ -25,6 +25,7 @@ export function useMedia() {
 
   useEffect(() => {
     const abort = new AbortController()
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     load(abort.signal)
     return () => abort.abort()
   }, [load])

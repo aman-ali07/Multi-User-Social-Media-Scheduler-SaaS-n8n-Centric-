@@ -41,7 +41,7 @@ export default function LogsPage() {
         throw new Error(err.error || `Failed (${res.status})`)
       }
       const data = await res.json()
-      setLogs((data.logs || []) as PostLog[])
+      setLogs(Array.isArray(data.logs) ? (data.logs as PostLog[]) : [])
     } catch (err: unknown) {
       if ((err as Error)?.name === 'AbortError') return
       setError(err instanceof Error ? err.message : 'Failed to load logs')
@@ -52,6 +52,7 @@ export default function LogsPage() {
 
   useEffect(() => {
     const abort = new AbortController()
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     load(abort.signal)
     return () => abort.abort()
   }, [load])

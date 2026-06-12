@@ -68,8 +68,6 @@ export async function GET(request: NextRequest) {
   }
   const longTokenData = await longTokenRes.json()
   const longToken = longTokenData.access_token
-  const expiresIn = longTokenData.expires_in || 5184000
-  const tokenExpiresAt = new Date(Date.now() + expiresIn * 1000).toISOString()
 
   // 4. Fetch pages
   const pagesRes = await fetch('https://graph.facebook.com/v21.0/me/accounts?fields=id,name,access_token,instagram_business_account', {
