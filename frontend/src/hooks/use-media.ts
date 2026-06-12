@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
+import { getMedia } from '@/lib/query'
 import type { MediaAsset } from '@/types/database'
 
 export function useMedia() {
@@ -9,20 +10,24 @@ export function useMedia() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (signal?: AbortSignal) => {
     if (!user) return
-    setLoading(true)
-    const { data, error: err } = await supabase
-      .from('media_assets')
-      .select('id, user_id, file_url, file_type, file_size, storage_path, width, height, duration, created_at')
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false })
-    if (err) setError(err.message)
-    else setMedia(data || [])
-    setLoading(false)
+    try {
+      const data = await getMedia({ signal })
+      setMedia((data.media || []) as MediaAsset[])
+      setLoading(false)
+    } catch (err: unknown) {
+      if ((err as Error)?.name === 'AbortError') return
+      setError(err instanceof Error ? err.message : 'Failed to load media')
+      setLoading(false)
+    }
   }, [user])
 
-  useEffect(() => { load() }, [load])
+  useEffect(() => {
+    const abort = new AbortController()
+    load(abort.signal)
+    return () => abort.abort()
+  }, [load])
 
   const upload = async (file: File) => {
     if (!user) return
@@ -52,5 +57,24 @@ export function useMedia() {
     await load()
   }
 
-  return { media, loading, error, reload: load, upload }
+  const remove = async (id: string) => {
+    if (!user) return
+    try {
+      const res = await fetch('/api/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'delete-media', id }),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: res.statusText }))
+        throw new Error(err.error || `Failed to delete (${res.status})`)
+      }
+      await load()
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to delete media')
+      throw err
+    }
+  }
+
+  return { media, loading, error, reload: load, upload, remove }
 }

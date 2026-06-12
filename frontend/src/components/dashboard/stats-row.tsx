@@ -7,8 +7,7 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const } },
 }
 
-const colors = ['gold', 'lime', 'red', 'steel'] as const
-type StatColor = typeof colors[number]
+type StatColor = 'gold' | 'lime' | 'red' | 'steel'
 
 interface StatCardProps {
   label: string

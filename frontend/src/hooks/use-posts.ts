@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
 import { cancelPost as cancelPostApi } from '@/lib/n8n'
+import { getPosts } from '@/lib/query'
 import type { ScheduledPost, PostStatus } from '@/types/database'
 
 const PAGE_SIZE = 20
@@ -14,47 +14,41 @@ export function usePosts(filter: PostStatus | 'all' = 'all', dateFilter?: string
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const load = useCallback(async (pageNum = 0) => {
+  const load = useCallback(async (pageNum = 0, signal?: AbortSignal) => {
     if (!user) return
     setLoading(true)
     setError(null)
-
-    const from = pageNum * PAGE_SIZE
-    const to = from + PAGE_SIZE - 1
-
-    let query = supabase
-      .from('scheduled_posts')
-      .select('*', { count: 'exact' })
-      .eq('user_id', user.id)
-      .is('deleted_at', null)
-      .order('created_at', { ascending: false })
-      .range(from, to)
-
-    if (filter !== 'all') query = query.eq('status', filter)
-    if (dateFilter) {
-      const dateFrom = `${dateFilter}T00:00:00.000Z`
-      const dateTo = `${dateFilter}T23:59:59.999Z`
-      query = query.gte('schedule_at', dateFrom).lte('schedule_at', dateTo)
+    try {
+      const data = await getPosts(filter, pageNum, dateFilter, { signal })
+      setPosts((data.posts || []) as ScheduledPost[])
+      setTotal(data.total)
+      setPage(data.page)
+      setLoading(false)
+    } catch (err: unknown) {
+      if ((err as Error)?.name === 'AbortError') return
+      setError(err instanceof Error ? err.message : 'Failed to load posts')
+      setLoading(false)
     }
-
-    const { data, error: err, count } = await query
-    if (err) setError(err.message)
-    else {
-      setPosts(data || [])
-      setTotal(count ?? 0)
-      setPage(pageNum)
-    }
-    setLoading(false)
   }, [user, filter, dateFilter])
 
-  useEffect(() => { load() }, [load])
+  useEffect(() => {
+    const abort = new AbortController()
+    load(0, abort.signal) // eslint-disable-line react-hooks/set-state-in-effect
+    return () => abort.abort()
+  }, [load])
 
   const cancelPost = async (postId: string) => {
     if (!user) return
-    await cancelPostApi(postId, user.id)
+    const prevPosts = [...posts]
     setPosts((prev) =>
       prev.map((p) => (p.id === postId ? { ...p, status: 'cancelled' as const } : p)),
     )
+    try {
+      await cancelPostApi(postId)
+    } catch (err) {
+      setPosts(prevPosts)
+      throw err
+    }
   }
 
   const totalPages = Math.ceil(total / PAGE_SIZE)

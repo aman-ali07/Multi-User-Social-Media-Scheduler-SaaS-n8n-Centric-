@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
+import { getCalendar } from '@/lib/query'
 
 interface CalendarPost {
   id: string
@@ -18,22 +18,17 @@ export function useCalendar(year: number, month: number) {
 
   useEffect(() => {
     if (!user) return
-    setLoading(true)
+    setLoading(true) // eslint-disable-line react-hooks/set-state-in-effect
 
-    const from = new Date(year, month, 1).toISOString()
-    const to = new Date(year, month + 1, 0, 23, 59, 59).toISOString()
-
-    supabase
-      .from('scheduled_posts')
-      .select('id, title, status, platforms, schedule_at, published_at')
-      .eq('user_id', user.id)
-      .in('status', ['scheduled', 'published'])
-      .gte('schedule_at', from)
-      .lte('schedule_at', to)
-      .then(({ data }) => {
-        setPosts(data || [])
+    const abort = new AbortController()
+    getCalendar(year, month, { signal: abort.signal })
+      .then((data) => {
+        setPosts((data.posts || []) as CalendarPost[])
         setLoading(false)
       })
+      .catch(() => setLoading(false))
+
+    return () => abort.abort()
   }, [user, year, month])
 
   const postsByDate = posts.reduce<Record<string, CalendarPost[]>>((acc, post) => {

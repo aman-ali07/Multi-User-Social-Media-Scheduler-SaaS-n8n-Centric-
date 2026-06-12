@@ -1,0 +1,36 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - img [ref=e5]
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - generic [ref=e15]: Console
+          - generic [ref=e16]: Content Orchestration Platform
+        - generic [ref=e17]:
+          - generic [ref=e20]: OrchestrateMulti-platform scheduling engine
+          - generic [ref=e23]: PublishDirect-to-Meta API pipeline
+          - generic [ref=e26]: MonitorReal-time failure detection & retry
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - heading "Join Console" [level=1] [ref=e31]
+        - paragraph [ref=e32]: Create your account to start orchestrating.
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]: Email
+          - textbox "Email" [ref=e36]:
+            - /placeholder: name@domain.com
+        - generic [ref=e37]:
+          - generic [ref=e38]: Password
+          - textbox "Password" [ref=e39]:
+            - /placeholder: ············
+        - button "Create Account" [ref=e40]
+      - generic [ref=e45]: Or continue with
+      - button "◈ Meta Business Account" [disabled]:
+        - generic:
+          - generic: ◈
+          - text: Meta Business Account
+      - paragraph [ref=e46]:
+        - text: Already have an account?
+        - link "Sign in" [ref=e47] [cursor=pointer]:
+          - /url: /auth/login
+  - alert [ref=e48]

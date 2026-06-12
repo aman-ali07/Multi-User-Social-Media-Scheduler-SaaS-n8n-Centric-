@@ -10,8 +10,9 @@ import { FilterBar } from '@/components/posts/filter-bar'
 import { PostRow } from '@/components/posts/post-row'
 import { usePosts } from '@/hooks/use-posts'
 import { SkeletonList } from '@/components/ui/skeleton'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import type { PostStatus } from '@/types/database'
+import { useToast } from '@/components/ui/toast'
 
 const container = {
   hidden: { opacity: 0 },
@@ -28,6 +29,16 @@ function PostsContent() {
   const dateFilter = searchParams.get('date') || undefined
   const [filter, setFilter] = useState<PostStatus | 'all'>('all')
   const { posts, total, page, totalPages, loading, error, cancelPost, goToPage } = usePosts(filter, dateFilter)
+  const { addToast } = useToast()
+
+  const handleCancel = useCallback(async (id: string) => {
+    try {
+      await cancelPost(id)
+      addToast('Post cancelled', 'success')
+    } catch {
+      addToast('Failed to cancel post', 'error')
+    }
+  }, [cancelPost, addToast])
 
   return (
     <AuthGuard>
@@ -68,7 +79,7 @@ function PostsContent() {
           ) : (
             <motion.div variants={item} className="space-y-2">
               {posts.map((post) => (
-                <PostRow key={post.id} post={post} onCancel={cancelPost} />
+                <PostRow key={post.id} post={post} onCancel={handleCancel} />
               ))}
               {totalPages > 1 && (
                 <div className="flex items-center justify-between pt-4 text-[11px] text-text-dim font-mono">

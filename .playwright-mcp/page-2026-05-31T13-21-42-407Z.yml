@@ -1,0 +1,25 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - heading "Welcome back" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Sign in to your content operations console.
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Email
+        - textbox "Email" [ref=e12]:
+          - /placeholder: name@domain.com
+      - generic [ref=e13]:
+        - generic [ref=e14]: Password
+        - textbox "Password" [ref=e15]:
+          - /placeholder: ············
+      - button "Sign In" [ref=e16]
+    - generic [ref=e21]: Or continue with
+    - button "◈ Meta Business Account" [disabled]:
+      - generic:
+        - generic: ◈
+        - text: Meta Business Account
+    - paragraph [ref=e22]:
+      - text: Don't have an account?
+      - link "Register" [ref=e23] [cursor=pointer]:
+        - /url: /auth/register
+  - alert [ref=e24]

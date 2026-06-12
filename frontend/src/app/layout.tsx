@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import { JetBrains_Mono } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/components/ui/error-boundary'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 const bilderberg = localFont({
@@ -35,9 +36,34 @@ const jetbrainsMono = JetBrains_Mono({
   preload: true,
 })
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
 export const metadata: Metadata = {
-  title: 'Console — Social Media Scheduler',
-  description: 'Content orchestration platform for Facebook and Instagram',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Console — Social Media Scheduler',
+    template: '%s — Console',
+  },
+  description: 'Schedule and publish content to Facebook and Instagram with ease. A content orchestration platform for creators and teams.',
+  keywords: ['social media scheduler', 'Facebook scheduler', 'Instagram scheduler', 'content publishing', 'social media automation'],
+  authors: [{ name: 'Console' }],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Console',
+    title: 'Console — Social Media Scheduler',
+    description: 'Schedule and publish content to Facebook and Instagram with ease.',
+    url: siteUrl,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Console — Social Media Scheduler',
+    description: 'Schedule and publish content to Facebook and Instagram with ease.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -54,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-bg text-text" suppressHydrationWarning>
         <div className="noise-overlay" />
         <ErrorBoundary>{children}</ErrorBoundary>
+        <Analytics />
       </body>
     </html>
   )

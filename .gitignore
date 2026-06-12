@@ -1,13 +1,23 @@
 # Dependencies
 node_modules/
-
-# Build artifacts
-graphify-out/
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # Environment files
 .env
 .env.local
 .env.*.local
+*.env
+
+# Build artifacts & output directories
+graphify-out/
+frontend-astro/dist/
+frontend-astro/.astro/
 
 # IDE / Editor
 .idea/
@@ -20,35 +30,22 @@ graphify-out/
 .DS_Store
 Thumbs.db
 
-# Session / test artifacts
-session_opencode.md
-.aider*
-.playwright-mcp/
-.superpowers/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Unknown extensionless files (session/test artifacts)
-accounts-page
-api-global-stats
-auth-callback
-calendar-page
-composer-page
-dashboard-auth-guard
-dashboard-logged-in
-landing-page
-login-page
-login-page-creds
-logs-page
-media-page
-media-page-test
-nav-open
-nav-open-2
-not-found
-posts-page
-register-page
-settings-appearance
-settings-errors
-settings-fixed
-settings-page
+# AI Agent Context / Session Artifacts
+# (Optional: uncomment if you don't want to commit AI history)
+# .aider*
+# .playwright-mcp/
+# .superpowers/
+# .opencode/
 
 # Archives
 *.zip
+*.tar.gz
+*.rar

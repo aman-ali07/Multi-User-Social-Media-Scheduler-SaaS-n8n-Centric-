@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 const N8N_BASE = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL?.replace(/\/$/, '')
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get('code')
@@ -16,35 +18,27 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL('/accounts?error=missing_params', request.url))
   }
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-          } catch { }
-        },
-      },
+  const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    cookies: {
+      getAll: () => request.cookies.getAll(),
+      setAll: () => {},
     },
-  )
+  })
 
   try {
-    const { data: { session } } = await supabase.auth.getSession()
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    if (authError || !user) {
+      return NextResponse.redirect(new URL('/accounts?error=unauthorized', request.url))
+    }
 
     const res = await fetch(`${N8N_BASE}/webhook/oauth-callback`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        ...(session?.access_token
-          ? { Authorization: `Bearer ${session.access_token}` }
-          : {}),
+        'x-verified-user-id': user.id,
       },
       body: JSON.stringify({ code, state }),
+      signal: AbortSignal.timeout(30000),
     })
 
     const body = await res.json()

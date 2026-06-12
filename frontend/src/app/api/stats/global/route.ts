@@ -10,6 +10,7 @@ export async function GET() {
         'Content-Type': 'application/json',
         'apikey': SUPABASE_ANON_KEY,
       },
+      signal: AbortSignal.timeout(5000),
     })
 
     if (!res.ok) {

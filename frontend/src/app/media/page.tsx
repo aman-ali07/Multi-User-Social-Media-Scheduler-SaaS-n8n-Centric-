@@ -20,7 +20,7 @@ const item = {
 }
 
 export default function MediaPage() {
-  const { media, loading, error, upload } = useMedia()
+  const { media, loading, error, upload, remove } = useMedia()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +66,7 @@ export default function MediaPage() {
             </motion.div>
           ) : (
             <motion.div variants={item}>
-              <MediaGrid items={media} />
+              <MediaGrid items={media} onDelete={remove} />
             </motion.div>
           )}
         </motion.div>

@@ -7,7 +7,6 @@ import { ConsoleShell } from '@/components/shell/console-shell'
 import { AuthGuard } from '@/components/auth/auth-guard'
 import { CalendarGrid } from '@/components/calendar/calendar-grid'
 import { Button } from '@/components/ui/button'
-import { SkeletonGrid } from '@/components/ui/skeleton'
 import { useCalendar } from '@/hooks/use-calendar'
 
 const container = {

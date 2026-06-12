@@ -1,6 +1,6 @@
 export type Platform = 'facebook' | 'instagram';
 export type PostStatus = 'draft' | 'scheduled' | 'published' | 'failed' | 'cancelled';
-export type AccountStatus = 'active' | 'expired' | 'revoked';
+export type AccountStatus = 'active' | 'expired' | 'revoked' | 'disconnected';
 export type LogStatus = 'success' | 'error' | 'retry';
 export type WorkflowStatus = 'running' | 'success' | 'error';
 
@@ -47,6 +47,7 @@ export interface ScheduledPost {
   platforms: Platform[];
   schedule_at: string | null;
   published_at: string | null;
+  published_meta_id: string | null;
   timezone: string;
   status: PostStatus;
   retry_count: number;

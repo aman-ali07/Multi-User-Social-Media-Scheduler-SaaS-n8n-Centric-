@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 import { createServerClient } from '@supabase/ssr'
 
 const N8N_BASE = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL?.replace(/\/$/, '')
+const N8N_PROXY_SECRET = process.env.N8N_PROXY_SECRET || ''
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const FRONTEND_URL = process.env.FRONTEND_URL || process.env.NEXT_PUBLIC_FRONTEND_URL || ''
+const FRONTEND_URL = process.env.FRONTEND_URL || process.env.NEXT_PUBLIC_FRONTEND_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 const MAX_BODY_SIZE = 10 * 1024 * 1024
 
 function corsHeaders() {
@@ -31,38 +31,45 @@ export async function POST(
     return NextResponse.json({ error: 'Request too large' }, { status: 413, headers: corsHeaders() })
   }
 
+  // Strict Content-Type validation to prevent CSRF via cross-origin text/plain forms
+  const contentType = request.headers.get('content-type') || ''
+  if (!contentType.includes('application/json')) {
+    return NextResponse.json({ error: 'Unsupported Media Type' }, { status: 415, headers: corsHeaders() })
+  }
+
+  // Allowlist: only permit the two browser-facing webhooks.
+  const ALLOWED_PATHS = new Set(['oauth-connect', 'post'])
   const { path } = await params
   const webhookPath = path.join('/')
+  if (!ALLOWED_PATHS.has(webhookPath)) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404, headers: corsHeaders() })
+  }
   const url = `${N8N_BASE}/webhook/${webhookPath}`
 
   try {
-    const cookieStore = await cookies()
     const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       cookies: {
-        getAll() {
-          return cookieStore.getAll()
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
-          } catch { }
-        },
+        getAll: () => request.cookies.getAll(),
+        setAll: () => {},
       },
     })
 
-    const { data: { session } } = await supabase.auth.getSession()
-    const token = session?.access_token
+    const { data: { user }, error } = await supabase.auth.getUser()
+    if (error || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: corsHeaders() })
+    }
 
     const body = await request.json()
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    }
-    if (token) headers['Authorization'] = `Bearer ${token}`
 
     const res = await fetch(url, {
       method: 'POST',
-      headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-verified-user-id': user.id,
+        'x-proxy-secret': N8N_PROXY_SECRET,
+      },
       body: JSON.stringify(body),
+      signal: AbortSignal.timeout(25000),
     })
 
     const data = await res.json()

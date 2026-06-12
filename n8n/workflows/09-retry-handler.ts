@@ -1,10 +1,9 @@
-import { workflow, trigger, node, expr, newCredential } from '@n8n/workflow-sdk';
+import { workflow, trigger, node, expr, newCredential, ifElse } from '@n8n/workflow-sdk';
 
 const webhookTrigger = trigger({
   type: 'n8n-nodes-base.webhook',
   version: 2.1,
   config: {
-    name: 'Retry Handler Webhook',
     parameters: {
       httpMethod: 'POST',
       path: 'retry',
@@ -31,7 +30,6 @@ const verifyInternalToken = node({
   type: 'n8n-nodes-base.code',
   version: 2,
   config: {
-    name: 'Verify Internal Token',
     parameters: {
       mode: 'runOnceForAllItems',
       jsCode: "const h = $json.headers || {};\nconst token = h['x-internal-token'] || h['X-Internal-Token'] || '';\nconst expected = $env.INTERNAL_WEBHOOK_SECRET;\nif (!expected) throw new Error('INTERNAL_WEBHOOK_SECRET not configured');\nif (token !== expected) throw new Error('Forbidden: invalid internal token');\nreturn [{ json: $json }];"
@@ -43,7 +41,6 @@ const checkPost = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
   config: {
-    name: 'Check Post Status',
     parameters: {
       operation: 'executeQuery',
       query: "SELECT id, user_id, retry_count, max_retries FROM scheduled_posts WHERE id = $1::uuid",
@@ -66,7 +63,6 @@ const checkPost = node({
 const checkRetries = ifElse({
   version: 2.3,
   config: {
-    name: 'Retries Remaining?',
     parameters: {
       conditions: {
         options: { caseSensitive: true, leftValue: '', typeValidation: 'strict' },
@@ -85,26 +81,21 @@ const computeBackoff = node({
   type: 'n8n-nodes-base.code',
   version: 2,
   config: {
-    name: 'Compute Backoff',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const retryCount = $json.retry_count;\nconst delayMinutes = Math.pow(2, retryCount) * 5;\nconst retryAt = new Date(Date.now() + delayMinutes * 60 * 1000).toISOString();\nreturn [{ json: { retryAt, delayMinutes } }];"
+      jsCode: "const retryCount = $json.retry_count;\nconst baseDelayMs = Math.pow(2, retryCount) * 5 * 60 * 1000;\nconst jitter = Math.random() * baseDelayMs * 0.1;\nconst retryAt = new Date(Date.now() + baseDelayMs + jitter).toISOString();\nreturn [{ json: { retryAt } }];"
     }
   },
-  output: [{
-    retryAt: '2026-05-27T...',
-    delayMinutes: 10
-  }]
+  output: [{ retryAt: '2026-06-10T...' }]
 });
 
-const reschedulePost = node({
+const incrementAndReschedule = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
   config: {
-    name: 'Reschedule Post',
     parameters: {
       operation: 'executeQuery',
-      query: "UPDATE scheduled_posts SET status = 'scheduled', schedule_at = $1::timestamptz, updated_at = NOW() WHERE id = $2::uuid",
+      query: "UPDATE scheduled_posts SET status = 'scheduled', retry_count = retry_count + 1, schedule_at = $1::timestamptz, updated_at = NOW() WHERE id = $2::uuid AND status = 'failed' AND deleted_at IS NULL",
       options: {
         queryReplacement: expr('{{ $json.retryAt }}, {{ $("Check Post Status").item.json.id }}')
       }
@@ -112,15 +103,13 @@ const reschedulePost = node({
   },
   credentials: {
     postgres: newCredential('Supabase DB')
-  },
-  output: [{ success: true }]
+  }
 });
 
 const callFailureHandler = node({
   type: 'n8n-nodes-base.httpRequest',
   version: 4.4,
   config: {
-    name: 'Call Failure Handler',
     parameters: {
       method: 'POST',
       url: expr('{{ $env.N8N_WEBHOOK_URL }}/webhook/failure-handler'),
@@ -131,10 +120,10 @@ const callFailureHandler = node({
       jsonBody: {
         postId: expr('{{ $("Check Post Status").item.json.id }}'),
         userId: expr('{{ $("Check Post Status").item.json.user_id || "" }}'),
-        workflowName: expr('{{ $("Retry Handler Webhook").item.json.body.platform }}-publish'),
-        error: expr('{{ $("Retry Handler Webhook").item.json.body.error }}'),
-        attemptNumber: expr('{{ $("Retry Handler Webhook").item.json.body.attemptNumber || 1 }}'),
-        platform: expr('{{ $("Retry Handler Webhook").item.json.body.platform }}'),
+        workflowName: expr('{{ $json.body.platform }}-publish'),
+        error: expr('{{ $json.body.error }}'),
+        attemptNumber: expr('{{ $json.body.attemptNumber || 1 }}'),
+        platform: expr('{{ $json.body.platform }}'),
         source: 'Retry Handler'
       },
       options: {
@@ -145,24 +134,21 @@ const callFailureHandler = node({
         }
       }
     }
-  },
-  output: [{}]
+  }
 });
 
 const respond = node({
   type: 'n8n-nodes-base.respondToWebhook',
   version: 1.5,
   config: {
-    name: 'Respond',
     parameters: {
       respondWith: 'json',
       responseBody: {
-        action: expr('{{ $json.delayMinutes ? "retry" : "exhausted" }}'),
+        action: expr('{{ $json.retryAt ? "retry" : "exhausted" }}'),
         postId: expr('{{ $("Check Post Status").item.json.id }}')
       }
     }
-  },
-  output: [{}]
+  }
 });
 
 export default workflow('retry-handler', 'Retry Handler')
@@ -170,6 +156,6 @@ export default workflow('retry-handler', 'Retry Handler')
   .to(verifyInternalToken)
   .to(checkPost)
   .to(checkRetries
-    .onTrue(computeBackoff.to(reschedulePost).to(respond))
+    .onTrue(computeBackoff.to(incrementAndReschedule).to(respond))
     .onFalse(callFailureHandler.to(respond))
   );

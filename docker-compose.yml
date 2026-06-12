@@ -1,44 +1,86 @@
 services:
   n8n:
-    image: n8nio/n8n:latest
+    image: n8nio/n8n:1.87.0
     restart: unless-stopped
-    ports:
-      - "5678:5678"
+    expose:
+      - "5678"
     environment:
-      # n8n internal storage (SQLite — lightweight, no extra Postgres needed)
-      DB_TYPE: sqlite
-      DB_SQLITE_POOL_SIZE: 2
-
-      # n8n config
-      N8N_HOST: ""                    # Set to your Oracle instance domain/IP
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: ${SUPABASE_DB_HOST}
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: postgres
+      DB_POSTGRESDB_USER: ${SUPABASE_DB_USER}
+      DB_POSTGRESDB_PASSWORD: ${SUPABASE_DB_PASSWORD}
+      DB_POSTGRESDB_POOL_SIZE: 3
       N8N_PORT: 5678
-      N8N_PROTOCOL: https             # Set to http if not using reverse proxy
-      N8N_EDITOR_BASE_URL: ""         # Same as N8N_HOST
-
-      # Webhook URL (public-facing URL for this n8n instance)
-      N8N_WEBHOOK_URL: ""             # e.g. https://your-instance.com/
-
-      # Facebook/Meta API credentials
-      FACEBOOK_APP_ID: ""             # Your Meta App ID
-      FACEBOOK_APP_SECRET: ""         # Your Meta App Secret
-      FACEBOOK_TOKEN_URL: "https://graph.facebook.com/v21.0/oauth/access_token"
-
-      # Internal webhook secret (shared between scheduler and internal workflows)
-      INTERNAL_WEBHOOK_SECRET: ""     # Generate with: openssl rand -hex 32
-
-      # Frontend URL (for OAuth redirects)
-      FRONTEND_URL: ""                # e.g. https://your-app.vercel.app
-
-      # Supabase Auth URL (for token verification in n8n workflows)
-      SUPABASE_AUTH_URL: ""           # e.g. https://<ref>.supabase.co/auth/v1/user
-
-      # Supabase connection (already configured in n8n Postgres credential)
-      # No env vars needed — n8n uses its internal credential store
-
-      # Optional: Node.js memory limit for Oracle free tier
-      NODE_OPTIONS: "--max-old-space-size=512"
+      N8N_PROTOCOL: https
+      N8N_HOST: ${N8N_HOST}
+      N8N_EDITOR_BASE_URL: https://${N8N_HOST}
+      N8N_WEBHOOK_URL: https://${N8N_HOST}/
+      NODE_OPTIONS: --max-old-space-size=1024
+      EXECUTIONS_DATA_PRUNE: true
+      EXECUTIONS_DATA_MAX_AGE: 168
+      EXECUTIONS_DATA_PRUNE_TIMEOUT: 30000
+      N8N_METRICS: true
+      N8N_METRICS_INCLUDE_DEFAULT_METRICS: true
+      N8N_REJECT_UNAUTHORIZED_CERTS: "false"
     volumes:
       - n8n_data:/home/node/.n8n
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5678/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1024M
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      n8n:
+        condition: service_healthy
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - certbot_data:/var/www/certbot
+      - letsencrypt_data:/etc/letsencrypt
+      - ./nginx/logs:/var/log/nginx
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 3
+
+  certbot:
+    image: certbot/certbot:v3.1
+    profiles:
+      - certbot
+    volumes:
+      - certbot_data:/var/www/certbot
+      - letsencrypt_data:/etc/letsencrypt
+    entrypoint: >
+      sh -c "certbot certonly --webroot -w /var/www/certbot
+      --email ${LETSENCRYPT_EMAIL} --agree-tos --no-eff-email
+      -d ${N8N_HOST}"
 
 volumes:
   n8n_data:
+  certbot_data:
+  letsencrypt_data:

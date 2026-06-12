@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { ConsoleShell } from '@/components/shell/console-shell'
 import { Button } from '@/components/ui/button'
@@ -28,6 +28,20 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 }
 
+const MAX_FILE_SIZE = 100 * 1024 * 1024
+const MAX_CAPTION_LENGTH = 2200
+const MAX_TITLE_LENGTH = 200
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'video/mp4', 'video/mov', 'video/quicktime']
+
+interface ValidationErrors {
+  title?: string
+  caption?: string
+  platform?: string
+  account?: string
+  schedule?: string
+  media?: string
+}
+
 export default function ComposerPage() {
   const { user } = useAuth()
   const router = useRouter()
@@ -41,7 +55,24 @@ export default function ComposerPage() {
   const [accountId, setAccountId] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [dirty, setDirty] = useState<Set<string>>(new Set())
   const prevObjectUrl = useRef<string | null>(null)
+
+  const errors = useMemo<ValidationErrors>(() => {
+    const e: ValidationErrors = {}
+    if (title.length > MAX_TITLE_LENGTH) e.title = `Max ${MAX_TITLE_LENGTH} characters`
+    if (caption.length > MAX_CAPTION_LENGTH) e.caption = `Max ${MAX_CAPTION_LENGTH} characters`
+    if (!accountId) e.account = 'Select an account'
+    if (platforms.length === 0) e.platform = 'Select at least one platform'
+    if (scheduleAt) {
+      const d = new Date(scheduleAt)
+      if (d <= new Date()) e.schedule = 'Must be in the future'
+    }
+    return e
+  }, [title, caption, accountId, platforms, scheduleAt])
+
+  const canSaveDraft = !errors.account && !errors.title && !errors.caption
+  const canSchedule = !errors.account && !errors.platform && !errors.title && !errors.caption && !errors.schedule
 
   useEffect(() => {
     if (!user) return
@@ -55,6 +86,9 @@ export default function ComposerPage() {
 
   const handleSubmit = async (status: 'draft' | 'scheduled') => {
     if (!user) return
+    setDirty(new Set(['account', 'platform', 'schedule']))
+    if (status === 'scheduled' && !canSchedule) return
+    if (status === 'draft' && !canSaveDraft) return
     setSaving(true)
     setError(null)
     try {
@@ -87,7 +121,6 @@ export default function ComposerPage() {
       }
 
       await createPost({
-        userId: user.id,
         accountId,
         title: title || undefined,
         caption: caption || undefined,
@@ -113,6 +146,15 @@ export default function ComposerPage() {
   }, [])
 
   const handleFile = (file: File) => {
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      setError('Unsupported file type. Use JPG, PNG, GIF, WebP, or MP4.')
+      return
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      setError('File too large. Max 100 MB.')
+      return
+    }
+    setError(null)
     if (prevObjectUrl.current) URL.revokeObjectURL(prevObjectUrl.current)
     const url = URL.createObjectURL(file)
     prevObjectUrl.current = url
@@ -135,18 +177,31 @@ export default function ComposerPage() {
               label="Title"
               placeholder="Post title (internal)"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => { setTitle(e.target.value); setDirty((p) => new Set(p).add('title')) }}
+              error={dirty.has('title') ? errors.title : undefined}
             />
 
-            <CaptionEditor value={caption} onChange={setCaption} />
+            <div className="space-y-1.5">
+              <CaptionEditor value={caption} onChange={(v) => { setCaption(v); setDirty((p) => new Set(p).add('caption')) }} />
+              {dirty.has('caption') && errors.caption && (
+                <span className="text-[12px] text-red font-mono">{errors.caption}</span>
+              )}
+            </div>
 
             <PlatformSelector platforms={platforms} onToggle={(p) => {
               setPlatforms((prev) =>
                 prev.includes(p) ? prev.filter((x) => x !== p) : [...prev, p],
               )
+              setDirty((prev) => new Set(prev).add('platform'))
             }} />
+            {dirty.has('platform') && errors.platform && (
+              <span className="text-[12px] text-red font-mono block -mt-3">{errors.platform}</span>
+            )}
 
-            <AccountSelector accounts={accounts} value={accountId} onChange={setAccountId} />
+            <AccountSelector accounts={accounts} value={accountId} onChange={(v) => { setAccountId(v); setDirty((p) => new Set(p).add('account')) }} />
+            {dirty.has('account') && errors.account && (
+              <span className="text-[12px] text-red font-mono block -mt-3">{errors.account}</span>
+            )}
 
             <MediaDropzone onFile={handleFile} />
 
@@ -167,7 +222,10 @@ export default function ComposerPage() {
               </div>
             )}
 
-            <SchedulePicker value={scheduleAt} onChange={setScheduleAt} />
+            <SchedulePicker value={scheduleAt} onChange={(v) => { setScheduleAt(v); setDirty((p) => new Set(p).add('schedule')) }} />
+            {dirty.has('schedule') && errors.schedule && (
+              <span className="text-[12px] text-red font-mono block -mt-2">{errors.schedule}</span>
+            )}
 
             {error && (
               <p className="text-red text-[12px] font-mono">{error}</p>
@@ -178,7 +236,7 @@ export default function ComposerPage() {
                 variant="ghost"
                 size="md"
                 onClick={() => handleSubmit('draft')}
-                disabled={saving || !accountId}
+                disabled={saving || !canSaveDraft}
               >
                 {saving ? 'Saving...' : 'Save Draft'}
               </Button>
@@ -186,12 +244,12 @@ export default function ComposerPage() {
                 variant="gold"
                 size="md"
                 onClick={() => handleSubmit('scheduled')}
-                disabled={saving || !accountId || platforms.length === 0}
+                disabled={saving || !canSchedule}
               >
                 {saving ? 'Saving...' : 'Schedule'}
               </Button>
             </div>
-            {!accountId && accounts.length > 0 && (
+            {dirty.has('account') && !accountId && accounts.length > 0 && (
               <p className="text-[11px] text-text-dim font-mono">Select an account to enable saving</p>
             )}
             {accounts.length === 0 && (

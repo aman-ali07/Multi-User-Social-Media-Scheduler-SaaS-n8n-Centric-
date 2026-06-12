@@ -1,5 +1,3 @@
-import { cn } from '@/lib/utils'
-
 export function SkeletonRow() {
   return (
     <div className="flex items-center gap-3 p-3 rounded-sm border border-border bg-surface animate-pulse">

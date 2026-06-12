@@ -16,6 +16,7 @@ const variantStyles: Record<string, string> = {
   active: 'bg-lime/10 text-lime border-lime/20',
   expired: 'bg-orange/10 text-orange border-orange/20',
   revoked: 'bg-red/10 text-red border-red/20',
+  disconnected: 'bg-surface-2 text-text-dim border-border',
   success: 'bg-lime/10 text-lime border-lime/20',
   error: 'bg-red/10 text-red border-red/20',
   retry: 'bg-orange/10 text-orange border-orange/20',

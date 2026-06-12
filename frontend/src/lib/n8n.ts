@@ -1,12 +1,9 @@
-interface WebhookOptions {
-  body?: unknown
-}
-
-async function callWebhook(path: string, options: WebhookOptions = {}) {
+async function callWebhook(path: string, body?: unknown) {
   const res = await fetch(`/api/n8n/${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: options.body ? JSON.stringify(options.body) : undefined,
+    body: body ? JSON.stringify(body) : undefined,
+    signal: AbortSignal.timeout(15000),
   })
 
   if (!res.ok) {
@@ -17,12 +14,11 @@ async function callWebhook(path: string, options: WebhookOptions = {}) {
   return res.json()
 }
 
-export async function connectOAuth(userId: string, platform: 'facebook') {
-  return callWebhook('oauth-connect', { body: { userId, platform } })
+export async function connectOAuth(platform: 'facebook') {
+  return callWebhook('oauth-connect', { platform })
 }
 
 export async function createPost(data: {
-  userId: string
   accountId: string
   title?: string
   caption?: string
@@ -32,7 +28,7 @@ export async function createPost(data: {
   timezone: string
   status: 'draft' | 'scheduled'
 }) {
-  return callWebhook('post', { body: { operation: 'create', ...data } })
+  return callWebhook('post', { operation: 'create', ...data })
 }
 
 export async function updatePost(data: {
@@ -43,13 +39,10 @@ export async function updatePost(data: {
   accountId?: string
   scheduleAt?: string | null
   status?: string
-  userId: string
 }) {
-  return callWebhook('post', { body: { operation: 'edit', ...data } })
+  return callWebhook('post', { operation: 'edit', ...data })
 }
 
-export async function cancelPost(postId: string, userId: string) {
-  return callWebhook('post', { body: { operation: 'cancel', postId, userId } })
+export async function cancelPost(postId: string) {
+  return callWebhook('post', { operation: 'cancel', postId })
 }
-
-

@@ -5,9 +5,10 @@ import type { SocialAccount } from '@/types/database'
 
 interface AccountCardProps {
   account: SocialAccount
+  onDisconnect?: (id: string) => void
 }
 
-export function AccountCard({ account }: AccountCardProps) {
+export function AccountCard({ account, onDisconnect }: AccountCardProps) {
   return (
     <div className="rounded-sm border border-border bg-surface p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
       <div className="flex items-center gap-4">
@@ -33,6 +34,14 @@ export function AccountCard({ account }: AccountCardProps) {
           </span>
         )}
         <Badge variant={account.status} />
+        {onDisconnect && account.status !== 'disconnected' && (
+          <button
+            onClick={() => onDisconnect(account.id)}
+            className="text-[11px] text-text-muted font-mono uppercase tracking-wider border border-border hover:border-red hover:text-red hover:bg-red/5 px-2 py-1 rounded-sm transition-colors"
+          >
+            Disconnect
+          </button>
+        )}
       </div>
     </div>
   )

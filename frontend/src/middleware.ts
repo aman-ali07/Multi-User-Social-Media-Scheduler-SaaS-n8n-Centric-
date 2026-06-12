@@ -14,7 +14,7 @@ const consoleRoutes = [
 
 const authRoutes = ['/auth/login', '/auth/register', '/auth/callback']
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
@@ -41,10 +41,21 @@ export async function proxy(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   const { pathname } = request.nextUrl
+  const isApiRoute = pathname.startsWith('/api/')
   const isConsoleRoute = consoleRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'))
   const isAuthRoute = authRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'))
-  const isLandingPage = pathname === '/'
 
+  // API routes that handle their own auth pass through
+  if (pathname.startsWith('/api/n8n/') || pathname.startsWith('/api/query') || pathname === '/api/health') {
+    return supabaseResponse
+  }
+
+  // Other API routes require auth
+  if (isApiRoute && !user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  // Page routes
   if (!user) {
     if (isConsoleRoute) {
       const url = request.nextUrl.clone()
@@ -54,7 +65,7 @@ export async function proxy(request: NextRequest) {
     return supabaseResponse
   }
 
-  if (user && (isLandingPage || isAuthRoute)) {
+  if (user && (pathname === '/' || isAuthRoute)) {
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
     return NextResponse.redirect(url)
@@ -64,5 +75,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api/|_next/static|_next/image|favicon\\.ico).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon\\.ico|monitoring).*)'],
 }

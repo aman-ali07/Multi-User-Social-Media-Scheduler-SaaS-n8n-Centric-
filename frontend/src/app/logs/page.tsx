@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ConsoleShell } from '@/components/shell/console-shell'
 import { AuthGuard } from '@/components/auth/auth-guard'
 import { ActivityTimeline } from '@/components/logs/activity-timeline'
 import { SkeletonList } from '@/components/ui/skeleton'
-import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/use-auth'
 import type { PostLog } from '@/types/database'
 
@@ -24,20 +23,38 @@ export default function LogsPage() {
   const { user } = useAuth()
   const [logs, setLogs] = useState<PostLog[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const load = useCallback(async (signal?: AbortSignal) => {
+    if (!user) return
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'logs' }),
+        signal,
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: res.statusText }))
+        throw new Error(err.error || `Failed (${res.status})`)
+      }
+      const data = await res.json()
+      setLogs((data.logs || []) as PostLog[])
+    } catch (err: unknown) {
+      if ((err as Error)?.name === 'AbortError') return
+      setError(err instanceof Error ? err.message : 'Failed to load logs')
+    } finally {
+      setLoading(false)
+    }
+  }, [user])
 
   useEffect(() => {
-    if (!user) return
-    supabase
-      .from('post_logs')
-      .select('*, scheduled_posts!inner(user_id)')
-      .eq('scheduled_posts.user_id', user.id)
-      .order('created_at', { ascending: false })
-      .limit(100)
-      .then(({ data }) => {
-        setLogs(data || [])
-        setLoading(false)
-      })
-  }, [user])
+    const abort = new AbortController()
+    load(abort.signal)
+    return () => abort.abort()
+  }, [load])
 
   return (
     <AuthGuard>
@@ -53,6 +70,10 @@ export default function LogsPage() {
             </div>
             <p className="text-text-muted text-sm font-sans mt-1">Post logs and workflow runs</p>
           </motion.div>
+
+          {error && (
+            <motion.p variants={item} className="text-red text-[12px] font-mono">{error}</motion.p>
+          )}
 
           {loading ? (
             <motion.div variants={item}>

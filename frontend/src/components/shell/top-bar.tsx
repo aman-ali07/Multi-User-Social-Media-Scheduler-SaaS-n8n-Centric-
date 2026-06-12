@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
 import { useAuth } from '@/hooks/use-auth'
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
@@ -29,7 +28,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
   async function handleSignOut() {
     setDropdownOpen(false)
     await signOut()
-    router.push('/login')
+    router.push('/')
   }
 
   return (

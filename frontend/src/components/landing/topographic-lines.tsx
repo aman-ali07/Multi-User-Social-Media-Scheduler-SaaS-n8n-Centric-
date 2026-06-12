@@ -48,7 +48,7 @@ export function TopographicLines() {
               key={i}
               d={d}
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.5 + Math.random() * 0.5 }}
+              animate={{ pathLength: 1, opacity: 0.5 + (i % 3) * 0.15 + (i % 2) * 0.05 }}
               transition={{
                 duration: 3 + i * 0.2,
                 delay: 0.5 + i * 0.15,

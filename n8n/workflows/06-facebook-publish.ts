@@ -1,10 +1,9 @@
-import { workflow, trigger, node, expr, newCredential } from '@n8n/workflow-sdk';
+import { workflow, trigger, node, expr, newCredential, ifElse } from '@n8n/workflow-sdk';
 
 const webhookTrigger = trigger({
   type: 'n8n-nodes-base.webhook',
   version: 2.1,
   config: {
-    name: 'Facebook Publish Webhook',
     parameters: {
       httpMethod: 'POST',
       path: 'facebook-publish',
@@ -34,10 +33,44 @@ const verifyInternalToken = node({
   type: 'n8n-nodes-base.code',
   version: 2,
   config: {
-    name: 'Verify Internal Token',
     parameters: {
       mode: 'runOnceForAllItems',
       jsCode: "const h = $json.headers || {};\nconst token = h['x-internal-token'] || h['X-Internal-Token'] || '';\nconst expected = $env.INTERNAL_WEBHOOK_SECRET;\nif (!expected) throw new Error('INTERNAL_WEBHOOK_SECRET not configured');\nif (token !== expected) throw new Error('Forbidden: invalid internal token');\nreturn [{ json: $json }];"
+    }
+  }
+});
+
+const checkAlreadyPublished = node({
+  type: 'n8n-nodes-base.postgres',
+  version: 2.6,
+  config: {
+    parameters: {
+      operation: 'executeQuery',
+      query: "SELECT id, published_meta_id FROM scheduled_posts WHERE id = $1::uuid",
+      options: {
+        queryReplacement: expr('{{ $json.body.postId }}')
+      }
+    }
+  },
+  credentials: {
+    postgres: newCredential('Supabase DB')
+  },
+  output: [{ id: 'uuid', published_meta_id: '12345_67890' }]
+});
+
+const isAlreadyPublished = ifElse({
+  version: 2.3,
+  config: {
+    parameters: {
+      conditions: {
+        options: { caseSensitive: true, leftValue: '', typeValidation: 'strict' },
+        conditions: [{
+          leftValue: expr('{{ $json.published_meta_id }}'),
+          operator: { type: 'string', operation: 'isNotEmpty' },
+          rightValue: ''
+        }],
+        combinator: 'and'
+      }
     }
   }
 });
@@ -46,30 +79,60 @@ const buildFbPayload = node({
   type: 'n8n-nodes-base.code',
   version: 2,
   config: {
-    name: 'Build Facebook Payload',
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const payload = $json.body;\nconst mediaUrls = Array.isArray(payload.mediaUrls) ? payload.mediaUrls : (payload.mediaUrl ? [payload.mediaUrl] : []);\nconst caption = payload.caption || '';\nconst pageId = payload.pageId;\nconst accessToken = payload.accessToken;\n\nif (mediaUrls.length === 0) {\n  const url = `https://graph.facebook.com/v21.0/${pageId}/feed?message=${encodeURIComponent(caption)}&access_token=${accessToken}`;\n  return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption } }];\n}\n\nif (mediaUrls.length === 1) {\n  const url = `https://graph.facebook.com/v21.0/${pageId}/photos?url=${encodeURIComponent(mediaUrls[0])}&message=${encodeURIComponent(caption)}&access_token=${accessToken}&published=true`;\n  return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption } }];\n}\n\nconst photoIds = [];\nfor (const mediaUrl of mediaUrls) {\n  const uploadUrl = `https://graph.facebook.com/v21.0/${pageId}/photos?url=${encodeURIComponent(mediaUrl)}&published=false&access_token=${accessToken}`;\n  const res = await fetch(uploadUrl, { method: 'POST' });\n  const data = await res.json();\n  if (!data.id) throw new Error(`Photo upload failed: ${data.error?.message || 'unknown error'}`);\n  photoIds.push(data.id);\n}\n\nconst attachedMedia = photoIds.map(id => ({ media_fbid: id }));\nconst url = `https://graph.facebook.com/v21.0/${pageId}/feed?message=${encodeURIComponent(caption)}&access_token=${accessToken}&attached_media_ids=${encodeURIComponent(JSON.stringify(attachedMedia))}`;\nreturn [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption } }];"
+      jsCode: "try {\n  const payload = $json.body;\n  const mediaUrls = Array.isArray(payload.mediaUrls) ? payload.mediaUrls : (payload.mediaUrl ? [payload.mediaUrl] : []);\n  const mediaTypes = Array.isArray(payload.mediaTypes) ? payload.mediaTypes : (payload.mediaType ? [payload.mediaType] : []);\n  const caption = payload.caption || '';\n  const pageId = payload.pageId;\n  const accessToken = payload.accessToken;\n\n  const headers = { 'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json' };\n  const base = `https://graph.facebook.com/v21.0/${pageId}`;\n\n  if (mediaUrls.length === 0) {\n    const url = `${base}/feed`;\n    const body = { message: caption };\n    return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption, headers, body } }];\n  }\n\n  const hasVideo = mediaTypes.some(t => typeof t === 'string' && t.startsWith('video'));\n  if (hasVideo && mediaUrls.length > 1) {\n    throw new Error('Cannot mix videos with other media or upload multiple videos in one Facebook post');\n  }\n\n  if (hasVideo) {\n    const url = `${base}/videos`;\n    const body = { file_url: mediaUrls[0], description: caption, published: true };\n    return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption, headers, body } }];\n  }\n\n  if (mediaUrls.length === 1) {\n    const url = `${base}/photos`;\n    const body = { url: mediaUrls[0], message: caption, published: true };\n    return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption, headers, body } }];\n  }\n\n  const photoIds = [];\n  for (const mediaUrl of mediaUrls) {\n    const uploadUrl = `${base}/photos`;\n    const res = await fetch(uploadUrl, {\n      method: 'POST',\n      headers,\n      body: JSON.stringify({ url: mediaUrl, published: false })\n    });\n    const data = await res.json();\n    if (!data.id) throw new Error(`Photo upload failed: ${data.error?.message || 'unknown error'}`);\n    photoIds.push(data.id);\n  }\n\n  const attachedMedia = photoIds.map(id => ({ media_fbid: id }));\n  const url = `${base}/feed`;\n  const body = { message: caption, attached_media: attachedMedia };\n  return [{ json: { url, method: 'POST', postId: payload.postId, userId: payload.userId, caption, headers, body } }];\n} catch (err) {\n  return [{ json: { hasError: true, errorMsg: err.message, postId: $json.body?.postId, userId: $json.body?.userId } }];\n}"
     }
   },
   output: [{
     url: 'https://graph.facebook.com/...',
     method: 'POST',
+    headers: {},
+    body: {},
     postId: 'uuid',
     userId: 'uuid',
     caption: 'Hello'
   }]
 });
 
+const checkPayloadError = ifElse({
+  version: 2.3,
+  config: {
+    parameters: {
+      conditions: {
+        options: { caseSensitive: true, leftValue: '', typeValidation: 'strict' },
+        conditions: [{
+          leftValue: expr('{{ $json.hasError }}'),
+          operator: { type: 'boolean', operation: 'true' }
+        }],
+        combinator: 'and'
+      }
+    }
+  }
+});
+
 const callFbApi = node({
   type: 'n8n-nodes-base.httpRequest',
   version: 4.4,
   config: {
-    name: 'Post to Facebook',
     parameters: {
       method: 'POST',
       url: expr('{{ $json.url }}'),
       authentication: 'none',
+      sendBody: true,
+      contentType: 'json',
+      specifyBody: 'json',
+      jsonBody: {
+        message: expr('{{ $json.body.message }}'),
+        url: expr('{{ $json.body.url }}'),
+        published: expr('{{ $json.body.published }}'),
+        attached_media: expr('{{ $json.body.attached_media }}')
+      },
+      headerParameters: {
+        parameters: [
+          { name: 'Authorization', value: expr('{{ $json.headers.Authorization }}') }
+        ]
+      },
       options: {
         response: {
           response: {
@@ -81,9 +144,7 @@ const callFbApi = node({
     }
   },
   output: [{
-    body: {
-      id: '12345_67890'
-    },
+    body: { id: '12345_67890' },
     statusCode: 200,
     headers: {}
   }]
@@ -92,7 +153,6 @@ const callFbApi = node({
 const checkResult = ifElse({
   version: 2.3,
   config: {
-    name: 'Publish Success?',
     parameters: {
       conditions: {
         options: { caseSensitive: true, leftValue: '', typeValidation: 'strict' },
@@ -107,11 +167,27 @@ const checkResult = ifElse({
   }
 });
 
+const saveMetaId = node({
+  type: 'n8n-nodes-base.postgres',
+  version: 2.6,
+  config: {
+    parameters: {
+      operation: 'executeQuery',
+      query: "UPDATE scheduled_posts SET published_meta_id = $1, updated_at = NOW() WHERE id = $2::uuid",
+      options: {
+        queryReplacement: expr('{{ $("Post to Facebook").item.json.body.id }}, {{ $("Build Facebook Payload").item.json.postId }}')
+      }
+    }
+  },
+  credentials: {
+    postgres: newCredential('Supabase DB')
+  }
+});
+
 const markPublished = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
   config: {
-    name: 'Mark Published',
     parameters: {
       operation: 'executeQuery',
       query: "UPDATE scheduled_posts SET status = 'published', published_at = NOW(), updated_at = NOW() WHERE id = $1::uuid",
@@ -122,72 +198,68 @@ const markPublished = node({
   },
   credentials: {
     postgres: newCredential('Supabase DB')
-  },
-  output: [{ success: true }]
+  }
 });
 
 const logSuccess = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
   config: {
-    name: 'Log Success',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, response_payload, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'success', $2::uuid, $3::jsonb, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'success', $2::uuid, 1)",
       options: {
-        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Post to Facebook").item.json.body }}')
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}')
       }
     }
   },
   credentials: {
     postgres: newCredential('Supabase DB')
-  },
-  output: [{ id: 'uuid' }]
+  }
 });
+
+// ==========================================
+// FAILURE PATH A: API Failed
+// ==========================================
 
 const logFailure = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
   config: {
-    name: 'Log Failure',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, response_payload, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, $4::jsonb, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, 1)",
       options: {
-        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Post to Facebook").item.json.body.error.message }}, {{ $("Post to Facebook").item.json.body }}')
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Post to Facebook").item.json.body.error?.message || $("Post to Facebook").item.json.statusCode }}')
       }
     }
   },
   credentials: {
     postgres: newCredential('Supabase DB')
-  },
-  output: [{ id: 'uuid' }]
+  }
 });
 
 const markFailed = node({
   type: 'n8n-nodes-base.postgres',
   version: 2.6,
   config: {
-    name: 'Mark Failed',
     parameters: {
       operation: 'executeQuery',
-      query: "UPDATE scheduled_posts SET status = 'failed', error_message = $1, retry_count = retry_count + 1, updated_at = NOW() WHERE id = $2::uuid",
+      query: "UPDATE scheduled_posts SET status = 'failed', error_message = $1, updated_at = NOW() WHERE id = $2::uuid",
       options: {
-        queryReplacement: expr('{{ $("Post to Facebook").item.json.body.error.message }}, {{ $("Build Facebook Payload").item.json.postId }}')
+        queryReplacement: expr('{{ $("Post to Facebook").item.json.body.error?.message || $("Post to Facebook").item.json.statusCode }}, {{ $("Build Facebook Payload").item.json.postId }}')
       }
     }
   },
   credentials: {
     postgres: newCredential('Supabase DB')
-  },
-  output: [{ success: true }]
+  }
 });
 
 const callRetry = node({
   type: 'n8n-nodes-base.httpRequest',
   version: 4.4,
   config: {
-    name: 'Call Retry Handler',
     parameters: {
       method: 'POST',
       url: expr('{{ $env.N8N_WEBHOOK_URL }}/webhook/retry'),
@@ -198,7 +270,7 @@ const callRetry = node({
       jsonBody: {
         postId: expr('{{ $("Build Facebook Payload").item.json.postId }}'),
         platform: 'facebook',
-        error: expr('{{ $("Post to Facebook").item.json.body.error.message }}')
+        error: expr('{{ $("Post to Facebook").item.json.body.error?.message || $("Post to Facebook").item.json.statusCode }}')
       },
       headerParameters: {
         parameters: [
@@ -213,50 +285,109 @@ const callRetry = node({
         }
       }
     }
-  },
-  output: [{}]
+  }
 });
 
-const respond = node({
+// ==========================================
+// FAILURE PATH B: Payload Build Failed
+// ==========================================
+
+const logPayloadFailure = node({
+  type: 'n8n-nodes-base.postgres',
+  version: 2.6,
+  config: {
+    parameters: {
+      operation: 'executeQuery',
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, 1)",
+      options: {
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Build Facebook Payload").item.json.errorMsg }}')
+      }
+    }
+  },
+  credentials: {
+    postgres: newCredential('Supabase DB')
+  }
+});
+
+const markPayloadFailed = node({
+  type: 'n8n-nodes-base.postgres',
+  version: 2.6,
+  config: {
+    parameters: {
+      operation: 'executeQuery',
+      query: "UPDATE scheduled_posts SET status = 'failed', error_message = $1, updated_at = NOW() WHERE id = $2::uuid",
+      options: {
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.errorMsg }}, {{ $("Build Facebook Payload").item.json.postId }}')
+      }
+    }
+  },
+  credentials: {
+    postgres: newCredential('Supabase DB')
+  }
+});
+
+const callPayloadRetry = node({
+  type: 'n8n-nodes-base.httpRequest',
+  version: 4.4,
+  config: {
+    parameters: {
+      method: 'POST',
+      url: expr('{{ $env.N8N_WEBHOOK_URL }}/webhook/retry'),
+      authentication: 'none',
+      sendBody: true,
+      contentType: 'json',
+      specifyBody: 'json',
+      jsonBody: {
+        postId: expr('{{ $("Build Facebook Payload").item.json.postId }}'),
+        platform: 'facebook',
+        error: expr('{{ $("Build Facebook Payload").item.json.errorMsg }}')
+      },
+      headerParameters: {
+        parameters: [
+          { name: 'x-internal-token', value: expr('{{ $env.INTERNAL_WEBHOOK_SECRET }}') }
+        ]
+      },
+      options: {
+        response: {
+          response: {
+            neverError: true
+          }
+        }
+      }
+    }
+  }
+});
+
+// ==========================================
+// RESPONSES
+// ==========================================
+
+const respondAlreadyPublished = node({
   type: 'n8n-nodes-base.respondToWebhook',
   version: 1.5,
   config: {
-    name: 'Respond',
     parameters: {
       respondWith: 'json',
       responseBody: {
         success: true,
-        postId: expr('{{ $("Build Facebook Payload").item.json.postId }}'),
-        fbPostId: expr('{{ $("Post to Facebook").item.json.body.id }}')
+        postId: expr('{{ $json.id }}'),
+        note: 'Already published (skipped)'
       }
     }
-  },
-  output: [{}]
-});
-
-const respondError = node({
-  type: 'n8n-nodes-base.respondToWebhook',
-  version: 1.5,
-  config: {
-    name: 'Respond Error',
-    parameters: {
-      respondWith: 'json',
-      responseBody: {
-        success: false,
-        postId: expr('{{ $("Build Facebook Payload").item.json.postId }}'),
-        error: expr('{{ $("Post to Facebook").item.json.body.error.message }}')
-      }
-    }
-  },
-  output: [{}]
+  }
 });
 
 export default workflow('facebook-publish', 'Facebook Publish Workflow')
   .add(webhookTrigger)
   .to(verifyInternalToken)
-  .to(buildFbPayload)
-  .to(callFbApi)
-  .to(checkResult
-    .onTrue(markPublished.to(logSuccess).to(respond))
-    .onFalse(logFailure.to(markFailed.to(callRetry.to(respondError))))
+  .to(checkAlreadyPublished)
+  .to(isAlreadyPublished
+    .onTrue(respondAlreadyPublished)
+    .onFalse(buildFbPayload.to(checkPayloadError
+      .onFalse(callFbApi.to(checkResult
+        .onTrue(saveMetaId.to(markPublished).to(logSuccess))
+        .onFalse(logFailure.to(markFailed).to(callRetry))
+      ))
+      .onTrue(logPayloadFailure.to(markPayloadFailed).to(callPayloadRetry))
+    ))
   );

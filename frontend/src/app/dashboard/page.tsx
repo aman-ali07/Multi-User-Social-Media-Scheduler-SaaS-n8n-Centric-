@@ -20,7 +20,7 @@ const item = {
 }
 
 export default function DashboardPage() {
-  const { stats, upcoming, velocity, activity, loading } = useDashboard()
+  const { stats, upcoming, velocity, activity, loading, error, retry } = useDashboard()
 
   if (loading) {
     return (
@@ -52,6 +52,18 @@ export default function DashboardPage() {
             <h1 className="font-serif text-[28px] text-text tracking-tight">Dashboard</h1>
             <p className="text-text-muted text-sm font-sans mt-1">Content operations cockpit</p>
           </motion.div>
+
+          {error && (
+            <motion.div variants={item} className="rounded-sm border border-red/20 bg-red/5 p-4 space-y-3">
+              <p className="text-[12px] text-red font-mono">{error}</p>
+              <button
+                onClick={retry}
+                className="px-3 py-1.5 rounded-sm border border-red/30 text-red text-[11px] font-mono uppercase tracking-wider hover:bg-red/10 transition-colors"
+              >
+                Retry
+              </button>
+            </motion.div>
+          )}
 
           <motion.div variants={item}>
             <StatsRow stats={statCards} />

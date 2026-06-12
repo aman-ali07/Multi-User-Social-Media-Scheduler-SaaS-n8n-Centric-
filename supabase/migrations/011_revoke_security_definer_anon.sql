@@ -15,11 +15,16 @@
 
 REVOKE EXECUTE ON FUNCTION cancel_posts_on_account_delete() FROM anon, authenticated;
 REVOKE EXECUTE ON FUNCTION cleanup_expired_oauth_state() FROM anon, authenticated;
-REVOKE EXECUTE ON FUNCTION cleanup_old_logs(integer) FROM anon, authenticated;
+REVOKE EXECUTE ON FUNCTION cleanup_old_logs(retention_days integer) FROM anon, authenticated;
 REVOKE EXECUTE ON FUNCTION decrypt_token(TEXT) FROM anon, authenticated;
 REVOKE EXECUTE ON FUNCTION encrypt_token(TEXT) FROM anon, authenticated;
 REVOKE EXECUTE ON FUNCTION get_media_public_url(TEXT) FROM anon, authenticated;
-REVOKE EXECUTE ON FUNCTION handle_new_user() FROM anon, authenticated;
+DO $$
+BEGIN
+  REVOKE EXECUTE ON FUNCTION handle_new_user() FROM anon, authenticated;
+EXCEPTION WHEN undefined_function THEN
+  RAISE NOTICE 'handle_new_user() does not exist — skipping REVOKE';
+END $$;
 
 -- ============================================================================
 -- 2. KEEP get_global_stats PUBLIC (landing page stats)

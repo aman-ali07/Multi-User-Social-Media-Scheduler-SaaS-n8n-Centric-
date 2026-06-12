@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
 import { useAuth } from './use-auth'
 import { connectOAuth as connectOAuthApi } from '@/lib/n8n'
+import { getAccounts } from '@/lib/query'
 import type { SocialAccount } from '@/types/database'
 
 export function useAccounts() {
@@ -12,24 +12,41 @@ export function useAccounts() {
 
   const load = useCallback(async () => {
     if (!user) return
-    setLoading(true)
-    const { data, error: err } = await supabase
-      .from('social_accounts')
-      .select('id, user_id, platform, page_id, page_name, ig_user_id, ig_username, token_expires_at, status, created_at')
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false })
-    if (err) setError(err.message)
-    else setAccounts(data || [])
-    setLoading(false)
+    try {
+      const data = await getAccounts()
+      setAccounts((data.accounts || []) as SocialAccount[])
+      setLoading(false)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to load accounts')
+      setLoading(false)
+    }
   }, [user])
 
-  useEffect(() => { load() }, [load])
+  useEffect(() => { load() }, [load]) // eslint-disable-line react-hooks/set-state-in-effect
 
   const connect = async (platform: 'facebook') => {
     if (!user) return
-    const res = await connectOAuthApi(user.id, platform)
-    if (res.url) window.location.href = res.url
+    window.location.href = `/api/auth/meta/connect?platform=${platform}`
   }
 
-  return { accounts, loading, error, reload: load, connect }
+  const disconnect = async (id: string) => {
+    if (!user) return
+    try {
+      const res = await fetch('/api/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'delete-account', id }),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: res.statusText }))
+        throw new Error(err.error || `Failed to disconnect (${res.status})`)
+      }
+      await load()
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to disconnect account')
+      throw err
+    }
+  }
+
+  return { accounts, loading, error, reload: load, connect, disconnect }
 }

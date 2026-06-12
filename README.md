@@ -1,71 +1,38 @@
-# Multi-User Social Media Scheduler
+# Console: Your Personal Social Media Engine
 
-Schedule and auto-publish content to Facebook Pages and Instagram Business Accounts
-via Meta Graph API. n8n is the backend — all business logic, OAuth, scheduling,
-retries, and audit logging live in n8n workflows.
+Hey there! Welcome to **Console**. 
 
-## Stack
+If you've ever tried to manage social media for a business, a brand, or just your own projects, you know the pain. You usually end up paying $50/month per user for a walled-garden SaaS tool, or you end up constantly switching tabs between Facebook, Instagram, and a messy folder full of random images. 
 
-```
-Frontend (Next.js 16) ──→ n8n (backend) ──→ Supabase DB + Storage
-                              │
-                              ▼
-                        Meta Graph API v21.0
-```
+We got tired of that. So, we built Console.
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | Next.js 16, React 19, Tailwind CSS 4 |
-| Backend | **n8n** (10 workflows, webhook-driven) |
-| Auth | Supabase Auth (server-side sessions + JWT) |
-| Database | Supabase PostgreSQL (9 tables, RLS, pgcrypto) |
-| Storage | Supabase Storage (public media bucket) |
-| External | Meta Graph API v21.0 (Facebook + Instagram) |
+Console is an open-stack, multi-user social media scheduler. It lets you and your team connect your Meta accounts, upload your media to a private library, write your posts, and schedule them out into the future. Once scheduled, you can literally close your laptop—the system takes over and fires off your content at the exact right second.
 
-## Quick Start
+### Why is this different?
+Instead of building a massive, monolithic backend to handle the scheduling, we built Console using **n8n** (a powerful workflow automation engine) and **Supabase** (a wildly scalable database). This means you get enterprise-grade reliability and visual workflow debugging, but on infrastructure that you actually own and control. 
 
-```bash
-npm install && cd frontend && npm install && cd ..
-# Set up frontend/.env.local (see SETUP.md)
-npm run dev  # → http://localhost:3000
-```
+Plus, it's designed to be hosted for free!
 
-Full setup guide: **[SETUP.md](./SETUP.md)**
+---
 
-## Project Structure
+## 🚀 How to Get Started
 
-```
-saas/
-├── frontend/          # Next.js 16 app (18 routes)
-├── n8n/workflows/     # n8n workflow SDK source (10 .ts files)
-├── supabase/migrations/  # Database schema (7 migrations)
-├── docker-compose.yml # n8n self-hosted deployment (local dev)
-└── n8n.env.example    # Required environment variables for n8n
-```
+We've made getting this live as painless as possible. We highly recommend using our Zero-Cost Deployment architecture:
 
-## Architecture
+1. **Frontend:** Deployed on Vercel (Free Tier)
+2. **Database:** Supabase Cloud (Free Tier)
+3. **Backend:** Oracle Cloud (Always Free ARM Instance)
 
-- **n8n IS the backend** — no Express/Fastify/Next.js API routes. The frontend
-  calls n8n webhooks for writes and Supabase directly (with RLS) for reads.
-- **Auth** — Supabase Auth handles login. A `Verify Auth` Code node in each
-  external-facing n8n workflow validates the JWT from the frontend proxy.
-- **Tokens** — Facebook page access tokens are encrypted at rest in the database
-  using `pgp_sym_encrypt`/`decrypt_token()`.
-- **Scheduling** — A cron workflow polls `scheduled_posts` every 5 minutes,
-  dispatches due posts to the Facebook/Instagram publish workflows.
+We have written detailed, step-by-step documentation to help you get this off the ground:
 
-Detailed context: **[PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md)**
+- 📖 **[Deployment & Setup Guide](docs/PROJECT_DOCUMENTATION.md)**: Start here if you are looking to host and deploy the app.
+- 🔑 **[Meta API Instructions](docs/META_API_SETUP.md)**: Read this to learn exactly how to get your Facebook and Instagram App Keys.
+- 🧑‍💻 **[User Guide](docs/USER_GUIDE.md)**: Share this with your team so they know how to navigate the app, upload media, and schedule posts.
 
-## Workflows
+## Tech Stack
+For the nerds out there, here's what's running under the hood:
+- **Frontend:** Next.js (App Router), TailwindCSS, TypeScript, Framer Motion
+- **Database:** PostgreSQL (via Supabase), Row Level Security (RLS), `pg_cron` for our dispatcher
+- **Automations:** n8n (handling OAuth token refreshing, heavy video uploads, and Meta Graph API interactions)
 
-| # | Name | Trigger | Purpose |
-| 1 | OAuth Connect | Webhook | Generate Meta OAuth URL |
-| 2 | OAuth Callback | Webhook | Exchange code, store encrypted tokens |
-| 3 | Post CRUD | Webhook | Create/edit/cancel scheduled posts |
-| 4 | Cron Scheduler | Every 5 min | Poll pending posts, dispatch publish |
-| 5 | Facebook Publish | Webhook | Create post via Graph API |
-| 6 | Instagram Publish | Webhook | Create media container → publish |
-| 7 | Token Refresh | Webhook | Refresh expiring Meta page tokens |
-| 8 | Retry Handler | Webhook | Exponential backoff (max 3 retries) |
-| 9 | Failure Handler | Webhook | Log final failures |
-| 10 | Logging | Webhook | Centralized audit log |
+Enjoy your newfound scheduling freedom! Let us know if you build something awesome with it.
