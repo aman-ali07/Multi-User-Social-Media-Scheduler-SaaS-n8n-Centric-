@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'))
 
   // API routes that handle their own auth pass through
-  if (pathname.startsWith('/api/n8n/') || pathname.startsWith('/api/query') || pathname === '/api/health') {
+  if (pathname.startsWith('/api/n8n/') || pathname.startsWith('/api/query') || pathname === '/api/health' || pathname === '/api/stats/global') {
     return supabaseResponse
   }
 

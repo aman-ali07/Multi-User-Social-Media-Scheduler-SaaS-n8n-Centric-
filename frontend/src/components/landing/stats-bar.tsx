@@ -58,7 +58,9 @@ export function StatsBar() {
   useEffect(() => {
     fetch('/api/stats/global')
       .then((res) => res.json())
-      .then((data: GlobalStat[]) => setStats(data))
+      .then((data) => {
+        if (Array.isArray(data)) setStats(data)
+      })
       .catch(() => {})
   }, [])
 

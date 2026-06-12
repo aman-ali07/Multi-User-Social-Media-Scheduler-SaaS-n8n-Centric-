@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import { JetBrains_Mono } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/components/ui/error-boundary'
+import { ToastProvider } from '@/components/ui/toast'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
@@ -79,7 +80,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-screen bg-bg text-text" suppressHydrationWarning>
         <div className="noise-overlay" />
-        <ErrorBoundary>{children}</ErrorBoundary>
+        <ErrorBoundary>
+          <ToastProvider>{children}</ToastProvider>
+        </ErrorBoundary>
         <Analytics />
       </body>
     </html>

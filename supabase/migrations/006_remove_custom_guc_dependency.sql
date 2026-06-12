@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS app_config (
 INSERT INTO app_config (key, value, description) VALUES
   (
     'supabase_url',
-    'https://dzbkiqtzyofzcfqgundy.supabase.co',
+    'https://your-project-ref.supabase.co',
     'Supabase project URL for storage public URL construction'
   ),
   (

@@ -39,9 +39,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               An unexpected error occurred. Try refreshing the page.
             </p>
             {this.state.error && (
-              <p className="text-red/70 text-[11px] font-mono bg-red/5 rounded-sm p-2 truncate">
-                {this.state.error.message}
-              </p>
+              <div className="text-left space-y-2">
+                <p className="text-red/70 text-[11px] font-mono bg-red/5 rounded-sm p-2 truncate">
+                  {this.state.error.message}
+                </p>
+                <pre className="text-red/50 text-[9px] font-mono bg-red/5 rounded-sm p-2 overflow-auto max-h-32 text-left whitespace-pre-wrap">
+                  {this.state.error.stack}
+                </pre>
+              </div>
             )}
             <button
               onClick={() => window.location.reload()}

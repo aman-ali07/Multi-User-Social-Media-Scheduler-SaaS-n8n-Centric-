@@ -23,7 +23,7 @@ services:
       EXECUTIONS_DATA_PRUNE_TIMEOUT: 30000
       N8N_METRICS: true
       N8N_METRICS_INCLUDE_DEFAULT_METRICS: true
-      N8N_REJECT_UNAUTHORIZED_CERTS: "false"
+      N8N_PROXY_SECRET: ${N8N_PROXY_SECRET}
     volumes:
       - n8n_data:/home/node/.n8n
     healthcheck:

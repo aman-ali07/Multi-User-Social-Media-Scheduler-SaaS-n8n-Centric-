@@ -77,7 +77,7 @@ export default function DashboardPage() {
             <motion.div variants={item}>
               <UpcomingList posts={upcoming.map(p => ({
                 title: p.title || 'Untitled',
-                platforms: p.platforms,
+                platforms: Array.isArray(p.platforms) ? p.platforms : [],
                 time: p.schedule_at
                   ? new Date(p.schedule_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                   : '',
