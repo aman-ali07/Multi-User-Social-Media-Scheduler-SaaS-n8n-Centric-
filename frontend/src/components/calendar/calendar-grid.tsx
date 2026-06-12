@@ -79,7 +79,7 @@ export function CalendarGrid({ year, month, postsByDate, onDayClick }: CalendarG
                     day={cell.day}
                     isCurrentMonth={cell.isCurrentMonth}
                     isToday={isToday}
-                    posts={posts.map((p) => ({ id: p.id, status: p.status, platforms: p.platforms }))}
+                    posts={Array.isArray(posts) ? posts.map((p) => ({ id: p.id, status: p.status, platforms: Array.isArray(p.platforms) ? p.platforms : [] })) : []}
                     onClick={() => onDayClick?.(cell.dateStr)}
                   />
                 )

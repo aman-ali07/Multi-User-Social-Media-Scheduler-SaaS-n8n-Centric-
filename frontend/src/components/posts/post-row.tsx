@@ -18,7 +18,7 @@ export function PostRow({ post, onCancel }: PostRowProps) {
         </p>
         <div className="flex items-center gap-3 mt-1">
           <div className="flex gap-1">
-            {post.platforms.map((p) => (
+            {Array.isArray(post.platforms) && post.platforms.map((p) => (
               <span key={p} className="text-[9px] text-text-muted font-mono uppercase border border-border rounded-sm px-1">
                 {p === 'facebook' ? 'FB' : 'IG'}
               </span>

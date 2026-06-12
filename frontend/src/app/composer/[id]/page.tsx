@@ -126,9 +126,12 @@ export default function EditPostPage() {
             <div className="space-y-1.5">
               <label className="text-[12px] text-text-dim font-mono uppercase tracking-wider">Platforms</label>
               <div className="flex gap-2">
-                {post.platforms.map((p) => (
-                  <span key={p} className="px-3 py-1.5 rounded-sm text-[12px] font-mono uppercase tracking-wider border border-gold/50 bg-gold/10 text-gold">
-                    {p === 'facebook' ? 'FB' : 'IG'}
+                {Array.isArray(post.platforms) && post.platforms.map((p) => (
+                  <span
+                    key={p}
+                    className="text-[10px] text-text-muted font-mono uppercase border border-border rounded-sm px-1.5 py-0.5"
+                  >
+                    {p === 'facebook' ? 'Facebook' : 'Instagram'}
                   </span>
                 ))}
               </div>

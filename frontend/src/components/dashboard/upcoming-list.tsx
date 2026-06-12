@@ -34,7 +34,7 @@ export function UpcomingList({ posts }: UpcomingListProps) {
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-[10px] text-text-dim font-mono">{post.time}</span>
                 <div className="flex gap-1">
-                  {post.platforms.map((p) => (
+                  {Array.isArray(post.platforms) && post.platforms.map((p) => (
                     <span
                       key={p}
                       className="text-[9px] text-text-muted font-mono uppercase border border-border rounded-sm px-1"

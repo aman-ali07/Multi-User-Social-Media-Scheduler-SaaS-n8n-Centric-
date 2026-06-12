@@ -115,9 +115,9 @@ export default function PostDetailPage() {
               <div className="space-y-2 text-[13px]">
                 <div className="flex justify-between">
                   <span className="text-text-muted font-sans">Platforms</span>
-                  <div className="flex gap-1">
-                    {post.platforms.map((p) => (
-                      <span key={p} className="text-[9px] text-text-muted font-mono uppercase border border-border rounded-sm px-1">
+                  <div className="flex gap-2">
+                    {Array.isArray(post.platforms) && post.platforms.map((p) => (
+                      <span key={p} className="px-3 py-1.5 rounded-sm text-[12px] font-mono uppercase tracking-wider border border-gold/50 bg-gold/10 text-gold">
                         {p === 'facebook' ? 'FB' : 'IG'}
                       </span>
                     ))}
