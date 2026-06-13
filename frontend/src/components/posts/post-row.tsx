@@ -67,8 +67,14 @@ export function PostRow({ post, onCancel }: PostRowProps) {
         <div className="shrink-0 w-16 text-right">
           {(post.status === 'draft' || post.status === 'scheduled') && onCancel ? (
             <button 
-              onClick={(e) => { e.stopPropagation(); e.preventDefault(); onCancel(post.id) }}
-              className="text-[12px] text-muted hover:text-error font-medium opacity-0 group-hover:opacity-100 transition-all"
+              onClick={(e) => { 
+                e.stopPropagation(); 
+                e.preventDefault(); 
+                if (window.confirm('Are you sure you want to cancel this post?')) {
+                  onCancel(post.id) 
+                }
+              }}
+              className="text-[12px] text-muted hover:text-error font-medium opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
             >
               Cancel
             </button>

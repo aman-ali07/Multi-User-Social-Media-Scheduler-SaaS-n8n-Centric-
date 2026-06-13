@@ -82,8 +82,22 @@ export default function ComposerPage() {
         e.returnValue = ''
       }
     }
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('a')
+      if (!target) return
+      if (target.href && target.href !== window.location.href && hasUnsavedChanges) {
+        if (!window.confirm('You have unsaved changes. Are you sure you want to leave?')) {
+          e.preventDefault()
+          e.stopPropagation()
+        }
+      }
+    }
     window.addEventListener('beforeunload', handleBeforeUnload)
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+    document.addEventListener('click', handleAnchorClick, { capture: true })
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+      document.removeEventListener('click', handleAnchorClick, { capture: true })
+    }
   }, [hasUnsavedChanges])
 
   useEffect(() => {

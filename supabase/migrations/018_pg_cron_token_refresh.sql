@@ -10,7 +10,7 @@ BEGIN
   SELECT value INTO v_n8n_secret FROM system_config WHERE key = 'INTERNAL_WEBHOOK_SECRET';
 
   FOR v_account IN (
-    SELECT id, decrypt_token(access_token) AS access_token, page_id
+    SELECT id, user_id, decrypt_token(access_token) AS access_token, page_id
     FROM social_accounts
     WHERE status = 'active'
       AND token_expires_at IS NOT NULL
@@ -20,6 +20,7 @@ BEGIN
   ) LOOP
     v_payload := jsonb_build_object(
       'id', v_account.id,
+      'user_id', v_account.user_id,
       'access_token', v_account.access_token,
       'page_id', v_account.page_id
     );
@@ -29,6 +30,8 @@ BEGIN
       body := v_payload,
       headers := jsonb_build_object('Content-Type', 'application/json', 'x-internal-token', v_n8n_secret)
     ) INTO v_request_id;
+    
+    PERFORM pg_sleep(0.5); -- M6: rate-limit concurrent Meta API calls
   END LOOP;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;

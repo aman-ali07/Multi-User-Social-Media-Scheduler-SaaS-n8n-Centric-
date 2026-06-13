@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { authTest as test, expect } from './fixtures'
 
 test.describe('Composer', () => {
   test('loads composer page', async ({ page }) => {

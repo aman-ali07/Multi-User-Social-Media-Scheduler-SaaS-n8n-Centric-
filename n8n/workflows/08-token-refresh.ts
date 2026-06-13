@@ -42,7 +42,7 @@ const callTokenRefresh = node({
   config: {
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: `const { id, access_token, page_id } = $json.body;
+      jsCode: `const { id, user_id, access_token, page_id } = $json.body;
 const url = 'https://graph.facebook.com/v21.0/' + page_id + '?fields=access_token';
 try {
   const res = await fetch(url, {
@@ -53,6 +53,7 @@ try {
     return [{ json: {
       success: false,
       accountId: id,
+      userId: user_id,
       errorMsg: data.error?.message || 'Token refresh failed - no access_token in response'
     } }];
   }
@@ -61,6 +62,7 @@ try {
   return [{ json: {
     success: true,
     accountId: id,
+    userId: user_id,
     newToken: data.access_token,
     expiresAt: expiresAt,
     oldExpiresAt: null
@@ -69,6 +71,7 @@ try {
   return [{ json: {
     success: false,
     accountId: id,
+    userId: user_id,
     errorMsg: err.message || 'Token refresh failed - network or parsing error'
   } }];
 }`
@@ -115,9 +118,9 @@ const logRefreshSuccess = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO token_refresh_log (account_id, old_expires_at, new_expires_at, status, error_message) VALUES ($1::uuid, $2::timestamptz, $3::timestamptz, 'success', NULL)",
+      query: "INSERT INTO token_refresh_log (account_id, user_id, old_expires_at, new_expires_at, status, error_message) VALUES ($1::uuid, $2::uuid, $3::timestamptz, $4::timestamptz, 'success', NULL)",
       options: {
-        queryReplacement: expr('{{ $json.accountId }}, {{ $json.oldExpiresAt }}, {{ $json.expiresAt }}')
+        queryReplacement: expr('{{ $json.accountId }}, {{ $json.userId }}, {{ $json.oldExpiresAt }}, {{ $json.expiresAt }}')
       }
     }
   },
@@ -132,9 +135,9 @@ const logRefreshFailure = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO token_refresh_log (account_id, status, error_message) VALUES ($1::uuid, 'failed', $2)",
+      query: "INSERT INTO token_refresh_log (account_id, user_id, status, error_message) VALUES ($1::uuid, $2::uuid, 'failed', $3)",
       options: {
-        queryReplacement: expr('{{ $json.accountId }}, {{ $json.errorMsg }}')
+        queryReplacement: expr('{{ $json.accountId }}, {{ $json.userId }}, {{ $json.errorMsg }}')
       }
     }
   },

@@ -51,7 +51,11 @@ export function AccountCard({ account, onDisconnect, onReconnect }: AccountCardP
         )}
         {onDisconnect && account.status !== 'disconnected' && (
           <button
-            onClick={() => onDisconnect(account.id)}
+            onClick={() => {
+              if (window.confirm('Are you sure you want to disconnect this account?')) {
+                onDisconnect(account.id)
+              }
+            }}
             className="text-[12px] text-muted font-medium uppercase tracking-wider border border-hairline hover:border-error hover:text-error hover:bg-error/5 px-3 py-1.5 rounded-md transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
           >
             Disconnect

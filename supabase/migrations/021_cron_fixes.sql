@@ -85,10 +85,10 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 -- 2. Cleanup function for zombie processing posts
 CREATE OR REPLACE FUNCTION cleanup_stuck_processing_posts() RETURNS void AS $$
 BEGIN
-  -- Revert stuck processing posts to failed so they trigger the retry flow or can be manually handled.
-  -- A post shouldn't be processing for more than 15 minutes.
+  -- Revert stuck processing posts to scheduled for transient failures, or failed if out of retries.
   UPDATE scheduled_posts
-  SET status = 'failed',
+  SET status = CASE WHEN retry_count < max_retries THEN 'scheduled'::post_status_enum ELSE 'failed'::post_status_enum END,
+      retry_count = CASE WHEN retry_count < max_retries THEN retry_count + 1 ELSE retry_count END,
       error_message = 'Webhook dispatch timed out or n8n crashed',
       updated_at = NOW()
   WHERE status = 'processing'
