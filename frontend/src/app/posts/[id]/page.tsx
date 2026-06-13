@@ -37,7 +37,7 @@ export default function PostDetailPage() {
     setLoading(true)
     const { data: postData, error: postError } = await supabase
       .from('scheduled_posts')
-      .select('id, user_id, account_id, title, caption, platforms, schedule_at, published_at, published_meta_id, timezone, status, retry_count, max_retries, error_message, created_at, updated_at, deleted_at')
+      .select('id, user_id, account_id, title, caption, platforms, schedule_at, published_at, published_meta_id, container_id, timezone, status, retry_count, max_retries, error_message, created_at, updated_at, deleted_at')
       .eq('id', params.id as string)
       .eq('user_id', user.id)
       .single()
@@ -47,7 +47,7 @@ export default function PostDetailPage() {
 
     const { data: logData } = await supabase
       .from('post_logs')
-      .select('id, post_id, workflow_name, status, error_message, response_payload, attempt_number, created_at')
+      .select('id, post_id, workflow_name, status, error_message, response_payload, attempt_number, user_id, created_at')
       .eq('post_id', params.id as string)
       .order('created_at', { ascending: false })
 
