@@ -40,7 +40,7 @@ export default function EditPostPage() {
     if (!user || !params.id) return
     supabase
       .from('scheduled_posts')
-      .select('id, user_id, account_id, title, caption, platforms, schedule_at, published_at, published_meta_id, timezone, status, retry_count, max_retries, error_message, created_at, updated_at, deleted_at')
+      .select('id, user_id, account_id, title, caption, platforms, schedule_at, published_at, published_meta_id, container_id, timezone, status, retry_count, max_retries, error_message, created_at, updated_at, deleted_at')
       .eq('id', params.id as string)
       .eq('user_id', user.id)
       .single()

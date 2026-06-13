@@ -80,7 +80,7 @@ function AccountsContent() {
               key={acct.id} 
               account={acct} 
               onDisconnect={disconnect} 
-              onReconnect={() => connect(acct.platform)}
+              onReconnect={() => connect('facebook')}
             />
           ))}
         </motion.div>

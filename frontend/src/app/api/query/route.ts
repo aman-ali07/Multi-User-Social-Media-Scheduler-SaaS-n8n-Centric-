@@ -45,6 +45,7 @@ export async function POST(request: NextRequest) {
     if (authError || !user) return unauthorized()
 
     const body = await request.json()
+    const type = body.type as string
     let resultResponse: NextResponse;
     switch (type) {
       case 'dashboard': resultResponse = await handleDashboard(supabase, user.id); break;
@@ -76,7 +77,7 @@ async function handleDeleteUser(supabase: ReturnType<typeof createServerClient>,
   // First delete all media from storage since auth.users CASCADE doesn't clear storage
   const { data: media } = await supabase.from('media_assets').select('storage_path').eq('user_id', userId)
   if (media && media.length > 0) {
-    const paths = media.map(m => m.storage_path).filter(Boolean) as string[]
+    const paths = media.map((m: any) => m.storage_path).filter(Boolean) as string[]
     if (paths.length > 0) await supabase.storage.from('media').remove(paths)
   }
 
