@@ -1,0 +1,952 @@
+{
+  "/home/aman/projects/saas/.opencode/opencode.json": {
+    "mtime": 1780229315.6154637,
+    "ast_hash": "abf23d6b768f18bdd05c9e2e6414a980",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.opencode/package.json": {
+    "mtime": 1779794923.1174402,
+    "ast_hash": "878115d31c721840fc3330b89a3f8c20",
+    "semantic_hash": "878115d31c721840fc3330b89a3f8c20"
+  },
+  "/home/aman/projects/saas/.opencode/plugins/graphify.js": {
+    "mtime": 1779794985.913347,
+    "ast_hash": "64ccd3c03dbfe0980b6095766f5c4e52",
+    "semantic_hash": "64ccd3c03dbfe0980b6095766f5c4e52"
+  },
+  "/home/aman/projects/saas/supabase/migrations/002_storage_setup.sql": {
+    "mtime": 1779826881.3222125,
+    "ast_hash": "c1657a8bbbcf5a63139d284abb01e364",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/001_initial_schema.sql": {
+    "mtime": 1779793962.3201785,
+    "ast_hash": "946a446b356fea73b5f58320149bee97",
+    "semantic_hash": "946a446b356fea73b5f58320149bee97"
+  },
+  "/home/aman/projects/saas/Phase 2 Planning.md": {
+    "mtime": 1779793721.348003,
+    "ast_hash": "49087862d85ee64c71fa42bca04fd4e9",
+    "semantic_hash": "49087862d85ee64c71fa42bca04fd4e9"
+  },
+  "/home/aman/projects/saas/Phase 1 Planning.md": {
+    "mtime": 1779793591.6254935,
+    "ast_hash": "261e6e66e34c9fbfc8eaa536295e8865",
+    "semantic_hash": "261e6e66e34c9fbfc8eaa536295e8865"
+  },
+  "/home/aman/projects/saas/Phase 3 Planning.md": {
+    "mtime": 1779793959.309114,
+    "ast_hash": "204e3f35e85411fbf10a4a39634e66cd",
+    "semantic_hash": "204e3f35e85411fbf10a4a39634e66cd"
+  },
+  "/home/aman/projects/saas/AGENTS.md": {
+    "mtime": 1779794985.9123468,
+    "ast_hash": "62c05a2bf20bf036a0b2633478663e64",
+    "semantic_hash": "62c05a2bf20bf036a0b2633478663e64"
+  },
+  "/home/aman/projects/saas/Phase 4 Planning.md": {
+    "mtime": 1779794030.7796059,
+    "ast_hash": "92402dcbe1a438aedd2db9379fee6a40",
+    "semantic_hash": "92402dcbe1a438aedd2db9379fee6a40"
+  },
+  "/home/aman/projects/saas/N8N_Social_Scheduler_PRD.pdf": {
+    "mtime": 1779784755.8259099,
+    "ast_hash": "e93b0c7b92c69e446ac83e638115f945",
+    "semantic_hash": "e93b0c7b92c69e446ac83e638115f945"
+  },
+  "/home/aman/projects/saas/n8n/workflows/10-failure-handler.ts": {
+    "mtime": 1779895292.2682798,
+    "ast_hash": "54ccf4a5f07a9ec3ad9cdf9667e952e7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/07-instagram-publish.ts": {
+    "mtime": 1779898627.3045034,
+    "ast_hash": "615f38ac1bd21989b732c306dd48df44",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/06-facebook-publish.ts": {
+    "mtime": 1779898585.4949582,
+    "ast_hash": "115280209f19e2f93bdac26125cb9684",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/tsconfig.json": {
+    "mtime": 1779796866.0644982,
+    "ast_hash": "ee17fd1c97c735e9f3564e3f5251f125",
+    "semantic_hash": "ee17fd1c97c735e9f3564e3f5251f125"
+  },
+  "/home/aman/projects/saas/frontend/postcss.config.mjs": {
+    "mtime": 1779796865.971497,
+    "ast_hash": "239f3ebf717465dc636818a1a619398d",
+    "semantic_hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "/home/aman/projects/saas/frontend/next-env.d.ts": {
+    "mtime": 1780244962.3065298,
+    "ast_hash": "2a74d3909800ca5467fa83b0ab4a4890",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/package.json": {
+    "mtime": 1779797092.122469,
+    "ast_hash": "d985a6e6734a158ae7714bf1da723f35",
+    "semantic_hash": "d985a6e6734a158ae7714bf1da723f35"
+  },
+  "/home/aman/projects/saas/frontend/next.config.ts": {
+    "mtime": 1779803958.7269301,
+    "ast_hash": "daad32b4de0b92afe04301ebf0a6cc76",
+    "semantic_hash": "daad32b4de0b92afe04301ebf0a6cc76"
+  },
+  "/home/aman/projects/saas/frontend/eslint.config.mjs": {
+    "mtime": 1779796865.975497,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "/home/aman/projects/saas/frontend/src/app/layout.tsx": {
+    "mtime": 1779822486.7036963,
+    "ast_hash": "b1ebe7bb6a36ac84c9dd4c2aa749b71b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/page.tsx": {
+    "mtime": 1779913652.821294,
+    "ast_hash": "0dc2833337de63bdf520576f50a8b7ac",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/FRONTEND_PROGRESS.md": {
+    "mtime": 1779796858.956405,
+    "ast_hash": "150bfabd663e4e68f3c84b99c49b0ff6",
+    "semantic_hash": "150bfabd663e4e68f3c84b99c49b0ff6"
+  },
+  "/home/aman/projects/saas/Phase 5 Meta Graph API.md": {
+    "mtime": 1779796052.0058856,
+    "ast_hash": "51f8eb4e60c287bcbdfcd9731dd71331",
+    "semantic_hash": "51f8eb4e60c287bcbdfcd9731dd71331"
+  },
+  "/home/aman/projects/saas/Phase 6 Frontend Plan.md": {
+    "mtime": 1779796216.199008,
+    "ast_hash": "63226860958bf02c3259ae124c7f107d",
+    "semantic_hash": "63226860958bf02c3259ae124c7f107d"
+  },
+  "/home/aman/projects/saas/frontend/README.md": {
+    "mtime": 1779796865.9704971,
+    "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
+    "semantic_hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "/home/aman/projects/saas/frontend/AGENTS.md": {
+    "mtime": 1779796952.7316365,
+    "ast_hash": "9e09241799026ac05be315a2f0b50055",
+    "semantic_hash": "9e09241799026ac05be315a2f0b50055"
+  },
+  "/home/aman/projects/saas/frontend/CLAUDE.md": {
+    "mtime": 1779796952.7316365,
+    "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
+    "semantic_hash": "5c27369b226fcf2be8a6cfe52224e767"
+  },
+  "/home/aman/projects/saas/frontend/public/globe.svg": {
+    "mtime": 1779796866.050498,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "/home/aman/projects/saas/frontend/public/vercel.svg": {
+    "mtime": 1779796866.0604982,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "/home/aman/projects/saas/frontend/public/next.svg": {
+    "mtime": 1779796866.0604982,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "/home/aman/projects/saas/frontend/public/window.svg": {
+    "mtime": 1779796866.0614982,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  },
+  "/home/aman/projects/saas/frontend/public/file.svg": {
+    "mtime": 1779796865.9704971,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "/home/aman/projects/saas/frontend/src/components/auth/auth-guard.tsx": {
+    "mtime": 1779916135.366514,
+    "ast_hash": "a6343ef9094b274c31aa572eaad1c04d",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/auth/motion-narrative.tsx": {
+    "mtime": 1779813339.7956436,
+    "ast_hash": "7cf0063b72438b825fa2729b1b3ef2d7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/auth/auth-layout.tsx": {
+    "mtime": 1779797314.612397,
+    "ast_hash": "7c7fc454f75c6f832b54043b01407948",
+    "semantic_hash": "7c7fc454f75c6f832b54043b01407948"
+  },
+  "/home/aman/projects/saas/frontend/src/components/auth/auth-form.tsx": {
+    "mtime": 1780078335.540721,
+    "ast_hash": "253ecc9ba87aceb9b7aabfea80744136",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/ui/badge.tsx": {
+    "mtime": 1779797598.3711348,
+    "ast_hash": "8c7e9e6e36cee501bdb338d62177be14",
+    "semantic_hash": "8c7e9e6e36cee501bdb338d62177be14"
+  },
+  "/home/aman/projects/saas/frontend/src/components/ui/input.tsx": {
+    "mtime": 1779797241.9304402,
+    "ast_hash": "1ddc8d8959c7712fb30c8814b17e0652",
+    "semantic_hash": "1ddc8d8959c7712fb30c8814b17e0652"
+  },
+  "/home/aman/projects/saas/frontend/src/components/ui/button.tsx": {
+    "mtime": 1779797228.6532652,
+    "ast_hash": "265af17cd3e79af09facb7c27659493c",
+    "semantic_hash": "265af17cd3e79af09facb7c27659493c"
+  },
+  "/home/aman/projects/saas/frontend/src/components/shell/status-bar.tsx": {
+    "mtime": 1780244874.9144099,
+    "ast_hash": "f88884bfb13d25d04e437f2599035e5b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/shell/left-nav.tsx": {
+    "mtime": 1780078281.325845,
+    "ast_hash": "662d49362824dc33275bd27eb5263473",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/shell/console-shell.tsx": {
+    "mtime": 1780078268.9026365,
+    "ast_hash": "e9a51b47134c53344ff2dea5c6a3a6b2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/shell/top-bar.tsx": {
+    "mtime": 1780078287.6999507,
+    "ast_hash": "34d8a10f9224fcc590cbf38891379260",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/types/database.ts": {
+    "mtime": 1779797162.9884012,
+    "ast_hash": "39c43c4b70d8452c80e4e4fc6921b629",
+    "semantic_hash": "39c43c4b70d8452c80e4e4fc6921b629"
+  },
+  "/home/aman/projects/saas/frontend/src/app/auth/register/page.tsx": {
+    "mtime": 1780244880.4034793,
+    "ast_hash": "1d573ea9bc8b638263d1e122aa3ac72a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/auth/login/page.tsx": {
+    "mtime": 1780244862.0992486,
+    "ast_hash": "1e5d87d2a8064f157789dfac33344809",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/dashboard/page.tsx": {
+    "mtime": 1780078304.798231,
+    "ast_hash": "6831a0e6733874bf25b6f95d871382d1",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-auth.ts": {
+    "mtime": 1779797198.0238621,
+    "ast_hash": "6df4cdfcb3efbdcf36dc42112fc76411",
+    "semantic_hash": "6df4cdfcb3efbdcf36dc42112fc76411"
+  },
+  "/home/aman/projects/saas/frontend/src/lib/n8n.ts": {
+    "mtime": 1779904029.9939873,
+    "ast_hash": "979f4f13a14477f535817939ffb7da27",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/lib/supabase.ts": {
+    "mtime": 1779797192.7557929,
+    "ast_hash": "849812a6ca756b3823d272fc765a2fda",
+    "semantic_hash": "849812a6ca756b3823d272fc765a2fda"
+  },
+  "/home/aman/projects/saas/frontend/src/lib/utils.ts": {
+    "mtime": 1779797188.5377374,
+    "ast_hash": "da1f4ab70f97d020d6d8919c4d807a2b",
+    "semantic_hash": "da1f4ab70f97d020d6d8919c4d807a2b"
+  },
+  "/home/aman/projects/saas/skills-lock.json": {
+    "mtime": 1779914023.7019892,
+    "ast_hash": "8a92e6a82049dba50f770f54bd931a0b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/auth/callback/page.tsx": {
+    "mtime": 1780244848.785082,
+    "ast_hash": "329299ed0009fb569fffc294f7c93249",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/posts/page.tsx": {
+    "mtime": 1780078306.279255,
+    "ast_hash": "6c25f8dcc66cb636cfe4362ee7948aae",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/api/n8n/[...path]/route.ts": {
+    "mtime": 1780233674.2677343,
+    "ast_hash": "9baf42f38f0eeedab0bfccd5e32a694d",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/composer/page.tsx": {
+    "mtime": 1780078325.9895704,
+    "ast_hash": "8cb3d8e3998053e971bc555e4b38f32f",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/accounts/page.tsx": {
+    "mtime": 1780078325.3065596,
+    "ast_hash": "1a124064a27ce51167b8a1a5674e68ef",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/SKILL.md": {
+    "mtime": 1779806433.4348366,
+    "ast_hash": "0e31e4a19cccde79afd7fee73982a158",
+    "semantic_hash": "0e31e4a19cccde79afd7fee73982a158"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/schema-lowercase-identifiers.md": {
+    "mtime": 1779806433.4428368,
+    "ast_hash": "1df2eae336d542d365f99abdfa968367",
+    "semantic_hash": "1df2eae336d542d365f99abdfa968367"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/schema-data-types.md": {
+    "mtime": 1779806433.4428368,
+    "ast_hash": "a10f1ec17bd499622d9201af3d00e0d4",
+    "semantic_hash": "a10f1ec17bd499622d9201af3d00e0d4"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/data-pagination.md": {
+    "mtime": 1779806433.4388368,
+    "ast_hash": "0e9b3211df99b3d35f7083c984b03ccb",
+    "semantic_hash": "0e9b3211df99b3d35f7083c984b03ccb"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/conn-limits.md": {
+    "mtime": 1779806433.4388368,
+    "ast_hash": "59025fe12439048e81296f28feca4ce1",
+    "semantic_hash": "59025fe12439048e81296f28feca4ce1"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/advanced-jsonb-indexing.md": {
+    "mtime": 1779806433.4388368,
+    "ast_hash": "5b4fbcc451879892d366fa02194bb536",
+    "semantic_hash": "5b4fbcc451879892d366fa02194bb536"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/query-covering-indexes.md": {
+    "mtime": 1779806433.4408367,
+    "ast_hash": "5e62afcfe9289405caec1f32f351dd29",
+    "semantic_hash": "5e62afcfe9289405caec1f32f351dd29"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/lock-deadlock-prevention.md": {
+    "mtime": 1779806433.4398367,
+    "ast_hash": "07eae98867b47074d82528df59d2135e",
+    "semantic_hash": "07eae98867b47074d82528df59d2135e"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/monitor-pg-stat-statements.md": {
+    "mtime": 1779806433.4398367,
+    "ast_hash": "ee51d9586cf18c848563799c14dcc638",
+    "semantic_hash": "ee51d9586cf18c848563799c14dcc638"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/security-rls-performance.md": {
+    "mtime": 1779806433.4438367,
+    "ast_hash": "6c87b7d050ba714a95a2b88eb0b6caf0",
+    "semantic_hash": "6c87b7d050ba714a95a2b88eb0b6caf0"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/security-privileges.md": {
+    "mtime": 1779806433.4428368,
+    "ast_hash": "212beb5d93e7c02cb61c95e117af3aaa",
+    "semantic_hash": "212beb5d93e7c02cb61c95e117af3aaa"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/conn-pooling.md": {
+    "mtime": 1779806433.4388368,
+    "ast_hash": "8561b805a5e0bdfa348840266861de66",
+    "semantic_hash": "8561b805a5e0bdfa348840266861de66"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/query-composite-indexes.md": {
+    "mtime": 1779806433.4408367,
+    "ast_hash": "bd959891036289cfaf3d54e49599b2d0",
+    "semantic_hash": "bd959891036289cfaf3d54e49599b2d0"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/schema-partitioning.md": {
+    "mtime": 1779806433.4428368,
+    "ast_hash": "e95568857288b614ba0d4b8cd1b4fb72",
+    "semantic_hash": "e95568857288b614ba0d4b8cd1b4fb72"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/conn-idle-timeout.md": {
+    "mtime": 1779806433.4378366,
+    "ast_hash": "c73ea45eecdb007786cd3b3e08e31640",
+    "semantic_hash": "c73ea45eecdb007786cd3b3e08e31640"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/security-rls-basics.md": {
+    "mtime": 1779806433.4428368,
+    "ast_hash": "2349e490ff266b1c2b81a2368c054baa",
+    "semantic_hash": "2349e490ff266b1c2b81a2368c054baa"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/lock-short-transactions.md": {
+    "mtime": 1779806433.4398367,
+    "ast_hash": "aea973297ac14bba2586a2ff57fd8ff7",
+    "semantic_hash": "aea973297ac14bba2586a2ff57fd8ff7"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/_template.md": {
+    "mtime": 1779806433.4378366,
+    "ast_hash": "384ee769a417d3001e81d81b139acbf6",
+    "semantic_hash": "384ee769a417d3001e81d81b139acbf6"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/query-missing-indexes.md": {
+    "mtime": 1779806433.4408367,
+    "ast_hash": "1bd5f85a9c930219dd479825986bd6ad",
+    "semantic_hash": "1bd5f85a9c930219dd479825986bd6ad"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/query-index-types.md": {
+    "mtime": 1779806433.4408367,
+    "ast_hash": "ef0d4ad9d1eb0466a0bde542ade59de2",
+    "semantic_hash": "ef0d4ad9d1eb0466a0bde542ade59de2"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/monitor-explain-analyze.md": {
+    "mtime": 1779806433.4398367,
+    "ast_hash": "93d5998318098652ac380cd354718924",
+    "semantic_hash": "93d5998318098652ac380cd354718924"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/schema-constraints.md": {
+    "mtime": 1779806433.4418368,
+    "ast_hash": "e7362385f5b79c28f5e495d7c45a7a52",
+    "semantic_hash": "e7362385f5b79c28f5e495d7c45a7a52"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/_contributing.md": {
+    "mtime": 1779806433.4378366,
+    "ast_hash": "19edd365b47667a9b81108cacfd75775",
+    "semantic_hash": "19edd365b47667a9b81108cacfd75775"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/data-upsert.md": {
+    "mtime": 1779806433.4398367,
+    "ast_hash": "51a26138848f5fec547cd56b9bcb33d4",
+    "semantic_hash": "51a26138848f5fec547cd56b9bcb33d4"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/monitor-vacuum-analyze.md": {
+    "mtime": 1779806433.4408367,
+    "ast_hash": "e3d1e4f8831a37bdb1c7f364b911f7a6",
+    "semantic_hash": "e3d1e4f8831a37bdb1c7f364b911f7a6"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/conn-prepared-statements.md": {
+    "mtime": 1779806433.4388368,
+    "ast_hash": "fe941145678825d273baac1fe66d4dce",
+    "semantic_hash": "fe941145678825d273baac1fe66d4dce"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/data-batch-inserts.md": {
+    "mtime": 1779806433.4388368,
+    "ast_hash": "75a4e92f80b90818221fae51f8b994f1",
+    "semantic_hash": "75a4e92f80b90818221fae51f8b994f1"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/data-n-plus-one.md": {
+    "mtime": 1779806433.4388368,
+    "ast_hash": "4fc111bb51121f5181910b3759061ada",
+    "semantic_hash": "4fc111bb51121f5181910b3759061ada"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/schema-primary-keys.md": {
+    "mtime": 1779806433.4428368,
+    "ast_hash": "63412819d632d8cbe39f14630e5de085",
+    "semantic_hash": "63412819d632d8cbe39f14630e5de085"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/schema-foreign-key-indexes.md": {
+    "mtime": 1779806433.4428368,
+    "ast_hash": "6bc02b38edd88e56c89bab863f5c789b",
+    "semantic_hash": "6bc02b38edd88e56c89bab863f5c789b"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/lock-advisory.md": {
+    "mtime": 1779806433.4398367,
+    "ast_hash": "3f3523b7b0a812a6906f92a6610a5a9b",
+    "semantic_hash": "3f3523b7b0a812a6906f92a6610a5a9b"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/query-partial-indexes.md": {
+    "mtime": 1779806433.4408367,
+    "ast_hash": "a6c64f9136f8a7880e53df3e259d90c9",
+    "semantic_hash": "a6c64f9136f8a7880e53df3e259d90c9"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/_sections.md": {
+    "mtime": 1779806433.4378366,
+    "ast_hash": "7cc4829a3718c745dfdbec554c30485f",
+    "semantic_hash": "7cc4829a3718c745dfdbec554c30485f"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/lock-skip-locked.md": {
+    "mtime": 1779806433.4398367,
+    "ast_hash": "26e9bd402801299afce06ee506a9f864",
+    "semantic_hash": "26e9bd402801299afce06ee506a9f864"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase-postgres-best-practices/references/advanced-full-text-search.md": {
+    "mtime": 1779806433.4378366,
+    "ast_hash": "f32a27eab306ad2a29db0a2a8a55b03c",
+    "semantic_hash": "f32a27eab306ad2a29db0a2a8a55b03c"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase/SKILL.md": {
+    "mtime": 1779806432.868833,
+    "ast_hash": "e156d6b5cd7a67e42ebaf4113c9c2944",
+    "semantic_hash": "e156d6b5cd7a67e42ebaf4113c9c2944"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase/assets/feedback-issue-template.md": {
+    "mtime": 1779806432.8698332,
+    "ast_hash": "a38bcf7c09794faf287d91a992830b47",
+    "semantic_hash": "a38bcf7c09794faf287d91a992830b47"
+  },
+  "/home/aman/projects/saas/.agents/skills/supabase/references/skill-feedback.md": {
+    "mtime": 1779806432.8698332,
+    "ast_hash": "38a53e95ded880782190ddf2f2810317",
+    "semantic_hash": "38a53e95ded880782190ddf2f2810317"
+  },
+  "/home/aman/projects/saas/frontend/src/components/posts/filter-bar.tsx": {
+    "mtime": 1780078316.3074162,
+    "ast_hash": "9aca81ef16d5c3ed871b4f6c87872af1",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/posts/post-row.tsx": {
+    "mtime": 1779808853.5491512,
+    "ast_hash": "490ec569e68ec951ff10b4c5d5a26257",
+    "semantic_hash": "490ec569e68ec951ff10b4c5d5a26257"
+  },
+  "/home/aman/projects/saas/frontend/src/components/dashboard/stats-row.tsx": {
+    "mtime": 1780078304.1162198,
+    "ast_hash": "7a1cd9a0539edd05467ab1e90274d8f9",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/dashboard/publishing-velocity.tsx": {
+    "mtime": 1779808799.156414,
+    "ast_hash": "46b522806953a347abd4f9c486cfb1cd",
+    "semantic_hash": "46b522806953a347abd4f9c486cfb1cd"
+  },
+  "/home/aman/projects/saas/frontend/src/components/dashboard/activity-feed.tsx": {
+    "mtime": 1779808799.156414,
+    "ast_hash": "36710717876a1f4aec9d41d966e3c146",
+    "semantic_hash": "36710717876a1f4aec9d41d966e3c146"
+  },
+  "/home/aman/projects/saas/frontend/src/components/dashboard/upcoming-list.tsx": {
+    "mtime": 1779808799.154414,
+    "ast_hash": "5b70ace44b1dba2340831df973a761cc",
+    "semantic_hash": "5b70ace44b1dba2340831df973a761cc"
+  },
+  "/home/aman/projects/saas/frontend/src/components/calendar/calendar-grid.tsx": {
+    "mtime": 1780078313.731375,
+    "ast_hash": "77b153062bf718d87a1c359c69afb8ea",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/calendar/day-cell.tsx": {
+    "mtime": 1780078314.5093875,
+    "ast_hash": "6023fe359c40c73eb3c292b2e6100892",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/composer/account-selector.tsx": {
+    "mtime": 1779808822.6157327,
+    "ast_hash": "57e5dd1008da6183b282ff022d3ea225",
+    "semantic_hash": "57e5dd1008da6183b282ff022d3ea225"
+  },
+  "/home/aman/projects/saas/frontend/src/components/composer/media-dropzone.tsx": {
+    "mtime": 1779808822.6137326,
+    "ast_hash": "daa1c02781d03347f31de95ae7da2e3e",
+    "semantic_hash": "daa1c02781d03347f31de95ae7da2e3e"
+  },
+  "/home/aman/projects/saas/frontend/src/components/composer/caption-editor.tsx": {
+    "mtime": 1779808822.6107326,
+    "ast_hash": "aac7952d460ded696f227bf53acf16bd",
+    "semantic_hash": "aac7952d460ded696f227bf53acf16bd"
+  },
+  "/home/aman/projects/saas/frontend/src/components/composer/platform-selector.tsx": {
+    "mtime": 1779808822.6067324,
+    "ast_hash": "7afaed14ffd932120aa7e1a2a8a5b725",
+    "semantic_hash": "7afaed14ffd932120aa7e1a2a8a5b725"
+  },
+  "/home/aman/projects/saas/frontend/src/components/composer/schedule-picker.tsx": {
+    "mtime": 1779808822.6117325,
+    "ast_hash": "955b31c18ab3e157985a11b683fc0b55",
+    "semantic_hash": "955b31c18ab3e157985a11b683fc0b55"
+  },
+  "/home/aman/projects/saas/frontend/src/components/accounts/connect-button.tsx": {
+    "mtime": 1779808853.45315,
+    "ast_hash": "a90e13ac152df7e921a10408e703fe51",
+    "semantic_hash": "a90e13ac152df7e921a10408e703fe51"
+  },
+  "/home/aman/projects/saas/frontend/src/components/accounts/account-card.tsx": {
+    "mtime": 1780078319.6294694,
+    "ast_hash": "84af6158a87daf4974e5f799696f54dc",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/media/media-grid.tsx": {
+    "mtime": 1779808999.5951104,
+    "ast_hash": "249fe0d98703098efb0082863b03d755",
+    "semantic_hash": "249fe0d98703098efb0082863b03d755"
+  },
+  "/home/aman/projects/saas/frontend/src/components/logs/activity-timeline.tsx": {
+    "mtime": 1779808999.5321095,
+    "ast_hash": "06de3d836071dc2811f2c3039cf93273",
+    "semantic_hash": "06de3d836071dc2811f2c3039cf93273"
+  },
+  "/home/aman/projects/saas/frontend/src/app/posts/[id]/page.tsx": {
+    "mtime": 1780078348.550923,
+    "ast_hash": "46a606bc4f9bf642030179695cd7e1c4",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/calendar/page.tsx": {
+    "mtime": 1780078305.493242,
+    "ast_hash": "62e0e1c0b475c9732a8ebc28606c8f1a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/composer/[id]/page.tsx": {
+    "mtime": 1780078334.8047092,
+    "ast_hash": "53ea464fc3c7fc3d33a3012f502dc992",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/accounts/connect/route.ts": {
+    "mtime": 1779900417.5606499,
+    "ast_hash": "98db7a39727eb556ca964bbae6335f86",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/media/page.tsx": {
+    "mtime": 1780078326.9845862,
+    "ast_hash": "c8f270bc18b0a924453d01c048371858",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/logs/page.tsx": {
+    "mtime": 1780078327.5255947,
+    "ast_hash": "a24943ef6950482c3c31f6ee2c95d539",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/settings/page.tsx": {
+    "mtime": 1780078328.111604,
+    "ast_hash": "84343ac6ca7ecc97c9c1e746bafd2021",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/settings/appearance/page.tsx": {
+    "mtime": 1780078334.1736994,
+    "ast_hash": "13a2459c88ca9dddb75471a74af6b8af",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-accounts.ts": {
+    "mtime": 1779892953.45971,
+    "ast_hash": "9fbd6d5ab1d57f7048799bc7cfd24eba",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-posts.ts": {
+    "mtime": 1779822504.6728144,
+    "ast_hash": "71839a3f1bb6a2cd5ac1ff59a72fd2e1",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-media.ts": {
+    "mtime": 1779904022.8710527,
+    "ast_hash": "e81e6eca867c702c040cacf16a17e781",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-calendar.ts": {
+    "mtime": 1779808733.957524,
+    "ast_hash": "a7b2f5fd0da7c0ad87072693988ed3b4",
+    "semantic_hash": "a7b2f5fd0da7c0ad87072693988ed3b4"
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-settings.ts": {
+    "mtime": 1780232317.2287447,
+    "ast_hash": "473241ff3c48cf5d2164cc66b693ddbd",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/lib/queries.ts": {
+    "mtime": 1779899057.4863214,
+    "ast_hash": "ec230ca4a5e5b810222be72666488f98",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/features-section.tsx": {
+    "mtime": 1779810486.3058286,
+    "ast_hash": "8a5757bcf4495f4a1cc41120501cdcc1",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/footer.tsx": {
+    "mtime": 1779826863.275945,
+    "ast_hash": "a9c555df3468985ea70da1ee7b414f07",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/hero-section.tsx": {
+    "mtime": 1780078336.1457303,
+    "ast_hash": "03c9344609458d41d40d99eab9e92b08",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/how-it-works.tsx": {
+    "mtime": 1779810486.3068285,
+    "ast_hash": "b6d9a3ccf444263d2874f52eacd522a7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/feature-card.tsx": {
+    "mtime": 1779810486.3048286,
+    "ast_hash": "4dc5d05ef5366ee398d81849bad635c3",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/topographic-lines.tsx": {
+    "mtime": 1779810486.3028286,
+    "ast_hash": "0b0b23512f368ddcf523f0265ffeaaee",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/stats-bar.tsx": {
+    "mtime": 1779826732.7769613,
+    "ast_hash": "4a22d49f9bffdb7f0ef77f56b225f527",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/README.md": {
+    "mtime": 1780235484.6299744,
+    "ast_hash": "40d72af78a47bd0ea54a276a0e8a53a7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/package.json": {
+    "mtime": 1779823300.5903857,
+    "ast_hash": "c0201b33c35fafcbe13e59ed401685b3",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/09-retry-handler.ts": {
+    "mtime": 1779903410.3265605,
+    "ast_hash": "5f4670f579e0b48b0d912d0c5a274231",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/01-oauth-connect.ts": {
+    "mtime": 1779900484.314767,
+    "ast_hash": "9adb945ded11fea1236fa498c9e332e4",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/05-cron-scheduler.ts": {
+    "mtime": 1779900462.1723979,
+    "ast_hash": "eb68ef77cbed98ae6993ab4af199820a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/02-oauth-callback.ts": {
+    "mtime": 1779900492.9659107,
+    "ast_hash": "fceff166c4b036dd6dc6e97525da9518",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/11-logging.ts": {
+    "mtime": 1779892921.3022394,
+    "ast_hash": "0183fb5f3c99625443ee30dd300fe534",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/n8n/workflows/04-post-crud.ts": {
+    "mtime": 1779898489.7747285,
+    "ast_hash": "fb746ba634ebd26ee8853719456dce38",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/ui/skeleton.tsx": {
+    "mtime": 1779822525.4639494,
+    "ast_hash": "48d97f0c0790858aed03f5b4d54b6f04",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/ui/error-boundary.tsx": {
+    "mtime": 1779822477.4056344,
+    "ast_hash": "8bf127014152d3386bc8334034bca0aa",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/not-found.tsx": {
+    "mtime": 1780078337.337749,
+    "ast_hash": "4c9f44d8021dd2649f66560d663e9e48",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/app/api/stats/global/route.ts": {
+    "mtime": 1779826835.6365323,
+    "ast_hash": "e79b23d97f1cf6564e6dccf64c0d2c5e",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/hooks/use-dashboard.ts": {
+    "mtime": 1779822384.440983,
+    "ast_hash": "2bea05c6e4c23985fca29ee435773ebd",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.aider.chat.history.md": {
+    "mtime": 1779819814.7008376,
+    "ast_hash": "192851ab4975612ef7fec415ab279e01",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/PROJECT_CONTEXT.md": {
+    "mtime": 1779817829.9604461,
+    "ast_hash": "237d03298ef2446d3e14145e10108a40",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/docs/superpowers/plans/2026-05-27-n8n-workflows.md": {
+    "mtime": 1779823135.1658487,
+    "ast_hash": "94d9bb8a7e1031f2d8110faf2349b59b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/004_fix_media_url_function.sql": {
+    "mtime": 1779878835.0976455,
+    "ast_hash": "5e771d6913acc09242d3b1bae7755f44",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/006_remove_custom_guc_dependency.sql": {
+    "mtime": 1779878823.343543,
+    "ast_hash": "527b10824298a6ea8b102f6c353d8f51",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/005_set_app_config.sql": {
+    "mtime": 1779878836.3386562,
+    "ast_hash": "d7431e8a222a0ce14fda1fa4d982f0b9",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/003_global_stats_function.sql": {
+    "mtime": 1779878833.6176326,
+    "ast_hash": "d8c0b989d1d9b9655256b895c3b3e799",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/008_security_remediation.sql": {
+    "mtime": 1779893769.1994863,
+    "ast_hash": "6c59dc5126f9130c92e842e45562ac83",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/009_schema_performance_review.sql": {
+    "mtime": 1779893795.0197616,
+    "ast_hash": "6a6706c8c59a711cbcdd438e3d641561",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/vercel.json": {
+    "mtime": 1779889141.5362701,
+    "ast_hash": "5fd521424fad2144b89ba8582642e6d9",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/SETUP.md": {
+    "mtime": 1780235479.912957,
+    "ast_hash": "af4a103e33b6693e18621c95a7f42c7a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/docker-compose.yml": {
+    "mtime": 1779899154.7076726,
+    "ast_hash": "76c956fbc41beedd6682858be8d64336",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/supabase/migrations/010_workflow_runs_user_id.sql": {
+    "mtime": 1779900676.2429163,
+    "ast_hash": "e22a7d059731e4adbca0015fef5c56f5",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/session_opencode.md": {
+    "mtime": 1779903519.1892352,
+    "ast_hash": "2f076107de538f2b29c29383dae9e831",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/docs/superpowers/plans/2026-05-28-hero-redesign.md": {
+    "mtime": 1779911257.600983,
+    "ast_hash": "dd88c51adb414a088d487b19f898fa26",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/docs/superpowers/specs/2026-05-28-hero-redesign-design.md": {
+    "mtime": 1779911168.5979147,
+    "ast_hash": "aeeceb67db46efb27f287e54d25f17f5",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/components/landing/floating-sign-in.tsx": {
+    "mtime": 1780078336.696739,
+    "ast_hash": "875a29f4dddf5590021768be01da69b2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/PRODUCTION_READINESS.md": {
+    "mtime": 1780233635.765254,
+    "ast_hash": "6fef9430260187707db5d5076645ba1b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-50-48-246Z.yml": {
+    "mtime": 1780231848.2473977,
+    "ast_hash": "917ea85a67076c087a067230fde63af6",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-46-641Z.yml": {
+    "mtime": 1780232146.644429,
+    "ast_hash": "a9701660b04b7986a94b456205862459",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-22-09-335Z.yml": {
+    "mtime": 1780233729.348425,
+    "ast_hash": "a9701660b04b7986a94b456205862459",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-21-42-407Z.yml": {
+    "mtime": 1780233702.4080865,
+    "ast_hash": "993e0747ca9e49873a60e3e5ff695530",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-22-42-298Z.yml": {
+    "mtime": 1780233762.29784,
+    "ast_hash": "1157dfe9db9445661eccf382e303964a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-49-56-539Z.yml": {
+    "mtime": 1780231796.5387025,
+    "ast_hash": "4b2a91e1f34f4e279d79054e4d4dcfef",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-10-246Z.yml": {
+    "mtime": 1780232110.2509358,
+    "ast_hash": "56bd617a23144223a0e3303c7bc4f1dd",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-52-668Z.yml": {
+    "mtime": 1780232092.6676977,
+    "ast_hash": "0beff6776851039b0ab56be8d2548562",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-01-374Z.yml": {
+    "mtime": 1780232101.3738155,
+    "ast_hash": "64b158fbc3322ed0e64f3ad72a83efb2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-51-12-835Z.yml": {
+    "mtime": 1780231872.8347285,
+    "ast_hash": "325deee86d7df794d906103b0cb8ff10",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-13-572Z.yml": {
+    "mtime": 1780232053.5721684,
+    "ast_hash": "23fdf05d2a627f4460451d79efc9e01a",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-19-392Z.yml": {
+    "mtime": 1780232119.3960598,
+    "ast_hash": "bbe7d3175544f49fd92741ea13aa50c3",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T13-22-02-232Z.yml": {
+    "mtime": 1780233722.2373354,
+    "ast_hash": "80594abedddf20a46cd6956e010dd012",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-27-991Z.yml": {
+    "mtime": 1780232127.992176,
+    "ast_hash": "da6c156f6f6a23fa9e4b8ffb589ed8b7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-50-55-187Z.yml": {
+    "mtime": 1780231855.187491,
+    "ast_hash": "38a83c7903570210117045df59343a3b",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-51-03-630Z.yml": {
+    "mtime": 1780231863.6306045,
+    "ast_hash": "ee5efa57f23ddef5abfc458a7dd7978c",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-59-019Z.yml": {
+    "mtime": 1780232159.0195968,
+    "ast_hash": "690c80d2e5471c4c792874a4dbabbbe7",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-25-169Z.yml": {
+    "mtime": 1780232065.1693254,
+    "ast_hash": "a893fc9df6d25e08a7d2b1a73355fa7c",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-53-54-646Z.yml": {
+    "mtime": 1780232034.6509125,
+    "ast_hash": "993e0747ca9e49873a60e3e5ff695530",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-55-37-583Z.yml": {
+    "mtime": 1780232137.5843062,
+    "ast_hash": "a8bc1d3ec0b16aac9f9a2be874da5580",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-49-03-486Z.yml": {
+    "mtime": 1780231743.4879906,
+    "ast_hash": "15cbd4b7062426546846f26f2eacf9c9",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-59-15-699Z.yml": {
+    "mtime": 1780232355.6992676,
+    "ast_hash": "5b437e0d22474c3095f0e76488198db2",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-49-45-770Z.yml": {
+    "mtime": 1780231785.7705579,
+    "ast_hash": "b7d30b3610f19cd7c6e6bed3fd55ac04",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/.playwright-mcp/page-2026-05-31T12-54-40-766Z.yml": {
+    "mtime": 1780232080.7655365,
+    "ast_hash": "e560a443d791b3c5aabdbea28bc95f5c",
+    "semantic_hash": ""
+  },
+  "/home/aman/projects/saas/frontend/src/proxy.ts": {
+    "mtime": 1780245031.2094328,
+    "ast_hash": "8a0043d77f94ab78ef4330ff19856964",
+    "semantic_hash": ""
+  }
+}
