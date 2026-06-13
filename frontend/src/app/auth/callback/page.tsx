@@ -32,10 +32,10 @@ export default function AuthCallbackPage() {
 
   if (error) {
     return (
-      <div className="h-screen bg-bg flex items-center justify-center">
+      <div className="h-screen bg-canvas flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-red text-sm font-mono">{error}</p>
-          <a href="/auth/login" className="text-gold text-sm hover:underline">
+          <p className="text-error text-sm font-mono">{error}</p>
+          <a href="/auth/login" className="text-ink text-sm hover:underline">
             Back to login
           </a>
         </div>
@@ -44,10 +44,10 @@ export default function AuthCallbackPage() {
   }
 
   return (
-    <div className="h-screen bg-bg flex items-center justify-center">
+    <div className="h-screen bg-canvas flex items-center justify-center">
       <div className="text-center space-y-4">
-        <div className="w-8 h-8 border border-gold/30 border-t-gold rounded-full animate-spin mx-auto" />
-        <p className="text-text-dim text-sm font-mono">Completing authentication...</p>
+        <div className="w-8 h-8 border border-muted/30 border-t-ink rounded-full animate-spin mx-auto" />
+        <p className="text-muted text-sm font-mono">Completing authentication...</p>
       </div>
     </div>
   )

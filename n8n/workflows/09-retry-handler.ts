@@ -97,7 +97,7 @@ const incrementAndReschedule = node({
       operation: 'executeQuery',
       query: "UPDATE scheduled_posts SET status = 'scheduled', retry_count = retry_count + 1, schedule_at = $1::timestamptz, updated_at = NOW() WHERE id = $2::uuid AND status = 'failed' AND deleted_at IS NULL",
       options: {
-        queryReplacement: expr('{{ $json.retryAt }}, {{ $("Check Post Status").item.json.id }}')
+        queryReplacement: expr('{{ $json.retryAt }}, {{ $("checkPost").item.json.id }}')
       }
     }
   },
@@ -118,12 +118,12 @@ const callFailureHandler = node({
       contentType: 'json',
       specifyBody: 'json',
       jsonBody: {
-        postId: expr('{{ $("Check Post Status").item.json.id }}'),
-        userId: expr('{{ $("Check Post Status").item.json.user_id || "" }}'),
-        workflowName: expr('{{ $json.body.platform }}-publish'),
-        error: expr('{{ $json.body.error }}'),
-        attemptNumber: expr('{{ $json.body.attemptNumber || 1 }}'),
-        platform: expr('{{ $json.body.platform }}'),
+        postId: expr('{{ $("checkPost").item.json.id }}'),
+        userId: expr('{{ $("checkPost").item.json.user_id || "" }}'),
+        workflowName: expr('{{ $("webhookTrigger").item.body.platform }}-publish'),
+        error: expr('{{ $("webhookTrigger").item.body.error }}'),
+        attemptNumber: expr('{{ $("webhookTrigger").item.body.attemptNumber || 1 }}'),
+        platform: expr('{{ $("webhookTrigger").item.body.platform }}'),
         source: 'Retry Handler'
       },
       options: {
@@ -145,7 +145,7 @@ const respond = node({
       respondWith: 'json',
       responseBody: {
         action: expr('{{ $json.retryAt ? "retry" : "exhausted" }}'),
-        postId: expr('{{ $("Check Post Status").item.json.id }}')
+        postId: expr('{{ $("checkPost").item.json.id }}')
       }
     }
   }

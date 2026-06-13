@@ -45,9 +45,9 @@ const logToWorkflowRuns = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO workflow_runs (workflow_name, status, error_message, input_payload, duration_ms, triggered_by) VALUES ($1, 'failed', $2, jsonb_build_object('attempt_number', $3::int, 'source', $4, 'postId', $5::uuid), 0, NULL) RETURNING id",
+      query: "INSERT INTO workflow_runs (workflow_name, status, error_message, input_payload, duration_ms, triggered_by) VALUES ($1, 'failed', $2, jsonb_build_object('attempt_number', $3::int, 'source', $4, 'postId', $5::uuid), 0, $6::uuid) RETURNING id",
       options: {
-        queryReplacement: expr('{{ $json.body.workflowName }}, {{ $json.body.error }}, {{ $json.body.attemptNumber || 1 }}, {{ $json.body.source }}, {{ $json.body.postId }}')
+        queryReplacement: expr('{{ $("Webhook").item.body.workflowName }}, {{ $("Webhook").item.body.error }}, {{ $("Webhook").item.body.attemptNumber || 1 }}, {{ $("Webhook").item.body.source }}, {{ $("Webhook").item.body.postId }}, {{ $("Webhook").item.body.userId || null }}')
       }
     }
   },

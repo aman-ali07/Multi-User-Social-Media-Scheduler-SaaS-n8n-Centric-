@@ -8,19 +8,19 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<string, string> = {
-  draft: 'bg-surface-2 text-text-muted border-border',
-  scheduled: 'bg-gold/10 text-gold border-gold/20',
-  published: 'bg-lime/10 text-lime border-lime/20',
-  failed: 'bg-red/10 text-red border-red/20',
-  cancelled: 'bg-surface-2 text-text-dim border-border',
-  active: 'bg-lime/10 text-lime border-lime/20',
-  expired: 'bg-orange/10 text-orange border-orange/20',
-  revoked: 'bg-red/10 text-red border-red/20',
-  disconnected: 'bg-surface-2 text-text-dim border-border',
-  success: 'bg-lime/10 text-lime border-lime/20',
-  error: 'bg-red/10 text-red border-red/20',
-  retry: 'bg-orange/10 text-orange border-orange/20',
-  default: 'bg-surface-2 text-text-muted border-border',
+  draft: 'bg-surface-strong/50 text-muted',
+  scheduled: 'bg-badge-violet/10 text-badge-violet',
+  published: 'bg-success/10 text-success',
+  failed: 'bg-error/10 text-error',
+  cancelled: 'bg-surface-strong/50 text-muted',
+  active: 'bg-success/10 text-success',
+  expired: 'bg-badge-orange/10 text-badge-orange',
+  revoked: 'bg-error/10 text-error',
+  disconnected: 'bg-surface-strong/50 text-muted',
+  success: 'bg-success/10 text-success',
+  error: 'bg-error/10 text-error',
+  retry: 'bg-badge-orange/10 text-badge-orange',
+  default: 'bg-surface-strong/50 text-muted',
 }
 
 export function Badge({ variant = 'default', className, children }: BadgeProps) {
@@ -28,7 +28,7 @@ export function Badge({ variant = 'default', className, children }: BadgeProps) 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-sm px-2 py-0.5 text-[11px] font-medium border font-mono uppercase tracking-wider',
+        'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[13px] font-medium',
         variantStyles[variant] || variantStyles.default,
         className,
       )}

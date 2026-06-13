@@ -9,22 +9,20 @@ interface FilterBarProps {
 
 export function FilterBar({ active, onChange }: FilterBarProps) {
   return (
-    <div className="overflow-x-auto">
-      <div className="flex gap-1 border-b border-border pb-2 flex-nowrap min-w-max">
-        {statusTabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => onChange(tab)}
-            className={`px-2 sm:px-3 py-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider rounded-sm whitespace-nowrap transition-all ${
-              active === tab
-                ? 'text-gold bg-gold/10'
-                : 'text-text-muted hover:text-text'
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
+    <div className="inline-flex bg-surface-card border border-hairline p-1 rounded-md shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+      {statusTabs.map((tab) => (
+        <button
+          key={tab}
+          onClick={() => onChange(tab)}
+          className={`px-3 py-1.5 text-[12px] font-bold uppercase tracking-widest rounded transition-all ${
+            active === tab
+              ? 'bg-canvas text-ink shadow-[0_1px_3px_rgba(0,0,0,0.05)] border border-hairline/60'
+              : 'text-muted hover:text-ink hover:bg-hairline/30 border border-transparent'
+          }`}
+        >
+          {tab}
+        </button>
+      ))}
     </div>
   )
 }

@@ -48,9 +48,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 }
 
 const variantStyles: Record<ToastVariant, string> = {
-  success: 'border-lime/30 bg-lime/5 text-lime',
-  error: 'border-red/30 bg-red/5 text-red',
-  info: 'border-gold/30 bg-gold/5 text-gold',
+  success: 'border-success/30 bg-success/5 text-success',
+  error: 'border-error/30 bg-error/5 text-error',
+  info: 'border-hairline bg-surface-card text-ink',
 }
 
 function ToastItem({ toast, onDone }: { toast: Toast; onDone: () => void }) {

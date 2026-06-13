@@ -14,7 +14,7 @@ export function useMedia() {
     if (!user) return
     try {
       const data = await getMedia({ signal })
-      setMedia(Array.isArray(data.media) ? (data.media as MediaAsset[]) : [])
+      setMedia(Array.isArray(data.media) ? data.media : [])
       setLoading(false)
     } catch (err: unknown) {
       if ((err as Error)?.name === 'AbortError') return
@@ -30,14 +30,18 @@ export function useMedia() {
     return () => abort.abort()
   }, [load])
 
+  const [isUploading, setIsUploading] = useState(false)
+
   const upload = async (file: File) => {
     if (!user) return
+    setIsUploading(true)
+    setError(null)
     const path = `${user.id}/${Date.now()}-${file.name}`
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('media')
       .upload(path, file)
 
-    if (uploadError) { setError(uploadError.message); return }
+    if (uploadError) { setError(uploadError.message); setIsUploading(false); return }
 
     const { data: { publicUrl } } = supabase.storage
       .from('media')
@@ -53,9 +57,10 @@ export function useMedia() {
         storage_path: path,
       })
 
-    if (insertError) { setError(insertError.message); return }
+    if (insertError) { setError(insertError.message); setIsUploading(false); return }
 
     await load()
+    setIsUploading(false)
   }
 
   const remove = async (id: string) => {
@@ -77,5 +82,5 @@ export function useMedia() {
     }
   }
 
-  return { media, loading, error, reload: load, upload, remove }
+  return { media, loading, error, isUploading, reload: load, upload, remove }
 }

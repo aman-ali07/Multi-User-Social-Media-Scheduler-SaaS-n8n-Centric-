@@ -1,4 +1,33 @@
-async function callWebhook(path: string, body?: unknown) {
+import type { PostStatus } from '@/types/database'
+
+interface N8nResponse<T = unknown> {
+  success: boolean
+  data?: T
+  error?: string
+}
+
+interface CreatePostData {
+  accountId: string
+  title?: string
+  caption?: string
+  mediaIds?: string[]
+  platforms: string[]
+  scheduleAt?: string | null
+  timezone: string
+  status: 'draft' | 'scheduled'
+}
+
+interface UpdatePostData {
+  postId: string
+  title?: string
+  caption?: string
+  platforms?: string[]
+  accountId?: string
+  scheduleAt?: string | null
+  status?: string
+}
+
+async function callWebhook<T = unknown>(path: string, body?: unknown): Promise<N8nResponse<T>> {
   const res = await fetch(`/api/n8n/${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -15,34 +44,17 @@ async function callWebhook(path: string, body?: unknown) {
 }
 
 export async function connectOAuth(platform: 'facebook') {
-  return callWebhook('oauth-connect', { platform })
+  return callWebhook<{ url: string }>('oauth-connect', { platform })
 }
 
-export async function createPost(data: {
-  accountId: string
-  title?: string
-  caption?: string
-  mediaIds?: string[]
-  platforms: string[]
-  scheduleAt?: string | null
-  timezone: string
-  status: 'draft' | 'scheduled'
-}) {
-  return callWebhook('post', { operation: 'create', ...data })
+export async function createPost(data: CreatePostData) {
+  return callWebhook<{ id: string; status: PostStatus }>('post', { operation: 'create', ...data })
 }
 
-export async function updatePost(data: {
-  postId: string
-  title?: string
-  caption?: string
-  platforms?: string[]
-  accountId?: string
-  scheduleAt?: string | null
-  status?: string
-}) {
-  return callWebhook('post', { operation: 'edit', ...data })
+export async function updatePost(data: UpdatePostData) {
+  return callWebhook<{ id: string; status: PostStatus }>('post', { operation: 'edit', ...data })
 }
 
 export async function cancelPost(postId: string) {
-  return callWebhook('post', { operation: 'cancel', postId })
+  return callWebhook<{ id: string; status: PostStatus }>('post', { operation: 'cancel', postId })
 }

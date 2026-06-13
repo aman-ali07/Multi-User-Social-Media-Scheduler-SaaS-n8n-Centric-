@@ -207,8 +207,13 @@ const checkPublishError = ifElse({
       conditions: {
         options: { caseSensitive: true, leftValue: '', typeValidation: 'strict' },
         conditions: [{
-          leftValue: expr('{{ $json.hasError }}'),
-          operator: { type: 'boolean', operation: 'true' }
+          leftValue: expr('{{ $json.statusCode }}'),
+          operator: { type: 'number', operation: 'equals' },
+          rightValue: 200
+        }, {
+          leftValue: expr('{{ $json.body.error }}'),
+          operator: { type: 'boolean', operation: 'exists' },
+          rightValue: false
         }],
         combinator: 'and'
       }
@@ -256,9 +261,9 @@ const logSuccess = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'success', $2::uuid, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'success', $2::uuid, $3::int)",
       options: {
-        queryReplacement: expr('{{ $json.postId }}, {{ $json.userId }}')
+        queryReplacement: expr('{{ $("Parse Instagram Payload").item.json.postId }}, {{ $("Parse Instagram Payload").item.json.userId }}, {{ $("Webhook").item.body.attemptNumber || 1 }}')
       }
     }
   },
@@ -278,9 +283,9 @@ const logFailure = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'error', $2::uuid, $3, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'instagram-publish', 'error', $2::uuid, $3, $4::int)",
       options: {
-        queryReplacement: expr('{{ $json.postId }}, {{ $json.userId }}, {{ $json.errorMsg }}')
+        queryReplacement: expr('{{ $("Parse Instagram Payload").item.json.postId }}, {{ $("Parse Instagram Payload").item.json.userId }}, {{ $("Parse Instagram Payload").item.json.errorMsg }}, {{ $("Webhook").item.body.attemptNumber || 1 }}')
       }
     }
   },

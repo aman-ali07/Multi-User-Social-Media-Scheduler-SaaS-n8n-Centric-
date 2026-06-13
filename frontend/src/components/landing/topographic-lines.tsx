@@ -13,9 +13,9 @@ export function TopographicLines() {
       >
         <defs>
           <linearGradient id="topo-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="var(--color-gold)" stopOpacity="0.08" />
-            <stop offset="50%" stopColor="var(--color-steel)" stopOpacity="0.04" />
-            <stop offset="100%" stopColor="var(--color-wine)" stopOpacity="0.06" />
+            <stop offset="0%" stopColor="#111111" stopOpacity="0.04" />
+            <stop offset="50%" stopColor="#666666" stopOpacity="0.02" />
+            <stop offset="100%" stopColor="#111111" stopOpacity="0.03" />
           </linearGradient>
         </defs>
 
@@ -63,9 +63,9 @@ export function TopographicLines() {
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 1.5 }}
           fill="none"
-          stroke="var(--color-border)"
-          strokeWidth="0.3"
-          opacity={0.3}
+          stroke="#e5e5e5"
+          strokeWidth="0.5"
+          opacity={0.5}
         >
           <line x1="360" y1="0" x2="360" y2="900" />
           <line x1="720" y1="0" x2="720" y2="900" />
@@ -77,9 +77,9 @@ export function TopographicLines() {
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 2 }}
           fill="none"
-          stroke="var(--color-gold-dim)"
+          stroke="#111111"
           strokeWidth="0.5"
-          opacity={0.15}
+          opacity={0.05}
         >
           <motion.circle
             cx="720" cy="450" r="200"

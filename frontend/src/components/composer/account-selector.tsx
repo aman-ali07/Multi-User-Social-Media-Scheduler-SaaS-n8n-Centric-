@@ -12,14 +12,14 @@ export function AccountSelector({ accounts, value, onChange }: AccountSelectorPr
   if (accounts.length === 0) return null
 
   return (
-    <div className="space-y-1.5">
-      <label className="text-[12px] text-text-dim font-mono uppercase tracking-wider">
+    <div className="space-y-2">
+      <label className="text-[14px] font-medium text-ink tracking-wide">
         Account
       </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-sm border border-border bg-surface-2 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-gold/50 font-sans"
+        className="w-full rounded-md bg-surface-soft px-3 py-2.5 text-[14px] text-ink border-none shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-ink/20 focus:ring-offset-1 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all"
       >
         <option value="">Select account...</option>
         {accounts.map((a) => (

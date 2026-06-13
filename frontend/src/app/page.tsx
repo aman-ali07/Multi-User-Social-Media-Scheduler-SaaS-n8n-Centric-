@@ -3,6 +3,8 @@ import { HeroSection } from '@/components/landing/hero-section'
 import { FeaturesSection } from '@/components/landing/features-section'
 import { HowItWorks } from '@/components/landing/how-it-works'
 import { StatsBar } from '@/components/landing/stats-bar'
+import { TestimonialsSection } from '@/components/landing/testimonials-section'
+import { CTASection } from '@/components/landing/cta-section'
 import { Footer } from '@/components/landing/footer'
 import { FloatingSignIn } from '@/components/landing/floating-sign-in'
 
@@ -23,6 +25,8 @@ export default function LandingPage() {
       <FeaturesSection />
       <StatsBar />
       <HowItWorks />
+      <TestimonialsSection />
+      <CTASection />
       <Footer />
     </>
   )

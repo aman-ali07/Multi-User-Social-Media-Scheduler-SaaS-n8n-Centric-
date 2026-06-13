@@ -1,9 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ConsoleShell } from '@/components/shell/console-shell'
 import { Button } from '@/components/ui/button'
-import { AuthGuard } from '@/components/auth/auth-guard'
+import { useState } from 'react'
 
 const container = {
   hidden: { opacity: 0 },
@@ -11,77 +10,99 @@ const container = {
 }
 
 const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 }
 
 const themes = [
-  { id: 'dark', label: 'Console Dark', desc: 'Warm dark — broadcast control room', active: true },
-  { id: 'light', label: 'Signal Light', desc: 'Warm light mode (coming soon)', active: false },
+  { id: 'light', label: 'White Canvas', desc: 'Premium white theme — Default', active: true },
+  { id: 'dark', label: 'Dark Ink', desc: 'Dark mode (coming soon)', active: false },
 ]
 
 export default function AppearancePage() {
+  const [dirty, setDirty] = useState(false)
+  const [saving, setSaving] = useState(false)
+
+  const handleSave = () => {
+    setSaving(true)
+    setTimeout(() => {
+      setSaving(false)
+      setDirty(false)
+    }, 800)
+  }
+
   return (
-    <AuthGuard>
-      <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-2xl">
-          <motion.div variants={item}>
-            <div className="flex items-center gap-3">
-              <a href="/settings" className="text-text-dim hover:text-text transition-colors text-sm">←</a>
-              <h1 className="font-serif text-[28px] text-text tracking-tight">Appearance</h1>
-            </div>
-            <p className="text-text-muted text-sm font-sans mt-1 ml-7">Theme and display preferences</p>
-          </motion.div>
+    <motion.div variants={container} initial="hidden" animate="visible">
+      <motion.div variants={item} className="mb-8 border-b border-hairline pb-4">
+        <h2 className="font-cal tracking-tighter text-[24px] text-ink">Appearance</h2>
+        <p className="text-muted text-[13px] font-medium mt-1">Manage theme and display preferences.</p>
+      </motion.div>
 
-          <motion.div variants={item} className="space-y-3">
-            <h2 className="text-[13px] text-text-muted font-mono uppercase tracking-wider">Theme</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {themes.map((theme) => (
-                <div
-                  key={theme.id}
-                  className={`rounded-sm border p-4 transition-all ${
-                    theme.active
-                      ? 'border-gold/40 bg-gold/5'
-                      : 'border-border bg-surface opacity-60'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[14px] text-text font-sans">{theme.label}</span>
-                    {theme.active && (
-                      <span className="text-[10px] text-gold font-mono uppercase">Active</span>
-                    )}
-                  </div>
-                  <p className="text-[11px] text-text-muted font-sans mt-1">{theme.desc}</p>
+      <motion.div variants={item} className="space-y-8">
+        <div className="space-y-3">
+          <label className="text-[13px] font-bold text-ink uppercase tracking-wider">
+            Theme
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+            {themes.map((theme) => (
+              <button
+                key={theme.id}
+                type="button"
+                onClick={() => setDirty(true)}
+                className={`text-left rounded-lg border p-5 transition-all shadow-sm ${
+                  theme.active
+                    ? 'border-hairline bg-surface-card ring-1 ring-inset ring-ink/5'
+                    : 'border-hairline bg-canvas opacity-60 hover:opacity-100 hover:bg-surface-soft'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[15px] text-ink font-semibold">{theme.label}</span>
+                  {theme.active && (
+                    <span className="text-[10px] text-muted font-bold uppercase tracking-widest bg-surface-soft px-1.5 py-0.5 rounded">Active</span>
+                  )}
                 </div>
-              ))}
-            </div>
-          </motion.div>
+                <p className="text-[13px] text-muted font-medium mt-2">{theme.desc}</p>
+              </button>
+            ))}
+          </div>
+        </div>
 
-          <motion.div variants={item} className="space-y-3">
-            <h2 className="text-[13px] text-text-muted font-mono uppercase tracking-wider">Typography</h2>
-            <div className="rounded-sm border border-border bg-surface p-4 space-y-3">
-              <div>
-                <p className="text-[11px] text-text-dim font-mono uppercase tracking-wider">Headings</p>
-                <p className="font-serif text-[20px] text-text mt-1">Bilderberg</p>
-              </div>
-              <div>
-                <p className="text-[11px] text-text-dim font-mono uppercase tracking-wider">Body</p>
-                <p className="font-sans text-[14px] text-text mt-1">Satoshi</p>
-              </div>
-              <div>
-                <p className="text-[11px] text-text-dim font-mono uppercase tracking-wider">Monospace</p>
-                <p className="font-mono text-[13px] text-text mt-1">JetBrains Mono</p>
-              </div>
+        <div className="space-y-3">
+          <label className="text-[13px] font-bold text-ink uppercase tracking-wider">
+            Typography Scale
+          </label>
+          <div className="rounded-lg bg-surface-card p-5 space-y-6 max-w-2xl">
+            <div>
+              <p className="text-[11px] text-muted font-bold uppercase tracking-widest">Display Headings</p>
+              <p className="font-cal text-[24px] text-ink mt-1">Cal Sans</p>
             </div>
-          </motion.div>
+            <div className="border-t border-hairline pt-4">
+              <p className="text-[11px] text-muted font-bold uppercase tracking-widest">Functional Body</p>
+              <p className="font-sans text-[15px] text-ink mt-1 font-medium">Inter</p>
+            </div>
+            <div className="border-t border-hairline pt-4">
+              <p className="text-[11px] text-muted font-bold uppercase tracking-widest">Data & Code</p>
+              <p className="font-mono text-[14px] text-ink mt-1 font-medium tabular-nums">JetBrains Mono</p>
+            </div>
+          </div>
+        </div>
 
-          <motion.div variants={item}>
-            <Button variant="ghost" size="md" onClick={() => window.history.back()}>
-              ← Back to Settings
+        <div className="pt-6 border-t border-hairline flex items-center justify-between">
+          <p className={`text-[12px] font-medium transition-opacity ${dirty ? 'text-badge-orange opacity-100' : 'opacity-0'}`}>
+            You have unsaved changes.
+          </p>
+          <div className="flex gap-3">
+             {dirty && (
+               <Button type="button" variant="ghost" onClick={() => setDirty(false)}>
+                 Discard
+               </Button>
+             )}
+            <Button type="button" variant="primary" onClick={handleSave} disabled={saving || !dirty}>
+              {saving ? 'Saving...' : 'Save Changes'}
             </Button>
-          </motion.div>
-        </motion.div>
-      </ConsoleShell>
-    </AuthGuard>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }

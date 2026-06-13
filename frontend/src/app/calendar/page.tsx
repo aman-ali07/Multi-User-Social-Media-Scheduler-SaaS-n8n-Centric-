@@ -50,18 +50,18 @@ export default function CalendarPage() {
   return (
     <AuthGuard>
       <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-5xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 sm:p-10 space-y-8 max-w-5xl mx-auto">
           <motion.div variants={item} className="flex items-center justify-between">
             <div>
-              <h1 className="font-serif text-[28px] text-text tracking-tight">Schedule</h1>
-              <p className="text-text-muted text-sm font-sans mt-1">Calendar overview</p>
+              <h1 className="font-cal text-[36px] text-ink leading-none">Schedule</h1>
+              <p className="text-muted text-sm mt-2 font-medium">Calendar overview</p>
             </div>
           </motion.div>
 
           <motion.div variants={item} className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Button variant="ghost" size="sm" onClick={prevMonth}>◀</Button>
-              <span className="text-[16px] font-serif text-text min-w-[180px] text-center">
+              <span className="text-[20px] font-cal text-ink min-w-[180px] text-center">
                 {monthNames[month]} {year}
               </span>
               <Button variant="ghost" size="sm" onClick={nextMonth}>▶</Button>
@@ -73,8 +73,8 @@ export default function CalendarPage() {
             <motion.div variants={item}>
               <div className="grid grid-cols-7 gap-2">
                 {Array.from({ length: 35 }).map((_, i) => (
-                  <div key={i} className="h-24 rounded-sm border border-border bg-surface animate-pulse p-1.5">
-                    <div className="w-5 h-3 rounded-sm bg-surface-2" />
+                  <div key={i} className="h-24 rounded-lg border border-hairline bg-surface-card animate-pulse p-2">
+                    <div className="w-5 h-3 rounded-md bg-surface-strong" />
                   </div>
                 ))}
               </div>
@@ -89,24 +89,24 @@ export default function CalendarPage() {
                   onDayClick={(date) => router.push(`/posts?date=${date}`)}
                 />
               </motion.div>
-              <motion.div variants={item} className="flex items-center gap-6 pt-2">
+              <motion.div variants={item} className="flex items-center gap-6 pt-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-text-dim font-mono uppercase tracking-wider">Legenda</span>
-                  <div className="flex items-center gap-2">
+                  <span className="text-[12px] text-muted font-medium uppercase tracking-wider">Legend</span>
+                  <div className="flex items-center gap-3 ml-2">
                     {[
-                      { label: 'Scheduled', color: 'bg-gold' },
-                      { label: 'Published', color: 'bg-lime' },
-                      { label: 'Failed', color: 'bg-red' },
+                      { label: 'Scheduled', color: 'bg-badge-violet' },
+                      { label: 'Published', color: 'bg-success' },
+                      { label: 'Failed', color: 'bg-error' },
                     ].map((l) => (
                       <div key={l.label} className="flex items-center gap-1.5">
-                        <span className={`w-2 h-2 rounded-full ${l.color}`} />
-                        <span className="text-[10px] text-text-muted font-mono">{l.label}</span>
+                        <span className={`w-2.5 h-2.5 rounded-full ${l.color}`} />
+                        <span className="text-[12px] text-muted font-medium">{l.label}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-[10px] text-text-dim font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold/50" />
+                <div className="flex items-center gap-1.5 text-[12px] text-muted font-medium">
+                  <span className="w-2.5 h-2.5 rounded-full bg-badge-violet/30" />
                   {Object.values(postsByDate).flat().length} scheduled
                 </div>
               </motion.div>

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import Link from 'next/link'
 
 interface AuthFormProps {
   mode: 'login' | 'register'
@@ -38,10 +39,10 @@ export function AuthForm({ mode, onSubmit }: AuthFormProps) {
     >
       <div className="w-full max-w-xs sm:max-w-sm space-y-8">
         <div className="space-y-2">
-          <h1 className="font-serif text-[28px] text-text tracking-tight">
+          <h1 className="font-cal text-[32px] text-ink tracking-tighter leading-none">
             {mode === 'login' ? 'Welcome back' : 'Join Console'}
           </h1>
-          <p className="text-text-muted text-sm font-sans">
+          <p className="text-muted text-[15px] font-medium">
             {mode === 'login'
               ? 'Sign in to your content operations console.'
               : 'Create your account to start orchestrating.'}
@@ -69,11 +70,19 @@ export function AuthForm({ mode, onSubmit }: AuthFormProps) {
             required
           />
 
+          {mode === 'login' && (
+            <div className="flex justify-end -mt-2">
+              <Link href="/auth/forgot-password" className="text-[12px] text-muted hover:text-ink transition-colors font-medium">
+                Forgot password?
+              </Link>
+            </div>
+          )}
+
           {error && (
             <motion.p
               initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-red text-[12px] font-mono"
+              className="text-error text-[12px] font-medium"
             >
               {error}
             </motion.p>
@@ -83,12 +92,12 @@ export function AuthForm({ mode, onSubmit }: AuthFormProps) {
             type="submit"
             variant="primary"
             size="lg"
-            className="w-full"
+            className="w-full h-11 text-[14px]"
             disabled={loading}
           >
             {loading ? (
               <span className="flex items-center gap-2">
-                <span className="w-3 h-3 border border-bg/30 border-t-bg rounded-full animate-spin" />
+                <span className="w-3.5 h-3.5 border-2 border-canvas/30 border-t-canvas rounded-full animate-spin" />
                 {mode === 'login' ? 'Signing in...' : 'Creating account...'}
               </span>
             ) : mode === 'login' ? (
@@ -101,41 +110,41 @@ export function AuthForm({ mode, onSubmit }: AuthFormProps) {
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-border" />
+            <div className="w-full border-t border-hairline" />
           </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-surface px-2 text-text-dim font-mono tracking-wider">
+          <div className="relative flex justify-center text-[11px] uppercase">
+            <span className="bg-canvas px-2 text-muted font-bold tracking-widest">
               Or continue with
             </span>
           </div>
         </div>
 
         <Button
-          variant="gold"
+          variant="secondary"
           size="lg"
-          className="w-full"
+          className="w-full h-11 text-[14px]"
           disabled
         >
-          <span className="flex items-center gap-2">
-            <span className="text-sm">◈</span>
+          <span className="flex items-center gap-2 font-semibold">
+            <span className="text-[16px] text-[#1877F2]">f</span>
             Meta Business Account
           </span>
         </Button>
 
-        <p className="text-center text-[12px] text-text-dim font-sans">
+        <p className="text-center text-[13px] text-muted font-medium">
           {mode === 'login' ? (
             <>
               Don&apos;t have an account?{' '}
-              <a href="/auth/register" className="text-gold hover:text-gold/80 transition-colors">
+              <Link href="/auth/register" className="text-ink hover:underline transition-all font-semibold">
                 Register
-              </a>
+              </Link>
             </>
           ) : (
             <>
               Already have an account?{' '}
-              <a href="/auth/login" className="text-gold hover:text-gold/80 transition-colors">
+              <Link href="/auth/login" className="text-ink hover:underline transition-all font-semibold">
                 Sign in
-              </a>
+              </Link>
             </>
           )}
         </p>

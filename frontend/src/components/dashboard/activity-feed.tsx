@@ -8,41 +8,48 @@ interface ActivityItem {
   status: 'success' | 'error' | 'retry'
 }
 
-interface ActivityFeedProps {
-  items: ActivityItem[]
-}
+import { useState } from 'react'
 
-function ActivityDot({ status }: { status: string }) {
-  const colors: Record<string, string> = {
-    success: 'bg-lime shadow-[0_0_4px_rgba(138,184,42,0.5)]',
-    error: 'bg-red shadow-[0_0_4px_rgba(217,56,74,0.5)]',
-    retry: 'bg-orange shadow-[0_0_4px_rgba(217,90,32,0.5)]',
-  }
-  return <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 ${colors[status] || 'bg-text-dim'}`} />
-}
-
-export function ActivityFeed({ items }: ActivityFeedProps) {
+export function ActivityFeed({ items }: { items: ActivityItem[] }) {
+  const [visible, setVisible] = useState(15)
   return (
-    <div className="p-4 space-y-4">
-      <h3 className="text-[11px] text-text-muted font-mono uppercase tracking-wider">
-        Activity Feed
-      </h3>
-      <div className="space-y-0">
-        {items.map((a, i) => (
+    <div className="flex flex-col h-full bg-surface-soft border-l border-hairline font-mono text-[12px] p-6 text-muted">
+      <div className="flex items-center gap-2 mb-6 pb-4 border-b border-hairline/60">
+        <div className="flex items-center justify-center w-2 h-2 rounded-full bg-success/20">
+          <div className="w-1 h-1 rounded-full bg-success animate-pulse" />
+        </div>
+        <span className="uppercase tracking-widest font-bold">System Log</span>
+      </div>
+
+      <div className="flex-1 overflow-y-auto no-scrollbar space-y-1 pb-8">
+        {items.slice(0, visible).map((a, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, x: 8 }}
+            initial={{ opacity: 0, x: -4 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 + i * 0.04 }}
-            className="flex gap-3 py-2.5 border-b border-border last:border-0"
+            transition={{ delay: i * 0.05 }}
+            className="flex gap-4 group hover:bg-hairline/30 px-2 py-1 -mx-2 rounded transition-colors"
           >
-            <ActivityDot status={a.status} />
+            <span className="shrink-0 opacity-50">{a.time.split(' ')[0]}</span>
             <div className="flex-1 min-w-0">
-              <p className="text-[12px] text-text font-sans truncate">{a.action}</p>
-              <p className="text-[10px] text-text-dim font-mono mt-0.5">{a.time}</p>
+              <span className={`mr-2 ${a.status === 'error' ? 'text-error' : a.status === 'retry' ? 'text-badge-orange' : 'text-success'}`}>
+                {a.status === 'error' ? '[ERR]' : a.status === 'retry' ? '[WARN]' : '[OK]'}
+              </span>
+              <span className="text-ink truncate break-all">{a.action}</span>
             </div>
           </motion.div>
         ))}
+        {items.length === 0 && (
+          <div className="opacity-50">Waiting for events...</div>
+        )}
+        {visible < items.length && (
+          <button 
+            onClick={() => setVisible(v => v + 15)} 
+            className="w-full text-center mt-4 text-[10px] text-muted hover:text-ink uppercase tracking-widest font-bold transition-colors"
+          >
+            Show More
+          </button>
+        )}
       </div>
     </div>
   )

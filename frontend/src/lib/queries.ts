@@ -15,7 +15,7 @@ export async function getMyPosts(userId: string, filters: {
 
   if (filters.status) query = query.eq('status', filters.status)
   if (filters.limit) query = query.limit(filters.limit)
-  if (filters.offset && filters.limit) query = query.range(filters.offset, filters.offset + filters.limit - 1)
+  if (filters.offset !== undefined && filters.limit) query = query.range(filters.offset, filters.offset + filters.limit - 1)
 
   return query
 }
@@ -77,10 +77,32 @@ export async function getLogsForPost(postId: string) {
 export async function getAllLogs(userId: string, limit = 50) {
   return supabase
     .from('post_logs')
-    .select('id, post_id, workflow_name, status, error_message, response_payload, attempt_number, created_at, scheduled_posts!inner(user_id)')
-    .eq('scheduled_posts.user_id', userId)
+    .select('id, post_id, workflow_name, status, error_message, response_payload, attempt_number, created_at, user_id')
+    .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit)
+}
+
+export async function getScheduledQueueCount(userId: string) {
+  const { count } = await supabase
+    .from('scheduled_posts')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .eq('status', 'scheduled')
+    .is('deleted_at', null)
+  return count ?? 0
+}
+
+export async function getLastPublishDate(userId: string) {
+  const { data } = await supabase
+    .from('scheduled_posts')
+    .select('published_at')
+    .eq('user_id', userId)
+    .eq('status', 'published')
+    .not('published_at', 'is', null)
+    .order('published_at', { ascending: false })
+    .limit(1)
+  return data?.[0]?.published_at ?? null
 }
 
 export async function getDashboardStats(userId: string): Promise<{ data: DashboardStats | null; error: string | null }> {

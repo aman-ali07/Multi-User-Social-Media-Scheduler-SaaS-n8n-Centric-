@@ -1,26 +1,28 @@
-'use client'
+import { Layers, Clock, Activity } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-import { motion } from 'framer-motion'
+const iconMap: Record<string, LucideIcon> = {
+  layers: Layers,
+  clock: Clock,
+  activity: Activity,
+}
 
 interface FeatureCardProps {
   icon: string
   title: string
   description: string
-  index: number
 }
 
-export function FeatureCard({ icon, title, description, index }: FeatureCardProps) {
+export function FeatureCard({ icon, title, description }: FeatureCardProps) {
+  const Icon = iconMap[icon] || Layers
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.5, delay: index * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
-      className="group rounded-sm border border-border hover:border-gold/30 bg-surface/50 p-6 transition-all duration-300"
-    >
-      <span className="text-gold text-xl leading-none block mb-4">{icon}</span>
-      <h3 className="font-serif text-[18px] text-text tracking-tight mb-2">{title}</h3>
-      <p className="text-text-muted text-sm font-sans leading-relaxed">{description}</p>
-    </motion.div>
+    <div className="feature-card rounded-lg bg-surface-card p-8 opacity-0">
+      <div className="w-10 h-10 rounded-lg bg-surface-strong/50 flex items-center justify-center mb-6">
+        <Icon className="w-5 h-5 text-ink" />
+      </div>
+      <h3 className="text-[18px] font-semibold text-ink mb-3">{title}</h3>
+      <p className="text-body text-[16px] leading-relaxed">{description}</p>
+    </div>
   )
 }

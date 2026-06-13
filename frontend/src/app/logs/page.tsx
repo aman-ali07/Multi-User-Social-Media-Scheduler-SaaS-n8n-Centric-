@@ -60,20 +60,20 @@ export default function LogsPage() {
   return (
     <AuthGuard>
       <ConsoleShell>
-        <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-4xl">
+        <motion.div variants={container} initial="hidden" animate="visible" className="p-6 sm:p-10 space-y-8 max-w-4xl mx-auto">
           <motion.div variants={item}>
-            <div className="flex items-center gap-3">
-              <h1 className="font-serif text-[28px] text-text tracking-tight">Activity Log</h1>
-              <div className="flex items-center gap-1.5 text-[10px] text-lime font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse shadow-[0_0_4px_rgba(138,184,42,0.5)]" />
+            <div className="flex items-center gap-4">
+              <h1 className="font-cal text-[36px] text-ink leading-none">Activity Log</h1>
+              <div className="flex items-center gap-1.5 text-[12px] text-success font-medium bg-success/10 px-2 py-0.5 rounded-md border border-success/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse shadow-[0_0_6px_rgba(34,197,94,0.5)]" />
                 Live
               </div>
             </div>
-            <p className="text-text-muted text-sm font-sans mt-1">Post logs and workflow runs</p>
+            <p className="text-muted text-sm mt-2 font-medium">Post logs and workflow runs</p>
           </motion.div>
 
           {error && (
-            <motion.p variants={item} className="text-red text-[12px] font-mono">{error}</motion.p>
+            <motion.p variants={item} className="text-error text-[13px] font-medium">{error}</motion.p>
           )}
 
           {loading ? (
@@ -81,8 +81,8 @@ export default function LogsPage() {
               <SkeletonList rows={5} />
             </motion.div>
           ) : logs.length === 0 ? (
-            <motion.div variants={item} className="rounded-sm border border-border bg-surface p-8 text-center">
-              <p className="text-text-dim text-sm font-sans">No activity recorded yet.</p>
+            <motion.div variants={item} className="rounded-lg border border-hairline bg-surface-card p-12 text-center shadow-sm">
+              <p className="text-muted text-[15px] font-medium">No activity recorded yet.</p>
             </motion.div>
           ) : (
             <motion.div variants={item}>

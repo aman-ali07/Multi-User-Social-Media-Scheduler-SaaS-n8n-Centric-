@@ -24,6 +24,7 @@ services:
       N8N_METRICS: true
       N8N_METRICS_INCLUDE_DEFAULT_METRICS: true
       N8N_PROXY_SECRET: ${N8N_PROXY_SECRET}
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
     volumes:
       - n8n_data:/home/node/.n8n
     healthcheck:

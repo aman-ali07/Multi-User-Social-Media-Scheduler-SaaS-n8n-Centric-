@@ -82,8 +82,8 @@ export default function EditPostPage() {
     return (
       <AuthGuard>
         <ConsoleShell>
-          <div className="p-6 flex items-center gap-2 text-text-dim text-sm font-mono">
-            <span className="w-3 h-3 border border-gold/30 border-t-gold rounded-full animate-spin" />
+          <div className="p-6 flex items-center gap-2 text-muted text-sm font-mono">
+            <span className="w-3 h-3 border border-muted/30 border-t-ink rounded-full animate-spin" />
             Loading post...
           </div>
         </ConsoleShell>
@@ -96,8 +96,8 @@ export default function EditPostPage() {
       <AuthGuard>
         <ConsoleShell>
           <div className="p-6 space-y-4">
-            <p className="text-red text-sm font-mono">{error || 'Post not found'}</p>
-            <Link href="/posts" className="text-gold text-sm hover:underline">← Back to posts</Link>
+            <p className="text-error text-sm font-mono">{error || 'Post not found'}</p>
+            <Link href="/posts" className="text-ink text-sm hover:underline">← Back to posts</Link>
           </div>
         </ConsoleShell>
       </AuthGuard>
@@ -109,8 +109,8 @@ export default function EditPostPage() {
       <ConsoleShell>
         <motion.div variants={container} initial="hidden" animate="visible" className="p-4 sm:p-6 space-y-6 max-w-2xl">
           <motion.div variants={item}>
-            <h1 className="font-serif text-[28px] text-text tracking-tight">Edit Post</h1>
-            <p className="text-text-muted text-sm font-sans mt-1">{post.title || 'Untitled'}</p>
+            <h1 className="font-cal text-[28px] text-ink tracking-tight">Edit Post</h1>
+            <p className="text-muted text-sm font-sans mt-1">{post.title || 'Untitled'}</p>
           </motion.div>
 
           <motion.div variants={item} className="space-y-4">
@@ -124,12 +124,12 @@ export default function EditPostPage() {
             <CaptionEditor value={caption} onChange={setCaption} />
 
             <div className="space-y-1.5">
-              <label className="text-[12px] text-text-dim font-mono uppercase tracking-wider">Platforms</label>
+              <label className="text-[12px] text-muted font-mono uppercase tracking-wider">Platforms</label>
               <div className="flex gap-2">
                 {Array.isArray(post.platforms) && post.platforms.map((p) => (
                   <span
                     key={p}
-                    className="text-[10px] text-text-muted font-mono uppercase border border-border rounded-sm px-1.5 py-0.5"
+                    className="text-[10px] text-muted font-mono uppercase border border-hairline rounded-md px-1.5 py-0.5"
                   >
                     {p === 'facebook' ? 'Facebook' : 'Instagram'}
                   </span>
@@ -140,14 +140,14 @@ export default function EditPostPage() {
             <SchedulePicker value={scheduleAt} onChange={setScheduleAt} />
 
             {error && (
-              <p className="text-red text-[12px] font-mono">{error}</p>
+              <p className="text-error text-[12px] font-mono">{error}</p>
             )}
 
             <div className="flex gap-3 pt-2">
               <Button variant="ghost" size="md" onClick={() => router.push('/posts')}>
                 Cancel
               </Button>
-              <Button variant="gold" size="md" onClick={() => handleSave()} disabled={saving}>
+              <Button variant="secondary" size="md" onClick={() => handleSave()} disabled={saving}>
                 {saving ? 'Saving...' : 'Save Changes'}
               </Button>
               {post.status === 'draft' && (

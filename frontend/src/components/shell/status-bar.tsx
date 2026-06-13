@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/use-auth'
+import { getScheduledQueueCount, getLastPublishDate } from '@/lib/queries'
 
 export function StatusBar() {
   const { user } = useAuth()
@@ -14,26 +14,12 @@ export function StatusBar() {
     if (!user) return
 
     const fetchStats = async () => {
-      const { count: queueCount } = await supabase
-        .from('scheduled_posts')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', user.id)
-        .eq('status', 'scheduled')
-        .is('deleted_at', null)
+      const queueCount = await getScheduledQueueCount(user.id)
+      setQueue(queueCount)
 
-      if (queueCount !== null) setQueue(queueCount)
-
-      const { data: last } = await supabase
-        .from('scheduled_posts')
-        .select('published_at')
-        .eq('user_id', user.id)
-        .eq('status', 'published')
-        .not('published_at', 'is', null)
-        .order('published_at', { ascending: false })
-        .limit(1)
-
-      if (last && last.length > 0) {
-        const d = new Date(last[0].published_at)
+      const lastDate = await getLastPublishDate(user.id)
+      if (lastDate) {
+        const d = new Date(lastDate)
         setLastPublish(d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))
       }
     }
@@ -56,18 +42,18 @@ export function StatusBar() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.2 }}
-      className="h-8 border-t border-border bg-surface flex items-center justify-between px-3 lg:px-4"
+      className="h-8 border-t border-hairline bg-surface-soft flex items-center justify-between px-3 lg:px-4"
     >
-      <div className="flex items-center gap-3 lg:gap-4 text-[10px] text-text-dim font-mono uppercase tracking-widest">
+      <div className="flex items-center gap-3 lg:gap-4 text-[11px] text-muted font-medium uppercase tracking-wider">
         <span className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_4px_rgba(138,184,42,0.5)]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-success shadow-sm" />
           <span className="hidden sm:inline">Live</span>
         </span>
-        <span>Q: {queue ?? '—'}</span>
+        <span>Q: {queue ?? '\u2014'}</span>
       </div>
 
-      <div className="flex items-center gap-3 lg:gap-4 text-[10px] text-text-dim font-mono">
-        <span className="hidden md:inline">Last: {lastPublish ?? '—'}</span>
+      <div className="flex items-center gap-3 lg:gap-4 text-[11px] text-muted font-mono">
+        <span className="hidden md:inline">Last: {lastPublish ?? '\u2014'}</span>
         <span>{timeStr}</span>
       </div>
     </motion.footer>

@@ -1,40 +1,15 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import { JetBrains_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/components/ui/error-boundary'
 import { ToastProvider } from '@/components/ui/toast'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
-const bilderberg = localFont({
-  src: [
-    { path: '../fonts/Bilderberg OTF.otf', weight: '400', style: 'normal' },
-    { path: '../fonts/Bilderberg Italic OTF.otf', weight: '400', style: 'italic' },
-  ],
-  variable: '--font-bilderberg',
-  display: 'swap',
-  preload: true,
-})
-
-const satoshi = localFont({
-  src: [
-    { path: '../fonts/Satoshi-Light.woff2', weight: '300', style: 'normal' },
-    { path: '../fonts/Satoshi-Regular.woff2', weight: '400', style: 'normal' },
-    { path: '../fonts/Satoshi-Medium.woff2', weight: '500', style: 'normal' },
-    { path: '../fonts/Satoshi-Bold.woff2', weight: '700', style: 'normal' },
-    { path: '../fonts/Satoshi-Black.woff2', weight: '900', style: 'normal' },
-  ],
-  variable: '--font-satoshi',
-  display: 'swap',
-  preload: true,
-})
-
-const jetbrainsMono = JetBrains_Mono({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
+  variable: '--font-inter',
   display: 'swap',
-  preload: true,
 })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
@@ -67,21 +42,22 @@ export const metadata: Metadata = {
   },
 }
 
+import { SmoothScroll } from '@/components/providers/smooth-scroll'
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
       className={cn(
-        bilderberg.variable,
-        satoshi.variable,
-        jetbrainsMono.variable,
+        inter.variable,
         'h-full antialiased',
       )}
     >
-      <body className="min-h-screen bg-bg text-text" suppressHydrationWarning>
-        <div className="noise-overlay" />
+      <body className="min-h-screen bg-canvas text-body font-sans" suppressHydrationWarning>
         <ErrorBoundary>
-          <ToastProvider>{children}</ToastProvider>
+          <SmoothScroll>
+            <ToastProvider>{children}</ToastProvider>
+          </SmoothScroll>
         </ErrorBoundary>
         <Analytics />
       </body>

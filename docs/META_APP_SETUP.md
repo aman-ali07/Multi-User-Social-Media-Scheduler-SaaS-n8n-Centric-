@@ -19,12 +19,15 @@ In your app dashboard, add these products:
 - Click **Set Up** on Facebook Login
 - In **Settings** → **Valid OAuth Redirect URIs**, add:
   ```
-  https://multi-user-social-media-scheduler-s.vercel.app/accounts/connect
+  https://multi-user-social-media-scheduler-s.vercel.app/api/auth/meta/callback
   ```
   For local development, also add:
   ```
-  http://localhost:3000/accounts/connect
+  http://localhost:3000/api/auth/meta/callback
   ```
+
+  > **Important:** Use `/api/auth/meta/callback` as the redirect path.
+  > The legacy `/accounts/connect` path is no longer the primary OAuth callback.
 
 ### Instagram Basic Display
 - Click **Set Up** and configure later

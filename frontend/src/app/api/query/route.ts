@@ -16,11 +16,16 @@ function serverError(msg: string) {
   return NextResponse.json({ error: msg }, { status: 500 })
 }
 
-async function getServerClient(request: NextRequest) {
+async function getServerClient(request: NextRequest, response: NextResponse) {
   return createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookies: {
       getAll: () => request.cookies.getAll(),
-      setAll: () => {},
+      setAll: (cookiesToSet) => {
+        cookiesToSet.forEach(({ name, value, options }) => {
+          request.cookies.set(name, value)
+          response.cookies.set(name, value, options)
+        })
+      },
     },
   })
 }
@@ -33,30 +38,59 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unsupported Media Type' }, { status: 415 })
     }
 
-    const supabase = await getServerClient(request)
+    // We'll create a base response first to capture any cookie updates
+    const response = NextResponse.json({})
+    const supabase = await getServerClient(request, response)
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     if (authError || !user) return unauthorized()
 
     const body = await request.json()
-    const { type } = body
-
+    let resultResponse: NextResponse;
     switch (type) {
-      case 'dashboard': return handleDashboard(supabase, user.id)
-      case 'posts': return handlePosts(supabase, user.id, body)
-      case 'accounts': return handleAccounts(supabase, user.id)
-      case 'media': return handleMedia(supabase, user.id)
-      case 'calendar': return handleCalendar(supabase, user.id, body)
-      case 'settings': return handleSettings(supabase, user.id)
-      case 'update-profile': return handleUpdateProfile(supabase, user.id, body)
-      case 'logs': return handleLogs(supabase, user.id)
-      case 'delete-media': return handleDeleteMedia(supabase, user.id, body)
-      case 'delete-account': return handleDeleteAccount(supabase, user.id, body)
+      case 'dashboard': resultResponse = await handleDashboard(supabase, user.id); break;
+      case 'posts': resultResponse = await handlePosts(supabase, user.id, body); break;
+      case 'accounts': resultResponse = await handleAccounts(supabase, user.id); break;
+      case 'media': resultResponse = await handleMedia(supabase, user.id); break;
+      case 'calendar': resultResponse = await handleCalendar(supabase, user.id, body); break;
+      case 'settings': resultResponse = await handleSettings(supabase, user.id); break;
+      case 'update-profile': resultResponse = await handleUpdateProfile(supabase, user.id, body); break;
+      case 'logs': resultResponse = await handleLogs(supabase, user.id); break;
+      case 'delete-media': resultResponse = await handleDeleteMedia(supabase, user.id, body); break;
+      case 'delete-account': resultResponse = await handleDeleteAccount(supabase, user.id, body); break;
+      case 'delete-user': resultResponse = await handleDeleteUser(supabase, user.id); break;
       default: return badRequest(`Unknown query type: ${type}`)
     }
+
+    // Apply any refreshed cookies to the final response
+    response.cookies.getAll().forEach((cookie) => {
+      resultResponse.cookies.set(cookie.name, cookie.value)
+    })
+    return resultResponse;
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Internal server error'
     return serverError(msg)
   }
+}
+
+async function handleDeleteUser(supabase: ReturnType<typeof createServerClient>, userId: string) {
+  // First delete all media from storage since auth.users CASCADE doesn't clear storage
+  const { data: media } = await supabase.from('media_assets').select('storage_path').eq('user_id', userId)
+  if (media && media.length > 0) {
+    const paths = media.map(m => m.storage_path).filter(Boolean) as string[]
+    if (paths.length > 0) await supabase.storage.from('media').remove(paths)
+  }
+
+  // Then delete the user from auth.users via rpc
+  const { error } = await supabase.rpc('delete_user')
+  if (error) {
+    // Fallback: manual data deletion if RPC doesn't exist or fails
+    await supabase.from('social_accounts').delete().eq('user_id', userId)
+    await supabase.from('scheduled_posts').delete().eq('user_id', userId)
+    await supabase.from('media_assets').delete().eq('user_id', userId)
+    await supabase.from('profiles').delete().eq('id', userId)
+  }
+  
+  return NextResponse.json({ success: true })
 }
 
 async function handleDashboard(supabase: ReturnType<typeof createServerClient>, userId: string) {
@@ -87,7 +121,7 @@ async function handleDashboard(supabase: ReturnType<typeof createServerClient>, 
     supabase.from('social_accounts').select('*', { count: 'exact', head: true }).eq('user_id', userId).eq('status', 'active'),
     supabase.from('scheduled_posts').select('id, title, platforms, schedule_at, status').eq('user_id', userId).eq('status', 'scheduled').gte('schedule_at', todayStr).order('schedule_at', { ascending: true }).limit(5),
     supabase.from('scheduled_posts').select('id, title, platforms, schedule_at, status').eq('user_id', userId).in('status', ['scheduled', 'published']).gte('schedule_at', weekAgoStr).lte('schedule_at', tomorrowStr),
-    supabase.from('post_logs').select('*, scheduled_posts!inner(user_id)').eq('scheduled_posts.user_id', userId).order('created_at', { ascending: false }).limit(20),
+    supabase.from('post_logs').select('*').eq('user_id', userId).order('created_at', { ascending: false }).limit(20),
   ])
 
   if (err1 || err2 || err3 || err4) {

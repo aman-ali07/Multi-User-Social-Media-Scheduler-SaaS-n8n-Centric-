@@ -160,6 +160,10 @@ const checkResult = ifElse({
           leftValue: expr('{{ $json.statusCode }}'),
           operator: { type: 'number', operation: 'equals' },
           rightValue: 200
+        }, {
+          leftValue: expr('{{ $json.body.error }}'),
+          operator: { type: 'boolean', operation: 'exists' },
+          rightValue: false
         }],
         combinator: 'and'
       }
@@ -207,9 +211,9 @@ const logSuccess = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'success', $2::uuid, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'success', $2::uuid, $3::int)",
       options: {
-        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}')
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Webhook").item.body.attemptNumber || 1 }}')
       }
     }
   },
@@ -228,9 +232,9 @@ const logFailure = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, $4::int)",
       options: {
-        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Post to Facebook").item.json.body.error?.message || $("Post to Facebook").item.json.statusCode }}')
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Post to Facebook").item.json.body.error?.message || $("Post to Facebook").item.json.statusCode }}, {{ $("Webhook").item.body.attemptNumber || 1 }}')
       }
     }
   },
@@ -298,9 +302,9 @@ const logPayloadFailure = node({
   config: {
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, 1)",
+      query: "INSERT INTO post_logs (post_id, workflow_name, status, user_id, error_message, attempt_number) VALUES ($1::uuid, 'facebook-publish', 'error', $2::uuid, $3, $4::int)",
       options: {
-        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Build Facebook Payload").item.json.errorMsg }}')
+        queryReplacement: expr('{{ $("Build Facebook Payload").item.json.postId }}, {{ $("Build Facebook Payload").item.json.userId }}, {{ $("Build Facebook Payload").item.json.errorMsg }}, {{ $("Webhook").item.body.attemptNumber || 1 }}')
       }
     }
   },

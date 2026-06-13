@@ -1,6 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const steps = [
   {
@@ -21,44 +26,57 @@ const steps = [
 ]
 
 export function HowItWorks() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 75%',
+      }
+    })
+
+    tl.from('.how-header', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    })
+    .from('.how-step', {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    }, '-=0.4')
+  }, { scope: containerRef })
+
   return (
-    <section className="w-full max-w-5xl mx-auto px-6 py-24 md:py-32">
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-20"
-      >
-        <span className="text-[11px] text-gold font-mono uppercase tracking-[0.25em]">
+    <section ref={containerRef} className="w-full max-w-6xl mx-auto px-6 py-24">
+      <div className="text-center mb-20">
+        <span className="how-header block text-[13px] text-muted font-medium uppercase tracking-wider opacity-0">
           How It Works
         </span>
-        <h2 className="font-serif text-[32px] md:text-[40px] text-text tracking-tight mt-3">
+        <h2 className="how-header block font-cal text-[32px] md:text-[40px] text-ink mt-3 leading-tight tracking-tighter opacity-0">
           Three steps to go live
         </h2>
-      </motion.div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {steps.map((step, i) => (
-          <motion.div
-            key={step.number}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative"
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-[32px] font-serif text-gold leading-none">{step.number}</span>
+          <div key={step.number} className="how-step relative opacity-0">
+            <div className="flex items-center gap-4 mb-5">
+              <span className="text-[40px] font-cal text-muted/30 leading-none">{step.number}</span>
               {i < steps.length - 1 && (
-                <div className="hidden md:block flex-1 h-px bg-border" />
+                <div className="hidden md:block flex-1 h-px bg-hairline" />
               )}
             </div>
-            <h3 className="font-sans text-[16px] text-text font-medium tracking-wide mb-2">
+            <h3 className="text-[18px] text-ink font-medium tracking-wide mb-2">
               {step.title}
             </h3>
-            <p className="text-text-muted text-sm font-sans leading-relaxed">{step.description}</p>
-          </motion.div>
+            <p className="text-muted text-[15px] font-medium leading-relaxed">{step.description}</p>
+          </div>
         ))}
       </div>
     </section>

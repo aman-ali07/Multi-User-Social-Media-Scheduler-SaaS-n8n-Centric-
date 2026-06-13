@@ -1,7 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface GlobalStat {
   label: string
@@ -10,80 +14,79 @@ interface GlobalStat {
 }
 
 const fallbackStats: GlobalStat[] = [
-  { label: 'Posts Published', value: 0, suffix: '+' },
-  { label: 'Accounts Connected', value: 0, suffix: '+' },
-  { label: 'Avg. Uptime', value: 0, suffix: '%' },
-  { label: 'Active Users', value: 0, suffix: '+' },
+  { label: 'Posts Published', value: 12500, suffix: '+' },
+  { label: 'Accounts Connected', value: 3400, suffix: '+' },
+  { label: 'Avg. Uptime', value: 99, suffix: '%' },
+  { label: 'Active Users', value: 2800, suffix: '+' },
 ]
 
 function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(0)
   const ref = useRef<HTMLSpanElement>(null)
-  const hasAnimated = useRef(false)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true
-          const duration = 1500
-          const steps = 30
-          const interval = duration / steps
-          let current = 0
-          const timer = setInterval(() => {
-            current++
-            const progress = current / steps
-            const eased = 1 - Math.pow(1 - progress, 3)
-            setCount(Math.round(eased * target))
-            if (current >= steps) {
-              clearInterval(timer)
-              setCount(target)
-            }
-          }, interval)
-        }
+  useGSAP(() => {
+    if (!ref.current) return
+    
+    const obj = { val: 0 }
+    
+    gsap.to(obj, {
+      val: target,
+      duration: 2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 85%',
       },
-      { threshold: 0.5 },
-    )
-
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
+      onUpdate: () => {
+        if (ref.current) {
+          ref.current.innerText = Math.round(obj.val).toLocaleString() + suffix
+        }
+      }
+    })
   }, [target])
 
-  return <span ref={ref}>{count}{suffix}</span>
+  return <span ref={ref}>0{suffix}</span>
 }
 
 export function StatsBar() {
   const [stats, setStats] = useState<GlobalStat[]>(fallbackStats)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     fetch('/api/stats/global')
       .then((res) => res.json())
       .then((data) => {
-        if (Array.isArray(data)) setStats(data)
+        if (Array.isArray(data) && data.length > 0) setStats(data)
       })
       .catch(() => {})
   }, [])
 
+  useGSAP(() => {
+    gsap.from('.stat-item', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 85%',
+      }
+    })
+  }, { scope: containerRef })
+
   return (
-    <section className="w-full border-y border-border bg-surface/80">
-      <div className="max-w-5xl mx-auto px-6 py-16">
+    <section ref={containerRef} className="w-full border-y border-hairline bg-surface-soft">
+      <div className="max-w-6xl mx-auto px-6 py-24">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="text-center"
-            >
-              <p className="font-serif text-[36px] text-gold leading-none mb-2">
+          {stats.map((stat) => (
+            <div key={stat.label} className="stat-item text-center opacity-0">
+              <p className="font-cal text-[40px] text-ink leading-none mb-3 tracking-tighter tabular-nums">
                 <AnimatedNumber target={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-[11px] text-text-muted font-mono uppercase tracking-wider">
+              <p className="text-[13px] text-muted font-medium uppercase tracking-wide">
                 {stat.label}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -8,10 +8,12 @@ test.describe('Composer', () => {
 
   test('shows validation errors for empty form', async ({ page }) => {
     await page.goto('/composer')
-    const submitBtn = page.locator('button[type="submit"]')
-    if (await submitBtn.isVisible()) {
-      await submitBtn.click()
-      await expect(page.locator('text=required, text=required')).toBeVisible()
+    const scheduleBtn = page.getByRole('button', { name: /Schedule Post/i })
+    
+    // The button is disabled if validation fails in our current implementation.
+    // So we just check if it's disabled.
+    if (await scheduleBtn.isVisible()) {
+      await expect(scheduleBtn).toBeDisabled()
     }
   })
 })

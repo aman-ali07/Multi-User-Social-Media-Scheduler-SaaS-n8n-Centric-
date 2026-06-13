@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 const N8N_BASE = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL?.replace(/\/$/, '')
-const N8N_PROXY_SECRET = process.env.N8N_PROXY_SECRET || ''
+const N8N_PROXY_SECRET = process.env.N8N_PROXY_SECRET
+if (!N8N_PROXY_SECRET) throw new Error('N8N_PROXY_SECRET environment variable is missing')
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const FRONTEND_URL = process.env.FRONTEND_URL || process.env.NEXT_PUBLIC_FRONTEND_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
@@ -26,6 +27,10 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> },
 ) {
+  if (!N8N_PROXY_SECRET) {
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500, headers: corsHeaders() })
+  }
+
   const contentLength = parseInt(request.headers.get('content-length') || '0', 10)
   if (contentLength > MAX_BODY_SIZE) {
     return NextResponse.json({ error: 'Request too large' }, { status: 413, headers: corsHeaders() })
@@ -47,14 +52,18 @@ export async function POST(
   const url = `${N8N_BASE}/webhook/${webhookPath}`
 
   try {
+    let cookieUpdates: any[] = []
     const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       cookies: {
         getAll: () => request.cookies.getAll(),
-        setAll: () => {},
+        setAll: (cookiesToSet) => {
+          cookieUpdates = cookiesToSet
+        },
       },
     })
 
-    const { data: { user }, error } = await supabase.auth.getUser()
+    const { data: { session }, error } = await supabase.auth.getSession()
+    const user = session?.user
     if (error || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: corsHeaders() })
     }
@@ -67,13 +76,18 @@ export async function POST(
         'Content-Type': 'application/json',
         'x-verified-user-id': user.id,
         'x-proxy-secret': N8N_PROXY_SECRET,
+        'Authorization': `Bearer ${session.access_token}`,
       },
       body: JSON.stringify(body),
       signal: AbortSignal.timeout(25000),
     })
 
     const data = await res.json()
-    return NextResponse.json(data, { status: res.status, headers: corsHeaders() })
+    const response = NextResponse.json(data, { status: res.status, headers: corsHeaders() })
+    cookieUpdates.forEach(({ name, value, options }) => {
+      response.cookies.set(name, value, options)
+    })
+    return response
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Request failed'
     return NextResponse.json({ error: message }, { status: 500, headers: corsHeaders() })

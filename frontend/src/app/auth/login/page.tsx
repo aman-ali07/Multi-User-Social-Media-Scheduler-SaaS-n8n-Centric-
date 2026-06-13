@@ -23,7 +23,7 @@ function LoginForm() {
     return (
       <AuthLayout>
         <div className="flex-1 flex items-center justify-center">
-          <div className="w-8 h-8 border border-gold/30 border-t-gold rounded-full animate-spin" />
+          <div className="w-8 h-8 border border-muted/30 border-t-ink rounded-full animate-spin" />
         </div>
       </AuthLayout>
     )
@@ -45,11 +45,11 @@ function LoginForm() {
           animate={{ opacity: 1, y: 0 }}
           className="flex justify-center pt-8"
         >
-          <div className="relative bg-gold/10 border border-gold/30 text-gold text-[12px] font-mono p-3 rounded-sm pr-8 max-w-sm w-full">
+          <div className="relative bg-surface-card border border-hairline text-ink text-[12px] font-mono p-3 rounded-md pr-8 max-w-sm w-full shadow-sm">
             Account created! Check your email to verify, then sign in below.
             <button
               onClick={() => setShowVerified(false)}
-              className="absolute top-2 right-2 text-gold/60 hover:text-gold text-xs leading-none"
+              className="absolute top-2 right-2 text-muted hover:text-ink text-xs leading-none transition-colors"
             >
               ×
             </button>
@@ -63,7 +63,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<AuthLayout><div className="w-8 h-8 border border-gold/30 border-t-gold rounded-full animate-spin mx-auto" /></AuthLayout>}>
+    <Suspense fallback={<AuthLayout><div className="w-8 h-8 border border-muted/30 border-t-ink rounded-full animate-spin mx-auto" /></AuthLayout>}>
       <LoginForm />
     </Suspense>
   )

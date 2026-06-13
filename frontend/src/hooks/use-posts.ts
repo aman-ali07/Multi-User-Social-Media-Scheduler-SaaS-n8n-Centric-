@@ -20,7 +20,7 @@ export function usePosts(filter: PostStatus | 'all' = 'all', dateFilter?: string
     setError(null)
     try {
       const data = await getPosts(filter, pageNum, dateFilter, { signal })
-      setPosts(Array.isArray(data.posts) ? (data.posts as ScheduledPost[]) : [])
+      setPosts(Array.isArray(data.posts) ? data.posts : [])
       setTotal(data.total)
       setPage(data.page)
       setLoading(false)

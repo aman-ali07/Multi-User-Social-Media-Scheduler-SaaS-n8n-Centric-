@@ -20,7 +20,7 @@ export default function RegisterPage() {
     return (
       <AuthLayout>
         <div className="flex-1 flex items-center justify-center">
-          <div className="w-8 h-8 border border-gold/30 border-t-gold rounded-full animate-spin" />
+          <div className="w-8 h-8 border border-muted/30 border-t-ink rounded-full animate-spin" />
         </div>
       </AuthLayout>
     )

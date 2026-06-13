@@ -25,7 +25,8 @@ const webhookTrigger = trigger({
       outputPayload: {},
       errorMessage: null,
       durationMs: 1234,
-      triggeredBy: null
+      triggeredBy: null,
+      userId: null
     }
   }]
 });
@@ -49,9 +50,9 @@ const insertLog = node({
     name: 'Insert Workflow Run Log',
     parameters: {
       operation: 'executeQuery',
-      query: "INSERT INTO workflow_runs (workflow_name, status, input_payload, output_payload, error_message, duration_ms, triggered_by) VALUES ($1, $2, $3::jsonb, $4::jsonb, $5, $6, $7::uuid) RETURNING id",
+      query: "INSERT INTO workflow_runs (workflow_name, status, input_payload, output_payload, error_message, duration_ms, triggered_by, user_id) VALUES ($1, $2, $3::jsonb, $4::jsonb, $5, $6, $7::uuid, $8::uuid) RETURNING id",
       options: {
-        queryReplacement: expr('{{ $json.body.workflowName }}, {{ $json.body.status }}, {{ $json.body.inputPayload }}, {{ $json.body.outputPayload }}, {{ $json.body.errorMessage }}, {{ $json.body.durationMs }}, {{ $json.body.triggeredBy }}')
+        queryReplacement: expr('{{ $json.body.workflowName }}, {{ $json.body.status }}, {{ $json.body.inputPayload }}, {{ $json.body.outputPayload }}, {{ $json.body.errorMessage }}, {{ $json.body.durationMs }}, {{ $json.body.triggeredBy }}, {{ $json.body.userId }}')
       }
     }
   },

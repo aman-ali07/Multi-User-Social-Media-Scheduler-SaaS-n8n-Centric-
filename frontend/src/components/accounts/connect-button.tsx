@@ -11,12 +11,12 @@ interface ConnectButtonProps {
 export function ConnectButton({ platform, disabled, onClick }: ConnectButtonProps) {
   return (
     <Button
-      variant="gold"
+      variant="secondary"
       size="md"
       onClick={onClick}
       disabled={disabled}
     >
-      ◈ Connect {platform === 'facebook' ? 'Facebook' : 'Instagram'}
+      Connect {platform === 'facebook' ? 'Facebook' : 'Instagram'}
     </Button>
   )
 }

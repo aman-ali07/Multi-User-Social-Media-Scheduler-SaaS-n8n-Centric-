@@ -26,6 +26,10 @@ To allow your application to publish posts to Facebook and Instagram, you need t
 5. Type in your frontend's callback URL exactly as follows:
    `https://your-frontend-domain.com/api/auth/meta/callback`
    *(Note: If you are testing locally, you must put `http://localhost:3000/api/auth/meta/callback` here).*
+
+   > **Important:** This redirect URI must match EXACTLY what the app expects.
+   > The app sends users to: `{FRONTEND_URL}/api/auth/meta/callback`
+   > Do NOT use `/accounts/connect` — that is a legacy path. Use `/api/auth/meta/callback`.
 6. Scroll to the bottom and click **Save Changes**.
 
 ## Part 4: Requesting the Right Permissions (Scopes)

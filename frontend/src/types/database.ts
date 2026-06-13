@@ -22,6 +22,7 @@ export interface SocialAccount {
   ig_username: string | null;
   token_expires_at: string | null;
   status: AccountStatus;
+  error_message: string | null;
   created_at: string;
 }
 
@@ -56,6 +57,7 @@ export interface ScheduledPost {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  container_id: string | null;
   media?: (MediaAsset & { sort_order: number })[];
   logs?: PostLog[];
 }
@@ -74,6 +76,7 @@ export interface PostLog {
   error_message: string | null;
   response_payload: unknown;
   attempt_number: number;
+  user_id: string;
   created_at: string;
 }
 
@@ -86,6 +89,7 @@ export interface WorkflowRun {
   error_message: string | null;
   duration_ms: number | null;
   triggered_by: string | null;
+  user_id: string | null;
   created_at: string;
 }
 
@@ -96,6 +100,7 @@ export interface TokenRefreshLog {
   new_expires_at: string | null;
   status: 'success' | 'failed';
   error_message: string | null;
+  user_id: string;
   created_at: string;
 }
 

@@ -38,7 +38,7 @@ const verifyAuth = node({
   config: {
     parameters: {
       mode: 'runOnceForAllItems',
-      jsCode: "const h = $json.headers || {};\nconst uid = h['x-verified-user-id'] || h['X-Verified-User-Id'] || '';\nconst secret = h['x-proxy-secret'] || h['X-Proxy-Secret'] || '';\nif (!uid) throw new Error('Unauthorized');\nif (secret !== $env.N8N_PROXY_SECRET) throw new Error('Forbidden: invalid proxy secret');\nreturn [{ json: { ...$json, verifiedUserId: uid } }];"
+      jsCode: "const h = $json.headers || {};\nconst auth = h['authorization'] || h['Authorization'] || '';\nif (!auth) throw new Error('Unauthorized: Missing Authorization header');\nconst secret = h['x-proxy-secret'] || h['X-Proxy-Secret'] || '';\nif (secret !== $env.N8N_PROXY_SECRET) throw new Error('Forbidden: invalid proxy secret');\nconst res = await this.helpers.httpRequest({\n  method: 'GET',\n  url: $env.SUPABASE_AUTH_URL,\n  headers: { 'Authorization': auth }\n});\nif (!res || !res.id) throw new Error('Unauthorized: Invalid token');\nreturn [{ json: { ...$json, verifiedUserId: res.id } }];"
     }
   },
   output: [{ body: {}, verifiedUserId: 'uuid' }]

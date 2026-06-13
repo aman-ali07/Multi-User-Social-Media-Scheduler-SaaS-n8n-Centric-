@@ -10,6 +10,7 @@ const consoleRoutes = [
   '/accounts',
   '/logs',
   '/settings',
+  '/onboarding',
 ]
 
 const authRoutes = ['/auth/login', '/auth/register', '/auth/callback']
@@ -46,7 +47,13 @@ export async function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'))
 
   // API routes that handle their own auth pass through
-  if (pathname.startsWith('/api/n8n/') || pathname.startsWith('/api/query') || pathname === '/api/health' || pathname === '/api/stats/global') {
+  if (
+    pathname.startsWith('/api/n8n/') ||
+    pathname.startsWith('/api/query') ||
+    pathname === '/api/health' ||
+    pathname === '/api/stats/global' ||
+    pathname === '/api/auth/meta/connect'
+  ) {
     return supabaseResponse
   }
 
@@ -75,5 +82,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon\\.ico|monitoring).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon\\.ico|monitoring|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
 }

@@ -2,18 +2,10 @@
 
 import { DayCell } from './day-cell'
 
-interface CalendarPost {
-  id: string
-  status: string
-  platforms: string[]
-  schedule_at: string | null
-  published_at: string | null
-}
-
 interface CalendarGridProps {
   year: number
   month: number
-  postsByDate: Record<string, CalendarPost[]>
+  postsByDate: Record<string, { id: string; status: string; platforms: string[]; schedule_at: string | null; published_at: string | null }[]>
   onDayClick?: (date: string) => void
 }
 
@@ -52,18 +44,18 @@ export function CalendarGrid({ year, month, postsByDate, onDayClick }: CalendarG
   }
 
   return (
-    <div className="rounded-sm border border-border bg-surface overflow-x-auto">
+    <div className="rounded-lg border border-hairline bg-surface-card overflow-x-auto shadow-sm">
       <div className="min-w-[700px]">
-        <div className="grid grid-cols-7 border-b border-border">
+        <div className="grid grid-cols-7 border-b border-hairline">
           {dayLabels.map((label) => (
-            <div key={label} className="px-2 py-2 text-[10px] text-text-muted font-mono uppercase tracking-wider text-center">
+            <div key={label} className="px-2 py-3 text-[12px] text-muted font-medium uppercase tracking-wider text-center bg-surface-soft/50">
               {label}
             </div>
           ))}
         </div>
-        <div className="divide-y divide-border">
+        <div className="divide-y divide-hairline">
           {weeks.map((week, wi) => (
-            <div key={wi} className="grid grid-cols-7 divide-x divide-border">
+            <div key={wi} className="grid grid-cols-7 divide-x divide-hairline">
               {week.map((cell, ci) => {
                 const isToday =
                   cell.isCurrentMonth &&
